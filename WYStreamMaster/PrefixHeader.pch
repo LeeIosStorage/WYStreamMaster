@@ -1,0 +1,29 @@
+//
+//  PrefixHeader.pch
+//  WYStreamMaster
+//
+//  Created by Leejun on 2017/3/8.
+//  Copyright © 2017年 Leejun. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import "WYNavigationController.h"
+#import "WYTabBarController.h"
+#import "RMSystem.h"
+#import "WYStyleSheet.h"
+#import "WYCommonUtils.h"
+#import "WYNetWorkManager.h"
+#import "WYLoginUserManager.h"
+#import "MBProgressHUD+WYTools.h"
+#import "UIColor+Hex.h"
+
+#import <Masonry/Masonry.h>
+#import <YYKit/YYKit.h>
+#import <NIMSDK/NIMSDK.h>
+
+#endif /* PrefixHeader_pch */

@@ -1,0 +1,1156 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		441C23EC1E83EEA30020557C /* WYGiftModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 441C23EB1E83EEA30020557C /* WYGiftModel.m */; };
+		441C23FC1E83FDA20020557C /* LiveGiftShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 441C23EF1E83FDA20020557C /* LiveGiftShow.m */; };
+		441C23FD1E83FDA20020557C /* LiveGiftShowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 441C23F11E83FDA20020557C /* LiveGiftShowModel.m */; };
+		441C23FE1E83FDA20020557C /* LiveGiftShowNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 441C23F31E83FDA20020557C /* LiveGiftShowNumberView.m */; };
+		441C23FF1E83FDA20020557C /* LiveGiftShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 441C23F51E83FDA20020557C /* LiveGiftShowView.m */; };
+		441C24001E83FDA20020557C /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 441C23F71E83FDA20020557C /* UserModel.m */; };
+		441C24011E83FDA20020557C /* YTGradientColorLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 441C23F91E83FDA20020557C /* YTGradientColorLabel.m */; };
+		441C24021E83FDA20020557C /* ZYGiftListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 441C23FB1E83FDA20020557C /* ZYGiftListModel.m */; };
+		441C24051E8501CD0020557C /* WYBetTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 441C24041E8501CD0020557C /* WYBetTopView.m */; };
+		441C24081E85032F0020557C /* WYGiftHistoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 441C24071E85032F0020557C /* WYGiftHistoryView.m */; };
+		44203D111E6FE78800D59B5E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203D101E6FE78800D59B5E /* main.m */; };
+		44203D141E6FE78800D59B5E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203D131E6FE78800D59B5E /* AppDelegate.m */; };
+		44203D171E6FE78800D59B5E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203D161E6FE78800D59B5E /* ViewController.m */; };
+		44203D1A1E6FE78800D59B5E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44203D181E6FE78800D59B5E /* Main.storyboard */; };
+		44203D1C1E6FE78800D59B5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44203D1B1E6FE78800D59B5E /* Assets.xcassets */; };
+		44203D1F1E6FE78800D59B5E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44203D1D1E6FE78800D59B5E /* LaunchScreen.storyboard */; };
+		44203D2A1E6FE78800D59B5E /* WYStreamMasterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203D291E6FE78800D59B5E /* WYStreamMasterTests.m */; };
+		44203D841E714BD600D59B5E /* RMSuperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203D3F1E714BD600D59B5E /* RMSuperViewController.m */; };
+		44203D851E714BD600D59B5E /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203D421E714BD600D59B5E /* UIColor+Hex.m */; };
+		44203D861E714BD600D59B5E /* UINavigationBar+Awesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203D441E714BD600D59B5E /* UINavigationBar+Awesome.m */; };
+		44203D871E714BD600D59B5E /* WYNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203D461E714BD600D59B5E /* WYNavigationController.m */; };
+		44203D881E714BD600D59B5E /* WYSuperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203D481E714BD600D59B5E /* WYSuperViewController.m */; };
+		44203D891E714BD600D59B5E /* WYTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203D4A1E714BD600D59B5E /* WYTabBarController.m */; };
+		44203D8A1E714BD600D59B5E /* WYWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203D4C1E714BD600D59B5E /* WYWebViewController.m */; };
+		44203D8B1E714BD600D59B5E /* YTBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203D4E1E714BD600D59B5E /* YTBaseTableViewController.m */; };
+		44203D8C1E714BD600D59B5E /* WYLoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203D521E714BD600D59B5E /* WYLoginModel.m */; };
+		44203D8D1E714BD600D59B5E /* UIButton+YTCodeVerify.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203D541E714BD600D59B5E /* UIButton+YTCodeVerify.m */; };
+		44203D8E1E714BD600D59B5E /* UIButton+YTLoginButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203D561E714BD600D59B5E /* UIButton+YTLoginButton.m */; };
+		44203D8F1E714BD600D59B5E /* WYLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203D581E714BD600D59B5E /* WYLoginManager.m */; };
+		44203D901E714BD600D59B5E /* WYLoginUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203D5A1E714BD600D59B5E /* WYLoginUserManager.m */; };
+		44203D911E714BD600D59B5E /* WYLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203D5C1E714BD600D59B5E /* WYLoginViewController.m */; };
+		44203D921E714BD600D59B5E /* WYLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44203D5D1E714BD600D59B5E /* WYLoginViewController.xib */; };
+		44203D931E714BD600D59B5E /* WYSettingConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203D5F1E714BD600D59B5E /* WYSettingConfig.m */; };
+		44203D941E714BD600D59B5E /* YTLoginRegistPublic.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203D611E714BD600D59B5E /* YTLoginRegistPublic.m */; };
+		44203D951E714BD600D59B5E /* YTQuickLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203D631E714BD600D59B5E /* YTQuickLoginViewController.m */; };
+		44203D961E714BD600D59B5E /* YTQuickLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44203D641E714BD600D59B5E /* YTQuickLoginViewController.xib */; };
+		44203D971E714BD600D59B5E /* WYCustomAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203D691E714BD600D59B5E /* WYCustomAlertView.m */; };
+		44203D981E714BD600D59B5E /* WYImageCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203D6C1E714BD600D59B5E /* WYImageCodeView.m */; };
+		44203D991E714BD600D59B5E /* WYImageCodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44203D6D1E714BD600D59B5E /* WYImageCodeView.xib */; };
+		44203D9A1E714BD600D59B5E /* WYRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203D701E714BD600D59B5E /* WYRefreshFooter.m */; };
+		44203D9B1E714BD600D59B5E /* WYRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203D721E714BD600D59B5E /* WYRefreshHeader.m */; };
+		44203D9C1E714BD600D59B5E /* WYShareActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203D751E714BD600D59B5E /* WYShareActionSheet.m */; };
+		44203D9D1E714BD600D59B5E /* WYShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203D771E714BD600D59B5E /* WYShareManager.m */; };
+		44203D9E1E714BD600D59B5E /* WYStyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203D7A1E714BD600D59B5E /* WYStyleSheet.m */; };
+		44203D9F1E714BD600D59B5E /* MBProgressHUD+WYTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203D7D1E714BD600D59B5E /* MBProgressHUD+WYTools.m */; };
+		44203DA01E714BD600D59B5E /* NSString+Value.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203D7F1E714BD600D59B5E /* NSString+Value.m */; };
+		44203DA11E714BD600D59B5E /* RMPushUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203D811E714BD600D59B5E /* RMPushUtils.m */; };
+		44203DA21E714BD600D59B5E /* WYCommonUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203D831E714BD600D59B5E /* WYCommonUtils.m */; };
+		44203DAE1E715A9100D59B5E /* NetWorkConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 44203DA51E715A9100D59B5E /* NetWorkConfig.json */; };
+		44203DAF1E715A9100D59B5E /* WYAPIGenerate.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203DA71E715A9100D59B5E /* WYAPIGenerate.m */; };
+		44203DB01E715A9100D59B5E /* WYCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203DA91E715A9100D59B5E /* WYCache.m */; };
+		44203DB11E715A9100D59B5E /* WYNetWorkExceptionHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203DAB1E715A9100D59B5E /* WYNetWorkExceptionHandling.m */; };
+		44203DB21E715A9100D59B5E /* WYNetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203DAD1E715A9100D59B5E /* WYNetWorkManager.m */; };
+		44203DB71E7246D900D59B5E /* MainTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203DB51E7246D900D59B5E /* MainTabViewController.m */; };
+		44203DB81E7246D900D59B5E /* MainTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44203DB61E7246D900D59B5E /* MainTabViewController.xib */; };
+		44203DBD1E72551600D59B5E /* WYLiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203DBB1E72551600D59B5E /* WYLiveViewController.m */; };
+		44203DBE1E72551600D59B5E /* WYLiveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44203DBC1E72551600D59B5E /* WYLiveViewController.xib */; };
+		44203DC31E76380A00D59B5E /* WYStreamingSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203DC21E76380A00D59B5E /* WYStreamingSessionManager.m */; };
+		446D43251E829030002E5C52 /* WYContributionListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 446D43241E829030002E5C52 /* WYContributionListView.m */; };
+		446D43281E837DAC002E5C52 /* WYAnchorManageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 446D43271E837DAC002E5C52 /* WYAnchorManageView.m */; };
+		446D432A1E839520002E5C52 /* WYAnchorManageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 446D43291E839520002E5C52 /* WYAnchorManageView.xib */; };
+		44D2F7C01E7A6FBF00122866 /* WYStreamingConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2F7BF1E7A6FBF00122866 /* WYStreamingConfig.m */; };
+		44D2F7C51E7BCA6B00122866 /* WYSocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2F7C41E7BCA6B00122866 /* WYSocketManager.m */; };
+		44D2F7CA1E7BECFF00122866 /* WYGiftRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2F7C91E7BECFF00122866 /* WYGiftRecordView.m */; };
+		44D2F7CE1E7FA27400122866 /* WYCustomActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2F7CC1E7FA27400122866 /* WYCustomActionSheet.m */; };
+		44D2F7D11E7FA8F300122866 /* WYAnchorInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2F7D01E7FA8F300122866 /* WYAnchorInfoView.m */; };
+		44D2F7E11E7FC30500122866 /* NSString+YTChatRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2F7D31E7FC30500122866 /* NSString+YTChatRoom.m */; };
+		44D2F7E21E7FC30500122866 /* YTChatBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2F7D51E7FC30500122866 /* YTChatBottomView.m */; };
+		44D2F7E31E7FC30500122866 /* YTChatBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44D2F7D61E7FC30500122866 /* YTChatBottomView.xib */; };
+		44D2F7E41E7FC30500122866 /* YTChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2F7D81E7FC30500122866 /* YTChatCell.m */; };
+		44D2F7E51E7FC30500122866 /* YTChatModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2F7DA1E7FC30500122866 /* YTChatModel.m */; };
+		44D2F7E61E7FC30500122866 /* YTChatRoomControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2F7DC1E7FC30500122866 /* YTChatRoomControl.m */; };
+		44D2F7E71E7FC30500122866 /* YTEnterExtraModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2F7DE1E7FC30500122866 /* YTEnterExtraModel.m */; };
+		44D2F7E81E7FC30500122866 /* YTRoomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2F7E01E7FC30500122866 /* YTRoomView.m */; };
+		44D2F7EB1E7FFBFD00122866 /* WYBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2F7EA1E7FFBFD00122866 /* WYBaseModel.m */; };
+		44D2F7F81E7FFDB700122866 /* YTBaseCustomMessageAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2F7EE1E7FFDB700122866 /* YTBaseCustomMessageAttachment.m */; };
+		44D2F7F91E7FFDB700122866 /* YTCustomAttachmentDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2F7F01E7FFDB700122866 /* YTCustomAttachmentDecoder.m */; };
+		44D2F7FA1E7FFDB700122866 /* YTGiftAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2F7F31E7FFDB700122866 /* YTGiftAttachment.m */; };
+		44D2F7FB1E7FFDB700122866 /* YTMessageConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2F7F51E7FFDB700122866 /* YTMessageConverter.m */; };
+		44D2F7FC1E7FFDB700122866 /* YTMessageNotificationAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2F7F71E7FFDB700122866 /* YTMessageNotificationAttachment.m */; };
+		C69795F58C80289B30CE5F15 /* libPods-WYStreamMaster.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D7A3645D8D449741FC609F4 /* libPods-WYStreamMaster.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		44203D261E6FE78800D59B5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44203D041E6FE78800D59B5E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 44203D0B1E6FE78800D59B5E;
+			remoteInfo = WYStreamMaster;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		441C23EA1E83EEA30020557C /* WYGiftModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYGiftModel.h; sourceTree = "<group>"; };
+		441C23EB1E83EEA30020557C /* WYGiftModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYGiftModel.m; sourceTree = "<group>"; };
+		441C23EE1E83FDA20020557C /* LiveGiftShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveGiftShow.h; sourceTree = "<group>"; };
+		441C23EF1E83FDA20020557C /* LiveGiftShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveGiftShow.m; sourceTree = "<group>"; };
+		441C23F01E83FDA20020557C /* LiveGiftShowModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveGiftShowModel.h; sourceTree = "<group>"; };
+		441C23F11E83FDA20020557C /* LiveGiftShowModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveGiftShowModel.m; sourceTree = "<group>"; };
+		441C23F21E83FDA20020557C /* LiveGiftShowNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveGiftShowNumberView.h; sourceTree = "<group>"; };
+		441C23F31E83FDA20020557C /* LiveGiftShowNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveGiftShowNumberView.m; sourceTree = "<group>"; };
+		441C23F41E83FDA20020557C /* LiveGiftShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveGiftShowView.h; sourceTree = "<group>"; };
+		441C23F51E83FDA20020557C /* LiveGiftShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveGiftShowView.m; sourceTree = "<group>"; };
+		441C23F61E83FDA20020557C /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
+		441C23F71E83FDA20020557C /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
+		441C23F81E83FDA20020557C /* YTGradientColorLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTGradientColorLabel.h; sourceTree = "<group>"; };
+		441C23F91E83FDA20020557C /* YTGradientColorLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTGradientColorLabel.m; sourceTree = "<group>"; };
+		441C23FA1E83FDA20020557C /* ZYGiftListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYGiftListModel.h; sourceTree = "<group>"; };
+		441C23FB1E83FDA20020557C /* ZYGiftListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYGiftListModel.m; sourceTree = "<group>"; };
+		441C24031E8501CD0020557C /* WYBetTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYBetTopView.h; sourceTree = "<group>"; };
+		441C24041E8501CD0020557C /* WYBetTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYBetTopView.m; sourceTree = "<group>"; };
+		441C24061E85032F0020557C /* WYGiftHistoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYGiftHistoryView.h; sourceTree = "<group>"; };
+		441C24071E85032F0020557C /* WYGiftHistoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYGiftHistoryView.m; sourceTree = "<group>"; };
+		44203D0C1E6FE78800D59B5E /* WYStreamMaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WYStreamMaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		44203D101E6FE78800D59B5E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		44203D121E6FE78800D59B5E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		44203D131E6FE78800D59B5E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		44203D151E6FE78800D59B5E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		44203D161E6FE78800D59B5E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		44203D191E6FE78800D59B5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		44203D1B1E6FE78800D59B5E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		44203D1E1E6FE78800D59B5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		44203D201E6FE78800D59B5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		44203D251E6FE78800D59B5E /* WYStreamMasterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WYStreamMasterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		44203D291E6FE78800D59B5E /* WYStreamMasterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WYStreamMasterTests.m; sourceTree = "<group>"; };
+		44203D2B1E6FE78800D59B5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		44203D3A1E6FFFFD00D59B5E /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		44203D3E1E714BD600D59B5E /* RMSuperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMSuperViewController.h; sourceTree = "<group>"; };
+		44203D3F1E714BD600D59B5E /* RMSuperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMSuperViewController.m; sourceTree = "<group>"; };
+		44203D401E714BD600D59B5E /* RMSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMSystem.h; sourceTree = "<group>"; };
+		44203D411E714BD600D59B5E /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
+		44203D421E714BD600D59B5E /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
+		44203D431E714BD600D59B5E /* UINavigationBar+Awesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+Awesome.h"; sourceTree = "<group>"; };
+		44203D441E714BD600D59B5E /* UINavigationBar+Awesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+Awesome.m"; sourceTree = "<group>"; };
+		44203D451E714BD600D59B5E /* WYNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYNavigationController.h; sourceTree = "<group>"; };
+		44203D461E714BD600D59B5E /* WYNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYNavigationController.m; sourceTree = "<group>"; };
+		44203D471E714BD600D59B5E /* WYSuperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYSuperViewController.h; sourceTree = "<group>"; };
+		44203D481E714BD600D59B5E /* WYSuperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYSuperViewController.m; sourceTree = "<group>"; };
+		44203D491E714BD600D59B5E /* WYTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYTabBarController.h; sourceTree = "<group>"; };
+		44203D4A1E714BD600D59B5E /* WYTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYTabBarController.m; sourceTree = "<group>"; };
+		44203D4B1E714BD600D59B5E /* WYWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYWebViewController.h; sourceTree = "<group>"; };
+		44203D4C1E714BD600D59B5E /* WYWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYWebViewController.m; sourceTree = "<group>"; };
+		44203D4D1E714BD600D59B5E /* YTBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTBaseTableViewController.h; sourceTree = "<group>"; };
+		44203D4E1E714BD600D59B5E /* YTBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTBaseTableViewController.m; sourceTree = "<group>"; };
+		44203D511E714BD600D59B5E /* WYLoginModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYLoginModel.h; sourceTree = "<group>"; };
+		44203D521E714BD600D59B5E /* WYLoginModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYLoginModel.m; sourceTree = "<group>"; };
+		44203D531E714BD600D59B5E /* UIButton+YTCodeVerify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+YTCodeVerify.h"; sourceTree = "<group>"; };
+		44203D541E714BD600D59B5E /* UIButton+YTCodeVerify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+YTCodeVerify.m"; sourceTree = "<group>"; };
+		44203D551E714BD600D59B5E /* UIButton+YTLoginButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+YTLoginButton.h"; sourceTree = "<group>"; };
+		44203D561E714BD600D59B5E /* UIButton+YTLoginButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+YTLoginButton.m"; sourceTree = "<group>"; };
+		44203D571E714BD600D59B5E /* WYLoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYLoginManager.h; sourceTree = "<group>"; };
+		44203D581E714BD600D59B5E /* WYLoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYLoginManager.m; sourceTree = "<group>"; };
+		44203D591E714BD600D59B5E /* WYLoginUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYLoginUserManager.h; sourceTree = "<group>"; };
+		44203D5A1E714BD600D59B5E /* WYLoginUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYLoginUserManager.m; sourceTree = "<group>"; };
+		44203D5B1E714BD600D59B5E /* WYLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYLoginViewController.h; sourceTree = "<group>"; };
+		44203D5C1E714BD600D59B5E /* WYLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYLoginViewController.m; sourceTree = "<group>"; };
+		44203D5D1E714BD600D59B5E /* WYLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYLoginViewController.xib; sourceTree = "<group>"; };
+		44203D5E1E714BD600D59B5E /* WYSettingConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYSettingConfig.h; sourceTree = "<group>"; };
+		44203D5F1E714BD600D59B5E /* WYSettingConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYSettingConfig.m; sourceTree = "<group>"; };
+		44203D601E714BD600D59B5E /* YTLoginRegistPublic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTLoginRegistPublic.h; sourceTree = "<group>"; };
+		44203D611E714BD600D59B5E /* YTLoginRegistPublic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTLoginRegistPublic.m; sourceTree = "<group>"; };
+		44203D621E714BD600D59B5E /* YTQuickLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTQuickLoginViewController.h; sourceTree = "<group>"; };
+		44203D631E714BD600D59B5E /* YTQuickLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTQuickLoginViewController.m; sourceTree = "<group>"; };
+		44203D641E714BD600D59B5E /* YTQuickLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YTQuickLoginViewController.xib; sourceTree = "<group>"; };
+		44203D681E714BD600D59B5E /* WYCustomAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCustomAlertView.h; sourceTree = "<group>"; };
+		44203D691E714BD600D59B5E /* WYCustomAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCustomAlertView.m; sourceTree = "<group>"; };
+		44203D6B1E714BD600D59B5E /* WYImageCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYImageCodeView.h; sourceTree = "<group>"; };
+		44203D6C1E714BD600D59B5E /* WYImageCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYImageCodeView.m; sourceTree = "<group>"; };
+		44203D6D1E714BD600D59B5E /* WYImageCodeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYImageCodeView.xib; sourceTree = "<group>"; };
+		44203D6F1E714BD600D59B5E /* WYRefreshFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYRefreshFooter.h; sourceTree = "<group>"; };
+		44203D701E714BD600D59B5E /* WYRefreshFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYRefreshFooter.m; sourceTree = "<group>"; };
+		44203D711E714BD600D59B5E /* WYRefreshHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYRefreshHeader.h; sourceTree = "<group>"; };
+		44203D721E714BD600D59B5E /* WYRefreshHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYRefreshHeader.m; sourceTree = "<group>"; };
+		44203D741E714BD600D59B5E /* WYShareActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYShareActionSheet.h; sourceTree = "<group>"; };
+		44203D751E714BD600D59B5E /* WYShareActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYShareActionSheet.m; sourceTree = "<group>"; };
+		44203D761E714BD600D59B5E /* WYShareManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYShareManager.h; sourceTree = "<group>"; };
+		44203D771E714BD600D59B5E /* WYShareManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYShareManager.m; sourceTree = "<group>"; };
+		44203D791E714BD600D59B5E /* WYStyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYStyleSheet.h; sourceTree = "<group>"; };
+		44203D7A1E714BD600D59B5E /* WYStyleSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYStyleSheet.m; sourceTree = "<group>"; };
+		44203D7C1E714BD600D59B5E /* MBProgressHUD+WYTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+WYTools.h"; sourceTree = "<group>"; };
+		44203D7D1E714BD600D59B5E /* MBProgressHUD+WYTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+WYTools.m"; sourceTree = "<group>"; };
+		44203D7E1E714BD600D59B5E /* NSString+Value.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Value.h"; sourceTree = "<group>"; };
+		44203D7F1E714BD600D59B5E /* NSString+Value.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Value.m"; sourceTree = "<group>"; };
+		44203D801E714BD600D59B5E /* RMPushUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMPushUtils.h; sourceTree = "<group>"; };
+		44203D811E714BD600D59B5E /* RMPushUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMPushUtils.m; sourceTree = "<group>"; };
+		44203D821E714BD600D59B5E /* WYCommonUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCommonUtils.h; sourceTree = "<group>"; };
+		44203D831E714BD600D59B5E /* WYCommonUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCommonUtils.m; sourceTree = "<group>"; };
+		44203DA51E715A9100D59B5E /* NetWorkConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NetWorkConfig.json; sourceTree = "<group>"; };
+		44203DA61E715A9100D59B5E /* WYAPIGenerate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYAPIGenerate.h; sourceTree = "<group>"; };
+		44203DA71E715A9100D59B5E /* WYAPIGenerate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYAPIGenerate.m; sourceTree = "<group>"; };
+		44203DA81E715A9100D59B5E /* WYCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCache.h; sourceTree = "<group>"; };
+		44203DA91E715A9100D59B5E /* WYCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCache.m; sourceTree = "<group>"; };
+		44203DAA1E715A9100D59B5E /* WYNetWorkExceptionHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYNetWorkExceptionHandling.h; sourceTree = "<group>"; };
+		44203DAB1E715A9100D59B5E /* WYNetWorkExceptionHandling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYNetWorkExceptionHandling.m; sourceTree = "<group>"; };
+		44203DAC1E715A9100D59B5E /* WYNetWorkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYNetWorkManager.h; sourceTree = "<group>"; };
+		44203DAD1E715A9100D59B5E /* WYNetWorkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYNetWorkManager.m; sourceTree = "<group>"; };
+		44203DB41E7246D900D59B5E /* MainTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabViewController.h; sourceTree = "<group>"; };
+		44203DB51E7246D900D59B5E /* MainTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabViewController.m; sourceTree = "<group>"; };
+		44203DB61E7246D900D59B5E /* MainTabViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainTabViewController.xib; sourceTree = "<group>"; };
+		44203DBA1E72551600D59B5E /* WYLiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYLiveViewController.h; sourceTree = "<group>"; };
+		44203DBB1E72551600D59B5E /* WYLiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYLiveViewController.m; sourceTree = "<group>"; };
+		44203DBC1E72551600D59B5E /* WYLiveViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYLiveViewController.xib; sourceTree = "<group>"; };
+		44203DC11E76380A00D59B5E /* WYStreamingSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYStreamingSessionManager.h; sourceTree = "<group>"; };
+		44203DC21E76380A00D59B5E /* WYStreamingSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYStreamingSessionManager.m; sourceTree = "<group>"; };
+		446D43231E829030002E5C52 /* WYContributionListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYContributionListView.h; sourceTree = "<group>"; };
+		446D43241E829030002E5C52 /* WYContributionListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYContributionListView.m; sourceTree = "<group>"; };
+		446D43261E837DAC002E5C52 /* WYAnchorManageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYAnchorManageView.h; sourceTree = "<group>"; };
+		446D43271E837DAC002E5C52 /* WYAnchorManageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYAnchorManageView.m; sourceTree = "<group>"; };
+		446D43291E839520002E5C52 /* WYAnchorManageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYAnchorManageView.xib; sourceTree = "<group>"; };
+		44D2F7BE1E7A6FBF00122866 /* WYStreamingConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYStreamingConfig.h; sourceTree = "<group>"; };
+		44D2F7BF1E7A6FBF00122866 /* WYStreamingConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYStreamingConfig.m; sourceTree = "<group>"; };
+		44D2F7C31E7BCA6B00122866 /* WYSocketManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYSocketManager.h; sourceTree = "<group>"; };
+		44D2F7C41E7BCA6B00122866 /* WYSocketManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYSocketManager.m; sourceTree = "<group>"; };
+		44D2F7C81E7BECFF00122866 /* WYGiftRecordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYGiftRecordView.h; sourceTree = "<group>"; };
+		44D2F7C91E7BECFF00122866 /* WYGiftRecordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYGiftRecordView.m; sourceTree = "<group>"; };
+		44D2F7CC1E7FA27400122866 /* WYCustomActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCustomActionSheet.m; sourceTree = "<group>"; };
+		44D2F7CD1E7FA27400122866 /* WYCustomActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCustomActionSheet.h; sourceTree = "<group>"; };
+		44D2F7CF1E7FA8F300122866 /* WYAnchorInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYAnchorInfoView.h; sourceTree = "<group>"; };
+		44D2F7D01E7FA8F300122866 /* WYAnchorInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYAnchorInfoView.m; sourceTree = "<group>"; };
+		44D2F7D21E7FC30500122866 /* NSString+YTChatRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+YTChatRoom.h"; sourceTree = "<group>"; };
+		44D2F7D31E7FC30500122866 /* NSString+YTChatRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+YTChatRoom.m"; sourceTree = "<group>"; };
+		44D2F7D41E7FC30500122866 /* YTChatBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTChatBottomView.h; sourceTree = "<group>"; };
+		44D2F7D51E7FC30500122866 /* YTChatBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTChatBottomView.m; sourceTree = "<group>"; };
+		44D2F7D61E7FC30500122866 /* YTChatBottomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YTChatBottomView.xib; sourceTree = "<group>"; };
+		44D2F7D71E7FC30500122866 /* YTChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTChatCell.h; sourceTree = "<group>"; };
+		44D2F7D81E7FC30500122866 /* YTChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTChatCell.m; sourceTree = "<group>"; };
+		44D2F7D91E7FC30500122866 /* YTChatModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTChatModel.h; sourceTree = "<group>"; };
+		44D2F7DA1E7FC30500122866 /* YTChatModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTChatModel.m; sourceTree = "<group>"; };
+		44D2F7DB1E7FC30500122866 /* YTChatRoomControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTChatRoomControl.h; sourceTree = "<group>"; };
+		44D2F7DC1E7FC30500122866 /* YTChatRoomControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTChatRoomControl.m; sourceTree = "<group>"; };
+		44D2F7DD1E7FC30500122866 /* YTEnterExtraModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTEnterExtraModel.h; sourceTree = "<group>"; };
+		44D2F7DE1E7FC30500122866 /* YTEnterExtraModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTEnterExtraModel.m; sourceTree = "<group>"; };
+		44D2F7DF1E7FC30500122866 /* YTRoomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTRoomView.h; sourceTree = "<group>"; };
+		44D2F7E01E7FC30500122866 /* YTRoomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTRoomView.m; sourceTree = "<group>"; };
+		44D2F7E91E7FFBFD00122866 /* WYBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYBaseModel.h; sourceTree = "<group>"; };
+		44D2F7EA1E7FFBFD00122866 /* WYBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYBaseModel.m; sourceTree = "<group>"; };
+		44D2F7ED1E7FFDB700122866 /* YTBaseCustomMessageAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTBaseCustomMessageAttachment.h; sourceTree = "<group>"; };
+		44D2F7EE1E7FFDB700122866 /* YTBaseCustomMessageAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTBaseCustomMessageAttachment.m; sourceTree = "<group>"; };
+		44D2F7EF1E7FFDB700122866 /* YTCustomAttachmentDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTCustomAttachmentDecoder.h; sourceTree = "<group>"; };
+		44D2F7F01E7FFDB700122866 /* YTCustomAttachmentDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTCustomAttachmentDecoder.m; sourceTree = "<group>"; };
+		44D2F7F11E7FFDB700122866 /* YTCustomMessageDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTCustomMessageDefines.h; sourceTree = "<group>"; };
+		44D2F7F21E7FFDB700122866 /* YTGiftAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTGiftAttachment.h; sourceTree = "<group>"; };
+		44D2F7F31E7FFDB700122866 /* YTGiftAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTGiftAttachment.m; sourceTree = "<group>"; };
+		44D2F7F41E7FFDB700122866 /* YTMessageConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTMessageConverter.h; sourceTree = "<group>"; };
+		44D2F7F51E7FFDB700122866 /* YTMessageConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTMessageConverter.m; sourceTree = "<group>"; };
+		44D2F7F61E7FFDB700122866 /* YTMessageNotificationAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTMessageNotificationAttachment.h; sourceTree = "<group>"; };
+		44D2F7F71E7FFDB700122866 /* YTMessageNotificationAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTMessageNotificationAttachment.m; sourceTree = "<group>"; };
+		544D39187087EFD6B76825B2 /* Pods-WYStreamMaster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WYStreamMaster.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WYStreamMaster/Pods-WYStreamMaster.debug.xcconfig"; sourceTree = "<group>"; };
+		7D7A3645D8D449741FC609F4 /* libPods-WYStreamMaster.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WYStreamMaster.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4223266790A64B80390313C /* Pods-WYStreamMaster.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WYStreamMaster.release.xcconfig"; path = "Pods/Target Support Files/Pods-WYStreamMaster/Pods-WYStreamMaster.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		44203D091E6FE78800D59B5E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C69795F58C80289B30CE5F15 /* libPods-WYStreamMaster.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		44203D221E6FE78800D59B5E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		441C23ED1E83FDA20020557C /* LiveGiftShowView */ = {
+			isa = PBXGroup;
+			children = (
+				441C23EE1E83FDA20020557C /* LiveGiftShow.h */,
+				441C23EF1E83FDA20020557C /* LiveGiftShow.m */,
+				441C23F01E83FDA20020557C /* LiveGiftShowModel.h */,
+				441C23F11E83FDA20020557C /* LiveGiftShowModel.m */,
+				441C23F21E83FDA20020557C /* LiveGiftShowNumberView.h */,
+				441C23F31E83FDA20020557C /* LiveGiftShowNumberView.m */,
+				441C23F41E83FDA20020557C /* LiveGiftShowView.h */,
+				441C23F51E83FDA20020557C /* LiveGiftShowView.m */,
+				441C23F61E83FDA20020557C /* UserModel.h */,
+				441C23F71E83FDA20020557C /* UserModel.m */,
+				441C23F81E83FDA20020557C /* YTGradientColorLabel.h */,
+				441C23F91E83FDA20020557C /* YTGradientColorLabel.m */,
+				441C23FA1E83FDA20020557C /* ZYGiftListModel.h */,
+				441C23FB1E83FDA20020557C /* ZYGiftListModel.m */,
+			);
+			path = LiveGiftShowView;
+			sourceTree = "<group>";
+		};
+		44203D031E6FE78800D59B5E = {
+			isa = PBXGroup;
+			children = (
+				44203D0E1E6FE78800D59B5E /* WYStreamMaster */,
+				44203D281E6FE78800D59B5E /* WYStreamMasterTests */,
+				44203D0D1E6FE78800D59B5E /* Products */,
+				464859A1FE6D85493D24AB49 /* Pods */,
+				646CB6BFF7BA4AA8B7CEA915 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		44203D0D1E6FE78800D59B5E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				44203D0C1E6FE78800D59B5E /* WYStreamMaster.app */,
+				44203D251E6FE78800D59B5E /* WYStreamMasterTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		44203D0E1E6FE78800D59B5E /* WYStreamMaster */ = {
+			isa = PBXGroup;
+			children = (
+				44203D3C1E714BD600D59B5E /* WYCore */,
+				44203D3B1E7008BC00D59B5E /* ViewControllers */,
+				44203D121E6FE78800D59B5E /* AppDelegate.h */,
+				44203D131E6FE78800D59B5E /* AppDelegate.m */,
+				44203D151E6FE78800D59B5E /* ViewController.h */,
+				44203D161E6FE78800D59B5E /* ViewController.m */,
+				44203D181E6FE78800D59B5E /* Main.storyboard */,
+				44203D1B1E6FE78800D59B5E /* Assets.xcassets */,
+				44203D1D1E6FE78800D59B5E /* LaunchScreen.storyboard */,
+				44203D201E6FE78800D59B5E /* Info.plist */,
+				44203D0F1E6FE78800D59B5E /* Supporting Files */,
+			);
+			path = WYStreamMaster;
+			sourceTree = "<group>";
+		};
+		44203D0F1E6FE78800D59B5E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				44203D101E6FE78800D59B5E /* main.m */,
+				44203D3A1E6FFFFD00D59B5E /* PrefixHeader.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		44203D281E6FE78800D59B5E /* WYStreamMasterTests */ = {
+			isa = PBXGroup;
+			children = (
+				44203D291E6FE78800D59B5E /* WYStreamMasterTests.m */,
+				44203D2B1E6FE78800D59B5E /* Info.plist */,
+			);
+			path = WYStreamMasterTests;
+			sourceTree = "<group>";
+		};
+		44203D3B1E7008BC00D59B5E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				44D2F7C11E7BCA2100122866 /* Chat */,
+				44203DB31E7245FA00D59B5E /* Main */,
+				44203DB91E7254A900D59B5E /* Stream */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		44203D3C1E714BD600D59B5E /* WYCore */ = {
+			isa = PBXGroup;
+			children = (
+				44203DA31E715A9100D59B5E /* Network */,
+				44203D3D1E714BD600D59B5E /* Base */,
+				44203D4F1E714BD600D59B5E /* Login */,
+				44203D651E714BD600D59B5E /* Public */,
+				44203D7B1E714BD600D59B5E /* Utils */,
+			);
+			path = WYCore;
+			sourceTree = "<group>";
+		};
+		44203D3D1E714BD600D59B5E /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				44203D3E1E714BD600D59B5E /* RMSuperViewController.h */,
+				44203D3F1E714BD600D59B5E /* RMSuperViewController.m */,
+				44203D401E714BD600D59B5E /* RMSystem.h */,
+				44203D411E714BD600D59B5E /* UIColor+Hex.h */,
+				44203D421E714BD600D59B5E /* UIColor+Hex.m */,
+				44203D431E714BD600D59B5E /* UINavigationBar+Awesome.h */,
+				44203D441E714BD600D59B5E /* UINavigationBar+Awesome.m */,
+				44203D451E714BD600D59B5E /* WYNavigationController.h */,
+				44203D461E714BD600D59B5E /* WYNavigationController.m */,
+				44203D471E714BD600D59B5E /* WYSuperViewController.h */,
+				44203D481E714BD600D59B5E /* WYSuperViewController.m */,
+				44203D491E714BD600D59B5E /* WYTabBarController.h */,
+				44203D4A1E714BD600D59B5E /* WYTabBarController.m */,
+				44203D4B1E714BD600D59B5E /* WYWebViewController.h */,
+				44203D4C1E714BD600D59B5E /* WYWebViewController.m */,
+				44203D4D1E714BD600D59B5E /* YTBaseTableViewController.h */,
+				44203D4E1E714BD600D59B5E /* YTBaseTableViewController.m */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		44203D4F1E714BD600D59B5E /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				44203D501E714BD600D59B5E /* Model */,
+				44203D531E714BD600D59B5E /* UIButton+YTCodeVerify.h */,
+				44203D541E714BD600D59B5E /* UIButton+YTCodeVerify.m */,
+				44203D551E714BD600D59B5E /* UIButton+YTLoginButton.h */,
+				44203D561E714BD600D59B5E /* UIButton+YTLoginButton.m */,
+				44203D571E714BD600D59B5E /* WYLoginManager.h */,
+				44203D581E714BD600D59B5E /* WYLoginManager.m */,
+				44203D591E714BD600D59B5E /* WYLoginUserManager.h */,
+				44203D5A1E714BD600D59B5E /* WYLoginUserManager.m */,
+				44203D5B1E714BD600D59B5E /* WYLoginViewController.h */,
+				44203D5C1E714BD600D59B5E /* WYLoginViewController.m */,
+				44203D5D1E714BD600D59B5E /* WYLoginViewController.xib */,
+				44203D5E1E714BD600D59B5E /* WYSettingConfig.h */,
+				44203D5F1E714BD600D59B5E /* WYSettingConfig.m */,
+				44203D601E714BD600D59B5E /* YTLoginRegistPublic.h */,
+				44203D611E714BD600D59B5E /* YTLoginRegistPublic.m */,
+				44203D621E714BD600D59B5E /* YTQuickLoginViewController.h */,
+				44203D631E714BD600D59B5E /* YTQuickLoginViewController.m */,
+				44203D641E714BD600D59B5E /* YTQuickLoginViewController.xib */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		44203D501E714BD600D59B5E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				44D2F7E91E7FFBFD00122866 /* WYBaseModel.h */,
+				44D2F7EA1E7FFBFD00122866 /* WYBaseModel.m */,
+				44203D511E714BD600D59B5E /* WYLoginModel.h */,
+				44203D521E714BD600D59B5E /* WYLoginModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		44203D651E714BD600D59B5E /* Public */ = {
+			isa = PBXGroup;
+			children = (
+				44203D661E714BD600D59B5E /* Common */,
+				44203D781E714BD600D59B5E /* Style */,
+			);
+			path = Public;
+			sourceTree = "<group>";
+		};
+		44203D661E714BD600D59B5E /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				44D2F7CB1E7FA25900122866 /* ActionSheet */,
+				44203D671E714BD600D59B5E /* AlertView */,
+				44203D6A1E714BD600D59B5E /* WYImageCodeView */,
+				44203D6E1E714BD600D59B5E /* WYRefresh */,
+				44203D731E714BD600D59B5E /* WYShare */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		44203D671E714BD600D59B5E /* AlertView */ = {
+			isa = PBXGroup;
+			children = (
+				44203D681E714BD600D59B5E /* WYCustomAlertView.h */,
+				44203D691E714BD600D59B5E /* WYCustomAlertView.m */,
+			);
+			path = AlertView;
+			sourceTree = "<group>";
+		};
+		44203D6A1E714BD600D59B5E /* WYImageCodeView */ = {
+			isa = PBXGroup;
+			children = (
+				44203D6B1E714BD600D59B5E /* WYImageCodeView.h */,
+				44203D6C1E714BD600D59B5E /* WYImageCodeView.m */,
+				44203D6D1E714BD600D59B5E /* WYImageCodeView.xib */,
+			);
+			path = WYImageCodeView;
+			sourceTree = "<group>";
+		};
+		44203D6E1E714BD600D59B5E /* WYRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				44203D6F1E714BD600D59B5E /* WYRefreshFooter.h */,
+				44203D701E714BD600D59B5E /* WYRefreshFooter.m */,
+				44203D711E714BD600D59B5E /* WYRefreshHeader.h */,
+				44203D721E714BD600D59B5E /* WYRefreshHeader.m */,
+			);
+			path = WYRefresh;
+			sourceTree = "<group>";
+		};
+		44203D731E714BD600D59B5E /* WYShare */ = {
+			isa = PBXGroup;
+			children = (
+				44203D741E714BD600D59B5E /* WYShareActionSheet.h */,
+				44203D751E714BD600D59B5E /* WYShareActionSheet.m */,
+				44203D761E714BD600D59B5E /* WYShareManager.h */,
+				44203D771E714BD600D59B5E /* WYShareManager.m */,
+			);
+			path = WYShare;
+			sourceTree = "<group>";
+		};
+		44203D781E714BD600D59B5E /* Style */ = {
+			isa = PBXGroup;
+			children = (
+				44203D791E714BD600D59B5E /* WYStyleSheet.h */,
+				44203D7A1E714BD600D59B5E /* WYStyleSheet.m */,
+			);
+			path = Style;
+			sourceTree = "<group>";
+		};
+		44203D7B1E714BD600D59B5E /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				44203D7C1E714BD600D59B5E /* MBProgressHUD+WYTools.h */,
+				44203D7D1E714BD600D59B5E /* MBProgressHUD+WYTools.m */,
+				44203D7E1E714BD600D59B5E /* NSString+Value.h */,
+				44203D7F1E714BD600D59B5E /* NSString+Value.m */,
+				44203D801E714BD600D59B5E /* RMPushUtils.h */,
+				44203D811E714BD600D59B5E /* RMPushUtils.m */,
+				44203D821E714BD600D59B5E /* WYCommonUtils.h */,
+				44203D831E714BD600D59B5E /* WYCommonUtils.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		44203DA31E715A9100D59B5E /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				44203DA41E715A9100D59B5E /* Resources */,
+				44203DA61E715A9100D59B5E /* WYAPIGenerate.h */,
+				44203DA71E715A9100D59B5E /* WYAPIGenerate.m */,
+				44203DA81E715A9100D59B5E /* WYCache.h */,
+				44203DA91E715A9100D59B5E /* WYCache.m */,
+				44203DAA1E715A9100D59B5E /* WYNetWorkExceptionHandling.h */,
+				44203DAB1E715A9100D59B5E /* WYNetWorkExceptionHandling.m */,
+				44203DAC1E715A9100D59B5E /* WYNetWorkManager.h */,
+				44203DAD1E715A9100D59B5E /* WYNetWorkManager.m */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		44203DA41E715A9100D59B5E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				44203DA51E715A9100D59B5E /* NetWorkConfig.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		44203DB31E7245FA00D59B5E /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				44D2F7C61E7BECD300122866 /* Model */,
+				44D2F7C71E7BECD300122866 /* View */,
+				44203DB41E7246D900D59B5E /* MainTabViewController.h */,
+				44203DB51E7246D900D59B5E /* MainTabViewController.m */,
+				44203DB61E7246D900D59B5E /* MainTabViewController.xib */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		44203DB91E7254A900D59B5E /* Stream */ = {
+			isa = PBXGroup;
+			children = (
+				44203DBF1E72554100D59B5E /* Model */,
+				44203DC01E72554100D59B5E /* View */,
+				44203DBA1E72551600D59B5E /* WYLiveViewController.h */,
+				44203DBB1E72551600D59B5E /* WYLiveViewController.m */,
+				44203DBC1E72551600D59B5E /* WYLiveViewController.xib */,
+			);
+			path = Stream;
+			sourceTree = "<group>";
+		};
+		44203DBF1E72554100D59B5E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				44203DC11E76380A00D59B5E /* WYStreamingSessionManager.h */,
+				44203DC21E76380A00D59B5E /* WYStreamingSessionManager.m */,
+				44D2F7BE1E7A6FBF00122866 /* WYStreamingConfig.h */,
+				44D2F7BF1E7A6FBF00122866 /* WYStreamingConfig.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		44203DC01E72554100D59B5E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				44D2F7CF1E7FA8F300122866 /* WYAnchorInfoView.h */,
+				44D2F7D01E7FA8F300122866 /* WYAnchorInfoView.m */,
+				446D43261E837DAC002E5C52 /* WYAnchorManageView.h */,
+				446D43271E837DAC002E5C52 /* WYAnchorManageView.m */,
+				446D43291E839520002E5C52 /* WYAnchorManageView.xib */,
+				446D43231E829030002E5C52 /* WYContributionListView.h */,
+				446D43241E829030002E5C52 /* WYContributionListView.m */,
+				441C24031E8501CD0020557C /* WYBetTopView.h */,
+				441C24041E8501CD0020557C /* WYBetTopView.m */,
+				441C24061E85032F0020557C /* WYGiftHistoryView.h */,
+				441C24071E85032F0020557C /* WYGiftHistoryView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		44D2F7C11E7BCA2100122866 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				441C23ED1E83FDA20020557C /* LiveGiftShowView */,
+				44D2F7C21E7BCA3500122866 /* Model */,
+				44D2F7DB1E7FC30500122866 /* YTChatRoomControl.h */,
+				44D2F7DC1E7FC30500122866 /* YTChatRoomControl.m */,
+				44D2F7DF1E7FC30500122866 /* YTRoomView.h */,
+				44D2F7E01E7FC30500122866 /* YTRoomView.m */,
+				44D2F7D21E7FC30500122866 /* NSString+YTChatRoom.h */,
+				44D2F7D31E7FC30500122866 /* NSString+YTChatRoom.m */,
+				44D2F7D41E7FC30500122866 /* YTChatBottomView.h */,
+				44D2F7D51E7FC30500122866 /* YTChatBottomView.m */,
+				44D2F7D61E7FC30500122866 /* YTChatBottomView.xib */,
+				44D2F7D71E7FC30500122866 /* YTChatCell.h */,
+				44D2F7D81E7FC30500122866 /* YTChatCell.m */,
+				44D2F7D91E7FC30500122866 /* YTChatModel.h */,
+				44D2F7DA1E7FC30500122866 /* YTChatModel.m */,
+				44D2F7DD1E7FC30500122866 /* YTEnterExtraModel.h */,
+				44D2F7DE1E7FC30500122866 /* YTEnterExtraModel.m */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		44D2F7C21E7BCA3500122866 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				44D2F7EC1E7FFDB700122866 /* MessageAttachment */,
+				44D2F7C31E7BCA6B00122866 /* WYSocketManager.h */,
+				44D2F7C41E7BCA6B00122866 /* WYSocketManager.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		44D2F7C61E7BECD300122866 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				441C23EA1E83EEA30020557C /* WYGiftModel.h */,
+				441C23EB1E83EEA30020557C /* WYGiftModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		44D2F7C71E7BECD300122866 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				44D2F7C81E7BECFF00122866 /* WYGiftRecordView.h */,
+				44D2F7C91E7BECFF00122866 /* WYGiftRecordView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		44D2F7CB1E7FA25900122866 /* ActionSheet */ = {
+			isa = PBXGroup;
+			children = (
+				44D2F7CD1E7FA27400122866 /* WYCustomActionSheet.h */,
+				44D2F7CC1E7FA27400122866 /* WYCustomActionSheet.m */,
+			);
+			path = ActionSheet;
+			sourceTree = "<group>";
+		};
+		44D2F7EC1E7FFDB700122866 /* MessageAttachment */ = {
+			isa = PBXGroup;
+			children = (
+				44D2F7ED1E7FFDB700122866 /* YTBaseCustomMessageAttachment.h */,
+				44D2F7EE1E7FFDB700122866 /* YTBaseCustomMessageAttachment.m */,
+				44D2F7EF1E7FFDB700122866 /* YTCustomAttachmentDecoder.h */,
+				44D2F7F01E7FFDB700122866 /* YTCustomAttachmentDecoder.m */,
+				44D2F7F11E7FFDB700122866 /* YTCustomMessageDefines.h */,
+				44D2F7F21E7FFDB700122866 /* YTGiftAttachment.h */,
+				44D2F7F31E7FFDB700122866 /* YTGiftAttachment.m */,
+				44D2F7F41E7FFDB700122866 /* YTMessageConverter.h */,
+				44D2F7F51E7FFDB700122866 /* YTMessageConverter.m */,
+				44D2F7F61E7FFDB700122866 /* YTMessageNotificationAttachment.h */,
+				44D2F7F71E7FFDB700122866 /* YTMessageNotificationAttachment.m */,
+			);
+			path = MessageAttachment;
+			sourceTree = "<group>";
+		};
+		464859A1FE6D85493D24AB49 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				544D39187087EFD6B76825B2 /* Pods-WYStreamMaster.debug.xcconfig */,
+				E4223266790A64B80390313C /* Pods-WYStreamMaster.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		646CB6BFF7BA4AA8B7CEA915 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7D7A3645D8D449741FC609F4 /* libPods-WYStreamMaster.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		44203D0B1E6FE78800D59B5E /* WYStreamMaster */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 44203D2E1E6FE78800D59B5E /* Build configuration list for PBXNativeTarget "WYStreamMaster" */;
+			buildPhases = (
+				3B7387F7D724E41FBF76A782 /* [CP] Check Pods Manifest.lock */,
+				44203D081E6FE78800D59B5E /* Sources */,
+				44203D091E6FE78800D59B5E /* Frameworks */,
+				44203D0A1E6FE78800D59B5E /* Resources */,
+				A7D1785EA0A8CB527D46BD87 /* [CP] Embed Pods Frameworks */,
+				88EC280235A2217E0E54723B /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WYStreamMaster;
+			productName = WYStreamMaster;
+			productReference = 44203D0C1E6FE78800D59B5E /* WYStreamMaster.app */;
+			productType = "com.apple.product-type.application";
+		};
+		44203D241E6FE78800D59B5E /* WYStreamMasterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 44203D311E6FE78800D59B5E /* Build configuration list for PBXNativeTarget "WYStreamMasterTests" */;
+			buildPhases = (
+				44203D211E6FE78800D59B5E /* Sources */,
+				44203D221E6FE78800D59B5E /* Frameworks */,
+				44203D231E6FE78800D59B5E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				44203D271E6FE78800D59B5E /* PBXTargetDependency */,
+			);
+			name = WYStreamMasterTests;
+			productName = WYStreamMasterTests;
+			productReference = 44203D251E6FE78800D59B5E /* WYStreamMasterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		44203D041E6FE78800D59B5E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = Leejun;
+				TargetAttributes = {
+					44203D0B1E6FE78800D59B5E = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 22K9LD86B6;
+						ProvisioningStyle = Automatic;
+					};
+					44203D241E6FE78800D59B5E = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 22K9LD86B6;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 44203D0B1E6FE78800D59B5E;
+					};
+				};
+			};
+			buildConfigurationList = 44203D071E6FE78800D59B5E /* Build configuration list for PBXProject "WYStreamMaster" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 44203D031E6FE78800D59B5E;
+			productRefGroup = 44203D0D1E6FE78800D59B5E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				44203D0B1E6FE78800D59B5E /* WYStreamMaster */,
+				44203D241E6FE78800D59B5E /* WYStreamMasterTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		44203D0A1E6FE78800D59B5E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				44D2F7E31E7FC30500122866 /* YTChatBottomView.xib in Resources */,
+				44203D1F1E6FE78800D59B5E /* LaunchScreen.storyboard in Resources */,
+				44203D991E714BD600D59B5E /* WYImageCodeView.xib in Resources */,
+				44203DBE1E72551600D59B5E /* WYLiveViewController.xib in Resources */,
+				44203D1C1E6FE78800D59B5E /* Assets.xcassets in Resources */,
+				446D432A1E839520002E5C52 /* WYAnchorManageView.xib in Resources */,
+				44203D961E714BD600D59B5E /* YTQuickLoginViewController.xib in Resources */,
+				44203DAE1E715A9100D59B5E /* NetWorkConfig.json in Resources */,
+				44203DB81E7246D900D59B5E /* MainTabViewController.xib in Resources */,
+				44203D921E714BD600D59B5E /* WYLoginViewController.xib in Resources */,
+				44203D1A1E6FE78800D59B5E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		44203D231E6FE78800D59B5E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3B7387F7D724E41FBF76A782 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		88EC280235A2217E0E54723B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WYStreamMaster/Pods-WYStreamMaster-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A7D1785EA0A8CB527D46BD87 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WYStreamMaster/Pods-WYStreamMaster-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		44203D081E6FE78800D59B5E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				44203DA11E714BD600D59B5E /* RMPushUtils.m in Sources */,
+				44203DB71E7246D900D59B5E /* MainTabViewController.m in Sources */,
+				44D2F7E81E7FC30500122866 /* YTRoomView.m in Sources */,
+				44203D881E714BD600D59B5E /* WYSuperViewController.m in Sources */,
+				44D2F7D11E7FA8F300122866 /* WYAnchorInfoView.m in Sources */,
+				44D2F7E41E7FC30500122866 /* YTChatCell.m in Sources */,
+				44203D171E6FE78800D59B5E /* ViewController.m in Sources */,
+				44203DB11E715A9100D59B5E /* WYNetWorkExceptionHandling.m in Sources */,
+				44203DC31E76380A00D59B5E /* WYStreamingSessionManager.m in Sources */,
+				44D2F7CE1E7FA27400122866 /* WYCustomActionSheet.m in Sources */,
+				441C23FE1E83FDA20020557C /* LiveGiftShowNumberView.m in Sources */,
+				44D2F7E61E7FC30500122866 /* YTChatRoomControl.m in Sources */,
+				44D2F7C01E7A6FBF00122866 /* WYStreamingConfig.m in Sources */,
+				441C24081E85032F0020557C /* WYGiftHistoryView.m in Sources */,
+				44D2F7F91E7FFDB700122866 /* YTCustomAttachmentDecoder.m in Sources */,
+				44203DB01E715A9100D59B5E /* WYCache.m in Sources */,
+				44D2F7FB1E7FFDB700122866 /* YTMessageConverter.m in Sources */,
+				44203DA21E714BD600D59B5E /* WYCommonUtils.m in Sources */,
+				44203D901E714BD600D59B5E /* WYLoginUserManager.m in Sources */,
+				44203D8F1E714BD600D59B5E /* WYLoginManager.m in Sources */,
+				44203D911E714BD600D59B5E /* WYLoginViewController.m in Sources */,
+				44203DB21E715A9100D59B5E /* WYNetWorkManager.m in Sources */,
+				44D2F7E21E7FC30500122866 /* YTChatBottomView.m in Sources */,
+				44203D861E714BD600D59B5E /* UINavigationBar+Awesome.m in Sources */,
+				44203D8B1E714BD600D59B5E /* YTBaseTableViewController.m in Sources */,
+				44D2F7E11E7FC30500122866 /* NSString+YTChatRoom.m in Sources */,
+				44203D9E1E714BD600D59B5E /* WYStyleSheet.m in Sources */,
+				441C24051E8501CD0020557C /* WYBetTopView.m in Sources */,
+				44D2F7C51E7BCA6B00122866 /* WYSocketManager.m in Sources */,
+				44D2F7FC1E7FFDB700122866 /* YTMessageNotificationAttachment.m in Sources */,
+				44203D8A1E714BD600D59B5E /* WYWebViewController.m in Sources */,
+				44203D851E714BD600D59B5E /* UIColor+Hex.m in Sources */,
+				44203D9D1E714BD600D59B5E /* WYShareManager.m in Sources */,
+				44D2F7EB1E7FFBFD00122866 /* WYBaseModel.m in Sources */,
+				44203DA01E714BD600D59B5E /* NSString+Value.m in Sources */,
+				446D43281E837DAC002E5C52 /* WYAnchorManageView.m in Sources */,
+				44D2F7E71E7FC30500122866 /* YTEnterExtraModel.m in Sources */,
+				44203D951E714BD600D59B5E /* YTQuickLoginViewController.m in Sources */,
+				441C23EC1E83EEA30020557C /* WYGiftModel.m in Sources */,
+				44203D8E1E714BD600D59B5E /* UIButton+YTLoginButton.m in Sources */,
+				44203DBD1E72551600D59B5E /* WYLiveViewController.m in Sources */,
+				44203D871E714BD600D59B5E /* WYNavigationController.m in Sources */,
+				44D2F7FA1E7FFDB700122866 /* YTGiftAttachment.m in Sources */,
+				44203D141E6FE78800D59B5E /* AppDelegate.m in Sources */,
+				446D43251E829030002E5C52 /* WYContributionListView.m in Sources */,
+				44D2F7F81E7FFDB700122866 /* YTBaseCustomMessageAttachment.m in Sources */,
+				44D2F7CA1E7BECFF00122866 /* WYGiftRecordView.m in Sources */,
+				44203D931E714BD600D59B5E /* WYSettingConfig.m in Sources */,
+				441C23FF1E83FDA20020557C /* LiveGiftShowView.m in Sources */,
+				44203D9C1E714BD600D59B5E /* WYShareActionSheet.m in Sources */,
+				44203D941E714BD600D59B5E /* YTLoginRegistPublic.m in Sources */,
+				44203D9A1E714BD600D59B5E /* WYRefreshFooter.m in Sources */,
+				441C24021E83FDA20020557C /* ZYGiftListModel.m in Sources */,
+				44203D111E6FE78800D59B5E /* main.m in Sources */,
+				44203D8D1E714BD600D59B5E /* UIButton+YTCodeVerify.m in Sources */,
+				44203D841E714BD600D59B5E /* RMSuperViewController.m in Sources */,
+				44203D891E714BD600D59B5E /* WYTabBarController.m in Sources */,
+				441C24011E83FDA20020557C /* YTGradientColorLabel.m in Sources */,
+				441C24001E83FDA20020557C /* UserModel.m in Sources */,
+				44203D9B1E714BD600D59B5E /* WYRefreshHeader.m in Sources */,
+				44203D981E714BD600D59B5E /* WYImageCodeView.m in Sources */,
+				44D2F7E51E7FC30500122866 /* YTChatModel.m in Sources */,
+				441C23FD1E83FDA20020557C /* LiveGiftShowModel.m in Sources */,
+				44203D971E714BD600D59B5E /* WYCustomAlertView.m in Sources */,
+				441C23FC1E83FDA20020557C /* LiveGiftShow.m in Sources */,
+				44203D8C1E714BD600D59B5E /* WYLoginModel.m in Sources */,
+				44203D9F1E714BD600D59B5E /* MBProgressHUD+WYTools.m in Sources */,
+				44203DAF1E715A9100D59B5E /* WYAPIGenerate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		44203D211E6FE78800D59B5E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				44203D2A1E6FE78800D59B5E /* WYStreamMasterTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		44203D271E6FE78800D59B5E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 44203D0B1E6FE78800D59B5E /* WYStreamMaster */;
+			targetProxy = 44203D261E6FE78800D59B5E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		44203D181E6FE78800D59B5E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				44203D191E6FE78800D59B5E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		44203D1D1E6FE78800D59B5E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				44203D1E1E6FE78800D59B5E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		44203D2C1E6FE78800D59B5E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		44203D2D1E6FE78800D59B5E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		44203D2F1E6FE78800D59B5E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 544D39187087EFD6B76825B2 /* Pods-WYStreamMaster.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = 22K9LD86B6;
+				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = NO;
+				GCC_PREFIX_HEADER = WYStreamMaster/PrefixHeader.pch;
+				INFOPLIST_FILE = WYStreamMaster/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.WYStreamMaster;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		44203D301E6FE78800D59B5E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E4223266790A64B80390313C /* Pods-WYStreamMaster.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = 22K9LD86B6;
+				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = NO;
+				GCC_PREFIX_HEADER = WYStreamMaster/PrefixHeader.pch;
+				INFOPLIST_FILE = WYStreamMaster/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.WYStreamMaster;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		44203D321E6FE78800D59B5E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 22K9LD86B6;
+				INFOPLIST_FILE = WYStreamMasterTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.WYStreamMasterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WYStreamMaster.app/WYStreamMaster";
+			};
+			name = Debug;
+		};
+		44203D331E6FE78800D59B5E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 22K9LD86B6;
+				INFOPLIST_FILE = WYStreamMasterTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.WYStreamMasterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WYStreamMaster.app/WYStreamMaster";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		44203D071E6FE78800D59B5E /* Build configuration list for PBXProject "WYStreamMaster" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				44203D2C1E6FE78800D59B5E /* Debug */,
+				44203D2D1E6FE78800D59B5E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		44203D2E1E6FE78800D59B5E /* Build configuration list for PBXNativeTarget "WYStreamMaster" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				44203D2F1E6FE78800D59B5E /* Debug */,
+				44203D301E6FE78800D59B5E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		44203D311E6FE78800D59B5E /* Build configuration list for PBXNativeTarget "WYStreamMasterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				44203D321E6FE78800D59B5E /* Debug */,
+				44203D331E6FE78800D59B5E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 44203D041E6FE78800D59B5E /* Project object */;
+}

@@ -1,0 +1,21 @@
+{
+    "login": {
+        "protocol": "http",
+        "version" : "api",
+        "control" : "user",
+        "action"  : "login"
+    },
+    
+    "sendSMSCode":{
+        "protocol": "http",
+        "action"  : "sendSMSCode"
+    },
+    
+    "live_start": {
+        "protocol": "http",
+        "version" : "v4",
+        "control" : "live",
+        "action"  : "startLive"
+    },
+    
+}
