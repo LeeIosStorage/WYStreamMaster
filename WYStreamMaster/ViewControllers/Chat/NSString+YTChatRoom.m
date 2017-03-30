@@ -12,9 +12,19 @@
 
 - (BOOL)isSelf
 {
-    return [self isEqualToString:[WYLoginUserManager recordMasterNIMAccount]];
+    return [self isEqualToString:[WYLoginUserManager nimAccountID]];
 }
 
-
+- (NSString *)realUserId
+{
+//    if ([self hasPrefix:@"dev"]) {
+//        return [self stringByReplacingOccurrencesOfString:@"dev_" withString:@""];
+//    }
+//    
+//    if ([self hasPrefix:@"test"]) {
+//        return [self stringByReplacingOccurrencesOfString:@"test_" withString:@""];
+//    }
+    return self;
+}
 
 @end

@@ -8,6 +8,7 @@
 
 #import "WYGiftRecordView.h"
 #import "UIColor+Hex.h"
+#import "WYGiftRecordModel.h"
 
 @interface WYGiftRecordView ()
 <
@@ -16,6 +17,7 @@ UITableViewDataSource
 >
 
 @property (nonatomic, strong) NSMutableArray *giftRecordList;
+@property (nonatomic, strong) NSMutableDictionary *mutRecordDic;
 
 @property (nonatomic, strong) UIColor *bgColor;
 @property (nonatomic, strong) UIButton *closeButton;
@@ -28,6 +30,8 @@ UITableViewDataSource
 @property (nonatomic, strong) UIView *sectionHeadView;
 @property (nonatomic, strong) UIView *footerView;
 @property (nonatomic, strong) UILabel *totalPriceLabel;
+
+@property (strong, nonatomic) WYNetWorkManager  *networkManager;
 
 @end
 
@@ -57,7 +61,9 @@ UITableViewDataSource
     self.bgColor = [UIColor colorWithHexString:@"5A535A" withAlpha:0.8];
     
     self.giftRecordList = [[NSMutableArray alloc] init];
+    self.mutRecordDic = [[NSMutableDictionary alloc] init];
     _selectedSegmentIndex = 1;
+    [self.segmentedControl setSelectedSegmentIndex:_selectedSegmentIndex];
     [self refreshGiftRecordListWithIndex:_selectedSegmentIndex];
     
     
@@ -142,13 +148,60 @@ UITableViewDataSource
 #pragma mark - Server
 - (void)refreshGiftRecordListWithIndex:(NSInteger)index{
     
-    self.giftRecordList = [[NSMutableArray alloc] init];
-    [self.giftRecordList addObject:@""];
-    [self.giftRecordList addObject:@""];
-    [self.giftRecordList addObject:@""];
-    [self.giftRecordList addObject:@""];
-    [self.giftRecordList addObject:@""];
-    [self.tableView reloadData];
+    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"gift_num_ranking"];
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
+    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchorId"];
+    
+    WEAKSELF
+    [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
+//        NSLog(@"error:%@ data:%@",message,dataObject);
+        
+        if (requestType == WYRequestTypeSuccess) {
+            
+            weakSelf.giftRecordList = [[NSMutableArray alloc] init];
+            
+            weakSelf.mutRecordDic = [[NSMutableDictionary alloc] init];
+            NSMutableArray *dayArray = [NSMutableArray array];
+            for (NSDictionary *dic in [dataObject objectForKey:@"day"]) {
+                //dictionaryWithPlistString
+                WYGiftRecordModel *giftRecordModel = [[WYGiftRecordModel alloc] init];
+                [giftRecordModel modelSetWithDictionary:dic];
+                [dayArray addObject:giftRecordModel];
+            }
+            [weakSelf.mutRecordDic setObject:dayArray forKey:@"0"];
+            
+            NSMutableArray *weekArray = [NSMutableArray array];
+            for (NSDictionary *dic in [dataObject objectForKey:@"week"]) {
+                //dictionaryWithPlistString
+                WYGiftRecordModel *giftRecordModel = [[WYGiftRecordModel alloc] init];
+                [giftRecordModel modelSetWithDictionary:dic];
+                [weekArray addObject:giftRecordModel];
+            }
+            [weakSelf.mutRecordDic setObject:weekArray forKey:@"1"];
+            
+            NSMutableArray *monthArray = [NSMutableArray array];
+            for (NSDictionary *dic in [dataObject objectForKey:@"month"]) {
+                //dictionaryWithPlistString
+                WYGiftRecordModel *giftRecordModel = [[WYGiftRecordModel alloc] init];
+                [giftRecordModel modelSetWithDictionary:dic];
+                [monthArray addObject:giftRecordModel];
+            }
+            [weakSelf.mutRecordDic setObject:monthArray forKey:@"2"];
+            
+            
+            [weakSelf segmentedControlAction:weakSelf.segmentedControl];
+//            weakSelf.giftRecordList = [weakSelf.mutRecordDic objectForKey:[NSString stringWithFormat:@"%d",(int)_selectedSegmentIndex]];
+//            
+//            [weakSelf.tableView reloadData];
+            
+        }else{
+            [MBProgressHUD showError:message toView:nil];
+        }
+        
+    } failure:^(id responseObject, NSError *error) {
+        [MBProgressHUD showAlertMessage:@"请求失败，请检查您的网络设置后重试" toView:nil];
+    }];
+    
 }
 
 #pragma mark -
@@ -161,12 +214,21 @@ UITableViewDataSource
 
 -(void)segmentedControlAction:(UISegmentedControl *)sender{
     _selectedSegmentIndex = sender.selectedSegmentIndex;
-    [self refreshGiftRecordListWithIndex:_selectedSegmentIndex];
+    self.giftRecordList = [NSMutableArray arrayWithArray:[self.mutRecordDic objectForKey:[NSString stringWithFormat:@"%d",(int)_selectedSegmentIndex]]];
+    [self.tableView reloadData];
+    
+    int totalPrice = 0;
+    for (WYGiftRecordModel *model in self.giftRecordList) {
+        totalPrice += [model.giftPrice intValue];
+    }
+    
+    self.totalPriceLabel.text = [NSString stringWithFormat:@"%d",totalPrice];
 }
 
 - (void)show
 {
     if (![self superview] || self.hidden) {
+        [self refreshGiftRecordListWithIndex:_selectedSegmentIndex];
         [UIView animateWithDuration:0.3f animations:^{
             [[UIApplication sharedApplication].keyWindow addSubview:self];
             [self setHidden:NO];
@@ -272,10 +334,10 @@ static int typeLabel_tag = 201, numLabel_tag = 202, priceLabel_tag = 203;
     UILabel *typeLabel = [cell.contentView viewWithTag:typeLabel_tag];
     UILabel *numLabel = [cell.contentView viewWithTag:numLabel_tag];
     UILabel *priceLabel = [cell.contentView viewWithTag:priceLabel_tag];
-    
-//    typeLabel.text = @"礼物🎁";
-//    numLabel.text = @"100";
-//    priceLabel.text = @"2300";
+    WYGiftRecordModel *giftRecordModel = [self.giftRecordList objectAtIndex:indexPath.row];
+    typeLabel.text = giftRecordModel.giftName;
+    numLabel.text = giftRecordModel.giftNumber;
+    priceLabel.text = giftRecordModel.giftPrice;
     
     return cell;
 }
@@ -288,6 +350,14 @@ static int typeLabel_tag = 201, numLabel_tag = 202, priceLabel_tag = 203;
 
 #pragma mark -
 #pragma mark - Getters and Setters
+- (WYNetWorkManager *)networkManager
+{
+    if (!_networkManager) {
+        _networkManager = [[WYNetWorkManager alloc] init];
+    }
+    return _networkManager;
+}
+
 - (UIButton *)closeButton{
     if (!_closeButton) {
         _closeButton = [UIButton buttonWithType:UIButtonTypeSystem];

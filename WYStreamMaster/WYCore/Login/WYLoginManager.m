@@ -149,8 +149,8 @@
 - (void)normalLoginNIMService
 {
     NIMAutoLoginData *loginData = [[NIMAutoLoginData alloc] init];
-    loginData.account = @"10";//[WYLoginUserManager recordMasterNIMAccount]
-    loginData.token = @"10";//[WYLoginUserManager userID]
+    loginData.account = [WYLoginUserManager nimAccountID];
+    loginData.token = [WYLoginUserManager nimAccountID];//[WYLoginUserManager userID]
     //WEAKSELF
     
     [[[NIMSDK sharedSDK] loginManager] login:loginData.account token:loginData.token completion:^(NSError * _Nullable error) {

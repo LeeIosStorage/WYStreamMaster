@@ -10,6 +10,7 @@
 #import <GMGridView/GMGridViewCell+Extended.h>
 #import <GMGridView/GMGridViewLayoutStrategies.h>
 #import <BlocksKit/BlocksKit+UIKit.h>
+#import "WYRoomManagerModel.h"
 
 @interface WYAnchorManageView ()
 <
@@ -20,6 +21,8 @@ UITextViewDelegate,
 GMGridViewDataSource,
 GMGridViewActionDelegate
 >
+
+@property (strong, nonatomic) WYNetWorkManager  *networkManager;
 
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -133,7 +136,7 @@ GMGridViewActionDelegate
 
 - (void)updateHeadViewData{
     
-    NSURL *avatarUrl = [NSURL URLWithString:@"https://imgsa.baidu.com/baike/c0%3Dbaike180%2C5%2C5%2C180%2C60/sign=e6c6c4a53ddbb6fd3156ed74684dc07d/b64543a98226cffca90bcfecbd014a90f603ea4f.jpg"];
+    NSURL *avatarUrl = [NSURL URLWithString:[WYLoginUserManager avatar]];
     [WYCommonUtils setImageWithURL:avatarUrl setImageView:self.avatarImageView placeholderImage:@""];
     
     self.nickNameLabel.text = [WYLoginUserManager nickname];
@@ -144,13 +147,63 @@ GMGridViewActionDelegate
 #pragma mark -
 #pragma mark - Server
 - (void)refreshRoomManagerList{
-    self.roomManagerList = [[NSMutableArray alloc] init];
-    [self.roomManagerList addObject:@""];
-    [self.roomManagerList addObject:@""];
-    [self.roomManagerList addObject:@""];
-    [self.roomManagerList addObject:@""];
     
-    [self.gridView reloadData];
+    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"get_room_management"];
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
+    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchor_id"];
+    
+    WEAKSELF
+    [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:[WYRoomManagerModel class] success:^(WYRequestType requestType, NSString *message, id dataObject) {
+        NSLog(@"error:%@ data:%@",message,dataObject);
+        
+        if (requestType == WYRequestTypeSuccess) {
+            weakSelf.roomManagerList = [[NSMutableArray alloc] init];
+            if ([dataObject isKindOfClass:[NSArray class]]) {
+                [weakSelf.roomManagerList addObjectsFromArray:dataObject];
+            }
+            
+            [weakSelf.gridView reloadData];
+            
+        }else{
+//            [MBProgressHUD showError:message toView:weakSelf.view];
+        }
+        
+    } failure:^(id responseObject, NSError *error) {
+//        [MBProgressHUD showAlertMessage:@"请求失败，请检查您的网络设置后重试" toView:weakSelf.view];
+    }];
+    
+}
+
+- (void)requestMemberManagerWithMember:(WYRoomManagerModel *)managerModel{
+    
+    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"save_room_management"];
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
+    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchor_id"];
+    [paramsDic setObject:managerModel.managerUserId forKey:@"user_code"];
+    
+    WEAKSELF
+    [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
+        NSLog(@"error:%@ data:%@",message,dataObject);
+        
+        if (requestType == WYRequestTypeSuccess) {
+            [MBProgressHUD showSuccess:[NSString stringWithFormat:@"成功取消 %@ 的房管",managerModel.managerUserName] toView:nil];
+            
+            for (WYRoomManagerModel *tmpModel in weakSelf.roomManagerList) {
+                if ([tmpModel.managerUserId isEqualToString:managerModel.managerUserId]) {
+                    [weakSelf.roomManagerList removeObject:managerModel];
+                    break;
+                }
+            }
+            [weakSelf.gridView reloadData];
+            
+        }else{
+            [MBProgressHUD showError:message toView:nil];
+        }
+        
+    } failure:^(id responseObject, NSError *error) {
+        [MBProgressHUD showAlertMessage:@"请求失败，请检查您的网络设置后重试" toView:nil];
+    }];
+    
 }
 
 #pragma mark -
@@ -251,9 +304,11 @@ static int avatarImageView_tag = 201,nameLabel_tag = 202;
     UIImageView *avatarImageView = [supView viewWithTag:avatarImageView_tag];
     UILabel *nameLabel = [supView viewWithTag:nameLabel_tag];
     
-    NSURL *avatarUrl = [NSURL URLWithString:@"https://imgsa.baidu.com/baike/c0%3Dbaike180%2C5%2C5%2C180%2C60/sign=e6c6c4a53ddbb6fd3156ed74684dc07d/b64543a98226cffca90bcfecbd014a90f603ea4f.jpg"];
+    WYRoomManagerModel *roomManagerModel = [self.roomManagerList objectAtIndex:index];
+    
+    NSURL *avatarUrl = [NSURL URLWithString:kTempNetworkHTTPURL];
     [WYCommonUtils setImageWithURL:avatarUrl setImageView:avatarImageView placeholderImage:@""];
-    nameLabel.text = @"大乔&小乔";
+    nameLabel.text = roomManagerModel.managerUserName;
     
     return cell;
 }
@@ -262,9 +317,10 @@ static int avatarImageView_tag = 201,nameLabel_tag = 202;
 {
     //    WYLog(@"Did tap at index %ld", position);
     WEAKSELF
+    WYRoomManagerModel *roomManagerModel = [self.roomManagerList objectAtIndex:position];
     UIAlertView *alertView = [UIAlertView bk_showAlertViewWithTitle:@"确定要取消TA的管理员吗？" message:nil cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
         if (buttonIndex == 1) {
-            
+            [weakSelf requestMemberManagerWithMember:roomManagerModel];
         }
     }];
     
@@ -308,6 +364,15 @@ static int avatarImageView_tag = 201,nameLabel_tag = 202;
 
 #pragma mark -
 #pragma mark - Getters and Setters
+
+- (WYNetWorkManager *)networkManager
+{
+    if (!_networkManager) {
+        _networkManager = [[WYNetWorkManager alloc] init];
+    }
+    return _networkManager;
+}
+
 - (UITableView *)tableView{
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];

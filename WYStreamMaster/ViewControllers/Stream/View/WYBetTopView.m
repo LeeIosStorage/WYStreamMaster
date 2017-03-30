@@ -122,7 +122,7 @@
         UIImageView *avatarImageView = [view viewWithTag:0];
         UIImageView *rankImageView = [view viewWithTag:1];
         UILabel *nameLabel = [view viewWithTag:2];
-        NSURL *avatarUrl = [NSURL URLWithString:@"https://imgsa.baidu.com/baike/c0%3Dbaike180%2C5%2C5%2C180%2C60/sign=e6c6c4a53ddbb6fd3156ed74684dc07d/b64543a98226cffca90bcfecbd014a90f603ea4f.jpg"];
+        NSURL *avatarUrl = [NSURL URLWithString:kTempNetworkHTTPURL];
         [WYCommonUtils setImageWithURL:avatarUrl setImageView:avatarImageView placeholderImage:@""];
         UIImage *rankImage = [UIImage imageNamed:@"wy_betTop_1_icon"];
         if (index == 1) {

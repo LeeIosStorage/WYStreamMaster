@@ -46,10 +46,6 @@
         }
     };
     
-//    self.contentLabel.textColor = [UIColor whiteColor];
-//    self.contentLabel.height = 20;
-//    self.contentLabel.text = @"你好谢腾飞";
-    
     self.contentLabel.height = chatModel.chatTextLayout.textBoundingSize.height;
     self.contentLabel.textLayout = chatModel.chatTextLayout;
 }

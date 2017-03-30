@@ -5,17 +5,53 @@
         "control" : "user",
         "action"  : "login"
     },
-    
-    "sendSMSCode":{
+    "gameList": {
         "protocol": "http",
-        "action"  : "sendSMSCode"
+        "version" : "api",
+        "control" : "game",
+        "action"  : "get_game_type"
     },
-    
-    "live_start": {
+    "gift_num_ranking": {
         "protocol": "http",
-        "version" : "v4",
-        "control" : "live",
-        "action"  : "startLive"
+        "version" : "api",
+        "control" : "gift",
+        "action"  : "gift_num_ranking"
+    },
+    "gift_ranking": {
+        "protocol": "http",
+        "version" : "api",
+        "control" : "gift",
+        "action"  : "gift_ranking"
+    },
+    "get_gift_record": {
+        "protocol": "http",
+        "version" : "api",
+        "control" : "gift",
+        "action"  : "get_gift_record"
+    },
+    "anchor_on_off": {
+        "protocol": "http",
+        "version" : "api",
+        "control" : "anchor",
+        "action"  : "anchor_on_off"
+    },
+    "get_room_management": {
+        "protocol": "http",
+        "version" : "api",
+        "control" : "anchor",
+        "action"  : "get_room_management"
+    },
+    "save_room_management": {
+        "protocol": "http",
+        "version" : "api",
+        "control" : "anchor",
+        "action"  : "save_room_management"
+    },
+    "save_room_ban": {
+        "protocol": "http",
+        "version" : "api",
+        "control" : "anchor",
+        "action"  : "save_room_ban"
     },
     
 }

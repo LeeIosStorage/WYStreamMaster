@@ -162,7 +162,7 @@
     self.accountError.hidden = YES;
     self.loginButton.canClicked = NO;
     
-    self.loginAccountTextField.text = @"zuo";
+    self.loginAccountTextField.text = @"huangyun";
     self.loginPasswordTextField.text = @"e10adc3949ba59abbe56e057f20f883e";
     [self stringFormatWithPhone:self.loginAccountTextField.text];
 }
@@ -244,14 +244,14 @@
             WYLoginModel *loginModel = (WYLoginModel *)dataObject;
             
             loginModel.chatRoomId = @"7907620";
-            loginModel.shouboAccid = @"10";//loginModel.userID
+//            loginModel.anchorPushUrl = @"rtmp://183.136.218.196/xklive/xklive1?e=1489570947&token=f5P2MSZgPXSzb_ieKdgc35qvQTg145JYXWP8B0Ch:PMIGqyr7WLF9wK4ECHLNwRoFvhs=&domain=pili-publish.kaisaiba.com";
+            loginModel.icon = kTempNetworkHTTPURL;
             
             [WYLoginUserManager setPassword:weakSelf.loginPasswordTextField.text];
             [WYLoginUserManager updateUserDataWithLoginModel:loginModel];
             
             weakSelf.loginSuccessBlock();
             [MBProgressHUD showSuccess:@"登录成功" toView:weakSelf.view];
-            //            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
             
         }else{
             

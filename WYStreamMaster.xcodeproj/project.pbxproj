@@ -65,6 +65,13 @@
 		44203DBD1E72551600D59B5E /* WYLiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203DBB1E72551600D59B5E /* WYLiveViewController.m */; };
 		44203DBE1E72551600D59B5E /* WYLiveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44203DBC1E72551600D59B5E /* WYLiveViewController.xib */; };
 		44203DC31E76380A00D59B5E /* WYStreamingSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203DC21E76380A00D59B5E /* WYStreamingSessionManager.m */; };
+		444DA64B1E89166A00C45DE5 /* WYGameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 444DA64A1E89166A00C45DE5 /* WYGameModel.m */; };
+		444DA64E1E8A6B6D00C45DE5 /* WYRoomManagerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 444DA64D1E8A6B6D00C45DE5 /* WYRoomManagerModel.m */; };
+		444DA6511E8A716E00C45DE5 /* WYChatUserNormalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 444DA6501E8A716E00C45DE5 /* WYChatUserNormalView.m */; };
+		444DA6531E8A718000C45DE5 /* WYChatUserNormalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 444DA6521E8A718000C45DE5 /* WYChatUserNormalView.xib */; };
+		444DA6561E8BB56000C45DE5 /* WYGiftRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 444DA6551E8BB56000C45DE5 /* WYGiftRecordModel.m */; };
+		444DA6591E8BD3B000C45DE5 /* WYGiftContributionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 444DA6581E8BD3B000C45DE5 /* WYGiftContributionModel.m */; };
+		444DA65C1E8BDEE700C45DE5 /* WYGiftHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 444DA65B1E8BDEE700C45DE5 /* WYGiftHistoryModel.m */; };
 		446D43251E829030002E5C52 /* WYContributionListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 446D43241E829030002E5C52 /* WYContributionListView.m */; };
 		446D43281E837DAC002E5C52 /* WYAnchorManageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 446D43271E837DAC002E5C52 /* WYAnchorManageView.m */; };
 		446D432A1E839520002E5C52 /* WYAnchorManageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 446D43291E839520002E5C52 /* WYAnchorManageView.xib */; };
@@ -212,6 +219,19 @@
 		44203DBC1E72551600D59B5E /* WYLiveViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYLiveViewController.xib; sourceTree = "<group>"; };
 		44203DC11E76380A00D59B5E /* WYStreamingSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYStreamingSessionManager.h; sourceTree = "<group>"; };
 		44203DC21E76380A00D59B5E /* WYStreamingSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYStreamingSessionManager.m; sourceTree = "<group>"; };
+		444DA6491E89166A00C45DE5 /* WYGameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYGameModel.h; sourceTree = "<group>"; };
+		444DA64A1E89166A00C45DE5 /* WYGameModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYGameModel.m; sourceTree = "<group>"; };
+		444DA64C1E8A6B6D00C45DE5 /* WYRoomManagerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYRoomManagerModel.h; sourceTree = "<group>"; };
+		444DA64D1E8A6B6D00C45DE5 /* WYRoomManagerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYRoomManagerModel.m; sourceTree = "<group>"; };
+		444DA64F1E8A716E00C45DE5 /* WYChatUserNormalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYChatUserNormalView.h; sourceTree = "<group>"; };
+		444DA6501E8A716E00C45DE5 /* WYChatUserNormalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYChatUserNormalView.m; sourceTree = "<group>"; };
+		444DA6521E8A718000C45DE5 /* WYChatUserNormalView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYChatUserNormalView.xib; sourceTree = "<group>"; };
+		444DA6541E8BB56000C45DE5 /* WYGiftRecordModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYGiftRecordModel.h; sourceTree = "<group>"; };
+		444DA6551E8BB56000C45DE5 /* WYGiftRecordModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYGiftRecordModel.m; sourceTree = "<group>"; };
+		444DA6571E8BD3B000C45DE5 /* WYGiftContributionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYGiftContributionModel.h; sourceTree = "<group>"; };
+		444DA6581E8BD3B000C45DE5 /* WYGiftContributionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYGiftContributionModel.m; sourceTree = "<group>"; };
+		444DA65A1E8BDEE700C45DE5 /* WYGiftHistoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYGiftHistoryModel.h; sourceTree = "<group>"; };
+		444DA65B1E8BDEE700C45DE5 /* WYGiftHistoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYGiftHistoryModel.m; sourceTree = "<group>"; };
 		446D43231E829030002E5C52 /* WYContributionListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYContributionListView.h; sourceTree = "<group>"; };
 		446D43241E829030002E5C52 /* WYContributionListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYContributionListView.m; sourceTree = "<group>"; };
 		446D43261E837DAC002E5C52 /* WYAnchorManageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYAnchorManageView.h; sourceTree = "<group>"; };
@@ -598,6 +618,9 @@
 				441C24041E8501CD0020557C /* WYBetTopView.m */,
 				441C24061E85032F0020557C /* WYGiftHistoryView.h */,
 				441C24071E85032F0020557C /* WYGiftHistoryView.m */,
+				444DA64F1E8A716E00C45DE5 /* WYChatUserNormalView.h */,
+				444DA6501E8A716E00C45DE5 /* WYChatUserNormalView.m */,
+				444DA6521E8A718000C45DE5 /* WYChatUserNormalView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -641,6 +664,16 @@
 			children = (
 				441C23EA1E83EEA30020557C /* WYGiftModel.h */,
 				441C23EB1E83EEA30020557C /* WYGiftModel.m */,
+				444DA6491E89166A00C45DE5 /* WYGameModel.h */,
+				444DA64A1E89166A00C45DE5 /* WYGameModel.m */,
+				444DA64C1E8A6B6D00C45DE5 /* WYRoomManagerModel.h */,
+				444DA64D1E8A6B6D00C45DE5 /* WYRoomManagerModel.m */,
+				444DA6541E8BB56000C45DE5 /* WYGiftRecordModel.h */,
+				444DA6551E8BB56000C45DE5 /* WYGiftRecordModel.m */,
+				444DA6571E8BD3B000C45DE5 /* WYGiftContributionModel.h */,
+				444DA6581E8BD3B000C45DE5 /* WYGiftContributionModel.m */,
+				444DA65A1E8BDEE700C45DE5 /* WYGiftHistoryModel.h */,
+				444DA65B1E8BDEE700C45DE5 /* WYGiftHistoryModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -793,6 +826,7 @@
 				446D432A1E839520002E5C52 /* WYAnchorManageView.xib in Resources */,
 				44203D961E714BD600D59B5E /* YTQuickLoginViewController.xib in Resources */,
 				44203DAE1E715A9100D59B5E /* NetWorkConfig.json in Resources */,
+				444DA6531E8A718000C45DE5 /* WYChatUserNormalView.xib in Resources */,
 				44203DB81E7246D900D59B5E /* MainTabViewController.xib in Resources */,
 				44203D921E714BD600D59B5E /* WYLoginViewController.xib in Resources */,
 				44203D1A1E6FE78800D59B5E /* Main.storyboard in Resources */,
@@ -861,6 +895,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				444DA6561E8BB56000C45DE5 /* WYGiftRecordModel.m in Sources */,
 				44203DA11E714BD600D59B5E /* RMPushUtils.m in Sources */,
 				44203DB71E7246D900D59B5E /* MainTabViewController.m in Sources */,
 				44D2F7E81E7FC30500122866 /* YTRoomView.m in Sources */,
@@ -896,6 +931,7 @@
 				44203D9D1E714BD600D59B5E /* WYShareManager.m in Sources */,
 				44D2F7EB1E7FFBFD00122866 /* WYBaseModel.m in Sources */,
 				44203DA01E714BD600D59B5E /* NSString+Value.m in Sources */,
+				444DA64B1E89166A00C45DE5 /* WYGameModel.m in Sources */,
 				446D43281E837DAC002E5C52 /* WYAnchorManageView.m in Sources */,
 				44D2F7E71E7FC30500122866 /* YTEnterExtraModel.m in Sources */,
 				44203D951E714BD600D59B5E /* YTQuickLoginViewController.m in Sources */,
@@ -903,8 +939,10 @@
 				44203D8E1E714BD600D59B5E /* UIButton+YTLoginButton.m in Sources */,
 				44203DBD1E72551600D59B5E /* WYLiveViewController.m in Sources */,
 				44203D871E714BD600D59B5E /* WYNavigationController.m in Sources */,
+				444DA65C1E8BDEE700C45DE5 /* WYGiftHistoryModel.m in Sources */,
 				44D2F7FA1E7FFDB700122866 /* YTGiftAttachment.m in Sources */,
 				44203D141E6FE78800D59B5E /* AppDelegate.m in Sources */,
+				444DA6591E8BD3B000C45DE5 /* WYGiftContributionModel.m in Sources */,
 				446D43251E829030002E5C52 /* WYContributionListView.m in Sources */,
 				44D2F7F81E7FFDB700122866 /* YTBaseCustomMessageAttachment.m in Sources */,
 				44D2F7CA1E7BECFF00122866 /* WYGiftRecordView.m in Sources */,
@@ -912,6 +950,7 @@
 				441C23FF1E83FDA20020557C /* LiveGiftShowView.m in Sources */,
 				44203D9C1E714BD600D59B5E /* WYShareActionSheet.m in Sources */,
 				44203D941E714BD600D59B5E /* YTLoginRegistPublic.m in Sources */,
+				444DA64E1E8A6B6D00C45DE5 /* WYRoomManagerModel.m in Sources */,
 				44203D9A1E714BD600D59B5E /* WYRefreshFooter.m in Sources */,
 				441C24021E83FDA20020557C /* ZYGiftListModel.m in Sources */,
 				44203D111E6FE78800D59B5E /* main.m in Sources */,
@@ -926,6 +965,7 @@
 				441C23FD1E83FDA20020557C /* LiveGiftShowModel.m in Sources */,
 				44203D971E714BD600D59B5E /* WYCustomAlertView.m in Sources */,
 				441C23FC1E83FDA20020557C /* LiveGiftShow.m in Sources */,
+				444DA6511E8A716E00C45DE5 /* WYChatUserNormalView.m in Sources */,
 				44203D8C1E714BD600D59B5E /* WYLoginModel.m in Sources */,
 				44203D9F1E714BD600D59B5E /* MBProgressHUD+WYTools.m in Sources */,
 				44203DAF1E715A9100D59B5E /* WYAPIGenerate.m in Sources */,

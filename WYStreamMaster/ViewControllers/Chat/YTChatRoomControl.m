@@ -85,13 +85,13 @@
     WEAKSELF
     NIMChatroomMembersByIdsRequest *request = [[NIMChatroomMembersByIdsRequest alloc] init];
     request.roomId = [WYLoginUserManager chatRoomId];
-    request.userIds = @[[WYLoginUserManager recordMasterNIMAccount]];
+    request.userIds = @[[WYLoginUserManager nimAccountID]];
     [[NIMSDK sharedSDK].chatroomManager fetchChatroomMembersByIds:request completion:^(NSError * _Nullable error, NSArray<NIMChatroomMember *> * _Nullable members) {
         if (!error && members.count > 0) {
             weakSelf.chatRoomView.itSelf = members[0];
-//            if ([weakSelf.roomInfo.anchorId isEqualToString:[WYLoginUserManager userID]]) {
-//                weakSelf.chatRoomView.itSelf.type = NIMChatroomMemberTypeCreator;
-//            }
+            if ([[WYLoginUserManager nimAccountID] isEqualToString:[WYLoginUserManager userID]]) {
+                weakSelf.chatRoomView.itSelf.type = NIMChatroomMemberTypeCreator;
+            }
         }
     }];
 }
@@ -146,7 +146,7 @@
     attachment.giftID = model.giftId;
     attachment.giftNum = [NSString stringWithFormat:@"%ld",(long)model.clickNumber];
     attachment.senderName = [WYLoginUserManager nickname];
-    attachment.senderID = [WYLoginUserManager userID];
+    attachment.senderID = [WYLoginUserManager nimAccountID];
     attachment.giftShowImage = model.noFrameIcon;
     model.sender = [WYLoginUserManager nickname];
     

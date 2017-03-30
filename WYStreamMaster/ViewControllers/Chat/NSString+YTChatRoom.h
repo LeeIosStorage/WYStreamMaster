@@ -12,4 +12,6 @@
 
 - (BOOL)isSelf;
 
+- (NSString *)realUserId;
+
 @end

@@ -15,7 +15,8 @@
              @"anchorDescription":@"anchor.anchor_description",
              @"nickname":@"ext_info.nickname",
              @"roomNumber":@"anchor.room_id_pk",
-             @"anchorPushUrl":@"anchor.anchor_push_ur"
+             @"anchorPushUrl":@"anchor.anchor_push_ur",
+             @"icon":@"ext_info.head_icon",
              };
 }
 

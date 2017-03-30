@@ -16,12 +16,12 @@
 @property (strong, nonatomic) NSString *chatRoomId;//聊天室ID
 @property (strong, nonatomic) NSString *roomNumber;
 @property (strong, nonatomic) NSString *anchorPushUrl;
+@property (strong, nonatomic) NSString *icon;
 
 // 手机号
 @property (strong, nonatomic) NSString *mobile;
 @property (strong, nonatomic) NSString *token;
 @property (strong, nonatomic) NSString *username;
-@property (strong, nonatomic) NSString *icon;
 @property (strong, nonatomic) NSString *iconMedia;
 @property (strong, nonatomic) NSString *iconThumb;
 @property (strong, nonatomic) NSString *fans;

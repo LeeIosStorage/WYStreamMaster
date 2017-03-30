@@ -41,6 +41,15 @@
 
 + (void)setImageWithURL:(NSURL *)url setImageView:(UIImageView *)imageView placeholderImage:(NSString *)placeholderImage;
 
++ (NSString *)planMaxNumberToString:(NSString *)str;
+
+//时间处理
++ (NSDate*)dateFromUSDateString:(NSString*)string;
+//20:01
++ (NSString*)dateHourToMinuteDiscriptionFromDate:(NSDate*)date;
+//刚刚、几分钟前...
++ (NSString*)dateDiscriptionFromNowBk:(NSDate*)date;
+
 //音频的授权状态
 + (BOOL)checkMicrophonePermissionStatus;
 //请求麦克风权限

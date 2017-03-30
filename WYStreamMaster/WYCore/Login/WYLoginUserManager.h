@@ -71,6 +71,7 @@ typedef NS_ENUM(NSInteger, CPLoginUserType){
 + (NSString *)fans;
 + (void)setFans:(NSString *)fans;
 
+//房间号
 + (NSString *)roomId;
 + (void)setRoomId:(NSString *)roomId;
 
@@ -102,10 +103,9 @@ typedef NS_ENUM(NSInteger, CPLoginUserType){
 + (void)setLiveDuration:(NSString *)liveDuration;
 
 //云信用户登录ID
-+ (NSString *)recordMasterNIMAccount;
++ (NSString *)nimAccountID;
 
-+ (void)setRecordMasterNIMAccount:(NSString *)recordMasterNIMAccount;
-
+//聊天室ID
 + (NSString *)chatRoomId;
 + (void)setChatRoomId:(NSString *)chatRoomId;
 

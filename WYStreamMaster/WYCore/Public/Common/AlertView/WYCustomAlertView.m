@@ -86,7 +86,7 @@ typedef NS_ENUM(NSInteger, WYAlertType) {
         [window addSubview:self];
         self.hidden = YES;
         
-        self.backgroundColor = [UIColor colorWithWhite:0.f alpha:.7f];
+        self.backgroundColor = [UIColor colorWithWhite:0.f alpha:.4f];
         [self mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(window);
         }];
@@ -200,9 +200,9 @@ typedef NS_ENUM(NSInteger, WYAlertType) {
     [self.showView bringSubviewToFront:_closeButton];
     
     [self.closeButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.showView).and.offset(-10);
-        make.top.mas_equalTo(@10);
-        make.size.mas_equalTo(CGSizeMake(14, 14));
+        make.right.equalTo(self.showView).and.offset(0);
+        make.top.mas_equalTo(@0);
+        make.size.mas_equalTo(CGSizeMake(34, 34));
     }];
 }
 
@@ -214,6 +214,7 @@ typedef NS_ENUM(NSInteger, WYAlertType) {
     [self.showView addSubview:view];
     if (self.type == WYAlertCustomType) {
         //防止关闭按钮被遮挡
+        self.showView.backgroundColor = [UIColor clearColor];
         [self initCloseButton];
     }
     self.hidden = NO;

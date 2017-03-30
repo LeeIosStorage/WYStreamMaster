@@ -7,6 +7,7 @@
 //
 
 #import "WYContributionListView.h"
+#import "WYGiftContributionModel.h"
 
 @interface WYContributionListView ()
 <
@@ -15,11 +16,14 @@ UITableViewDataSource
 >
 
 @property (nonatomic, strong) NSMutableArray *grossContributionList;
+@property (nonatomic, strong) NSMutableDictionary *mutRecordDic;
 
 @property (nonatomic, strong) UISegmentedControl *segmentedControl;
 @property (nonatomic, assign) NSInteger selectedSegmentIndex;
 
 @property (nonatomic, strong) UITableView *tableView;
+
+@property (strong, nonatomic) WYNetWorkManager  *networkManager;
 
 @end
 
@@ -46,7 +50,9 @@ UITableViewDataSource
 - (void)setup{
     
     self.grossContributionList = [[NSMutableArray alloc] init];
+    self.mutRecordDic = [[NSMutableDictionary alloc] init];
     _selectedSegmentIndex = 1;
+    [self.segmentedControl setSelectedSegmentIndex:_selectedSegmentIndex];
     [self refreshGiftRecordListWithIndex:_selectedSegmentIndex];
     
     UITapGestureRecognizer *gestureRecongnizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gestureRecognizer:)];
@@ -86,13 +92,58 @@ UITableViewDataSource
 #pragma mark - Server
 - (void)refreshGiftRecordListWithIndex:(NSInteger)index{
     
-    self.grossContributionList = [[NSMutableArray alloc] init];
-    [self.grossContributionList addObject:@"张三"];
-    [self.grossContributionList addObject:@"李四"];
-    [self.grossContributionList addObject:@"王五"];
-    [self.grossContributionList addObject:@"哈哈哈哈"];
-    [self.grossContributionList addObject:@"嘿嘿嘿"];
-    [self.tableView reloadData];
+    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"gift_ranking"];
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
+    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchorId"];
+    
+    WEAKSELF
+    [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
+//        NSLog(@"error:%@ data:%@",message,dataObject);
+        
+        if (requestType == WYRequestTypeSuccess) {
+            
+            weakSelf.grossContributionList = [[NSMutableArray alloc] init];
+            
+            weakSelf.mutRecordDic = [[NSMutableDictionary alloc] init];
+            
+            NSMutableArray *weekArray = [NSMutableArray array];
+            for (NSDictionary *dic in [dataObject objectForKey:@"week"]) {
+                //dictionaryWithPlistString
+                WYGiftContributionModel *giftContributionModel = [[WYGiftContributionModel alloc] init];
+                [giftContributionModel modelSetWithDictionary:dic];
+                [weekArray addObject:giftContributionModel];
+            }
+            [weakSelf.mutRecordDic setObject:weekArray forKey:@"0"];
+            
+            NSMutableArray *monthArray = [NSMutableArray array];
+            for (NSDictionary *dic in [dataObject objectForKey:@"month"]) {
+                //dictionaryWithPlistString
+                WYGiftContributionModel *giftContributionModel = [[WYGiftContributionModel alloc] init];
+                [giftContributionModel modelSetWithDictionary:dic];
+                [monthArray addObject:giftContributionModel];
+            }
+            [weakSelf.mutRecordDic setObject:monthArray forKey:@"1"];
+            
+            NSMutableArray *totalArray = [NSMutableArray array];
+            for (NSDictionary *dic in [dataObject objectForKey:@"total"]) {
+                //dictionaryWithPlistString
+                WYGiftContributionModel *giftContributionModel = [[WYGiftContributionModel alloc] init];
+                [giftContributionModel modelSetWithDictionary:dic];
+                [totalArray addObject:giftContributionModel];
+            }
+            [weakSelf.mutRecordDic setObject:totalArray forKey:@"2"];
+            
+            
+            [weakSelf segmentedControlAction:weakSelf.segmentedControl];
+            
+        }else{
+            [MBProgressHUD showError:message toView:nil];
+        }
+        
+    } failure:^(id responseObject, NSError *error) {
+        [MBProgressHUD showAlertMessage:@"请求失败，请检查您的网络设置后重试" toView:nil];
+    }];
+    
 }
 
 #pragma mark -
@@ -105,7 +156,8 @@ UITableViewDataSource
 
 -(void)segmentedControlAction:(UISegmentedControl *)sender{
     _selectedSegmentIndex = sender.selectedSegmentIndex;
-    [self refreshGiftRecordListWithIndex:_selectedSegmentIndex];
+    self.grossContributionList = [NSMutableArray arrayWithArray:[self.mutRecordDic objectForKey:[NSString stringWithFormat:@"%d",(int)_selectedSegmentIndex]]];
+    [self.tableView reloadData];
 }
 
 - (void)show
@@ -199,10 +251,16 @@ static int medalImageView_tag = 201, nameLabel_tag = 202, priceLabel_tag = 203;
     UILabel *nameLabel = [cell.contentView viewWithTag:nameLabel_tag];
     UILabel *priceLabel = [cell.contentView viewWithTag:priceLabel_tag];
     
-    NSString *contributionInfo = [self.grossContributionList objectAtIndex:indexPath.row];
-    nameLabel.text = contributionInfo;
-    priceLabel.text = @"1000W";
+    WYGiftContributionModel *contributionInfo = [self.grossContributionList objectAtIndex:indexPath.row];
     
+    NSString *nickName = contributionInfo.nickName;
+    if (nickName.length == 0) {
+        nickName = @"--";
+    }
+    nameLabel.text = nickName;
+    
+    priceLabel.text = [WYCommonUtils planMaxNumberToString:contributionInfo.giftTotalValue];
+
     medalImageView.hidden = YES;
     if (indexPath.row == 0) {
         medalImageView.hidden = NO;
@@ -246,6 +304,13 @@ static int medalImageView_tag = 201, nameLabel_tag = 202, priceLabel_tag = 203;
 
 #pragma mark -
 #pragma mark - Getters and Setters
+- (WYNetWorkManager *)networkManager
+{
+    if (!_networkManager) {
+        _networkManager = [[WYNetWorkManager alloc] init];
+    }
+    return _networkManager;
+}
 - (UISegmentedControl *)segmentedControl{
     if (!_segmentedControl) {
         _segmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"贡献周榜",@"贡献月榜",@"贡献总榜", nil]];

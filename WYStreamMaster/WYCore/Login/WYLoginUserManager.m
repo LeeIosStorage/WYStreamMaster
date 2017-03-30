@@ -31,7 +31,6 @@ static NSString *const kGameCategoryID = @"kGameCategoryID";
 
 static NSString *const kOrintationType = @"kOrintationType";
 static NSString *const kVideoQuality = @"kVideoQuality";
-static NSString *const kRecordMasterNIMAccountID = @"kRecordMasterNIMAccountID";
 
 static NSString *const kYuerCoin = @"kYuerCoin";
 static NSString *const kYuerBait = @"kYuerBait";
@@ -105,7 +104,7 @@ static NSString *const kLiveDuration = @"kLiveDuration";
 }
 
 + (void)setAvatar:(NSString *)avatar {
-    NSString *urlAvatar = [NSString stringWithFormat:@"%@/%@",IMG_URL,avatar];
+    NSString *urlAvatar = avatar;
     [self saveToUserDefaultsObject:urlAvatar forKey:kUserInfoAvatar];
 }
 
@@ -195,14 +194,10 @@ static NSString *const kLiveDuration = @"kLiveDuration";
     [self saveToUserDefaultsObject:gameCategoryId forKey:kGameCategoryID];
 }
 
-+ (NSString *)recordMasterNIMAccount
++ (NSString *)nimAccountID
 {
-    return [self objectFromUserDefaultsKey:kRecordMasterNIMAccountID];
-}
-
-+ (void)setRecordMasterNIMAccount:(NSString *)recordMasterNIMAccount
-{
-    [self saveToUserDefaultsObject:recordMasterNIMAccount forKey:kRecordMasterNIMAccountID];
+    return @"10";
+    return [WYLoginUserManager userID];
 }
 
 + (NSString *)yuerCoin
@@ -305,9 +300,9 @@ static NSString *const kLiveDuration = @"kLiveDuration";
     [WYLoginManager sharedManager].loginModel = loginModel;
     [WYLoginUserManager setAccount:loginModel.mobile];
     [WYLoginUserManager setUsername:loginModel.username];
-    if (loginModel.icon) {
-        loginModel.icon = [NSString stringWithFormat:@"%@!small",loginModel.icon];
-    }
+//    if (loginModel.icon) {
+//        loginModel.icon = [NSString stringWithFormat:@"%@!small",loginModel.icon];
+//    }
     [WYLoginUserManager setAvatar:loginModel.icon];
     [WYLoginUserManager setAuthToken:loginModel.token];
     [WYLoginUserManager setUserID:loginModel.userID];
@@ -315,17 +310,11 @@ static NSString *const kLiveDuration = @"kLiveDuration";
     [WYLoginUserManager setFans:loginModel.fans];
     [WYLoginUserManager setRoomId:loginModel.roomNumber];
     [WYLoginUserManager setSex:loginModel.sex];
-//    [WYLoginUserManager setIsup:loginModel.isUp];
-//    [WYLoginUserManager setliveId:loginModel.live_id];
     [WYLoginUserManager setNickname:loginModel.nickname];
-    [WYLoginUserManager setRecordMasterNIMAccount:loginModel.shouboAccid];
     [WYLoginUserManager setChatRoomId:loginModel.chatRoomId];
     
     
     [WYLoginUserManager setAnchorPushUrl:loginModel.anchorPushUrl];
-    
-//    [WYLoginUserManager setYuerBait:loginModel.bait];
-//    [WYLoginUserManager setYuerCoin:loginModel.yuerCoin];
 }
 
 + (BOOL)hasLogged
@@ -345,7 +334,6 @@ static NSString *const kLiveDuration = @"kLiveDuration";
     [WYLoginUserManager setFans:nil];
     [WYLoginUserManager setSex:nil];
     [WYLoginUserManager setChatRoomId:nil];
-    [WYLoginUserManager setRecordMasterNIMAccount:nil];
     [WYLoginUserManager setLocalNotificationToClose:NO];
     [WYLoginUserManager setAnchorPushUrl:nil];
     

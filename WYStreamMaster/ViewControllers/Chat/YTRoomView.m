@@ -9,7 +9,7 @@
 #import "YTRoomView.h"
 #import "YTChatModel.h"
 #import "YTChatCell.h"
-#import "YTChatBottomView.h"
+//#import "YTChatBottomView.h"
 #import <UserNotifications/UserNotifications.h>
 #import "RMPushUtils.h"
 #import "YTMessageConverter.h"
@@ -18,10 +18,17 @@
 #import "UserModel.h"
 #import "LiveGiftShowModel.h"
 #import "LiveGiftShow.h"
+#import "NSString+YTChatRoom.h"
+#import "WYChatUserNormalView.h"
+#import "WYCustomAlertView.h"
+#import "WYCustomActionSheet.h"
+#import "WYLiveViewController.h"
 
 #define ChatData_MaxCount 100
 
 @interface YTRoomView ()<UITableViewDelegate,UITableViewDataSource,YTChatControlDelegate,CellDelegate>
+
+@property (strong, nonatomic) WYNetWorkManager  *networkManager;
 
 @property (strong, nonatomic) UIButton          *scrollNewMessageButton;
 @property (assign, nonatomic) BOOL              autoScroll;
@@ -29,9 +36,11 @@
 @property (strong, nonatomic) NSMutableArray    *dataArray;
 @property (strong, nonatomic) UITableView       *chatTable;
 
-@property (strong, nonatomic) YTChatBottomView  *bottomView;
+//@property (strong, nonatomic) YTChatBottomView  *bottomView;
 
 @property (strong, nonatomic) LiveGiftShow *giftShow;
+
+@property (weak, nonatomic) WYLiveViewController  *liveRoomVC;
 
 @end
 
@@ -201,31 +210,80 @@
 - (void)tappedCellNameWithChatModel:(YTChatModel *)model
 {
     WEAKSELF
-
-    /*
+    
+    if ([model.message.from isSelf]) {
+        return;
+    }
+//    [self getMemberInfoWithUserId:[model.message.from realUserId]];
+    
+    
     NIMChatroomMembersByIdsRequest *request = [[NIMChatroomMembersByIdsRequest alloc] init];
     request.roomId = [WYLoginUserManager chatRoomId];
     request.userIds = @[model.message.from];
     [[NIMSDK sharedSDK].chatroomManager fetchChatroomMembersByIds:request completion:^(NSError * _Nullable error, NSArray<NIMChatroomMember *> * _Nullable members) {
         
         if (members.count == 0) {
-            [MBProgressHUD showAlertMessage:MemberLeaveRoom toView:weakSelf];
+//            [MBProgressHUD showAlertMessage:MemberLeaveRoom toView:weakSelf];
             return;
         }
         
         if (!error) {
             NIMChatroomMember *member = members[0];
             
+            [weakSelf showNormalCarViewWithMember:member];
             if (!member.roomAvatar) {
-                [MBProgressHUD showAlertMessage:MemberLeaveRoom toView:weakSelf];
+//                [MBProgressHUD showAlertMessage:MemberLeaveRoom toView:weakSelf];
                 return;
             }
             
-            //[weakSelf showRoomManagerCarViewWithMember:member]
+//            [weakSelf showRoomManagerCarViewWithMember:member];
     
         }
     }];
-     */
+    
+}
+
+- (void)getMemberInfoWithUserId:(NSString *)userID{
+    
+}
+
+- (void)showNormalCarViewWithMember:(id)member
+{
+//    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+//    for (UIView *subView in window.subviews) {
+//        if ([subView isKindOfClass:[WYChatUserNormalView class]]) {
+//            return;
+//        }
+//    }
+    WYChatUserNormalView *normalCarView = [[NSBundle mainBundle] loadNibNamed:@"WYChatUserNormalView" owner:self options:nil].lastObject;
+    WYCustomAlertView *alert = [[WYCustomAlertView alloc] initWithCustomAlertSize:normalCarView.size];
+    [normalCarView updateWithMemeber:member];
+    [alert showWithView:normalCarView];
+    
+    
+    NIMChatroomMember *roomMember = member;
+    WEAKSELF
+    normalCarView.letMemberMuteBlock = ^{
+        if (roomMember.isMuted) {
+            //解禁言
+            [weakSelf requestMemberMuteWithMember:member alertView:alert];
+        }else{
+            //禁言
+            WYCustomActionSheet *actionSheet = [[WYCustomActionSheet alloc] initWithTitle:nil actionBlock:^(NSInteger buttonIndex) {
+                if (buttonIndex == 0) {
+                    [weakSelf requestMemberMuteWithMember:member alertView:alert];
+                }
+                
+            } cancelButtonTitle:@"取消" destructiveButtonTitle:@"禁言" otherButtonTitles:nil];
+            [actionSheet showInView:self.liveRoomVC.view];
+        }
+        
+    };
+    normalCarView.letManagerBlock = ^{
+        //设立取消房管
+        [weakSelf requestMemberManagerWithMember:member alertView:alert];
+        
+    };
 }
 
 - (void)showRoomManagerCarViewWithMember:(NIMChatroomMember *)member
@@ -249,6 +307,122 @@
      */
 }
 
+#pragma mark - 
+#pragma mark - Server
+- (void)requestMemberMuteWithMember:(id)member alertView:(WYCustomAlertView *)alertView{
+    
+    NIMChatroomMember *roomMember = member;
+    
+    WEAKSELF
+    //////////云信的禁言解禁接口
+    [alertView closeShowView];
+    NIMChatroomMemberUpdateRequest *request = [[NIMChatroomMemberUpdateRequest alloc] init];
+    request.roomId = [WYLoginUserManager chatRoomId];
+    request.userId = roomMember.userId;
+    if (roomMember.isMuted) {
+        //解禁言
+        request.enable = NO;
+    }else{
+        //禁言
+        request.enable = YES;
+    }
+    
+    [[NIMSDK sharedSDK].chatroomManager updateMemberMute:request completion:^(NSError * _Nullable error) {
+        if (!error) {
+            if (roomMember.isMuted) {
+                [MBProgressHUD showAlertMessage:[NSString stringWithFormat:@"%@ 已解除禁言",roomMember.roomNickname] toView:nil];
+            }else{
+                [MBProgressHUD showAlertMessage:[NSString stringWithFormat:@"%@ 已被禁言",roomMember.roomNickname] toView:nil];
+            }
+        }
+    }];
+    //////////NIMSDK
+    
+    return;
+    //////////自己的服务器禁言接口
+    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"save_room_ban"];
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
+    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchor_id"];
+    [paramsDic setObject:roomMember.userId forKey:@"user_code"];
+    
+    [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
+        [alertView closeShowView];
+        if (requestType == WYRequestTypeSuccess) {
+            //[weakSelf letMemberMuteInNimSDK];
+            [MBProgressHUD showAlertMessage:[NSString stringWithFormat:@"%@被禁言",roomMember.roomNickname] toView:nil];
+        } else {
+            [MBProgressHUD showAlertMessage:message toView:nil];
+        }
+    } failure:^(id responseObject, NSError *error) {
+        [MBProgressHUD hideHUD];
+        [MBProgressHUD showAlertMessage:@"连接失败，请检查您的网络设置后重试" toView:nil];
+    }];
+    
+}
+
+- (void)requestMemberManagerWithMember:(id)member alertView:(WYCustomAlertView *)alertView{
+    
+    NIMChatroomMember *roomMember = member;
+    
+    //////////云信的设置管理员接口
+    [alertView closeShowView];
+    NIMChatroomMemberUpdateRequest *request = [[NIMChatroomMemberUpdateRequest alloc] init];
+    request.roomId = [WYLoginUserManager chatRoomId];
+    request.userId = roomMember.userId;
+    if (roomMember.type == NIMChatroomMemberTypeManager) {
+        //取消管理员
+        request.enable = NO;
+    }else if (roomMember.type == NIMChatroomMemberTypeGuest || roomMember.type == NIMChatroomMemberTypeNormal){
+        //设置管理员
+        request.enable = YES;
+    }else if (roomMember.type == NIMChatroomMemberTypeLimit){
+        [MBProgressHUD showAlertMessage:@"受限用户暂不可操作" toView:nil];
+        return;
+    }
+    
+    [[NIMSDK sharedSDK].chatroomManager markMemberManager:request completion:^(NSError * _Nullable error) {
+        if (!error) {
+            if (roomMember.type == NIMChatroomMemberTypeManager) {
+                [MBProgressHUD showSuccess:[NSString stringWithFormat:@"已取消 %@ 的房管",roomMember.roomNickname] toView:nil];
+            }else if (roomMember.type == NIMChatroomMemberTypeGuest || roomMember.type == NIMChatroomMemberTypeNormal){
+                [MBProgressHUD showSuccess:[NSString stringWithFormat:@"已设置 %@ 为房管",roomMember.roomNickname] toView:nil];
+            }
+        }
+    }];
+    //////////NIMSDK
+    
+    return;
+    //////////自己的服务器设置房管接口
+    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"save_room_management"];
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
+    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchor_id"];
+    [paramsDic setObject:roomMember.userId forKey:@"user_code"];
+    
+    WEAKSELF
+    [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
+        NSLog(@"error:%@ data:%@",message,dataObject);
+        [alertView closeShowView];
+        if (requestType == WYRequestTypeSuccess) {
+            [MBProgressHUD showSuccess:[NSString stringWithFormat:@"已设置%@为房管",roomMember.roomNickname] toView:nil];
+        }else{
+            [MBProgressHUD showError:message toView:nil];
+        }
+        
+    } failure:^(id responseObject, NSError *error) {
+        [MBProgressHUD showAlertMessage:@"请求失败，请检查您的网络设置后重试" toView:nil];
+    }];
+    
+}
+
+- (WYLiveViewController *)getLiveRoomViewController
+{
+    id responder = [[self.superview superview] nextResponder];
+    if ([responder isKindOfClass:[WYLiveViewController class]]) {
+        WYLiveViewController *liveRoomVC = (WYLiveViewController *)responder;
+        return liveRoomVC;
+    }
+    return nil;
+}
 
 #pragma mark
 #pragma mark - YTChatControlDelegate
@@ -367,13 +541,12 @@
 }
 
 
-- (UIView *)bottomView
+- (WYNetWorkManager *)networkManager
 {
-    if (!_bottomView) {
-        _bottomView = [[NSBundle mainBundle] loadNibNamed:@"YTChatBottomView" owner:self options:nil].lastObject;
-
+    if (!_networkManager) {
+        _networkManager = [[WYNetWorkManager alloc] init];
     }
-    return _bottomView;
+    return _networkManager;
 }
 
 - (LiveGiftShow *)giftShow{
@@ -382,6 +555,14 @@
 //        _giftShow.backgroundColor = [UIColor whiteColor];
     }
     return _giftShow;
+}
+
+- (WYLiveViewController *)liveRoomVC
+{
+    if (!_liveRoomVC) {
+        _liveRoomVC = [self getLiveRoomViewController];
+    }
+    return _liveRoomVC;
 }
 
 @end

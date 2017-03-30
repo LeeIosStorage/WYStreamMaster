@@ -7,6 +7,7 @@
 //
 
 #import "WYGiftHistoryView.h"
+#import "WYGiftHistoryModel.h"
 
 @interface WYGiftHistoryView ()
 <
@@ -21,6 +22,8 @@ UITableViewDataSource
 @property (nonatomic, strong) UIView *bottomView;
 
 @property (nonatomic, strong) UITableView *tableView;
+
+@property (strong, nonatomic) WYNetWorkManager  *networkManager;
 
 @end
 
@@ -49,6 +52,9 @@ UITableViewDataSource
     self.giftHistoryList = [[NSMutableArray alloc] init];
     
     self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.6];
+    
+    UITapGestureRecognizer *gestureRecongnizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gestureRecognizer:)];
+    [self addGestureRecognizer:gestureRecongnizer];
     
     [self addSubview:self.contentContainerView];
     [self.contentContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -81,14 +87,37 @@ UITableViewDataSource
     
 }
 
+- (void)gestureRecognizer:(UITapGestureRecognizer *)gestureRecognizer {
+    [self onBgClick];
+}
+
 - (void)updateGiftHistoryList{
-    self.giftHistoryList = [[NSMutableArray alloc] init];
-    [self.giftHistoryList addObject:@""];
-    [self.giftHistoryList addObject:@""];
-    [self.giftHistoryList addObject:@""];
-    [self.giftHistoryList addObject:@""];
-    [self.giftHistoryList addObject:@""];
-    [self.tableView reloadData];
+    
+    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"get_gift_record"];
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
+    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"rec_user_code"];
+    
+    WEAKSELF
+    [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:[WYGiftHistoryModel class] success:^(WYRequestType requestType, NSString *message, id dataObject) {
+        //        NSLog(@"error:%@ data:%@",message,dataObject);
+        
+        if (requestType == WYRequestTypeSuccess) {
+            
+            weakSelf.giftHistoryList = [[NSMutableArray alloc] init];
+            if ([dataObject isKindOfClass:[NSArray class]]) {
+                [weakSelf.giftHistoryList addObjectsFromArray:dataObject];
+            }
+            
+            [weakSelf.tableView reloadData];
+            
+        }else{
+            [MBProgressHUD showError:message toView:nil];
+        }
+        
+    } failure:^(id responseObject, NSError *error) {
+        [MBProgressHUD showAlertMessage:@"请求失败，请检查您的网络设置后重试" toView:nil];
+    }];
+    
 }
 
 #pragma mark -
@@ -225,11 +254,13 @@ static int userNameLabel_tag = 201, giftImageView_tag = 202,numLabel_tag = 203,t
     UILabel *numLabel = [cell.contentView viewWithTag:numLabel_tag];
     UILabel *timeLabel = [cell.contentView viewWithTag:timeLabel_tag];
     
-    userNameLabel.text = @"赵四";
-    numLabel.text = @"x6";
-    timeLabel.text = @"20:01";
+    WYGiftHistoryModel *giftHistoryModel = [self.giftHistoryList objectAtIndex:indexPath.row];
+    userNameLabel.text = giftHistoryModel.sendNickName;
+    numLabel.text = [NSString stringWithFormat:@"x%@",giftHistoryModel.giftNumber];
+    NSString *timeTetx = [WYCommonUtils dateHourToMinuteDiscriptionFromDate:[WYCommonUtils dateFromUSDateString:giftHistoryModel.giftTime]];
+    timeLabel.text = timeTetx;
     
-    NSURL *avatarUrl = [NSURL URLWithString:@"https://imgsa.baidu.com/baike/c0%3Dbaike180%2C5%2C5%2C180%2C60/sign=e6c6c4a53ddbb6fd3156ed74684dc07d/b64543a98226cffca90bcfecbd014a90f603ea4f.jpg"];
+    NSURL *avatarUrl = [NSURL URLWithString:giftHistoryModel.giftLogo];
     [WYCommonUtils setImageWithURL:avatarUrl setImageView:giftImageView placeholderImage:@""];
     
     return cell;
@@ -243,6 +274,14 @@ static int userNameLabel_tag = 201, giftImageView_tag = 202,numLabel_tag = 203,t
 
 #pragma mark -
 #pragma mark - Getters and Setters
+- (WYNetWorkManager *)networkManager
+{
+    if (!_networkManager) {
+        _networkManager = [[WYNetWorkManager alloc] init];
+    }
+    return _networkManager;
+}
+
 - (UIView *)contentContainerView{
     if (!_contentContainerView) {
         _contentContainerView = [[UIView alloc] init];

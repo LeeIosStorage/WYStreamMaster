@@ -107,6 +107,27 @@ WYAnchorInfoViewDelegate
 
 - (void)closeLive{
     
+    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"anchor_on_off"];
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
+    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchorId"];
+    [paramsDic setObject:@"0" forKey:@"anchor_status"];
+    [paramsDic setObject:[WYLoginUserManager gameCategoryId] forKey:@"game_type"];
+    [paramsDic setObject:[WYLoginUserManager roomId] forKey:@"room_id_pk"];
+    [paramsDic setObject:[NSNumber numberWithInt:0] forKey:@"room_type"];
+    
+    WEAKSELF
+    [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
+        NSLog(@"error:%@ data:%@",message,dataObject);
+        
+        if (requestType == WYRequestTypeSuccess) {
+            
+        }else{
+            [MBProgressHUD showError:message toView:weakSelf.view];
+        }
+        
+    } failure:^(id responseObject, NSError *error) {
+        [MBProgressHUD showAlertMessage:@"请求失败，请检查您的网络设置后重试" toView:weakSelf.view];
+    }];
 }
 
 #pragma mark -
@@ -141,7 +162,7 @@ WYAnchorInfoViewDelegate
 {
     self.expandChatButton.selected = NO;
     
-    [self.view addSubview:self.roomView];
+    [self.contentContainerView addSubview:self.roomView];
     [self.roomView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.contentContainerView).offset(-70);
         make.left.equalTo(self.contentContainerView).offset(15);
@@ -152,7 +173,7 @@ WYAnchorInfoViewDelegate
 
 - (void)prepareForCameraSetting
 {
-    NSURL *streamURL = [NSURL URLWithString:@"rtmp://pili-publish.kaisaiba.com/xklive/xklive1?e=1489570947&token=f5P2MSZgPXSzb_ieKdgc35qvQTg145JYXWP8B0Ch:PMIGqyr7WLF9wK4ECHLNwRoFvhs="];
+    NSURL *streamURL = [NSURL URLWithString:self.streamURL];
     self.streamingSessionManager = [[WYStreamingSessionManager alloc] initWithStreamURL:streamURL];
     _streamingSessionManager.delegate = self;
     _plSession = [self.streamingSessionManager streamingSession];
@@ -235,7 +256,7 @@ static int tempCount = 0;
     
     gifModel.sender = [WYLoginUserManager nickname];
     gifModel.clickNumber = 10;
-    gifModel.noFrameIcon = @"http://imgsa.baidu.com/baike/c0%3Dbaike180%2C5%2C5%2C180%2C60/sign=e6c6c4a53ddbb6fd3156ed74684dc07d/b64543a98226cffca90bcfecbd014a90f603ea4f.jpg";
+    gifModel.noFrameIcon = kTempNetworkHTTPURL;
     [self.roomView.chatroomControl sendMessageWithGift:gifModel];
     
     return;

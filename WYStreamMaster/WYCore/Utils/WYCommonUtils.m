@@ -11,6 +11,8 @@
 #import "UIImageView+WebCache.h"
 #import <AVFoundation/AVFoundation.h>
 
+#define DAY_SECOND 60*60*24
+
 @implementation WYCommonUtils
 
 + (CGSize)sizeWithAttributedText:(NSString *)text lineSpacing:(CGFloat)lineSpacing font:(UIFont *)font width:(float)width{
@@ -114,6 +116,119 @@
     }
 }
 
++ (NSString *)planMaxNumberToString:(NSString *)str{
+    NSString *maxStr = @"0";
+    if (!str) {
+        return maxStr;
+    }
+    if ([str integerValue] > 10000) {
+        maxStr = [NSString stringWithFormat:@"%.2fW",(float)[str integerValue]/10000.f];
+    } else {
+        maxStr = str;
+    }
+    
+    return maxStr;
+}
+
+#pragma mark -
+#pragma mark - 时间处理
+static NSDateFormatter * s_dateFormatterOFUS = nil;
+static bool dateFormatterOFUSInvalid ;
++ (NSDate*)dateFromUSDateString:(NSString*)string{
+    if (![string isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    @synchronized(self) {
+        if (s_dateFormatterOFUS == nil || dateFormatterOFUSInvalid) {
+            s_dateFormatterOFUS = [[NSDateFormatter alloc] init];
+            [s_dateFormatterOFUS setDateFormat:@"yyyy-MM-dd HH:mm:ss"];//EEE MMM d HH:mm:ss zzzz yyyy
+            NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+            [s_dateFormatterOFUS setLocale:usLocale];
+            dateFormatterOFUSInvalid = NO;
+        }
+    }
+    
+    NSDateFormatter* dateFormatter = s_dateFormatterOFUS;
+    NSDate* date = nil;
+    @synchronized(dateFormatter){
+        @try {
+            date = [dateFormatter dateFromString:string];
+        }
+        @catch (NSException *exception) {
+            //异常了以后处理有些问题,有可能会crash
+            dateFormatterOFUSInvalid = YES;
+        }
+    }
+    return date;
+}
+
++ (NSString*)dateHourToMinuteDiscriptionFromDate:(NSDate*)date{
+    NSString *_timestamp = nil;
+    if (date == nil) {
+        return @"";
+    }
+    NSCalendar * calender = [NSCalendar currentCalendar];
+    unsigned unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth |  NSCalendarUnitDay |
+    NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond | NSCalendarUnitWeekday;
+    NSDateComponents *comps = [calender components:unitFlags fromDate:date];
+    
+    _timestamp = [NSString stringWithFormat:@"%02d:%02d",(int)comps.hour, (int)comps.minute];
+    
+    return _timestamp;
+}
+
++ (NSString*)dateDiscriptionFromNowBk:(NSDate*)date{
+    NSString *_timestamp = nil;
+    NSDate* nowDate = [NSDate date];
+    if (date == nil) {
+        return @"";
+    }
+    int distance = [nowDate timeIntervalSinceDate:date];
+    if (distance < 0) distance = 0;
+    NSCalendar * calender = [NSCalendar currentCalendar];
+    unsigned unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth |  NSCalendarUnitDay |
+    NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond | NSCalendarUnitWeekday;
+    NSDateComponents *comps = [calender components:unitFlags fromDate:date];
+    NSDateComponents *compsNow = [calender components:unitFlags fromDate:nowDate];
+    
+    if (distance >= 0) {
+        if (distance < 60) {
+            _timestamp = [NSString stringWithFormat:@"%@", @"刚刚"];
+        } else if (distance < 60*60) {
+            _timestamp = [NSString stringWithFormat:@"%d%@", distance/60, @"分钟前"];
+        }else if (distance < DAY_SECOND) {
+            if (comps.day == compsNow.day)
+            {
+                _timestamp = [NSString stringWithFormat:@"今天 %02d:%02d", (int)comps.hour,(int)comps.minute];
+            }
+            else
+                _timestamp = [NSString stringWithFormat:@"昨天 %02d:%02d", (int)comps.hour,(int)comps.minute];
+        }
+        else {
+            compsNow.hour = compsNow.minute = compsNow.second = 0;
+            NSDate *startOfToday = [calender dateFromComponents:compsNow];
+            distance = [startOfToday timeIntervalSinceDate:date];
+            if (distance <= DAY_SECOND) {
+                _timestamp = [NSString stringWithFormat:@"昨天 %02d:%02d", (int)comps.hour,(int)comps.minute];
+            }
+            else{
+                if (comps.year == compsNow.year){
+                    _timestamp = [NSString stringWithFormat:@"%d月%d日 %02d:%02d", (int)comps.month, (int)comps.day, (int)comps.hour, (int)comps.minute];
+                } else {
+                    _timestamp = [NSString stringWithFormat:@"%04d年%02d月%02d日 %02d:%02d", (int)comps.year, (int)comps.month, (int)comps.day, (int)comps.hour, (int)comps.minute];
+                }
+            }
+        }
+    }else{
+        _timestamp = [NSString stringWithFormat:@"%04d年%02d月%02d日 %02d:%02d", (int)comps.year, (int)comps.month, (int)comps.day, (int)comps.hour, (int)comps.minute];
+    }
+    
+    return _timestamp;
+}
+
+
+#pragma mark - 
+#pragma mark - 系统权限判断
 + (BOOL)checkMicrophonePermissionStatus
 {
     // 请求音频的授权状态

@@ -116,16 +116,16 @@
                     
                 } else if (notificationContent.eventType == NIMChatroomEventTypeAddManager) {
                     //用户成为管理员
-                    return [self renderingWithRoomNotification:member withContentString:[NSString stringWithFormat:@" %@ 被设置为管理员",member.nick]];
+                    return [self renderingWithRoomNotification:member withContentString:[NSString stringWithFormat:@"%@ 被设置为管理员",member.nick]];
                 } else if (notificationContent.eventType == NIMChatroomEventTypeAddManager) {
                     //用户被取消管理员
                     
                 } else if (notificationContent.eventType == NIMChatroomEventTypeKicked) {
                     //用户被踢出直播间
-                    return [self renderingWithRoomNotification:member withContentString:[NSString stringWithFormat:@" %@ 被管理员踢出直播间",member.nick]];
+                    return [self renderingWithRoomNotification:member withContentString:[NSString stringWithFormat:@"%@ 被管理员踢出直播间",member.nick]];
                 } else if (notificationContent.eventType ==     NIMChatroomEventTypeAddMuteTemporarily) {
                     //用户被解除临时禁言
-                    return [self renderingWithRoomNotification:member withContentString:[NSString stringWithFormat:@" %@ 被管理员禁言24小时",member.nick]];
+                    return [self renderingWithRoomNotification:member withContentString:[NSString stringWithFormat:@"%@ 被管理员禁言24小时",member.nick]];
                 }
             }
         }
@@ -177,56 +177,54 @@
     YTGiftAttachment *giftAttachment = ((NIMCustomObject *)self.message.messageObject).attachment;
     NSString *contentString = nil;
     if ([giftAttachment.giftNum integerValue] > 1) {
-        contentString = [NSString stringWithFormat:@"%@:  送给主播1个%@  %@连击!",[self getUserName],giftAttachment.giftName,giftAttachment.giftNum];
+        contentString = [NSString stringWithFormat:@"%@ : 送给主播1个 %@  %@连击!",[self getUserName],giftAttachment.giftName,giftAttachment.giftNum];
     } else {
-        contentString = [NSString stringWithFormat:@"%@:  送给主播1个%@  ",[self getUserName],giftAttachment.giftName];
+        contentString = [NSString stringWithFormat:@"%@ : 送给主播1个 %@  ",[self getUserName],giftAttachment.giftName];
     }
     self.contentString = contentString;
 
-    NSRange nameRane = [contentString rangeOfString:[NSString stringWithFormat:@"%@:",[self getUserName]]];
+    NSRange nameRane = [contentString rangeOfString:[NSString stringWithFormat:@"%@ :",[self getUserName]]];
     self.nameRange = nameRane;
     NSMutableAttributedString *contentAttributedString = [[NSMutableAttributedString alloc] initWithString:contentString];
     
-    NSRange showRane = [contentString rangeOfString:[NSString stringWithFormat:@"%@:  送给主播1个%@",[self getUserName],giftAttachment.giftName]];
+    NSRange showRane = [contentString rangeOfString:[NSString stringWithFormat:@"%@ : 送给主播1个 %@",[self getUserName],giftAttachment.giftName]];
     
     if ([giftAttachment.giftNum integerValue] > 0) {
         
     }
-    NSRange comboRange = [contentString rangeOfString:[NSString stringWithFormat:@"%@连击!",giftAttachment.giftNum]];
-    [contentAttributedString setColor:[UIColor colorWithHexString:@"FFFF00"] range:showRane];
+    [contentAttributedString setColor:[UIColor whiteColor] range:showRane];
     [contentAttributedString setFont:[UIFont systemFontOfSize:14.f] range:showRane];
     
+    //用户名
+    [contentAttributedString setColor:[UIColor colorWithHexString:@"ffdd00"] range:nameRane];
+    [contentAttributedString setFont:[UIFont systemFontOfSize:14.f] range:nameRane];
+    
+    NSRange comboRange = [contentString rangeOfString:[NSString stringWithFormat:@"%@连击!",giftAttachment.giftNum]];
     [contentAttributedString setColor:[UIColor colorWithHexString:@"FF6600"] range:comboRange];
-    //斜体加粗
-    [contentAttributedString setFont:[UIFont fontWithName:@"Georgia-BoldItalic" size:15.f] range:comboRange];
+    [contentAttributedString setFont:[UIFont fontWithName:@"Georgia-BoldItalic" size:15.f] range:comboRange];//斜体加粗
+    
     //插入礼物的图片
-
-    NSString *imageString = [NSString stringWithFormat:@"%@/%@",IMG_URL,giftAttachment.giftShowImage];
-    
-    
-//    YYWebImageManager *imageManger = [YYWebImageManager sharedManager];
+//    NSString *imageString = [NSString stringWithFormat:@"%@/%@",IMG_URL,giftAttachment.giftShowImage];
+//    UIView *bgView = [UIView new];
+//    bgView.backgroundColor = [UIColor clearColor];
+//    bgView.frame = CGRectMake(0, 0, 20, 20);
+//    YYAnimatedImageView *imageView = [[YYAnimatedImageView alloc] init];
+//    imageView.size = CGSizeMake(20, 20);
+//    imageView.center = bgView.center;
+//    [bgView addSubview:imageView];
+//    [imageView setImageURL:[NSURL URLWithString:imageString]];
 //    
-//    
-//    UIImage *image = [imageManger.cache getImageForKey:imageString];
-//    NSAttributedString *giftAttributed = [NSAttributedString attachmentStringWithEmojiImage:image fontSize:20.f];
-    UIView *bgView = [UIView new];
-    bgView.backgroundColor = [UIColor clearColor];
-    bgView.frame = CGRectMake(0, 0, 20, 20);
-    YYAnimatedImageView *imageView = [[YYAnimatedImageView alloc] init];
-    imageView.size = CGSizeMake(20, 20);
-    imageView.center = bgView.center;
-    [bgView addSubview:imageView];
-    [imageView setImageURL:[NSURL URLWithString:imageString]];
-    
-     NSAttributedString *giftAttributed = [NSMutableAttributedString attachmentStringWithContent:bgView contentMode:UIViewContentModeCenter attachmentSize:bgView.frame.size alignToFont:[UIFont systemFontOfSize:20.f] alignment:YYTextVerticalAlignmentCenter];
+//    NSAttributedString *giftAttributed = [NSMutableAttributedString attachmentStringWithContent:bgView contentMode:UIViewContentModeCenter attachmentSize:bgView.frame.size alignToFont:[UIFont systemFontOfSize:20.f] alignment:YYTextVerticalAlignmentCenter];
     
     
-    NSMutableAttributedString *barrageAttributed = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@送给主播1个%@",[self getUserName],giftAttachment.giftName]];
+    NSMutableAttributedString *barrageAttributed = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ 送给主播1个 %@",[self getUserName],giftAttachment.giftName]];
     
-    if (giftAttributed) {
-        [contentAttributedString insertAttributedString:giftAttributed atIndex:showRane.length];
-        [barrageAttributed insertAttributedString:giftAttributed atIndex:barrageAttributed.length];
-    }
+//    if (giftAttributed) {
+//        [contentAttributedString insertAttributedString:giftAttributed atIndex:showRane.length];
+//        [barrageAttributed insertAttributedString:giftAttributed atIndex:barrageAttributed.length];
+//    }
+    
+    
     self.barrageAttributed = barrageAttributed;
     
     self.chatMessageType = ChatMessageTypeGift;

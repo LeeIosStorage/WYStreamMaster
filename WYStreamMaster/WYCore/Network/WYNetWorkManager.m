@@ -51,7 +51,11 @@ responseClass:(Class)classType
     failure:(WYRequestFailureBlock)failure
 {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"html/json",@"text/plain", nil];
+    
+    // app版本
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"html/json",@"text/plain",[NSString stringWithFormat:@"version/%@",app_Version], nil];
     AFJSONResponseSerializer *jsonReponseSerializer = [AFJSONResponseSerializer serializer];
     jsonReponseSerializer.acceptableContentTypes = nil;
     manager.responseSerializer = jsonReponseSerializer;
@@ -92,7 +96,7 @@ responseClass:(Class)classType
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             //[self handleResponseObject:responseObject];
         }
-        NSLog(@"请求url = %@",task.currentRequest.URL);
+        NSLog(@"请求url = %@ \n responseObject=%@",task.currentRequest.URL,responseObject);
         
         NSString *message = nil;
         NSInteger status = kCPNetworkRequestStatusFailed;
@@ -152,7 +156,11 @@ responseClass:(Class)classType
      failure:(WYRequestFailureBlock)failure
 {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"html/json",@"text/plain", nil];//kCsagddCheck
+    
+    // app版本
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"html/json",@"text/plain",[NSString stringWithFormat:@"version/%@",app_Version], nil];//kCsagddCheck
     
     AFJSONResponseSerializer *jsonReponseSerializer = [AFJSONResponseSerializer serializer];
     jsonReponseSerializer.acceptableContentTypes = nil;
@@ -272,15 +280,16 @@ responseClass:(Class)classType
     }
     
     NSMutableString *addString = [NSMutableString string];
-    //添加uid
-    if (![urlString containsString:kUserInfoUID] && [WYLoginUserManager userID]) {
-        [addString appendFormat:@"%@=%@", kUserInfoUID, [WYLoginUserManager userID]];
-    }
     
-//    添加token
-        if (![urlString containsString:kUserInfoAuthToken] && [WYLoginUserManager authToken]) {
-            [addString appendFormat:@"&%@=%@", kUserInfoAuthToken, [WYLoginUserManager authToken]];
-        }
+    
+    //添加token
+    if (![urlString containsString:kUserInfoAuthToken] && [WYLoginUserManager authToken]) {
+        [addString appendFormat:@"%@=%@", kUserInfoAuthToken, [WYLoginUserManager authToken]];
+    }
+//    //添加uid
+//    if (![urlString containsString:kUserInfoUID] && [WYLoginUserManager userID]) {
+//        [addString appendFormat:@"&%@=%@", kUserInfoUID, [WYLoginUserManager userID]];
+//    }
     
     NSString *resultUrlString = [urlString stringByAppendingString:addString];
     return resultUrlString;

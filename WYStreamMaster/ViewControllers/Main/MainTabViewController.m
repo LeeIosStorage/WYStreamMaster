@@ -13,6 +13,7 @@
 #import "WYSocketManager.h"
 #import "WYGiftRecordView.h"
 #import "WYCustomActionSheet.h"
+#import "WYGameModel.h"
 
 @interface MainTabViewController ()
 <
@@ -73,8 +74,58 @@ UITableViewDataSource
 #pragma mark - Server
 - (void)refreshGameList{
     
-    self.gameListArray = [[NSMutableArray alloc] init];
-    self.gameListArray = @[@"真人牛牛",@"真人德扑",@"VIP"];
+    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"gameList"];
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
+    
+    WEAKSELF
+    [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:[WYGameModel class] success:^(WYRequestType requestType, NSString *message, id dataObject) {
+        NSLog(@"error:%@ data:%@",message,dataObject);
+//        [MBProgressHUD hideHUD];
+        
+        if (requestType == WYRequestTypeSuccess) {
+            weakSelf.gameListArray = [[NSMutableArray alloc] init];
+            [weakSelf.gameListArray addObjectsFromArray:dataObject];
+        }else{
+            [MBProgressHUD showError:message toView:weakSelf.view];
+        }
+        
+    } failure:^(id responseObject, NSError *error) {
+//        [MBProgressHUD hideHUD];
+        [MBProgressHUD showAlertMessage:@"连接失败，请检查您的网络设置后重试" toView:weakSelf.view];
+    }];
+}
+
+- (void)anchorOnLineRequest{
+    
+    [MBProgressHUD showMessage:@"直播准备中..."];
+    
+    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"anchor_on_off"];
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
+    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchorId"];
+    [paramsDic setObject:@"1" forKey:@"anchor_status"];
+    [paramsDic setObject:self.gameCategoryId forKey:@"game_type"];
+    [paramsDic setObject:[WYLoginUserManager roomId] forKey:@"room_id_pk"];
+    [paramsDic setObject:[NSNumber numberWithInt:0] forKey:@"room_type"];
+    
+    WEAKSELF
+    [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
+        NSLog(@"error:%@ data:%@",message,dataObject);
+        [MBProgressHUD hideHUD];
+        
+        if (requestType == WYRequestTypeSuccess) {
+            
+            WYLiveViewController *liveVc = [[WYLiveViewController alloc] init];
+            liveVc.streamURL = [WYLoginUserManager anchorPushUrl];
+            [self.navigationController pushViewController:liveVc animated:YES];
+            
+        }else{
+            [MBProgressHUD showError:message toView:weakSelf.view];
+        }
+        
+    } failure:^(id responseObject, NSError *error) {
+        [MBProgressHUD hideHUD];
+        [MBProgressHUD showAlertMessage:@"请求失败，请检查您的网络设置后重试" toView:weakSelf.view];
+    }];
 }
 
 #pragma mark -
@@ -120,7 +171,7 @@ UITableViewDataSource
 
 - (void)refreshHeadViewShow{
     
-    NSURL *avatarUrl = [NSURL URLWithString:@"https://imgsa.baidu.com/baike/c0%3Dbaike180%2C5%2C5%2C180%2C60/sign=e6c6c4a53ddbb6fd3156ed74684dc07d/b64543a98226cffca90bcfecbd014a90f603ea4f.jpg"];
+    NSURL *avatarUrl = [NSURL URLWithString:[WYLoginUserManager avatar]];
     [WYCommonUtils setImageWithURL:avatarUrl setImageView:self.avatarImageView placeholderImage:@""];
     
     self.nickNameLabel.text = [WYLoginUserManager nickname];
@@ -157,23 +208,23 @@ UITableViewDataSource
         return;
     }
     
-    if (![WYCommonUtils checkMicrophonePermissionStatus] || ![WYCommonUtils userCaptureIsAuthorization]) {
-        // 麦克风未授权
-        WEAKSELF
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"无法访问麦克风或相机" message:@"请前往系统设置->隐私->麦克风/相机 打开权限" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-            if([[UIApplication sharedApplication] canOpenURL:url]) {
-                NSURL*url =[NSURL URLWithString:UIApplicationOpenSettingsURLString];
-                [[UIApplication sharedApplication] openURL:url];
-            }
-        }];
-        [alertController addAction:confirmAction];
-        
-        [weakSelf presentViewController:alertController animated:YES completion:nil
-         ];
-        return;
-    }
+//    if (![WYCommonUtils checkMicrophonePermissionStatus] || ![WYCommonUtils userCaptureIsAuthorization]) {
+//        // 麦克风未授权
+//        WEAKSELF
+//        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"无法访问麦克风或相机" message:@"请前往系统设置->隐私->麦克风/相机 打开权限" preferredStyle:UIAlertControllerStyleAlert];
+//        UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//            NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+//            if([[UIApplication sharedApplication] canOpenURL:url]) {
+//                NSURL*url =[NSURL URLWithString:UIApplicationOpenSettingsURLString];
+//                [[UIApplication sharedApplication] openURL:url];
+//            }
+//        }];
+//        [alertController addAction:confirmAction];
+//        
+//        [weakSelf presentViewController:alertController animated:YES completion:nil
+//         ];
+//        return;
+//    }
     
     [WYLoginUserManager setRoomNameTitle:self.roomNameTitle];
     [WYLoginUserManager setGameCategory:self.gameCategory];
@@ -184,8 +235,11 @@ UITableViewDataSource
 
 - (void)startLive{
     
-    WYLiveViewController *liveVc = [[WYLiveViewController alloc] init];
-    [self.navigationController pushViewController:liveVc animated:YES];
+    [self anchorOnLineRequest];
+
+//    WYLiveViewController *liveVc = [[WYLiveViewController alloc] init];
+//    liveVc.streamURL = [WYLoginUserManager anchorPushUrl];
+//    [self.navigationController pushViewController:liveVc animated:YES];
 }
 
 #pragma mark -
@@ -207,15 +261,18 @@ UITableViewDataSource
 
 - (IBAction)gameChooseAction:(id)sender{
     
-    NSArray *otherButtonTitles = self.gameListArray;
+    NSMutableArray *otherButtonTitles = [NSMutableArray array];
+    for (WYGameModel *gameModel in self.gameListArray) {
+        [otherButtonTitles addObject:gameModel.gameName];
+    }
     WEAKSELF
     WYCustomActionSheet *actionSheet = [[WYCustomActionSheet alloc] initWithTitle:@"选择直播的游戏" actionBlock:^(NSInteger buttonIndex) {
         if (buttonIndex >= otherButtonTitles.count) {
             return;
         }
-        NSString *gameInfo = [self.gameListArray objectAtIndex:buttonIndex];
-        weakSelf.gameCategory = gameInfo;
-        weakSelf.gameCategoryId = gameInfo;
+        WYGameModel *gameModel = [self.gameListArray objectAtIndex:buttonIndex];
+        weakSelf.gameCategory = gameModel.gameName;
+        weakSelf.gameCategoryId = gameModel.gameId;
         weakSelf.gameNameLabel.text = weakSelf.gameCategory;
         
     } cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:otherButtonTitles];
