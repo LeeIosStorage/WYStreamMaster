@@ -8,6 +8,8 @@
 
 #import "MBProgressHUD+WYTools.h"
 
+#define bezelView_bg_color [UIColor clearColor]//colorWithHexString:@"323A43"
+
 @implementation MBProgressHUD (WYTools)
 
 #pragma mark 显示信息
@@ -23,7 +25,17 @@
     hud.detailsLabel.font = [UIFont systemFontOfSize:14];
     
     hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
-    hud.bezelView.color = [UIColor colorWithHexString:@"323A43"];;
+    hud.bezelView.color = bezelView_bg_color;
+    //高斯模糊
+    if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_8_0) {
+        UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+        UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:effect];
+        [hud.bezelView addSubview:effectView];
+        [hud.bezelView insertSubview:effectView atIndex:0];
+        effectView.frame = hud.bezelView.bounds;
+        effectView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    }
+    
     hud.animationType = MBProgressHUDAnimationZoomOut;
     
     if (icon) {
@@ -70,7 +82,16 @@
     hud.label.font = [UIFont systemFontOfSize:14];
     
     hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
-    hud.bezelView.color = [UIColor colorWithHexString:@"323A43"];
+    hud.bezelView.color = bezelView_bg_color;
+    //高斯模糊
+    if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_8_0) {
+        UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+        UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:effect];
+        [hud.bezelView addSubview:effectView];
+        [hud.bezelView insertSubview:effectView atIndex:0];
+        effectView.frame = hud.bezelView.bounds;
+        effectView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    }
     
     // 隐藏时候从父控件中移除
     hud.removeFromSuperViewOnHide = YES;

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WYSuperViewController.h"
 
 @interface WYCommonUtils : NSObject
 
@@ -60,5 +61,7 @@
 + (void)requsetCameraMediaPermission;
 //设备是否有摄像头
 +(BOOL)userCameraIsUsable;
+
++ (WYSuperViewController *)getCurrentVC;
 
 @end

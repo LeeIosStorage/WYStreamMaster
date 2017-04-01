@@ -35,6 +35,8 @@
 
 - (void)exitRoom;
 
+- (void)reEnterRoom;
+
 - (NSError *)sendWithMessage:(NIMMessage *)message extraModel:(WYGiftModel *)extraModel;
 - (NSError *)sendWithMessage:(NIMMessage *)message;
 

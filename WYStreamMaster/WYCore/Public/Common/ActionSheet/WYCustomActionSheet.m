@@ -64,6 +64,10 @@ const CGFloat kWYAnimationDuration = .3f;
     _sheetView.backgroundColor = [UIColor whiteColor];
     [self addSubview:_sheetView];
     
+//    _bgImageView = [[UIImageView alloc] init];
+//    _bgImageView.image = [[UIImage imageNamed:@"wy_actionsheet_bg"] stretchableImageWithLeftCapWidth:182 topCapHeight:52];
+//    [_sheetView addSubview:_bgImageView];
+    
     _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.dataSource = self;
@@ -159,6 +163,8 @@ const CGFloat kWYAnimationDuration = .3f;
     frame.size.width = SCREEN_WIDTH;
     frame.size.height = sheetHeight;
     _sheetView.frame = frame;
+    
+//    _bgImageView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
     
 //    _sheetView.transform = CGAffineTransformMakeTranslation(0, sheetHeight);
 }

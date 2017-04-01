@@ -48,7 +48,7 @@
         [self.setManagerButton setTitle:@"设立房管" forState:UIControlStateNormal];
     }
     
-    if (roomMember.isMuted) {
+    if (roomMember.isTempMuted) {
         //解禁言
         [self.muteButton setTitle:@"解除禁言" forState:UIControlStateNormal];
     }else{

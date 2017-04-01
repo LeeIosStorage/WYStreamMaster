@@ -18,12 +18,14 @@
 @interface MainTabViewController ()
 <
 UITableViewDelegate,
-UITableViewDataSource
+UITableViewDataSource,
+UITextFieldDelegate
 >
 
 @property (copy, nonatomic) NSString *roomNameTitle;
 @property (copy, nonatomic) NSString *gameCategory;
 @property (copy, nonatomic) NSString *gameCategoryId;
+@property (copy, nonatomic) NSString *roomType;
 
 @property (nonatomic, strong) NSMutableArray *gameListArray;
 
@@ -33,9 +35,14 @@ UITableViewDataSource
 @property (nonatomic, weak) IBOutlet UILabel *nickNameLabel;
 @property (nonatomic, weak) IBOutlet UILabel *roomNumLabel;
 @property (nonatomic, weak) IBOutlet UITextField *roomNameTextField;
+@property (nonatomic, weak) IBOutlet UITextField *roomNoticeTextField;
 @property (nonatomic, weak) IBOutlet UILabel *gameNameLabel;
 @property (nonatomic, weak) IBOutlet UIButton *gameChooseButton;
+@property (nonatomic, weak) IBOutlet UILabel *roomTypeLabel;
 @property (nonatomic, weak) IBOutlet UIView *gameChooseContainerView;
+
+@property (nonatomic, weak) IBOutlet UIView *vipRoomPasswordView;
+@property (nonatomic, weak) IBOutlet UITextField *vipRoomPasswordTextField;
 
 @property (nonatomic, weak) IBOutlet UIView *codeRateView;
 
@@ -105,7 +112,7 @@ UITableViewDataSource
     [paramsDic setObject:@"1" forKey:@"anchor_status"];
     [paramsDic setObject:self.gameCategoryId forKey:@"game_type"];
     [paramsDic setObject:[WYLoginUserManager roomId] forKey:@"room_id_pk"];
-    [paramsDic setObject:[NSNumber numberWithInt:0] forKey:@"room_type"];
+    [paramsDic setObject:self.roomType forKey:@"room_type"];
     
     WEAKSELF
     [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
@@ -150,7 +157,14 @@ UITableViewDataSource
     [self setStreamingKpbsUIWith:[WYStreamingConfig sharedConfig].videoQuality + 1];
     
     NSString *placeholder = @"给自己取一个闪亮的房间名字吧！";
-    self.roomNameTextField.attributedPlaceholder = [WYCommonUtils stringToColorAndFontAttributeString:placeholder range:NSMakeRange(0, placeholder.length) font:[UIFont systemFontOfSize:12] color:UIColorHex(0xcacaca)];
+    self.roomNameTextField.attributedPlaceholder = [WYCommonUtils stringToColorAndFontAttributeString:placeholder range:NSMakeRange(0, placeholder.length) font:[UIFont systemFontOfSize:12] color:UIColorHex(0xbcbbbb)];
+    
+    placeholder = @"在此输入房间公告(不必填)";
+    self.roomNoticeTextField.attributedPlaceholder = [WYCommonUtils stringToColorAndFontAttributeString:placeholder range:NSMakeRange(0, placeholder.length) font:[UIFont systemFontOfSize:12] color:UIColorHex(0xbcbbbb)];
+    
+    placeholder = @"输入房间密码";
+    self.vipRoomPasswordTextField.attributedPlaceholder = [WYCommonUtils stringToColorAndFontAttributeString:placeholder range:NSMakeRange(0, placeholder.length) font:[UIFont systemFontOfSize:12] color:UIColorHex(0xbcbbbb)];
+    
     
     self.roomNameTextField.text = [WYLoginUserManager roomNameTitle];
     NSString *gameNameText = [WYLoginUserManager gameCategory];
@@ -162,10 +176,10 @@ UITableViewDataSource
     self.gameCategory = [WYLoginUserManager gameCategory];
     self.gameCategoryId = [WYLoginUserManager gameCategoryId];
     
-    self.headContainerView.width = SCREEN_WIDTH;
-    self.headContainerView.height = 123 + 112 + 60;
-    self.tableView.tableHeaderView = self.headContainerView;
-    [self.tableView reloadData];
+    self.roomType = @"0";
+    self.roomTypeLabel.text = @"普通房间";
+    
+    [self refreshHeadViewHeight];
     
 }
 
@@ -178,8 +192,24 @@ UITableViewDataSource
     self.roomNumLabel.text = [WYLoginUserManager roomId];
 }
 
+- (void)refreshHeadViewHeight{
+    
+    if ([self.roomType intValue] == 1) {
+        self.headContainerView.height = 123 + 222 + 33;
+        self.vipRoomPasswordView.hidden = NO;
+    }else{
+        self.headContainerView.height = 123 + 222;
+        self.vipRoomPasswordView.hidden = YES;
+    }
+    self.headContainerView.width = SCREEN_WIDTH;
+    self.tableView.tableHeaderView = self.headContainerView;
+    [self.tableView reloadData];
+}
+
 - (void)gestureRecognizer:(UITapGestureRecognizer *)gestureRecognizer {
     [self.roomNameTextField resignFirstResponder];
+    [self.roomNoticeTextField resignFirstResponder];
+    [self.vipRoomPasswordTextField resignFirstResponder];
 }
 
 - (void)setStreamingKpbsUIWith:(NSInteger)index{
@@ -207,24 +237,28 @@ UITableViewDataSource
         [MBProgressHUD showError:@"请选择直播的游戏"];
         return;
     }
+    if ([self.roomType intValue] == 1 && self.vipRoomPasswordTextField.text.length == 0) {
+        [MBProgressHUD showError:@"请为VIP房间设置密码"];
+        return;
+    }
     
-//    if (![WYCommonUtils checkMicrophonePermissionStatus] || ![WYCommonUtils userCaptureIsAuthorization]) {
-//        // 麦克风未授权
-//        WEAKSELF
-//        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"无法访问麦克风或相机" message:@"请前往系统设置->隐私->麦克风/相机 打开权限" preferredStyle:UIAlertControllerStyleAlert];
-//        UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//            NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-//            if([[UIApplication sharedApplication] canOpenURL:url]) {
-//                NSURL*url =[NSURL URLWithString:UIApplicationOpenSettingsURLString];
-//                [[UIApplication sharedApplication] openURL:url];
-//            }
-//        }];
-//        [alertController addAction:confirmAction];
-//        
-//        [weakSelf presentViewController:alertController animated:YES completion:nil
-//         ];
-//        return;
-//    }
+    if (![WYCommonUtils checkMicrophonePermissionStatus] || ![WYCommonUtils userCaptureIsAuthorization]) {
+        // 麦克风未授权
+        WEAKSELF
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"无法访问麦克风或相机" message:@"请前往系统设置->隐私->麦克风/相机 打开权限" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+            if([[UIApplication sharedApplication] canOpenURL:url]) {
+                NSURL*url =[NSURL URLWithString:UIApplicationOpenSettingsURLString];
+                [[UIApplication sharedApplication] openURL:url];
+            }
+        }];
+        [alertController addAction:confirmAction];
+        
+        [weakSelf presentViewController:alertController animated:YES completion:nil
+         ];
+        return;
+    }
     
     [WYLoginUserManager setRoomNameTitle:self.roomNameTitle];
     [WYLoginUserManager setGameCategory:self.gameCategory];
@@ -245,10 +279,12 @@ UITableViewDataSource
 #pragma mark -
 #pragma mark - Button Clicked
 - (void)startLiveAction:(id)sender{
+    [self gestureRecognizer:nil];
     [self toCreateLiveRoom];
 }
 
 - (IBAction)giftListAction:(id)sender{
+    [self gestureRecognizer:nil];
     
     [self.giftRecordView show];
     
@@ -260,6 +296,7 @@ UITableViewDataSource
 }
 
 - (IBAction)gameChooseAction:(id)sender{
+    [self gestureRecognizer:nil];
     
     NSMutableArray *otherButtonTitles = [NSMutableArray array];
     for (WYGameModel *gameModel in self.gameListArray) {
@@ -279,11 +316,69 @@ UITableViewDataSource
     [actionSheet showInView:self.view];
 }
 
+- (IBAction)roomTypeAction:(id)sender{
+    [self gestureRecognizer:nil];
+    
+    NSMutableArray *otherButtonTitles = [NSMutableArray array];
+    [otherButtonTitles addObject:@"普通房间"];
+    [otherButtonTitles addObject:@"VIP房间"];
+    WEAKSELF
+    WYCustomActionSheet *actionSheet = [[WYCustomActionSheet alloc] initWithTitle:@"选择直播房间类型" actionBlock:^(NSInteger buttonIndex) {
+        if (buttonIndex >= otherButtonTitles.count) {
+            return;
+        }
+        NSString *roomType = [otherButtonTitles objectAtIndex:buttonIndex];
+        weakSelf.roomTypeLabel.text = roomType;
+        if (buttonIndex == 0) {
+            weakSelf.roomType = @"0";
+        }else if (buttonIndex == 1){
+            weakSelf.roomType = @"1";
+        }
+        [weakSelf refreshHeadViewHeight];
+        
+    } cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:otherButtonTitles];
+    [actionSheet showInView:self.view];
+}
+
 - (IBAction)codeRateAction:(id)sender{
+    [self gestureRecognizer:nil];
+    
     UIButton *button = (UIButton *)sender;
     NSInteger tag = button.tag;
     [self setStreamingKpbsUIWith:tag];
     [WYStreamingConfig sharedConfig].videoQuality = tag-1;
+}
+
+#pragma mark -
+#pragma mark - UITextFieldDelegate
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSString *oldString = [textField.text copy];
+    NSString *newString = [oldString stringByReplacingCharactersInRange:range withString:string];
+    
+    if ([string isEqualToString:@"\n"]) {
+        return NO;
+    }
+    
+    if (!string.length && range.length > 0) {
+        return YES;
+    }
+    
+    
+    if (textField == _roomNameTextField && textField.markedTextRange == nil) {
+        if (newString.length > 20 && textField.text.length >= 20) {
+            return NO;
+        }
+    }else if (textField == _roomNoticeTextField && textField.markedTextRange == nil){
+        if (newString.length > 40 && textField.text.length >= 40) {
+            return NO;
+        }
+    }else if (textField == _vipRoomPasswordTextField && textField.markedTextRange == nil){
+        if (newString.length > 10 && textField.text.length >= 10) {
+            return NO;
+        }
+    }
+    return YES;
 }
 
 #pragma mark -

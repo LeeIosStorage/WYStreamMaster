@@ -8,6 +8,7 @@
 
 #import "WYLoginManager.h"
 #import "WYNavigationController.h"
+#import "WYLiveViewController.h"
 
 @interface WYLoginManager ()
 
@@ -151,19 +152,30 @@
     NIMAutoLoginData *loginData = [[NIMAutoLoginData alloc] init];
     loginData.account = [WYLoginUserManager nimAccountID];
     loginData.token = [WYLoginUserManager nimAccountID];//[WYLoginUserManager userID]
-    //WEAKSELF
     
+    WEAKSELF
     [[[NIMSDK sharedSDK] loginManager] login:loginData.account token:loginData.token completion:^(NSError * _Nullable error) {
         NSLog(@"登录云信==%@",error);
         if (error.code == 302) {
             WYLog(@"302 error 云信账号密码错误");
         }
         if (!error) {
-            //[weakSelf toReEnterRoom];
+            [weakSelf toReEnterRoom];
         }
     }];
 }
 
+
+- (void)toReEnterRoom
+{
+    WYSuperViewController *sourceViewController = [WYCommonUtils getCurrentVC];
+    if ([sourceViewController isKindOfClass:[WYLiveViewController class]]) {
+        WYLiveViewController *liveRoomVC = (WYLiveViewController *)sourceViewController;
+        //先退出原游客登录的直播间，改变NIMMember信息 -- bugly #448,此处调用liveroomvc有风险
+        [liveRoomVC.roomView.chatroomControl exitRoom];
+        [liveRoomVC.roomView.chatroomControl reEnterRoom];
+    }
+}
 
 //- (void)autoLoginNIMService
 //{

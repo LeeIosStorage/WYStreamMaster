@@ -45,32 +45,81 @@
 {
     WEAKSELF
     //正在进入
-//    [self sendMessageWithNotificationText:@"正在登录聊天服务器..."];
+    if (![[NIMSDK sharedSDK].loginManager isLogined]) {
+        //如果没有登录云信
+        [self toLoginNIMService];
+    } else {
+        //附加信息
+        YTEnterExtraModel *enterExtraModel = [[YTEnterExtraModel alloc] init];
+        enterExtraModel.sex = [WYLoginUserManager sex];
+        enterExtraModel.isAnchor = @"0";
+        NSString *enterExtraString = [enterExtraModel modelToJSONString];
+        
+        NIMChatroomEnterRequest *enterRequest = [[NIMChatroomEnterRequest alloc] init];
+        enterRequest.roomNickname = [WYLoginUserManager nickname];
+        enterRequest.roomId = [WYLoginUserManager chatRoomId];
+        enterRequest.roomAvatar = [WYLoginUserManager avatar];
+        enterRequest.roomExt = enterExtraString;
+        
+        [[NIMSDK sharedSDK].chatroomManager enterChatroom:enterRequest completion:^(NSError * _Nullable error, NIMChatroom * _Nullable chatroom, NIMChatroomMember * _Nullable me) {
+            if (!error) {
+                [weakSelf enterRoomSuccess];
+                //获取自己的权限
+                [weakSelf getJurisdiction];
+                
+            } else {
+                //此处应做兼容，没有登录上云信，就去等待，登录成功之后，看用户是否还在直播间内，再去重新进入聊天室
+                NSLog(@"进入聊天室失败error = %@ 检查是否登录上云信服务器,%d",error,[[NIMSDK sharedSDK].loginManager isLogined]);
+                [weakSelf sendMessageWithNotificationText:@"进入聊天服务器失败,请等待重连!"];
+            }
+        }];
+    }
 
-    //附加信息
-    YTEnterExtraModel *enterExtraModel = [[YTEnterExtraModel alloc] init];
-    enterExtraModel.sex = [WYLoginUserManager sex];
-    enterExtraModel.isAnchor = @"0";
-    NSString *enterExtraString = [enterExtraModel modelToJSONString];
+}
+
+- (void)toLoginNIMService
+{
+    //如果断开了连接，会重复进入此处，不断重连，如果在登录的时候就没有连接上云信，也要处理
+    //没有登录上云信服务器，尝试主动登录云信服务器,并重新登录聊天室,其中有可能登录token失效
+    [[WYLoginManager sharedManager] loginNIMService];
     
-    NIMChatroomEnterRequest *enterRequest = [[NIMChatroomEnterRequest alloc] init];
-    enterRequest.roomNickname = [WYLoginUserManager nickname];
-    enterRequest.roomId = [WYLoginUserManager chatRoomId];
-    enterRequest.roomAvatar = [WYLoginUserManager avatar];
-    enterRequest.roomExt = enterExtraString;
+}
+
+- (void)reEnterRoom{
     
-    [[NIMSDK sharedSDK].chatroomManager enterChatroom:enterRequest completion:^(NSError * _Nullable error, NIMChatroom * _Nullable chatroom, NIMChatroomMember * _Nullable me) {
-        if (!error) {
-            [weakSelf enterRoomSuccess];
-            //获取自己的权限
-            [weakSelf getJurisdiction];
-            
-        } else {
-            //此处应做兼容，没有登录上云信，就去等待，登录成功之后，看用户是否还在直播间内，再去重新进入聊天室
-            NSLog(@"进入聊天室失败error = %@ 检查是否登录上云信服务器,%d",error,[[NIMSDK sharedSDK].loginManager isLogined]);
-            [weakSelf sendMessageWithNotificationText:@"进入聊天服务器失败!"];
-        }
-    }];
+    [self sendMessageWithNotificationText:@"连接中断，正在重新连接"];
+    WEAKSELF
+    //正在进入
+    if (![[NIMSDK sharedSDK].loginManager isLogined]) {
+        //如果没有登录云信
+        [self toLoginNIMService];
+    } else {
+        //附加信息
+        YTEnterExtraModel *enterExtraModel = [[YTEnterExtraModel alloc] init];
+        enterExtraModel.sex = [WYLoginUserManager sex];
+        enterExtraModel.isAnchor = @"0";
+        NSString *enterExtraString = [enterExtraModel modelToJSONString];
+        
+        NIMChatroomEnterRequest *enterRequest = [[NIMChatroomEnterRequest alloc] init];
+        enterRequest.roomNickname = [WYLoginUserManager nickname];
+        enterRequest.roomId = [WYLoginUserManager chatRoomId];
+        enterRequest.roomAvatar = [WYLoginUserManager avatar];
+        enterRequest.roomExt = enterExtraString;
+        
+        [[NIMSDK sharedSDK].chatroomManager enterChatroom:enterRequest completion:^(NSError * _Nullable error, NIMChatroom * _Nullable chatroom, NIMChatroomMember * _Nullable me) {
+            if (!error) {
+                [weakSelf sendMessageWithNotificationText:@"重新连接成功"];
+                //获取自己的权限
+                [weakSelf getJurisdiction];
+                
+            } else {
+                //此处应做兼容，没有登录上云信，就去等待，登录成功之后，看用户是否还在直播间内，再去重新进入聊天室
+                NSLog(@"进入聊天室失败error = %@ 检查是否登录上云信服务器,%d",error,[[NIMSDK sharedSDK].loginManager isLogined]);
+                [weakSelf sendMessageWithNotificationText:@"进入聊天服务器失败,请等待重连!"];
+            }
+        }];
+    }
+    
 }
 
 - (void)enterRoomSuccess

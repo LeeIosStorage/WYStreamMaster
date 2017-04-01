@@ -10,12 +10,12 @@
 #import "WYStreamingSessionManager.h"
 #import <BlocksKit/BlocksKit+UIKit.h>
 #import "WYAnchorInfoView.h"
-#import "YTRoomView.h"
 #import "WYContributionListView.h"
 #import "WYAnchorManageView.h"
 #import "WYGiftModel.h"
 #import "WYBetTopView.h"
 #import "WYGiftHistoryView.h"
+#import "WYLoginManager.h"
 
 // 直播通知重试次数
 static NSInteger kLiveNotifyRetryCount = 0;
@@ -41,8 +41,6 @@ WYAnchorInfoViewDelegate
 @property (nonatomic, strong) WYAnchorInfoView *anchorInfoView;
 
 @property (nonatomic, strong) WYAnchorManageView *anchorManageView;//主播管理View
-
-@property (strong, nonatomic) YTRoomView *roomView;//chatView
 
 @property (strong, nonatomic) WYContributionListView *contributionListView;//贡献榜
 

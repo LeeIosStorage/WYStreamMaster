@@ -264,7 +264,7 @@
     NIMChatroomMember *roomMember = member;
     WEAKSELF
     normalCarView.letMemberMuteBlock = ^{
-        if (roomMember.isMuted) {
+        if (roomMember.isTempMuted) {
             //解禁言
             [weakSelf requestMemberMuteWithMember:member alertView:alert];
         }else{
@@ -319,7 +319,7 @@
     NIMChatroomMemberUpdateRequest *request = [[NIMChatroomMemberUpdateRequest alloc] init];
     request.roomId = [WYLoginUserManager chatRoomId];
     request.userId = roomMember.userId;
-    if (roomMember.isMuted) {
+    if (roomMember.isTempMuted) {
         //解禁言
         request.enable = NO;
     }else{
@@ -327,9 +327,10 @@
         request.enable = YES;
     }
     
-    [[NIMSDK sharedSDK].chatroomManager updateMemberMute:request completion:^(NSError * _Nullable error) {
+    unsigned long long duration = 60*60*24;
+    [[NIMSDK sharedSDK].chatroomManager updateMemberTempMute:request duration:duration completion:^(NSError * _Nullable error) {
         if (!error) {
-            if (roomMember.isMuted) {
+            if (roomMember.isTempMuted) {
                 [MBProgressHUD showAlertMessage:[NSString stringWithFormat:@"%@ 已解除禁言",roomMember.roomNickname] toView:nil];
             }else{
                 [MBProgressHUD showAlertMessage:[NSString stringWithFormat:@"%@ 已被禁言",roomMember.roomNickname] toView:nil];
