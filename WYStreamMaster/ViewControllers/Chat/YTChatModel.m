@@ -101,7 +101,7 @@
                     
                     if (![member.userId isSelf]) {
                         if (member.nick.length > 0) {
-                            return [self renderingWithRoomNotification:member withContentString:[NSString stringWithFormat:@"%@ 来了",member.nick]];
+                            return [self renderingWithRoomNotification:member withContentString:[NSString stringWithFormat:@" 欢迎 %@ 进入房间",member.nick] eventType:notificationContent.eventType];
                         }
                     }
                     
@@ -116,16 +116,16 @@
                     
                 } else if (notificationContent.eventType == NIMChatroomEventTypeAddManager) {
                     //用户成为管理员
-                    return [self renderingWithRoomNotification:member withContentString:[NSString stringWithFormat:@"%@ 被设置为管理员",member.nick]];
-                } else if (notificationContent.eventType == NIMChatroomEventTypeAddManager) {
+                    return [self renderingWithRoomNotification:member withContentString:[NSString stringWithFormat:@" 恭喜 %@ 成为房管,大家热烈祝贺!",member.nick] eventType:notificationContent.eventType];
+                } else if (notificationContent.eventType == NIMChatroomEventTypeRemoveManager) {
                     //用户被取消管理员
-                    
+                    return [self renderingWithRoomNotification:member withContentString:[NSString stringWithFormat:@" 真可惜, %@ 被主播撤销房管",member.nick] eventType:notificationContent.eventType];
                 } else if (notificationContent.eventType == NIMChatroomEventTypeKicked) {
                     //用户被踢出直播间
-                    return [self renderingWithRoomNotification:member withContentString:[NSString stringWithFormat:@"%@ 被管理员踢出直播间",member.nick]];
+//                    return [self renderingWithRoomNotification:member withContentString:[NSString stringWithFormat:@"%@ 被管理员踢出直播间",member.nick]];
                 } else if (notificationContent.eventType ==     NIMChatroomEventTypeAddMuteTemporarily) {
                     //用户被解除临时禁言
-                    return [self renderingWithRoomNotification:member withContentString:[NSString stringWithFormat:@"%@ 被管理员禁言24小时",member.nick]];
+                    return [self renderingWithRoomNotification:member withContentString:[NSString stringWithFormat:@" %@ 被禁言24小时",member.nick] eventType:notificationContent.eventType];
                 }
             }
         }
@@ -146,17 +146,26 @@
  */
 - (NSMutableAttributedString *)renderingWithNomalContent
 {
-    NSString *contentString = [NSString stringWithFormat:@"%@ :  %@",[self getUserName] ,self.message.text];
+    NSInteger userType = 1;
+    UIColor *textColor = [UIColor whiteColor];
+    UIImage *tagImage = nil;
+    if (userType == 1) {
+        textColor = [UIColor colorWithHexString:@"ffea00"];
+        tagImage = [UIImage imageNamed:@"wy_crown_user_1"];
+    }
+    
+    NSString *contentString = [NSString stringWithFormat:@" %@ : %@",[self getUserName] ,self.message.text];
     self.contentString = contentString;
-    NSMutableAttributedString *nameAttribute = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ :  ",[self getUserName]]];
-    nameAttribute.color = [UIColor colorWithHexString:@"ffdd00"];
+    NSMutableAttributedString *nameAttribute = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@" %@ : ",[self getUserName]]];
+    nameAttribute.color = textColor;
 
     NSMutableAttributedString *contentAttributedString = [[NSMutableAttributedString alloc] initWithString:self.message.text];
-    [contentAttributedString setColor:[UIColor whiteColor]];
+    [contentAttributedString setColor:textColor];
     [contentAttributedString insertAttributedString:nameAttribute atIndex:0];
     
-    if (self.isAnchor) {
-        NSAttributedString *tagAttributed = [NSAttributedString attachmentStringWithEmojiImage:[UIImage imageNamed:@"chat_icon_anchor"] fontSize:13.f];
+    if (tagImage) {
+//        NSAttributedString *tagAttributed = [NSAttributedString attachmentStringWithEmojiImage:tagImage fontSize:20.f];
+        NSAttributedString *tagAttributed = [NSAttributedString attachmentStringWithContent:tagImage contentMode:UIViewContentModeCenter width:18 ascent:3 descent:0];
         [contentAttributedString insertAttributedString:tagAttributed atIndex:0];
         self.nameRange = NSMakeRange(1, [self getUserName].length + 2);
     } else {
@@ -257,14 +266,12 @@
 /**
  *  成员信息消息
  */
-- (NSMutableAttributedString *)renderingWithRoomNotification:(NIMChatroomNotificationMember *)member withContentString:(NSString *)contentString
+- (NSMutableAttributedString *)renderingWithRoomNotification:(NIMChatroomNotificationMember *)member withContentString:(NSString *)contentString eventType:(NIMChatroomEventType)eventType
 {
-  
-//    NSAttributedString *noticeAttributed = [NSAttributedString attachmentStringWithEmojiImage:[UIImage imageNamed:@"chat_notice"] fontSize:13.f];
     
     NSMutableAttributedString *contentAttributedString = [[NSMutableAttributedString alloc] initWithString:contentString];
     [contentAttributedString setFont:[UIFont systemFontOfSize:14.f] range:contentString.rangeOfAll];//boldSystemFontOfSize
-    [contentAttributedString setColor:[UIColor colorWithHexString:@"fc1157"] range:contentString.rangeOfAll];
+    
     
     NSRange nRange = [contentString rangeOfString:member.nick];
     if (nRange.length > 0) {
@@ -272,7 +279,32 @@
 //        self.nameRange = nRange;
     }
     
-//    [contentAttributedString insertAttributedString:noticeAttributed atIndex:0];
+    UIImage *noticeImage = nil;
+    UIColor *textColor = [UIColor colorWithHexString:@"fc1157"];
+    if (eventType == NIMChatroomEventTypeEnter) {
+        noticeImage = [UIImage imageNamed:@"wy_expression_welcome"];
+        textColor = [UIColor colorWithHexString:@"78ff00"];
+    }else if (eventType == NIMChatroomEventTypeAddManager){
+        noticeImage = [UIImage imageNamed:@"wy_expression_congratul"];
+        textColor = [UIColor colorWithHexString:@"ff41ba"];
+    }else if (eventType == NIMChatroomEventTypeRemoveManager){
+        noticeImage = [UIImage imageNamed:@"wy_expression_sad"];
+        textColor = [UIColor colorWithHexString:@"9cd4ff"];
+    }else if (eventType == NIMChatroomEventTypeAddMuteTemporarily){
+        noticeImage = [UIImage imageNamed:@"wy_expression_mute"];
+        textColor = [UIColor colorWithHexString:@"ff2121"];
+    }
+    [contentAttributedString setColor:textColor range:contentString.rangeOfAll];
+    
+    if (noticeImage) {
+        NSAttributedString *noticeAttributed = [NSAttributedString attachmentStringWithEmojiImage:noticeImage fontSize:14.f];
+        [contentAttributedString insertAttributedString:noticeAttributed atIndex:0];
+        if (eventType == NIMChatroomEventTypeEnter) {
+            NSAttributedString *noticeAttributed2 = [NSAttributedString attachmentStringWithEmojiImage:noticeImage fontSize:14.f];
+            [contentAttributedString insertAttributedString:noticeAttributed2 atIndex:1];
+        }
+    }
+    
     
     self.contentString = contentString;
     return contentAttributedString;

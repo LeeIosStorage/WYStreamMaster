@@ -106,7 +106,7 @@
     NSURL *avatarUrl = [NSURL URLWithString:[WYLoginUserManager avatar]];
     [WYCommonUtils setImageWithURL:avatarUrl setImageView:self.anchorImageView placeholderImage:@""];
     
-    self.anchorNameLabel.text = @"林允儿";
+    self.anchorNameLabel.text = [WYLoginUserManager nickname];
     self.hotNumLabel.text = @"230001";
     self.onLineNumLabel.text = @"1000000";
 }

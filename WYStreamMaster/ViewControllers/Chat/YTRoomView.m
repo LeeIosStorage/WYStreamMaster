@@ -261,22 +261,24 @@
     [alert showWithView:normalCarView];
     
     
-    NIMChatroomMember *roomMember = member;
+//    NIMChatroomMember *roomMember = member;
     WEAKSELF
     normalCarView.letMemberMuteBlock = ^{
-        if (roomMember.isTempMuted) {
-            //解禁言
-            [weakSelf requestMemberMuteWithMember:member alertView:alert];
-        }else{
-            //禁言
-            WYCustomActionSheet *actionSheet = [[WYCustomActionSheet alloc] initWithTitle:nil actionBlock:^(NSInteger buttonIndex) {
-                if (buttonIndex == 0) {
-                    [weakSelf requestMemberMuteWithMember:member alertView:alert];
-                }
-                
-            } cancelButtonTitle:@"取消" destructiveButtonTitle:@"禁言" otherButtonTitles:nil];
-            [actionSheet showInView:self.liveRoomVC.view];
-        }
+//        if (roomMember.isTempMuted) {
+//            //解禁言
+//            [weakSelf requestMemberMuteWithMember:member alertView:alert];
+//        }else{
+//            
+//        }
+        
+        //禁言
+        WYCustomActionSheet *actionSheet = [[WYCustomActionSheet alloc] initWithTitle:nil actionBlock:^(NSInteger buttonIndex) {
+            if (buttonIndex == 0) {
+                [weakSelf requestMemberMuteWithMember:member alertView:alert];
+            }
+            
+        } cancelButtonTitle:@"取消" destructiveButtonTitle:@"禁言" otherButtonTitles:nil];
+        [actionSheet showInView:self.liveRoomVC.view];
         
     };
     normalCarView.letManagerBlock = ^{
@@ -344,10 +346,11 @@
     
     
     //////////自己的服务器禁言接口
-    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"save_room_ban"];
+    unsigned long long duration = 60*60*24;
+    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"temporaryMute"];
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
-    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchor_user_code"];
-    [paramsDic setObject:roomMember.userId forKey:@"user_code"];
+    [paramsDic setObject:[NSNumber numberWithLongLong:duration] forKey:@"muteDuration"];
+    [paramsDic setObject:roomMember.userId forKey:@"target"];
     [paramsDic setObject:[WYLoginUserManager userID] forKey:@"operator"];
     [paramsDic setObject:[WYLoginUserManager chatRoomId] forKey:@"roomid"];
     
@@ -356,11 +359,13 @@
         [alertView closeShowView];
         if (requestType == WYRequestTypeSuccess) {
             //[weakSelf letMemberMuteInNimSDK];
-            if (roomMember.isTempMuted) {
-                [MBProgressHUD showAlertMessage:[NSString stringWithFormat:@"%@ 已解除禁言",roomMember.roomNickname] toView:nil];
-            }else{
-                [MBProgressHUD showAlertMessage:[NSString stringWithFormat:@"%@ 已被禁言",roomMember.roomNickname] toView:nil];
-            }
+//            if (roomMember.isTempMuted) {
+//                [MBProgressHUD showAlertMessage:[NSString stringWithFormat:@"%@ 已解除禁言",roomMember.roomNickname] toView:nil];
+//            }else{
+//                
+//            }
+            [MBProgressHUD showAlertMessage:[NSString stringWithFormat:@"%@ 已被禁言24小时",roomMember.roomNickname] toView:nil];
+            
         } else {
             [MBProgressHUD showAlertMessage:message toView:nil];
         }

@@ -32,6 +32,8 @@ WYAnchorInfoViewDelegate
 
 @property (nonatomic, strong) WYStreamingSessionManager *streamingSessionManager;
 
+@property (nonatomic, strong) UIImageView *liveBgImageView;
+
 @property (nonatomic, weak) IBOutlet UIView *contentContainerView;
 @property (nonatomic, weak) IBOutlet UIButton *expandChatButton;
 @property (nonatomic, weak) IBOutlet UIButton *betTopButton;
@@ -142,6 +144,12 @@ WYAnchorInfoViewDelegate
     [self.giftHistoryButton.layer setBorderWidth:0.5];
     [self.giftHistoryButton.layer setBorderColor:[UIColor whiteColor].CGColor];
     
+    [self.view addSubview:self.liveBgImageView];
+    [self.view insertSubview:self.liveBgImageView atIndex:0];
+    [self.liveBgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
+    
     //直播信息
     [self.contentContainerView addSubview:self.anchorInfoView];
     [self.anchorInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -163,7 +171,7 @@ WYAnchorInfoViewDelegate
     [self.contentContainerView addSubview:self.roomView];
     [self.roomView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.contentContainerView).offset(-70);
-        make.left.equalTo(self.contentContainerView).offset(15);
+        make.left.equalTo(self.contentContainerView).offset(8);
         make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH-kRoomChatViewCustomWidth, 150));
     }];
     [self.roomView roomViewPrepare];
@@ -178,7 +186,8 @@ WYAnchorInfoViewDelegate
     
     UIView *previewView = _plSession.previewView;
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.view insertSubview:previewView atIndex:0];
+//        [self.view insertSubview:previewView atIndex:0];
+        [self.view insertSubview:previewView aboveSubview:self.liveBgImageView];
         [previewView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.bottom.left.and.right.equalTo(self.view);
 //            make.top.equalTo(self.view).offset(40);
@@ -235,7 +244,8 @@ WYAnchorInfoViewDelegate
 static int tempCount = 0;
 - (IBAction)changeCameraAction:(id)sender{
     
-//    [self.roomView sendMessageWithText:@"你的谢腾飞，尬舞尬起来啊，我牛牛就问你怕不怕，我屮艸芔茻赢了1000万"];
+    [self.roomView sendMessageWithText:@"你的谢腾飞，尬舞尬起来啊，我牛牛就问你怕不怕，我屮艸芔茻赢了1000万"];
+    return;
     
     tempCount++;
     
@@ -327,6 +337,15 @@ static int tempCount = 0;
         _giftHistoryView = [[WYGiftHistoryView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     }
     return _giftHistoryView;
+}
+
+- (UIImageView *)liveBgImageView{
+    if (!_liveBgImageView) {
+        _liveBgImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"wy_live_bg"]];
+        _liveBgImageView.contentMode = UIViewContentModeScaleAspectFill;
+        _liveBgImageView.clipsToBounds = YES;
+    }
+    return _liveBgImageView;
 }
 
 #pragma mark -

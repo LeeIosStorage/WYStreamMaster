@@ -53,5 +53,11 @@
         "control" : "anchor",
         "action"  : "save_room_ban"
     },
+    "temporaryMute": {
+        "protocol": "http",
+        "version" : "netease",
+        "control" : "chatroom",
+        "action"  : "temporaryMute"
+    },
     
 }

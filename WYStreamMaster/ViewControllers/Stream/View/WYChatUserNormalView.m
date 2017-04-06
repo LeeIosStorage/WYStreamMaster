@@ -48,13 +48,14 @@
         [self.setManagerButton setTitle:@"设立房管" forState:UIControlStateNormal];
     }
     
-    if (roomMember.isTempMuted) {
-        //解禁言
-        [self.muteButton setTitle:@"解除禁言" forState:UIControlStateNormal];
-    }else{
-        //禁言
-        [self.muteButton setTitle:@"禁言24h" forState:UIControlStateNormal];
-    }
+//    if (roomMember.isTempMuted) {
+//        //解禁言
+//        [self.muteButton setTitle:@"解除禁言" forState:UIControlStateNormal];
+//    }else{
+//        
+//    }
+    //禁言
+    [self.muteButton setTitle:@"禁言24h" forState:UIControlStateNormal];
     
 }
 
