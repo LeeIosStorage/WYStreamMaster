@@ -96,6 +96,7 @@ UITableViewDataSource
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"get_gift_record"];
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
     [paramsDic setObject:[WYLoginUserManager userID] forKey:@"rec_user_code"];
+    [paramsDic setObject:[NSNumber numberWithInt:1] forKey:@"page"];
     
     WEAKSELF
     [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:[WYGiftHistoryModel class] success:^(WYRequestType requestType, NSString *message, id dataObject) {

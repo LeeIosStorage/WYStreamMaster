@@ -60,7 +60,7 @@
     self.autoScroll = YES;
     
     self.chatroomControl = [[YTChatRoomControl alloc] init];
-  
+    self.chatroomControl.chatRoomView = self;
     self.chatroomControl.delegate = self;
     
     [self initData];
@@ -314,6 +314,7 @@
     NIMChatroomMember *roomMember = member;
     
     WEAKSELF
+    /***********************
     //////////云信的禁言解禁接口
     [alertView closeShowView];
     NIMChatroomMemberUpdateRequest *request = [[NIMChatroomMemberUpdateRequest alloc] init];
@@ -338,19 +339,28 @@
         }
     }];
     //////////NIMSDK
-    
     return;
+    ***********************/
+    
+    
     //////////自己的服务器禁言接口
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"save_room_ban"];
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
-    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchor_id"];
+    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchor_user_code"];
     [paramsDic setObject:roomMember.userId forKey:@"user_code"];
+    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"operator"];
+    [paramsDic setObject:[WYLoginUserManager chatRoomId] forKey:@"roomid"];
+    
     
     [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
         [alertView closeShowView];
         if (requestType == WYRequestTypeSuccess) {
             //[weakSelf letMemberMuteInNimSDK];
-            [MBProgressHUD showAlertMessage:[NSString stringWithFormat:@"%@被禁言",roomMember.roomNickname] toView:nil];
+            if (roomMember.isTempMuted) {
+                [MBProgressHUD showAlertMessage:[NSString stringWithFormat:@"%@ 已解除禁言",roomMember.roomNickname] toView:nil];
+            }else{
+                [MBProgressHUD showAlertMessage:[NSString stringWithFormat:@"%@ 已被禁言",roomMember.roomNickname] toView:nil];
+            }
         } else {
             [MBProgressHUD showAlertMessage:message toView:nil];
         }
@@ -365,6 +375,7 @@
     
     NIMChatroomMember *roomMember = member;
     
+    /**********************
     //////////云信的设置管理员接口
     [alertView closeShowView];
     NIMChatroomMemberUpdateRequest *request = [[NIMChatroomMemberUpdateRequest alloc] init];
@@ -391,20 +402,27 @@
         }
     }];
     //////////NIMSDK
-    
     return;
+    **********************/
+    
+    WEAKSELF
     //////////自己的服务器设置房管接口
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"save_room_management"];
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
-    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchor_id"];
+    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchor_user_code"];
     [paramsDic setObject:roomMember.userId forKey:@"user_code"];
+    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"operator"];
+    [paramsDic setObject:[WYLoginUserManager chatRoomId] forKey:@"roomid"];
     
-    WEAKSELF
     [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
         NSLog(@"error:%@ data:%@",message,dataObject);
         [alertView closeShowView];
         if (requestType == WYRequestTypeSuccess) {
-            [MBProgressHUD showSuccess:[NSString stringWithFormat:@"已设置%@为房管",roomMember.roomNickname] toView:nil];
+            if (roomMember.type == NIMChatroomMemberTypeManager) {
+                [MBProgressHUD showSuccess:[NSString stringWithFormat:@"已取消 %@ 的房管",roomMember.roomNickname] toView:nil];
+            }else if (roomMember.type == NIMChatroomMemberTypeGuest || roomMember.type == NIMChatroomMemberTypeNormal){
+                [MBProgressHUD showSuccess:[NSString stringWithFormat:@"已设置 %@ 为房管",roomMember.roomNickname] toView:nil];
+            }
         }else{
             [MBProgressHUD showError:message toView:nil];
         }

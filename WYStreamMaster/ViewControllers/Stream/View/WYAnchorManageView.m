@@ -100,6 +100,8 @@ GMGridViewActionDelegate
     self.roomNameTextField.attributedPlaceholder = [WYCommonUtils stringToColorAndFontAttributeString:placeholder range:NSMakeRange(0, placeholder.length) font:[UIFont systemFontOfSize:12] color:UIColorHex(0xcacaca)];
     self.roomNameTextField.text = [WYLoginUserManager roomNameTitle];
     
+    self.noticeTextView.text = [WYLoginUserManager roomNoticeTitle];
+    [self textViewDidChange:self.noticeTextView];
     
     _gridView.style = GMGridViewStyleSwap;
     _gridView.itemSpacing = 15;
@@ -150,7 +152,7 @@ GMGridViewActionDelegate
     
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"get_room_management"];
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
-    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchor_id"];
+    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchor_user_code"];
     
     WEAKSELF
     [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:[WYRoomManagerModel class] success:^(WYRequestType requestType, NSString *message, id dataObject) {
@@ -178,8 +180,10 @@ GMGridViewActionDelegate
     
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"save_room_management"];
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
-    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchor_id"];
+    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchor_user_code"];
     [paramsDic setObject:managerModel.managerUserId forKey:@"user_code"];
+    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"operator"];
+    [paramsDic setObject:[WYLoginUserManager chatRoomId] forKey:@"roomid"];
     
     WEAKSELF
     [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
@@ -360,6 +364,16 @@ static int avatarImageView_tag = 201,nameLabel_tag = 202;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if (scrollView == self.tableView) {
+        CGPoint offset = scrollView.contentOffset;
+        if (offset.y < 0) {
+            offset.y = 0;
+            scrollView.contentOffset = offset;
+        }
+    }
 }
 
 #pragma mark -

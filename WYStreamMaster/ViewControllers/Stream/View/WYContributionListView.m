@@ -94,7 +94,7 @@ UITableViewDataSource
     
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"gift_ranking"];
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
-    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchorId"];
+    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchor_user_code"];
     
     WEAKSELF
     [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {

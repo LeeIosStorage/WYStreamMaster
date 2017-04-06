@@ -26,6 +26,7 @@ static NSString *const kUserRoomId = @"kUserRoomId";
 
 static NSString *const kAnchorPushUrl = @"kAnchorPushUrl";
 static NSString *const kRoomNameTitle = @"kRoomNameTitle";
+static NSString *const kRoomNoticeTitle = @"kRoomNoticeTitle";
 static NSString *const kGameCategory = @"kGameCategory";
 static NSString *const kGameCategoryID = @"kGameCategoryID";
 
@@ -174,6 +175,13 @@ static NSString *const kLiveDuration = @"kLiveDuration";
     [self saveToUserDefaultsObject:roomNameTitle forKey:kRoomNameTitle];
 }
 
++ (NSString *)roomNoticeTitle{
+    return [self objectFromUserDefaultsKey:kRoomNoticeTitle];
+}
++ (void)setRoomNoticeTitle:(NSString *)roomNoticeTitle{
+    [self saveToUserDefaultsObject:roomNoticeTitle forKey:kRoomNoticeTitle];
+}
+
 + (NSString *)gameCategory
 {
     return [self objectFromUserDefaultsKey:kGameCategory];
@@ -196,7 +204,6 @@ static NSString *const kLiveDuration = @"kLiveDuration";
 
 + (NSString *)nimAccountID
 {
-    return @"10";
     return [WYLoginUserManager userID];
 }
 
@@ -298,7 +305,7 @@ static NSString *const kLiveDuration = @"kLiveDuration";
 + (void)updateUserDataWithLoginModel:(WYLoginModel *)loginModel
 {
     [WYLoginManager sharedManager].loginModel = loginModel;
-    [WYLoginUserManager setAccount:loginModel.mobile];
+//    [WYLoginUserManager setAccount:loginModel.mobile];
     [WYLoginUserManager setUsername:loginModel.username];
 //    if (loginModel.icon) {
 //        loginModel.icon = [NSString stringWithFormat:@"%@!small",loginModel.icon];

@@ -11,8 +11,9 @@
 @implementation WYRoomManagerModel
 
 + (NSDictionary *)modelCustomPropertyMapper {
-    return @{@"managerUserName":@"room_manager_name",
-             @"managerUserId":@"room_manager_user_code"
+    return @{@"managerUserName":@"nickname",
+             @"managerUserId":@"user_code_fk",
+             @"managerAvatar":@"head_icon"
              };
 }
 

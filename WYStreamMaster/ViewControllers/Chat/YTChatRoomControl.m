@@ -71,6 +71,7 @@
                 //此处应做兼容，没有登录上云信，就去等待，登录成功之后，看用户是否还在直播间内，再去重新进入聊天室
                 NSLog(@"进入聊天室失败error = %@ 检查是否登录上云信服务器,%d",error,[[NIMSDK sharedSDK].loginManager isLogined]);
                 [weakSelf sendMessageWithNotificationText:@"进入聊天服务器失败,请等待重连!"];
+                [weakSelf toLoginNIMService];
             }
         }];
     }

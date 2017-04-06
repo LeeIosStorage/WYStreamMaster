@@ -53,7 +53,7 @@
         [self.muteButton setTitle:@"解除禁言" forState:UIControlStateNormal];
     }else{
         //禁言
-        [self.muteButton setTitle:@"禁言" forState:UIControlStateNormal];
+        [self.muteButton setTitle:@"禁言24h" forState:UIControlStateNormal];
     }
     
 }

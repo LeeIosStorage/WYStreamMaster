@@ -107,7 +107,7 @@ WYAnchorInfoViewDelegate
     
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"anchor_on_off"];
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
-    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchorId"];
+    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchor_user_code"];
     [paramsDic setObject:@"0" forKey:@"anchor_status"];
     [paramsDic setObject:[WYLoginUserManager gameCategoryId] forKey:@"game_type"];
     [paramsDic setObject:[WYLoginUserManager roomId] forKey:@"room_id_pk"];
@@ -243,17 +243,17 @@ static int tempCount = 0;
     
     gifModel.giftId = @"1";
     gifModel.name = @"礼物1";
-    int type = tempCount%3;
-    if (type == 1) {
-        gifModel.giftId = @"2";
-        gifModel.name = @"礼物2";
-    }else if (type == 2){
-        gifModel.giftId = @"3";
-        gifModel.name = @"礼物3";
-    }
+//    int type = tempCount%3;
+//    if (type == 1) {
+//        gifModel.giftId = @"2";
+//        gifModel.name = @"礼物2";
+//    }else if (type == 2){
+//        gifModel.giftId = @"3";
+//        gifModel.name = @"礼物3";
+//    }
     
     gifModel.sender = [WYLoginUserManager nickname];
-    gifModel.clickNumber = 10;
+    gifModel.clickNumber = 1;
     gifModel.noFrameIcon = kTempNetworkHTTPURL;
     [self.roomView.chatroomControl sendMessageWithGift:gifModel];
     

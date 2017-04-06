@@ -229,11 +229,12 @@ static CGFloat const kNumberAnimationTime = 0.25;/**< 数字改变动画时长 *
         make.size.mas_equalTo(CGSizeMake(24, 24));
     }];
 
+//    self.numberView.backgroundColor = [UIColor redColor];
     [self.numberView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.multiplyLabel.mas_right).offset(-5);
 //        make.left.equalTo(self.multiplyLabel).offset(-15);
         make.bottom.equalTo(self).offset(-1);
-        make.size.mas_equalTo(CGSizeMake(90, 44));
+        make.size.mas_equalTo(CGSizeMake(120, 44));
     }];
 
 //    CGPoint layerPosition = CGPointMake(235, 0);

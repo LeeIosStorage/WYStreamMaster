@@ -30,6 +30,7 @@
 #import "UIButton+YTLoginButton.h"
 #import "WYCommonUtils.h"
 #import "UINavigationBar+Awesome.h"
+#import "WYLoginManager.h"
 
 
 @interface WYLoginViewController () <UITextFieldDelegate,WYImageCodeViewDelegate,SettingConfigChangeD>
@@ -162,8 +163,8 @@
     self.accountError.hidden = YES;
     self.loginButton.canClicked = NO;
     
-    self.loginAccountTextField.text = @"huangyun";
-    self.loginPasswordTextField.text = @"e10adc3949ba59abbe56e057f20f883e";
+    self.loginAccountTextField.text = [WYLoginUserManager account];
+    self.loginPasswordTextField.text = [WYLoginUserManager password];
     [self stringFormatWithPhone:self.loginAccountTextField.text];
 }
 
@@ -225,6 +226,7 @@
 
 #pragma mark - request
 - (void)userLoginRequest{
+    
     [MBProgressHUD showMessage:@"登录中..."];
     
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"login"];
@@ -233,22 +235,24 @@
     
     [paramsDic setObject:_loginAccountTextFieldText forKey:@"user_name"];
     [paramsDic setObject:[NSNumber numberWithInt:0] forKey:@"logintype"];
-    [paramsDic setObject:self.loginPasswordTextField.text forKey:@"password"];
+    
+    NSString *password = [self.loginPasswordTextField.text md5String];
+    [paramsDic setObject:password forKey:@"password"];
     
     WS(weakSelf)
-    [self.networkManager GET:requestUrl needCache:NO  parameters:paramsDic responseClass:[WYLoginModel class] success:^(WYRequestType requestType, NSString *message, id dataObject) {
+    [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:[WYLoginModel class] success:^(WYRequestType requestType, NSString *message, id dataObject) {
         NSLog(@"error:%@ data:%@",message,dataObject);
         [MBProgressHUD hideHUD];
         
         if (requestType == WYRequestTypeSuccess) {
-            WYLoginModel *loginModel = (WYLoginModel *)dataObject;
             
-            loginModel.chatRoomId = @"7907620";
-//            loginModel.anchorPushUrl = @"rtmp://183.136.218.196/xklive/xklive1?e=1489570947&token=f5P2MSZgPXSzb_ieKdgc35qvQTg145JYXWP8B0Ch:PMIGqyr7WLF9wK4ECHLNwRoFvhs=&domain=pili-publish.kaisaiba.com";
+            WYLoginModel *loginModel = (WYLoginModel *)dataObject;
             loginModel.icon = kTempNetworkHTTPURL;
             
-            [WYLoginUserManager setPassword:weakSelf.loginPasswordTextField.text];
             [WYLoginUserManager updateUserDataWithLoginModel:loginModel];
+            
+            [WYLoginUserManager setPassword:weakSelf.loginPasswordTextField.text];
+            [WYLoginUserManager setAccount:weakSelf.loginAccountTextField.text];
             
             weakSelf.loginSuccessBlock();
             [MBProgressHUD showSuccess:@"登录成功" toView:weakSelf.view];

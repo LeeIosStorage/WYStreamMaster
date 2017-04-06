@@ -85,6 +85,9 @@ typedef NS_ENUM(NSInteger, CPLoginUserType){
 + (NSString *)roomNameTitle;
 + (void)setRoomNameTitle:(NSString *)roomNameTitle;
 
++ (NSString *)roomNoticeTitle;
++ (void)setRoomNoticeTitle:(NSString *)roomNoticeTitle;
+
 + (NSString *)gameCategory;
 + (void)setGameCategory:(NSString *)gameCategory;
 

@@ -176,7 +176,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Dq7-dN-vsF">
-                                    <rect key="frame" x="20" y="51" width="335" height="50"/>
+                                    <rect key="frame" x="15" y="51" width="340" height="50"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <color key="textColor" red="0.7803921568627451" green="0.7803921568627451" blue="0.7803921568627451" alpha="1" colorSpace="calibratedRGB"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
@@ -186,7 +186,7 @@
                                     </connections>
                                 </textView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请输入直播公告" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hNe-9K-heN">
-                                    <rect key="frame" x="25" y="58" width="330" height="12"/>
+                                    <rect key="frame" x="20" y="58" width="335" height="12"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                     <color key="textColor" red="0.78039215689999997" green="0.78039215689999997" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
@@ -197,7 +197,7 @@
                                 <constraint firstItem="cmx-uf-OAU" firstAttribute="top" secondItem="jd7-6V-qDz" secondAttribute="top" constant="18" id="AY0-9s-PWA"/>
                                 <constraint firstItem="cmx-uf-OAU" firstAttribute="leading" secondItem="jd7-6V-qDz" secondAttribute="leading" constant="20" id="GN8-nE-Oww"/>
                                 <constraint firstAttribute="trailing" secondItem="Dq7-dN-vsF" secondAttribute="trailing" constant="20" id="XUm-my-sRm"/>
-                                <constraint firstItem="Dq7-dN-vsF" firstAttribute="leading" secondItem="jd7-6V-qDz" secondAttribute="leading" constant="20" id="ZWl-Xt-Rl4"/>
+                                <constraint firstItem="Dq7-dN-vsF" firstAttribute="leading" secondItem="jd7-6V-qDz" secondAttribute="leading" constant="15" id="ZWl-Xt-Rl4"/>
                                 <constraint firstItem="hNe-9K-heN" firstAttribute="trailing" secondItem="Dq7-dN-vsF" secondAttribute="trailing" id="Zhu-ho-q1P"/>
                                 <constraint firstItem="Dq7-dN-vsF" firstAttribute="top" secondItem="cmx-uf-OAU" secondAttribute="bottom" constant="18" id="eRU-hJ-j7m"/>
                                 <constraint firstItem="hNe-9K-heN" firstAttribute="top" secondItem="Dq7-dN-vsF" secondAttribute="top" constant="7" id="gMD-nW-cHj"/>

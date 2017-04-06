@@ -151,7 +151,7 @@
 {
     NIMAutoLoginData *loginData = [[NIMAutoLoginData alloc] init];
     loginData.account = [WYLoginUserManager nimAccountID];
-    loginData.token = [WYLoginUserManager nimAccountID];//[WYLoginUserManager userID]
+    loginData.token = [WYLoginUserManager authToken];//[WYLoginUserManager userID]
     
     WEAKSELF
     [[[NIMSDK sharedSDK] loginManager] login:loginData.account token:loginData.token completion:^(NSError * _Nullable error) {

@@ -15,7 +15,7 @@
              @"giftId":@"gift_type_id_fk",
              @"giftNumber":@"gift_number",
              @"giftTime":@"gift_time",
-             @"sendNickName":@"sendNickName",
+             @"sendNickName":@"nickname",
              @"giftLogo":@"gift_logo"
              };
 }

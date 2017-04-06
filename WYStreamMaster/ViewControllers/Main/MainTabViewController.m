@@ -23,6 +23,7 @@ UITextFieldDelegate
 >
 
 @property (copy, nonatomic) NSString *roomNameTitle;
+@property (copy, nonatomic) NSString *roomNoticeTitle;
 @property (copy, nonatomic) NSString *gameCategory;
 @property (copy, nonatomic) NSString *gameCategoryId;
 @property (copy, nonatomic) NSString *roomType;
@@ -57,6 +58,7 @@ UITextFieldDelegate
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
     [self setupSubview];
     [self refreshHeadViewShow];
     
@@ -108,7 +110,7 @@ UITextFieldDelegate
     
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"anchor_on_off"];
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
-    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchorId"];
+    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchor_user_code"];
     [paramsDic setObject:@"1" forKey:@"anchor_status"];
     [paramsDic setObject:self.gameCategoryId forKey:@"game_type"];
     [paramsDic setObject:[WYLoginUserManager roomId] forKey:@"room_id_pk"];
@@ -167,6 +169,8 @@ UITextFieldDelegate
     
     
     self.roomNameTextField.text = [WYLoginUserManager roomNameTitle];
+    self.roomNoticeTextField.text = [WYLoginUserManager roomNoticeTitle];
+    
     NSString *gameNameText = [WYLoginUserManager gameCategory];
     if (gameNameText.length == 0) {
         gameNameText = @"请选择直播的游戏";
@@ -228,6 +232,7 @@ UITextFieldDelegate
     
     
     self.roomNameTitle = self.roomNameTextField.text;
+    self.roomNoticeTitle = self.roomNoticeTextField.text;
     
     if ([self.roomNameTitle length] == 0) {
         [MBProgressHUD showError:@"给自己取一个闪亮的房间名字吧！"];
@@ -261,6 +266,7 @@ UITextFieldDelegate
     }
     
     [WYLoginUserManager setRoomNameTitle:self.roomNameTitle];
+    [WYLoginUserManager setRoomNoticeTitle:self.roomNoticeTitle];
     [WYLoginUserManager setGameCategory:self.gameCategory];
     [WYLoginUserManager setGameCategoryId:self.gameCategoryId];
     
