@@ -115,6 +115,9 @@ UITextFieldDelegate
     [paramsDic setObject:self.gameCategoryId forKey:@"game_type"];
     [paramsDic setObject:[WYLoginUserManager roomId] forKey:@"room_id_pk"];
     [paramsDic setObject:self.roomType forKey:@"room_type"];
+    if ([self.roomType integerValue] == 1) {
+        [paramsDic setObject:self.vipRoomPasswordTextField.text forKey:@"password"];
+    }
     
     WEAKSELF
     [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
@@ -155,7 +158,7 @@ UITextFieldDelegate
     
     self.tableView.scrollEnabled = NO;
     
-    
+    [WYStreamingConfig sharedConfig].videoQuality = VideoQualitySuperDefinition;
     [self setStreamingKpbsUIWith:[WYStreamingConfig sharedConfig].videoQuality + 1];
     
     NSString *placeholder = @"给自己取一个闪亮的房间名字吧！";

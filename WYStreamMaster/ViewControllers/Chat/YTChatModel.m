@@ -41,7 +41,7 @@
         shadow.shadowColor = [UIColor colorWithHex:0 withAlpha:0.4];
         [contentAttributedString setShadow:shadow range:contentAttributedString.rangeOfAll];
         NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-        style.lineSpacing = 2;
+        style.lineSpacing = 3;
         [contentAttributedString setParagraphStyle:style range:contentAttributedString.rangeOfAll];
         
         if (contentAttributedString) {
@@ -116,15 +116,24 @@
                     
                 } else if (notificationContent.eventType == NIMChatroomEventTypeAddManager) {
                     //用户成为管理员
+                    if ([member.userId isSelf]) {
+                        self.needRefreshJurisdiction = YES;
+                    }
                     return [self renderingWithRoomNotification:member withContentString:[NSString stringWithFormat:@" 恭喜 %@ 成为房管,大家热烈祝贺!",member.nick] eventType:notificationContent.eventType];
                 } else if (notificationContent.eventType == NIMChatroomEventTypeRemoveManager) {
                     //用户被取消管理员
+                    if ([member.userId isSelf]) {
+                        self.needRefreshJurisdiction = YES;
+                    }
                     return [self renderingWithRoomNotification:member withContentString:[NSString stringWithFormat:@" 真可惜, %@ 被主播撤销房管",member.nick] eventType:notificationContent.eventType];
                 } else if (notificationContent.eventType == NIMChatroomEventTypeKicked) {
                     //用户被踢出直播间
 //                    return [self renderingWithRoomNotification:member withContentString:[NSString stringWithFormat:@"%@ 被管理员踢出直播间",member.nick]];
                 } else if (notificationContent.eventType ==     NIMChatroomEventTypeAddMuteTemporarily) {
                     //用户被解除临时禁言
+                    if ([member.userId isSelf]) {
+                        self.needRefreshJurisdiction = YES;
+                    }
                     return [self renderingWithRoomNotification:member withContentString:[NSString stringWithFormat:@" %@ 被禁言24小时",member.nick] eventType:notificationContent.eventType];
                 }
             }
@@ -146,17 +155,23 @@
  */
 - (NSMutableAttributedString *)renderingWithNomalContent
 {
-    NSInteger userType = 1;
+    NSInteger userType = 0;
     UIColor *textColor = [UIColor whiteColor];
     UIImage *tagImage = nil;
     if (userType == 1) {
         textColor = [UIColor colorWithHexString:@"ffea00"];
         tagImage = [UIImage imageNamed:@"wy_crown_user_1"];
+    }if (userType == 2) {
+        textColor = [UIColor colorWithHexString:@"ffea00"];
+        tagImage = [UIImage imageNamed:@"wy_crown_user_2"];
+    }if (userType == 3) {
+        textColor = [UIColor colorWithHexString:@"ffea00"];
+        tagImage = [UIImage imageNamed:@"wy_crown_user_3"];
     }
     
-    NSString *contentString = [NSString stringWithFormat:@" %@ : %@",[self getUserName] ,self.message.text];
+    NSString *contentString = [NSString stringWithFormat:@"%@ : %@",[self getUserName] ,self.message.text];
     self.contentString = contentString;
-    NSMutableAttributedString *nameAttribute = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@" %@ : ",[self getUserName]]];
+    NSMutableAttributedString *nameAttribute = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ : ",[self getUserName]]];
     nameAttribute.color = textColor;
 
     NSMutableAttributedString *contentAttributedString = [[NSMutableAttributedString alloc] initWithString:self.message.text];
@@ -165,7 +180,7 @@
     
     if (tagImage) {
 //        NSAttributedString *tagAttributed = [NSAttributedString attachmentStringWithEmojiImage:tagImage fontSize:20.f];
-        NSAttributedString *tagAttributed = [NSAttributedString attachmentStringWithContent:tagImage contentMode:UIViewContentModeCenter width:18 ascent:3 descent:0];
+        NSAttributedString *tagAttributed = [NSAttributedString attachmentStringWithContent:tagImage contentMode:UIViewContentModeLeft width:31 ascent:5 descent:0];
         [contentAttributedString insertAttributedString:tagAttributed atIndex:0];
         self.nameRange = NSMakeRange(1, [self getUserName].length + 2);
     } else {

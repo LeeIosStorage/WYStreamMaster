@@ -16,6 +16,7 @@
 #import "WYBetTopView.h"
 #import "WYGiftHistoryView.h"
 #import "WYLoginManager.h"
+#import "WYLiveGameResultView.h"
 
 // 直播通知重试次数
 static NSInteger kLiveNotifyRetryCount = 0;
@@ -49,6 +50,8 @@ WYAnchorInfoViewDelegate
 @property (strong, nonatomic) WYBetTopView *betTopView;//押注排行
 
 @property (strong, nonatomic) WYGiftHistoryView *giftHistoryView;//礼物历史
+
+@property (strong, nonatomic) WYLiveGameResultView *liveGameResultView;//游戏结果
 
 @end
 
@@ -155,24 +158,32 @@ WYAnchorInfoViewDelegate
     [self.anchorInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentContainerView).offset(10);
         make.top.equalTo(self.contentContainerView).offset(22);
-        make.width.mas_equalTo(180);
-        make.height.mas_equalTo(66);
+        make.width.mas_equalTo(125);
+        make.height.mas_equalTo(40);
     }];
     
     [self.anchorInfoView updateAnchorInfoWith:nil];
     
     [self initRoomView];
+    
+    [self.view addSubview:self.liveGameResultView];
+    [self.liveGameResultView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(self.view);
+        make.top.equalTo(self.contentContainerView.mas_bottom);
+    }];
+    [self.liveGameResultView updateWithGameResultInfo:nil];
 }
 
 - (void)initRoomView
 {
     self.expandChatButton.selected = NO;
     
+    CGFloat height = (250/667.0)*SCREEN_HEIGHT;
     [self.contentContainerView addSubview:self.roomView];
     [self.roomView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.contentContainerView).offset(-70);
+        make.bottom.equalTo(self.contentContainerView).offset(-55);
         make.left.equalTo(self.contentContainerView).offset(8);
-        make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH-kRoomChatViewCustomWidth, 150));
+        make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH-kRoomChatViewCustomWidth, height));
     }];
     [self.roomView roomViewPrepare];
 }
@@ -244,23 +255,22 @@ WYAnchorInfoViewDelegate
 static int tempCount = 0;
 - (IBAction)changeCameraAction:(id)sender{
     
-    [self.roomView sendMessageWithText:@"你的谢腾飞，尬舞尬起来啊，我牛牛就问你怕不怕，我屮艸芔茻赢了1000万"];
-    return;
-    
     tempCount++;
     
     WYGiftModel *gifModel = [[WYGiftModel alloc] init];
     
     gifModel.giftId = @"1";
     gifModel.name = @"礼物1";
-//    int type = tempCount%3;
-//    if (type == 1) {
+    int type = tempCount%3;
+    if (type == 1) {
 //        gifModel.giftId = @"2";
 //        gifModel.name = @"礼物2";
-//    }else if (type == 2){
+        [self.roomView sendMessageWithText:@"你的谢腾飞，尬舞尬起来啊，我牛牛就问你怕不怕，我屮艸芔茻赢了1000万"];
+        return;
+    }else if (type == 2){
 //        gifModel.giftId = @"3";
 //        gifModel.name = @"礼物3";
-//    }
+    }
     
     gifModel.sender = [WYLoginUserManager nickname];
     gifModel.clickNumber = 1;
@@ -346,6 +356,13 @@ static int tempCount = 0;
         _liveBgImageView.clipsToBounds = YES;
     }
     return _liveBgImageView;
+}
+
+- (WYLiveGameResultView *)liveGameResultView{
+    if (!_liveGameResultView) {
+        _liveGameResultView = (WYLiveGameResultView *)[[NSBundle mainBundle] loadNibNamed:@"WYLiveGameResultView" owner:self options:nil].firstObject;
+    }
+    return _liveGameResultView;
 }
 
 #pragma mark -

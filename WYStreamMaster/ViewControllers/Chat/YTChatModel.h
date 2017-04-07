@@ -29,6 +29,8 @@ typedef NS_ENUM(NSInteger, ChatMessageType) {
 @property (strong, nonatomic) NSMutableAttributedString *barrageAttributed;
 @property (copy, nonatomic) NSString *contentString;
 
+//是否需要刷新自己的权限
+@property (assign, nonatomic) BOOL needRefreshJurisdiction;
 
 + (YTChatModel *)createChatModelWithMessage:(NIMMessage *)message;
 

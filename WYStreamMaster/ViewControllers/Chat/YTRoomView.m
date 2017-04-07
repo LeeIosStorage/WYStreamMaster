@@ -414,7 +414,7 @@
     //////////自己的服务器设置房管接口
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"save_room_management"];
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
-    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchor_user_code"];
+//    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchor_user_code"];
     [paramsDic setObject:roomMember.userId forKey:@"user_code"];
     [paramsDic setObject:[WYLoginUserManager userID] forKey:@"operator"];
     [paramsDic setObject:[WYLoginUserManager chatRoomId] forKey:@"roomid"];

@@ -239,6 +239,11 @@
         chatModel.isAnchor = YES;
         //对于机器人要获取remoteExt的nickname
         
+        if (chatModel.needRefreshJurisdiction) {
+            [self getJurisdiction];
+            chatModel.needRefreshJurisdiction = NO;
+        }
+        
         if (chatModel.chatTextLayout) {
             if ([self.delegate respondsToSelector:@selector(receiveMessageWith:)]) {
                 [self.delegate receiveMessageWith:chatModel];

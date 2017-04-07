@@ -68,37 +68,37 @@
     [self.anchorNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.anchorImageView.mas_right).offset(8);
         make.top.equalTo(self.anchorImageView).offset(4);
-        make.right.equalTo(self).offset(-11);
+        make.right.equalTo(self).offset(-4);
         make.height.mas_equalTo(15);
     }];
     
     [self addSubview:self.hotImageView];
     [self.hotImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.anchorImageView.mas_right).offset(5);
+        make.left.equalTo(self.anchorImageView.mas_right).offset(8);
         make.bottom.equalTo(self.bgImageView.mas_bottom).offset(-4);
         make.size.mas_equalTo(CGSizeMake(15, 15));
     }];
     
     [self addSubview:self.hotNumLabel];
     [self.hotNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.hotImageView.mas_right).offset(4);
-        make.bottom.equalTo(self.bgImageView.mas_bottom).offset(-5);
-        make.right.equalTo(self).offset(-11);
+        make.left.equalTo(self.hotImageView.mas_right).offset(3);
+        make.bottom.equalTo(self.bgImageView.mas_bottom).offset(-4);
+        make.right.equalTo(self).offset(-4);
     }];
     
-    [self addSubview:self.onLineImageView];
-    [self.onLineImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(6);
-        make.bottom.equalTo(self).offset(0);
-        make.size.mas_equalTo(CGSizeMake(20, 20));
-    }];
-    
-    [self addSubview:self.onLineNumLabel];
-    [self.onLineNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.onLineImageView.mas_right).offset(9);
-        make.bottom.equalTo(self).offset(-2);
-        make.right.equalTo(self);
-    }];
+//    [self addSubview:self.onLineImageView];
+//    [self.onLineImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self).offset(6);
+//        make.bottom.equalTo(self).offset(0);
+//        make.size.mas_equalTo(CGSizeMake(20, 20));
+//    }];
+//    
+//    [self addSubview:self.onLineNumLabel];
+//    [self.onLineNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self.onLineImageView.mas_right).offset(9);
+//        make.bottom.equalTo(self).offset(-2);
+//        make.right.equalTo(self);
+//    }];
 }
 
 - (void)updateAnchorInfoWith:(id)anchorInfo{
@@ -124,8 +124,12 @@
 - (UIImageView *)bgImageView{
     if (!_bgImageView) {
         _bgImageView = [[UIImageView alloc] init];
-        _bgImageView.image = [[UIImage imageNamed:@"wy_anchor_info_bg"] stretchableImageWithLeftCapWidth:90 topCapHeight:0];
-        
+//        _bgImageView.image = [[UIImage imageNamed:@"wy_anchor_info_bg"] stretchableImageWithLeftCapWidth:90 topCapHeight:0];
+        _bgImageView.layer.cornerRadius = 20;
+        _bgImageView.layer.masksToBounds = YES;
+        [_bgImageView.layer setBorderWidth:0.5];
+        [_bgImageView.layer setBorderColor:[UIColor whiteColor].CGColor];
+        _bgImageView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
     }
     return _bgImageView;
 }
@@ -151,7 +155,7 @@
 - (UIImageView *)hotImageView{
     if (!_hotImageView) {
         _hotImageView = [[UIImageView alloc] init];
-        _hotImageView.image = [UIImage imageNamed:@"wy_live_fire_num_icon"];//15x15
+        _hotImageView.image = [UIImage imageNamed:@"wy_live_online_num_icon"];//15x15
     }
     return _hotImageView;
 }

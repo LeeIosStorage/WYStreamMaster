@@ -94,6 +94,8 @@
 		44D2F7FA1E7FFDB700122866 /* YTGiftAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2F7F31E7FFDB700122866 /* YTGiftAttachment.m */; };
 		44D2F7FB1E7FFDB700122866 /* YTMessageConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2F7F51E7FFDB700122866 /* YTMessageConverter.m */; };
 		44D2F7FC1E7FFDB700122866 /* YTMessageNotificationAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2F7F71E7FFDB700122866 /* YTMessageNotificationAttachment.m */; };
+		44D9B3091E96830D00E15BEA /* WYLiveGameResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D9B3081E96830D00E15BEA /* WYLiveGameResultView.m */; };
+		44D9B30B1E96831E00E15BEA /* WYLiveGameResultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44D9B30A1E96831E00E15BEA /* WYLiveGameResultView.xib */; };
 		C69795F58C80289B30CE5F15 /* libPods-WYStreamMaster.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D7A3645D8D449741FC609F4 /* libPods-WYStreamMaster.a */; };
 /* End PBXBuildFile section */
 
@@ -275,6 +277,9 @@
 		44D2F7F51E7FFDB700122866 /* YTMessageConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTMessageConverter.m; sourceTree = "<group>"; };
 		44D2F7F61E7FFDB700122866 /* YTMessageNotificationAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTMessageNotificationAttachment.h; sourceTree = "<group>"; };
 		44D2F7F71E7FFDB700122866 /* YTMessageNotificationAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTMessageNotificationAttachment.m; sourceTree = "<group>"; };
+		44D9B3071E96830D00E15BEA /* WYLiveGameResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYLiveGameResultView.h; sourceTree = "<group>"; };
+		44D9B3081E96830D00E15BEA /* WYLiveGameResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYLiveGameResultView.m; sourceTree = "<group>"; };
+		44D9B30A1E96831E00E15BEA /* WYLiveGameResultView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYLiveGameResultView.xib; sourceTree = "<group>"; };
 		544D39187087EFD6B76825B2 /* Pods-WYStreamMaster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WYStreamMaster.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WYStreamMaster/Pods-WYStreamMaster.debug.xcconfig"; sourceTree = "<group>"; };
 		7D7A3645D8D449741FC609F4 /* libPods-WYStreamMaster.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WYStreamMaster.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4223266790A64B80390313C /* Pods-WYStreamMaster.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WYStreamMaster.release.xcconfig"; path = "Pods/Target Support Files/Pods-WYStreamMaster/Pods-WYStreamMaster.release.xcconfig"; sourceTree = "<group>"; };
@@ -621,6 +626,9 @@
 				444DA64F1E8A716E00C45DE5 /* WYChatUserNormalView.h */,
 				444DA6501E8A716E00C45DE5 /* WYChatUserNormalView.m */,
 				444DA6521E8A718000C45DE5 /* WYChatUserNormalView.xib */,
+				44D9B3071E96830D00E15BEA /* WYLiveGameResultView.h */,
+				44D9B3081E96830D00E15BEA /* WYLiveGameResultView.m */,
+				44D9B30A1E96831E00E15BEA /* WYLiveGameResultView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -827,6 +835,7 @@
 				44203D961E714BD600D59B5E /* YTQuickLoginViewController.xib in Resources */,
 				44203DAE1E715A9100D59B5E /* NetWorkConfig.json in Resources */,
 				444DA6531E8A718000C45DE5 /* WYChatUserNormalView.xib in Resources */,
+				44D9B30B1E96831E00E15BEA /* WYLiveGameResultView.xib in Resources */,
 				44203DB81E7246D900D59B5E /* MainTabViewController.xib in Resources */,
 				44203D921E714BD600D59B5E /* WYLoginViewController.xib in Resources */,
 				44203D1A1E6FE78800D59B5E /* Main.storyboard in Resources */,
@@ -921,6 +930,7 @@
 				44D2F7E21E7FC30500122866 /* YTChatBottomView.m in Sources */,
 				44203D861E714BD600D59B5E /* UINavigationBar+Awesome.m in Sources */,
 				44203D8B1E714BD600D59B5E /* YTBaseTableViewController.m in Sources */,
+				44D9B3091E96830D00E15BEA /* WYLiveGameResultView.m in Sources */,
 				44D2F7E11E7FC30500122866 /* NSString+YTChatRoom.m in Sources */,
 				44203D9E1E714BD600D59B5E /* WYStyleSheet.m in Sources */,
 				441C24051E8501CD0020557C /* WYBetTopView.m in Sources */,
