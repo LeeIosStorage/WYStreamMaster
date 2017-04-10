@@ -10,7 +10,7 @@
 
 @interface WYBetTopView : UIView
 
-- (void)updateBetTopData;
+- (void)updateBetTopData:(id)betRankInfo;
 
 - (void)show:(UIView *)supView;
 

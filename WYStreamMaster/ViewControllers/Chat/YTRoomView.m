@@ -423,9 +423,12 @@
         NSLog(@"error:%@ data:%@",message,dataObject);
         [alertView closeShowView];
         if (requestType == WYRequestTypeSuccess) {
-            if (roomMember.type == NIMChatroomMemberTypeManager) {
+            
+            NSDictionary *dic = (NSDictionary *)dataObject;
+            NSInteger operation = [[dic objectForKey:@"operation"] integerValue];
+            if (operation == -1) {
                 [MBProgressHUD showSuccess:[NSString stringWithFormat:@"已取消 %@ 的房管",roomMember.roomNickname] toView:nil];
-            }else if (roomMember.type == NIMChatroomMemberTypeGuest || roomMember.type == NIMChatroomMemberTypeNormal){
+            }else if (operation == 1){
                 [MBProgressHUD showSuccess:[NSString stringWithFormat:@"已设置 %@ 为房管",roomMember.roomNickname] toView:nil];
             }
         }else{

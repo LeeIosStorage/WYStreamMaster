@@ -158,7 +158,7 @@ UITextFieldDelegate
     
     self.tableView.scrollEnabled = NO;
     
-    [WYStreamingConfig sharedConfig].videoQuality = VideoQualitySuperDefinition;
+    [WYStreamingConfig sharedConfig].videoQuality = VideoQualityStandardDefinition;
     [self setStreamingKpbsUIWith:[WYStreamingConfig sharedConfig].videoQuality + 1];
     
     NSString *placeholder = @"给自己取一个闪亮的房间名字吧！";

@@ -7,6 +7,7 @@
 //
 
 #import "WYLiveGameResultView.h"
+#import "WYServerNoticeAttachment.h"
 
 @interface WYLiveGameResultView ()
 
@@ -57,20 +58,61 @@
     [self.fourItemView.layer setBorderWidth:0.5];
     [self.fourItemView.layer setBorderColor:[UIColor colorWithWhite:1 alpha:0.5].CGColor];
     
+    self.oneResultImageView.image = nil;
+    self.twoResultImageView.image = nil;
+    self.threeResultImageView.image = nil;
+}
+
+- (void)afreshGameResultShow{
+    self.oneResultImageView.image = nil;
+    self.twoResultImageView.image = nil;
+    self.threeResultImageView.image = nil;
+    self.oneResultLabel.text = @"--";
+    self.twoResultLabel.text = @"--";
+    self.threeResultLabel.text = @"--";
+    self.fourResultLabel.text = @"--";
 }
 
 - (void)updateWithGameResultInfo:(id)gameResultInfo{
     
-    self.oneResultImageView.image = [UIImage imageNamed:@"wy_gameresult_win_1"];
-    self.oneResultLabel.text = @"皇家同花顺";
+    [self afreshGameResultShow];
+    WYServerNoticeAttachment *serverNoticeAttachment = gameResultInfo;
     
-    self.twoResultImageView.image = [UIImage imageNamed:@"wy_gameresult_win_2"];
-    self.twoResultLabel.text = @"同花顺";
-    
-    self.threeResultImageView.image = [UIImage imageNamed:@"wy_gameresult_lose_3"];
-    self.threeResultLabel.text = @"葫芦";
-    
-    self.fourResultLabel.text = @"三条";
+    if (serverNoticeAttachment.gameStatus == 3) {
+        NSArray *returnResult = [serverNoticeAttachment.contentData objectForKey:@"returnResult"];
+        if ([returnResult isKindOfClass:[NSArray class]]) {
+            for (NSDictionary *dic in returnResult) {
+                NSString *name = [dic objectForKey:@"name"];
+                if ([name isEqualToString:@"福"]) {
+                    int game_result = [[dic objectForKey:@"game_result"] intValue];
+                    if (game_result == 0) {
+                        self.oneResultImageView.image = [UIImage imageNamed:@"wy_gameresult_lose_1"];
+                    }else if (game_result == 1){
+                        self.oneResultImageView.image = [UIImage imageNamed:@"wy_gameresult_win_1"];
+                    }
+                    self.oneResultLabel.text = [dic objectForKey:@"cardTypeDec"];
+                }else if ([name isEqualToString:@"禄"]){
+                    int game_result = [[dic objectForKey:@"game_result"] intValue];
+                    if (game_result == 0) {
+                        self.twoResultImageView.image = [UIImage imageNamed:@"wy_gameresult_lose_2"];
+                    }else if (game_result == 1){
+                        self.twoResultImageView.image = [UIImage imageNamed:@"wy_gameresult_win_2"];
+                    }
+                    self.twoResultLabel.text = [dic objectForKey:@"cardTypeDec"];
+                }else if ([name isEqualToString:@"寿"]){
+                    int game_result = [[dic objectForKey:@"game_result"] intValue];
+                    if (game_result == 0) {
+                        self.threeResultImageView.image = [UIImage imageNamed:@"wy_gameresult_lose_3"];
+                    }else if (game_result == 1){
+                        self.threeResultImageView.image = [UIImage imageNamed:@"wy_gameresult_win_3"];
+                    }
+                    self.threeResultLabel.text = [dic objectForKey:@"cardTypeDec"];
+                }else if ([name isEqualToString:@"庄"]){
+                    self.fourResultLabel.text = [dic objectForKey:@"cardTypeDec"];
+                }
+            }
+        }
+    }
 }
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "WYAnchorInfoView.h"
+#import "WYServerNoticeAttachment.h"
 
 @interface WYAnchorInfoView ()
 
@@ -107,8 +108,9 @@
     [WYCommonUtils setImageWithURL:avatarUrl setImageView:self.anchorImageView placeholderImage:@""];
     
     self.anchorNameLabel.text = [WYLoginUserManager nickname];
-    self.hotNumLabel.text = @"230001";
-    self.onLineNumLabel.text = @"1000000";
+    
+    WYServerNoticeAttachment *serverNoticeAttachment = anchorInfo;
+    self.hotNumLabel.text = [NSString stringWithFormat:@"%d",serverNoticeAttachment.onlineNum];
 }
 
 #pragma mark -

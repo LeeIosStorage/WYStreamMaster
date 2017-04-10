@@ -9,6 +9,7 @@
 #import "YTCustomAttachmentDecoder.h"
 #import "YTCustomMessageDefines.h"
 #import "YTGiftAttachment.h"
+#import "WYServerNoticeAttachment.h"
 
 @implementation YTCustomAttachmentDecoder
 
@@ -37,6 +38,24 @@
                     break;
                 case CustomMessageTypeLocalNotification :
                     //不向外发送，所以不处理
+                    break;
+                case CustomMessageTypeBetRank:{
+                    id contentData = [dict objectForKey:CMData];
+                    attachment = [[WYServerNoticeAttachment alloc] init];
+                    ((WYServerNoticeAttachment *)attachment).customMessageType = type;
+                    ((WYServerNoticeAttachment *)attachment).onlineNum = [[[dict objectForKey:CMData] objectForKey:@"onlineNum"] integerValue];
+                    ((WYServerNoticeAttachment *)attachment).contentData = contentData;
+                    
+                }
+                    break;
+                case CustomMessageTypeGameResult:{
+                    id contentData = [dict objectForKey:CMData];
+                    attachment = [[WYServerNoticeAttachment alloc] init];
+                    ((WYServerNoticeAttachment *)attachment).customMessageType = type;
+                    ((WYServerNoticeAttachment *)attachment).gameStatus = [[[dict objectForKey:CMData] objectForKey:@"game_status"] integerValue];
+                    ((WYServerNoticeAttachment *)attachment).contentData = contentData;
+                    
+                }
                     break;
                 default:
                     break;

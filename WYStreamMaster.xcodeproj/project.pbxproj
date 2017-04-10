@@ -96,6 +96,7 @@
 		44D2F7FC1E7FFDB700122866 /* YTMessageNotificationAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2F7F71E7FFDB700122866 /* YTMessageNotificationAttachment.m */; };
 		44D9B3091E96830D00E15BEA /* WYLiveGameResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D9B3081E96830D00E15BEA /* WYLiveGameResultView.m */; };
 		44D9B30B1E96831E00E15BEA /* WYLiveGameResultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44D9B30A1E96831E00E15BEA /* WYLiveGameResultView.xib */; };
+		44F8D9811E98CB37002EC952 /* WYServerNoticeAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F8D9801E98CB37002EC952 /* WYServerNoticeAttachment.m */; };
 		C69795F58C80289B30CE5F15 /* libPods-WYStreamMaster.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D7A3645D8D449741FC609F4 /* libPods-WYStreamMaster.a */; };
 /* End PBXBuildFile section */
 
@@ -280,6 +281,8 @@
 		44D9B3071E96830D00E15BEA /* WYLiveGameResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYLiveGameResultView.h; sourceTree = "<group>"; };
 		44D9B3081E96830D00E15BEA /* WYLiveGameResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYLiveGameResultView.m; sourceTree = "<group>"; };
 		44D9B30A1E96831E00E15BEA /* WYLiveGameResultView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYLiveGameResultView.xib; sourceTree = "<group>"; };
+		44F8D97F1E98CB37002EC952 /* WYServerNoticeAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYServerNoticeAttachment.h; sourceTree = "<group>"; };
+		44F8D9801E98CB37002EC952 /* WYServerNoticeAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYServerNoticeAttachment.m; sourceTree = "<group>"; };
 		544D39187087EFD6B76825B2 /* Pods-WYStreamMaster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WYStreamMaster.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WYStreamMaster/Pods-WYStreamMaster.debug.xcconfig"; sourceTree = "<group>"; };
 		7D7A3645D8D449741FC609F4 /* libPods-WYStreamMaster.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WYStreamMaster.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4223266790A64B80390313C /* Pods-WYStreamMaster.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WYStreamMaster.release.xcconfig"; path = "Pods/Target Support Files/Pods-WYStreamMaster/Pods-WYStreamMaster.release.xcconfig"; sourceTree = "<group>"; };
@@ -718,6 +721,8 @@
 				44D2F7F51E7FFDB700122866 /* YTMessageConverter.m */,
 				44D2F7F61E7FFDB700122866 /* YTMessageNotificationAttachment.h */,
 				44D2F7F71E7FFDB700122866 /* YTMessageNotificationAttachment.m */,
+				44F8D97F1E98CB37002EC952 /* WYServerNoticeAttachment.h */,
+				44F8D9801E98CB37002EC952 /* WYServerNoticeAttachment.m */,
 			);
 			path = MessageAttachment;
 			sourceTree = "<group>";
@@ -923,6 +928,7 @@
 				44203DB01E715A9100D59B5E /* WYCache.m in Sources */,
 				44D2F7FB1E7FFDB700122866 /* YTMessageConverter.m in Sources */,
 				44203DA21E714BD600D59B5E /* WYCommonUtils.m in Sources */,
+				44F8D9811E98CB37002EC952 /* WYServerNoticeAttachment.m in Sources */,
 				44203D901E714BD600D59B5E /* WYLoginUserManager.m in Sources */,
 				44203D8F1E714BD600D59B5E /* WYLoginManager.m in Sources */,
 				44203D911E714BD600D59B5E /* WYLoginViewController.m in Sources */,

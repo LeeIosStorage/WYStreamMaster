@@ -310,7 +310,7 @@ static int avatarImageView_tag = 201,nameLabel_tag = 202;
     
     WYRoomManagerModel *roomManagerModel = [self.roomManagerList objectAtIndex:index];
     
-    NSURL *avatarUrl = [NSURL URLWithString:kTempNetworkHTTPURL];
+    NSURL *avatarUrl = [NSURL URLWithString:roomManagerModel.managerAvatar];
     [WYCommonUtils setImageWithURL:avatarUrl setImageView:avatarImageView placeholderImage:@""];
     nameLabel.text = roomManagerModel.managerUserName;
     

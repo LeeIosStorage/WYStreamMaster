@@ -106,11 +106,21 @@
     return view;
 }
 
-- (void)updateBetTopData{
+- (void)updateBetTopData:(id)betRankInfo{
+    
+    id contentData = nil;
+    if ([betRankInfo isKindOfClass:[NSDictionary class]]) {
+        contentData = [betRankInfo objectForKey:@"betRank"];
+    }
+    
     self.betTopList = [NSMutableArray array];
-    [self.betTopList addObject:@""];
-    [self.betTopList addObject:@""];
-    [self.betTopList addObject:@""];
+    if ([contentData isKindOfClass:[NSDictionary class]]) {
+        if (contentData) {
+            [self.betTopList addObject:contentData];
+        }
+    }else if ([contentData isKindOfClass:[NSArray class]]){
+        self.betTopList = contentData;
+    }
     
     for (int index = 0; index < 3; index ++) {
         UIView *view = [self viewWithTag:offset_tag+index];
@@ -122,7 +132,9 @@
         UIImageView *avatarImageView = [view viewWithTag:0];
         UIImageView *rankImageView = [view viewWithTag:1];
         UILabel *nameLabel = [view viewWithTag:2];
-        NSURL *avatarUrl = [NSURL URLWithString:kTempNetworkHTTPURL];
+        
+        NSDictionary *dicInfo = [self.betTopList objectAtIndex:index];
+        NSURL *avatarUrl = [NSURL URLWithString:[dicInfo objectForKey:@"icon"]];
         [WYCommonUtils setImageWithURL:avatarUrl setImageView:avatarImageView placeholderImage:@""];
         UIImage *rankImage = [UIImage imageNamed:@"wy_betTop_1_icon"];
         if (index == 1) {
@@ -131,7 +143,7 @@
             rankImage = [UIImage imageNamed:@"wy_betTop_3_icon"];
         }
         [rankImageView setImage:rankImage];
-        nameLabel.text = @"Carlos";
+        nameLabel.text = [dicInfo objectForKey:@"nickname"];
     }
 }
 

@@ -17,6 +17,7 @@
 #import "WYGiftHistoryView.h"
 #import "WYLoginManager.h"
 #import "WYLiveGameResultView.h"
+#import "WYServerNoticeAttachment.h"
 
 // 直播通知重试次数
 static NSInteger kLiveNotifyRetryCount = 0;
@@ -59,6 +60,7 @@ WYAnchorInfoViewDelegate
 
 - (void)dealloc{
     WYLog(@"%@ dealloc !!!",NSStringFromClass([self class]));
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -75,6 +77,8 @@ WYAnchorInfoViewDelegate
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.navigationController.navigationBar.hidden = YES;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(serverNoticeCustomAttachment:) name:WYServerNoticeAttachment_Notification object:nil];
     
     [self setupSubView];
     
@@ -131,6 +135,23 @@ WYAnchorInfoViewDelegate
     } failure:^(id responseObject, NSError *error) {
         [MBProgressHUD showAlertMessage:@"请求失败，请检查您的网络设置后重试" toView:weakSelf.view];
     }];
+}
+
+
+- (void)serverNoticeCustomAttachment:(NSNotification *)notification {
+    if ([notification.object isKindOfClass:[WYServerNoticeAttachment class]]) {
+        WYServerNoticeAttachment *serverNoticeAttachment = notification.object;
+        
+        if (serverNoticeAttachment.customMessageType == CustomMessageTypeBetRank) {
+            [self.anchorInfoView updateAnchorInfoWith:serverNoticeAttachment];
+            
+            [self.betTopView show:self.contentContainerView];
+            [self.betTopView updateBetTopData:serverNoticeAttachment.contentData];
+        }else if (serverNoticeAttachment.customMessageType == CustomMessageTypeGameResult){
+            [self.liveGameResultView updateWithGameResultInfo:serverNoticeAttachment];
+            [self refreshGameResultStatusTip:serverNoticeAttachment];
+        }
+    }
 }
 
 #pragma mark -
@@ -231,6 +252,22 @@ WYAnchorInfoViewDelegate
     }];
 }
 
+- (void)refreshGameResultStatusTip:(id)gameResultInfo{
+    WYServerNoticeAttachment *serverNoticeAttachment = gameResultInfo;
+    NSInteger gameStatus = serverNoticeAttachment.gameStatus;
+    
+    NSString *gameStatusTipText = nil;
+    if (gameStatus == 1) {
+        gameStatusTipText = @"等待玩家下注";
+    }else if (gameStatus == 2){
+        gameStatusTipText = @"正在发牌 等待游戏结果";
+    }
+    
+    if (gameStatusTipText.length > 0) {
+        [MBProgressHUD showBottomMessage:gameStatusTipText toView:nil];
+    }
+}
+
 #pragma mark -
 #pragma mark - Button Clicked
 - (IBAction)doBackAction:(id)sender{
@@ -252,33 +289,37 @@ WYAnchorInfoViewDelegate
     
 }
 
-static int tempCount = 0;
+//static int tempCount = 0;
 - (IBAction)changeCameraAction:(id)sender{
     
-    tempCount++;
+//    tempCount++;
+//    
+//    WYGiftModel *gifModel = [[WYGiftModel alloc] init];
+//    
+//    gifModel.giftId = @"1";
+//    gifModel.name = @"礼物1";
+//    int type = tempCount%3;
+//    if (type == 1) {
+////        gifModel.giftId = @"2";
+////        gifModel.name = @"礼物2";
+//        [self.roomView sendMessageWithText:@"你的谢腾飞，尬舞尬起来啊，我牛牛就问你怕不怕，我屮艸芔茻赢了1000万"];
+//        return;
+//    }else if (type == 2){
+////        gifModel.giftId = @"3";
+////        gifModel.name = @"礼物3";
+//    }
+//    
+//    gifModel.sender = [WYLoginUserManager nickname];
+//    gifModel.clickNumber = 1;
+//    gifModel.noFrameIcon = kTempNetworkHTTPURL;
+//    [self.roomView.chatroomControl sendMessageWithGift:gifModel];
+//
+//    return;
     
-    WYGiftModel *gifModel = [[WYGiftModel alloc] init];
     
-    gifModel.giftId = @"1";
-    gifModel.name = @"礼物1";
-    int type = tempCount%3;
-    if (type == 1) {
-//        gifModel.giftId = @"2";
-//        gifModel.name = @"礼物2";
-        [self.roomView sendMessageWithText:@"你的谢腾飞，尬舞尬起来啊，我牛牛就问你怕不怕，我屮艸芔茻赢了1000万"];
-        return;
-    }else if (type == 2){
-//        gifModel.giftId = @"3";
-//        gifModel.name = @"礼物3";
-    }
-    
-    gifModel.sender = [WYLoginUserManager nickname];
-    gifModel.clickNumber = 1;
-    gifModel.noFrameIcon = kTempNetworkHTTPURL;
-    [self.roomView.chatroomControl sendMessageWithGift:gifModel];
-    
-    return;
     [_plSession toggleCamera];
+    
+    
 //    [_plSession getScreenshotWithCompletionHandler:^(UIImage * _Nullable image) {
 //        UIImage *screenshotImage = image;
 //    }];
@@ -287,7 +328,7 @@ static int tempCount = 0;
 //押注排行榜
 - (IBAction)betTopAction:(id)sender{
     [self.betTopView show:self.contentContainerView];
-    [self.betTopView updateBetTopData];
+//    [self.betTopView updateBetTopData:nil];
 }
 
 - (IBAction)giftHistoryAction:(id)sender{

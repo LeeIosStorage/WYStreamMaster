@@ -15,6 +15,7 @@
 #import "YTChatModel.h"
 #import "YTRoomView.h"
 #import "WYGiftModel.h"
+#import "WYServerNoticeAttachment.h"
 
 @interface YTChatRoomControl ()<NIMChatroomManagerDelegate,NIMChatManagerDelegate>
 
@@ -250,8 +251,14 @@
             }
         }
         
-        if (chatModel.chatMessageType == ChatMessageTypeGift) {
-            NSLog(@"1231");
+        if (message.messageType == NIMMessageTypeCustom) {
+            id attachment = ((NIMCustomObject *)message.messageObject).attachment;
+            if ([attachment isKindOfClass:[WYServerNoticeAttachment class]]) {
+                WYServerNoticeAttachment *serverNoticeAttachment = attachment;
+                
+                WYLog(@"==%@",serverNoticeAttachment.contentData);
+                [[NSNotificationCenter defaultCenter] postNotificationName:WYServerNoticeAttachment_Notification object:serverNoticeAttachment userInfo:nil];
+            }
         }
     }
 }

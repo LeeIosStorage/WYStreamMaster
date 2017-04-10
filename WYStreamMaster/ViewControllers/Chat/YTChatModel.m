@@ -291,7 +291,7 @@
     NSRange nRange = [contentString rangeOfString:member.nick];
     if (nRange.length > 0) {
 //        [contentAttributedString setColor:[UIColor colorWithHexString:@"fc1157"] range:nRange];
-//        self.nameRange = nRange;
+        self.nameRange = nRange;
     }
     
     UIImage *noticeImage = nil;
