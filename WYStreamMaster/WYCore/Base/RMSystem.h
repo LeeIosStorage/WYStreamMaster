@@ -42,7 +42,7 @@ static NSString* IMG_URL = @"http://img.wangyuhudong.com";
 #define MAX_WX_IMAGE_SIZE 32*1024
 
 // 腾讯Bugly
-#define kBuglyAppID  @"e078b6715c"
+#define kBuglyAppID  @"e49fd613ae"
 // 网易云信Key
 #define kNIMAppKey  @"93c2730be068bfa8557eca30c56287bb"
 // 蒲公英APPID

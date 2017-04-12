@@ -11,12 +11,13 @@
 @interface WYLoginModel : WYBaseModel
 
 @property (strong, nonatomic) NSString *userID;
-@property (strong, nonatomic) NSString *anchorDescription;
 @property (strong, nonatomic) NSString *nickname;
 @property (strong, nonatomic) NSString *chatRoomId;//聊天室ID
 @property (strong, nonatomic) NSString *roomNumber;
 @property (strong, nonatomic) NSString *anchorPushUrl;
 @property (strong, nonatomic) NSString *icon;
+@property (strong, nonatomic) NSString *anchorTitle;
+@property (strong, nonatomic) NSString *anchorDescription;
 
 // 手机号
 @property (strong, nonatomic) NSString *mobile;

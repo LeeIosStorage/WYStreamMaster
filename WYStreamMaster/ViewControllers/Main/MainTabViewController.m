@@ -115,6 +115,10 @@ UITextFieldDelegate
     [paramsDic setObject:self.gameCategoryId forKey:@"game_type"];
     [paramsDic setObject:[WYLoginUserManager roomId] forKey:@"room_id_pk"];
     [paramsDic setObject:self.roomType forKey:@"room_type"];
+    [paramsDic setObject:self.roomNameTitle forKey:@"anchor_title"];
+    if (self.roomNoticeTitle.length > 0) {
+        [paramsDic setObject:self.roomNoticeTitle forKey:@"anchor_description"];//房间公告
+    }
     if ([self.roomType integerValue] == 1) {
         [paramsDic setObject:self.vipRoomPasswordTextField.text forKey:@"password"];
     }
@@ -375,11 +379,11 @@ UITextFieldDelegate
     
     
     if (textField == _roomNameTextField && textField.markedTextRange == nil) {
-        if (newString.length > 20 && textField.text.length >= 20) {
+        if (newString.length > 10 && textField.text.length >= 10) {
             return NO;
         }
     }else if (textField == _roomNoticeTextField && textField.markedTextRange == nil){
-        if (newString.length > 40 && textField.text.length >= 40) {
+        if (newString.length > 20 && textField.text.length >= 20) {
             return NO;
         }
     }else if (textField == _vipRoomPasswordTextField && textField.markedTextRange == nil){

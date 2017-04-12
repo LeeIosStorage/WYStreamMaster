@@ -102,6 +102,7 @@ GMGridViewActionDelegate
     
     self.noticeTextView.text = [WYLoginUserManager roomNoticeTitle];
     [self textViewDidChange:self.noticeTextView];
+    self.noticeTextView.editable = NO;
     
     _gridView.style = GMGridViewStyleSwap;
     _gridView.itemSpacing = 15;
@@ -181,7 +182,9 @@ GMGridViewActionDelegate
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"save_room_management"];
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
     [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchor_user_code"];
-    [paramsDic setObject:managerModel.managerUserId forKey:@"user_code"];
+    if (managerModel.managerUserId.length > 0) {
+        [paramsDic setObject:managerModel.managerUserId forKey:@"user_code"];
+    }
     [paramsDic setObject:[WYLoginUserManager userID] forKey:@"operator"];
     [paramsDic setObject:[WYLoginUserManager chatRoomId] forKey:@"roomid"];
     

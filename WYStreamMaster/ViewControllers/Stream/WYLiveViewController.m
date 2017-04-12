@@ -29,10 +29,12 @@ WYStreamingSessionManagerDelegate,
 WYAnchorInfoViewDelegate
 >
 {
-    PLMediaStreamingSession *_plSession;
+    
 }
 
 @property (nonatomic, strong) WYStreamingSessionManager *streamingSessionManager;
+
+@property (nonatomic, strong) PLMediaStreamingSession *plSession;
 
 @property (nonatomic, strong) UIImageView *liveBgImageView;
 
@@ -214,9 +216,12 @@ WYAnchorInfoViewDelegate
     NSURL *streamURL = [NSURL URLWithString:self.streamURL];
     self.streamingSessionManager = [[WYStreamingSessionManager alloc] initWithStreamURL:streamURL];
     _streamingSessionManager.delegate = self;
-    _plSession = [self.streamingSessionManager streamingSession];
+    self.plSession = [self.streamingSessionManager streamingSession];
     
-    UIView *previewView = _plSession.previewView;
+    //检测网络状态
+    [self connectionChangeStreamingAction];
+    
+    UIView *previewView = self.plSession.previewView;
     dispatch_async(dispatch_get_main_queue(), ^{
 //        [self.view insertSubview:previewView atIndex:0];
         [self.view insertSubview:previewView aboveSubview:self.liveBgImageView];
@@ -231,6 +236,23 @@ WYAnchorInfoViewDelegate
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     
     [self.streamingSessionManager startStream];
+    
+}
+
+- (void)connectionChangeStreamingAction{
+    
+//    WEAKSELF
+//    self.plSession.monitorNetworkStateEnable = YES;
+//    self.plSession.connectionChangeActionCallback = ^(PLNetworkStateTransition transition){
+//        if (transition == PLNetworkStateTransitionUnconnectedToWiFi || transition == PLNetworkStateTransitionUnconnectedToWWAN) {
+//            [weakSelf.streamingSessionManager stopStream];
+//            [weakSelf.streamingSessionManager startStream];
+//            
+//        }else if (transition == PLNetworkStateTransitionWiFiToUnconnected || transition == PLNetworkStateTransitionWWANToUnconnected){
+//            
+//        }
+//        return YES;
+//    };
     
 }
 
@@ -317,7 +339,7 @@ WYAnchorInfoViewDelegate
 //    return;
     
     
-    [_plSession toggleCamera];
+    [self.plSession toggleCamera];
     
     
 //    [_plSession getScreenshotWithCompletionHandler:^(UIImage * _Nullable image) {

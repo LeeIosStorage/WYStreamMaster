@@ -15,6 +15,9 @@ pod 'NIMSDK'
 pod 'SocketRocket'
 pod 'GMGridView'
 
+#腾讯bug统计SDK
+pod 'Bugly'
+
 # 下拉刷新
 pod 'MJRefresh'
 #友盟三方

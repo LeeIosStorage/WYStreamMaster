@@ -12,6 +12,7 @@
 #import <PLMediaStreamingKit/PLStreamingKit.h>
 #import "WYSocketManager.h"
 #import "YTCustomAttachmentDecoder.h"
+#import <Bugly/Bugly.h>
 
 @interface AppDelegate ()
 
@@ -33,6 +34,8 @@
     [[NIMSDK sharedSDK] registerWithAppID:kNIMAppKey cerName:@""];
     // 注册反序列化类
     [NIMCustomObject registerCustomDecoder:[YTCustomAttachmentDecoder new]];
+    
+    [Bugly startWithAppId:kBuglyAppID];
     
 //    [[WYSocketManager sharedInstance] initSocketURL:[NSURL URLWithString:@"wss://echo.websocket.org"]];
     

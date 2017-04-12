@@ -29,6 +29,7 @@ PODS:
   - BlocksKit/UIKit (2.2.5):
     - BlocksKit/Core
     - BlocksKit/DynamicDelegate
+  - Bugly (2.4.6)
   - DeviceUtil (2.0.3)
   - DZNEmptyDataSet (1.8.1)
   - GMGridView (1.1.1)
@@ -91,6 +92,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
   - BlocksKit (~> 2.2.5)
+  - Bugly
   - DeviceUtil (~> 2.0.1)
   - DZNEmptyDataSet
   - GMGridView
@@ -109,6 +111,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
+  Bugly: 7756e72c59387b0d490f46e83ab458ae94ee7fba
   DeviceUtil: bd9597d040b3960698b71f3c1b940c7143a06eae
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   GMGridView: 0e91e818e8b4768cfa1132ff3fdff24391ee230c
@@ -127,6 +130,6 @@ SPEC CHECKSUMS:
   UMengSocialCOM: 074c135ce349aa4c8848d3fb8458757bcb6ffb67
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 4a93837c3370d51e87241fb0dae59152ccb68847
+PODFILE CHECKSUM: 26535bcdb3761f4bf1b7a462099d6f5397a38ffe
 
 COCOAPODS: 1.1.1

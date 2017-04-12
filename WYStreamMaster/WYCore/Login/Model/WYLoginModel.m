@@ -13,6 +13,7 @@
 + (NSDictionary *)modelCustomPropertyMapper {
     return @{@"userID":@"user_code",
              @"anchorDescription":@"anchor.anchor_description",
+             @"anchorTitle":@"anchor.anchor_title",
              @"nickname":@"ext_info.nickname",
              @"roomNumber":@"anchor.room_id_pk",
              @"anchorPushUrl":@"anchor.anchor_push_ur",
