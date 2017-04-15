@@ -11,6 +11,7 @@
 #import "WYLoginUserManager.h"
 #import "YTMessageNotificationAttachment.h"
 #import "NSString+YTChatRoom.h"
+#import "WYDataMemoryManager.h"
 
 #define RobotSpeechIndentifier @"robot"
 #define RobotSpeechNicknameKey @"nickname"
@@ -155,16 +156,16 @@
  */
 - (NSMutableAttributedString *)renderingWithNomalContent
 {
-    NSInteger userType = 0;
+//    NSInteger userType = 0;
     UIColor *textColor = [UIColor whiteColor];
     UIImage *tagImage = nil;
-    if (userType == 1) {
+    if ([self.message.from isEqualToString:[[WYDataMemoryManager sharedInstance] getContributionFirstUserId]]) {
         textColor = [UIColor colorWithHexString:@"ffea00"];
         tagImage = [UIImage imageNamed:@"wy_crown_user_1"];
-    }if (userType == 2) {
+    }if ([self.message.from isEqualToString:[[WYDataMemoryManager sharedInstance] getContributionSecondUserId]]) {
         textColor = [UIColor colorWithHexString:@"ffea00"];
         tagImage = [UIImage imageNamed:@"wy_crown_user_2"];
-    }if (userType == 3) {
+    }if ([self.message.from isEqualToString:[[WYDataMemoryManager sharedInstance] getContributionThirdUserId]]) {
         textColor = [UIColor colorWithHexString:@"ffea00"];
         tagImage = [UIImage imageNamed:@"wy_crown_user_3"];
     }

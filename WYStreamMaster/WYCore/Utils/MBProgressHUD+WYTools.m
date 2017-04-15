@@ -46,17 +46,19 @@
     }else{
         hud.mode = MBProgressHUDModeText;
     }
+    
+    NSInteger length = text.length;
+    NSTimeInterval delay = length*0.04 + 1.5;
+    
     if (isBottom) {
         hud.offset = CGPointMake(0.f, MBProgressMaxOffset);
         hud.margin = 10;
         hud.detailsLabel.font = [UIFont systemFontOfSize:14];
+        delay += 1.5;
     }
     
     // 隐藏时候从父控件中移除
     hud.removeFromSuperViewOnHide = YES;
-    
-    NSInteger length = text.length;
-    NSTimeInterval delay = length*0.04 + 1.5;
     
     [hud hideAnimated:YES afterDelay:delay];
 }

@@ -14,6 +14,7 @@
 #import "WYGiftRecordView.h"
 #import "WYCustomActionSheet.h"
 #import "WYGameModel.h"
+#import "WYDataMemoryManager.h"
 
 @interface MainTabViewController ()
 <
@@ -58,6 +59,8 @@ UITextFieldDelegate
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    [[WYDataMemoryManager sharedInstance] login];
     
     [self setupSubview];
     [self refreshHeadViewShow];

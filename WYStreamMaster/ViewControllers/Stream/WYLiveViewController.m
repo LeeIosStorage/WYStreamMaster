@@ -286,7 +286,7 @@ WYAnchorInfoViewDelegate
     }
     
     if (gameStatusTipText.length > 0) {
-        [MBProgressHUD showBottomMessage:gameStatusTipText toView:nil];
+        [MBProgressHUD showBottomMessage:gameStatusTipText toView:self.liveGameResultView];
     }
 }
 

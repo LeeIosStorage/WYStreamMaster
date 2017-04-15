@@ -163,6 +163,7 @@ UITableViewDataSource
 - (void)show
 {
     if (![self superview] || self.hidden) {
+        [self refreshGiftRecordListWithIndex:_selectedSegmentIndex];
         [UIView animateWithDuration:0.3f animations:^{
             [[UIApplication sharedApplication].keyWindow addSubview:self];
             [self setHidden:NO];

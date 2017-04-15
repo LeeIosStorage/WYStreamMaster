@@ -66,6 +66,7 @@ PLMediaStreamingSessionDelegate
                 NSLog(@"%@", log);
                 if (PLStreamStartStateSuccess == feedback) {
                     [MBProgressHUD showAlertMessage:@"直播成功" toView:nil];
+                    
                 } else {
                     [[[UIAlertView alloc] initWithTitle:@"错误" message:@"推流失败了" delegate:nil cancelButtonTitle:@"知道啦" otherButtonTitles:nil] show];
                 }
