@@ -44,6 +44,7 @@
                     attachment = [[WYServerNoticeAttachment alloc] init];
                     ((WYServerNoticeAttachment *)attachment).customMessageType = type;
                     ((WYServerNoticeAttachment *)attachment).onlineNum = [[[dict objectForKey:CMData] objectForKey:@"onlineNum"] integerValue];
+                    ((WYServerNoticeAttachment *)attachment).anchorStatus = [[[dict objectForKey:CMData] objectForKey:@"anchor_status"] integerValue];
                     ((WYServerNoticeAttachment *)attachment).contentData = contentData;
                     
                 }
@@ -53,6 +54,7 @@
                     attachment = [[WYServerNoticeAttachment alloc] init];
                     ((WYServerNoticeAttachment *)attachment).customMessageType = type;
                     ((WYServerNoticeAttachment *)attachment).gameStatus = [[[dict objectForKey:CMData] objectForKey:@"game_status"] integerValue];
+                    ((WYServerNoticeAttachment *)attachment).anchorStatus = [[[dict objectForKey:CMData] objectForKey:@"anchor_status"] integerValue];
                     ((WYServerNoticeAttachment *)attachment).contentData = contentData;
                     
                 }

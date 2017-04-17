@@ -153,6 +153,11 @@ WYAnchorInfoViewDelegate
             [self.liveGameResultView updateWithGameResultInfo:serverNoticeAttachment];
             [self refreshGameResultStatusTip:serverNoticeAttachment];
         }
+        
+        //是否要结束推流
+        if (serverNoticeAttachment.anchorStatus == 2) {
+            [self serverNoticeFinishStream];
+        }
     }
 }
 
@@ -288,6 +293,18 @@ WYAnchorInfoViewDelegate
     if (gameStatusTipText.length > 0) {
         [MBProgressHUD showBottomMessage:gameStatusTipText toView:self.liveGameResultView];
     }
+}
+
+- (void)serverNoticeFinishStream{
+    
+    [MBProgressHUD showError:@"您已被暂时禁止直播，请联系娱乐传奇" toView:nil];
+    
+    [self.streamingSessionManager destroyStream];
+    [self.roomView.chatroomControl exitRoom];
+    //通知服务器停止直播了
+    [self closeLive];
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark -
