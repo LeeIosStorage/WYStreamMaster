@@ -103,6 +103,7 @@ GMGridViewActionDelegate
     self.noticeTextView.text = [WYLoginUserManager roomNoticeTitle];
     [self textViewDidChange:self.noticeTextView];
     self.noticeTextView.editable = NO;
+    self.noticeTextView.userInteractionEnabled = NO;
     
     _gridView.style = GMGridViewStyleSwap;
     _gridView.itemSpacing = 15;

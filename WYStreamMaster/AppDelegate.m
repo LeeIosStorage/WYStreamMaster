@@ -39,6 +39,18 @@
     
 //    [[WYSocketManager sharedInstance] initSocketURL:[NSURL URLWithString:@"wss://echo.websocket.org"]];
     
+#ifdef DEBUG
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:kNetworkHostCacheKey]) {
+        [WYAPIGenerate sharedInstance].netWorkHost = [[NSUserDefaults standardUserDefaults] objectForKey:kNetworkHostCacheKey];
+    } else {
+        //默认先上环境
+        [WYAPIGenerate sharedInstance].netWorkHost = defaultNetworkHost;
+    }
+#else
+    [WYAPIGenerate sharedInstance].netWorkHost = defaultNetworkHost;
+#endif
+    
+    
 //    [self initTab];
     [self reLogin];
     

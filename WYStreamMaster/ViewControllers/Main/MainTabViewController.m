@@ -96,7 +96,9 @@ UITextFieldDelegate
         
         if (requestType == WYRequestTypeSuccess) {
             weakSelf.gameListArray = [[NSMutableArray alloc] init];
-            [weakSelf.gameListArray addObjectsFromArray:dataObject];
+            if ([dataObject isKindOfClass:[NSArray class]]) {
+                [weakSelf.gameListArray addObjectsFromArray:dataObject];
+            }
         }else{
             [MBProgressHUD showError:message toView:weakSelf.view];
         }
