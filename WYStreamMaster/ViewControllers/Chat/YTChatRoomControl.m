@@ -127,7 +127,6 @@
 - (void)enterRoomSuccess
 {
     [self sendMessageWithNotificationText:@"我们提倡绿色直播，封面和直播内容含吸烟、低俗、引诱、暴露等都将被屏蔽或冻结账号，网警24小时在线巡查！"];
-    //[self sendLocalMessageWithExtraString:[WYLoginUserManager nickname] content:[NSString stringWithFormat:@"欢迎来到 %@ 的直播间,喜欢就点击主播信息关注吧!",[WYLoginUserManager nickname]] extraColor:nil];
 }
 
 

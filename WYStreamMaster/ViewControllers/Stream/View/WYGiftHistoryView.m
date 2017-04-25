@@ -262,7 +262,7 @@ static int userNameLabel_tag = 201, giftImageView_tag = 202,numLabel_tag = 203,t
     timeLabel.text = timeTetx;
     
     NSURL *avatarUrl = [NSURL URLWithString:giftHistoryModel.giftLogo];
-    [WYCommonUtils setImageWithURL:avatarUrl setImageView:giftImageView placeholderImage:@""];
+    [WYCommonUtils setImageWithURL:avatarUrl setImageView:giftImageView placeholderImage:@"wy_common_placehoder_image"];
     
     return cell;
 }

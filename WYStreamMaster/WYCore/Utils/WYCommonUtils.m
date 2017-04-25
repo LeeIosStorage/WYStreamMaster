@@ -97,6 +97,9 @@
 
 // 加载图片
 + (void)setImageWithURL:(NSURL *)url setImageView:(UIImageView *)imageView placeholderImage:(NSString *)placeholderImage{
+    if (!placeholderImage) {
+        placeholderImage = @"wy_common_placehoder_image";
+    }
     if (![url isEqual:[NSNull null]]) {
         [imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:placeholderImage] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             if (image && cacheType == SDImageCacheTypeNone) {

@@ -202,7 +202,7 @@ UITextFieldDelegate
 - (void)refreshHeadViewShow{
     
     NSURL *avatarUrl = [NSURL URLWithString:[WYLoginUserManager avatar]];
-    [WYCommonUtils setImageWithURL:avatarUrl setImageView:self.avatarImageView placeholderImage:@""];
+    [WYCommonUtils setImageWithURL:avatarUrl setImageView:self.avatarImageView placeholderImage:@"wy_common_placehoder_image"];
     
     self.nickNameLabel.text = [WYLoginUserManager nickname];
     self.roomNumLabel.text = [WYLoginUserManager roomId];

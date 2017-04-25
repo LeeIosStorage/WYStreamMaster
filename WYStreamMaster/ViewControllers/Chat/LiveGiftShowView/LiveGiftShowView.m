@@ -75,7 +75,7 @@ static CGFloat const kNumberAnimationTime = 0.25;/**< 数字改变动画时长 *
     //[self.iconIV setImageURL:[NSURL URLWithString:model.user.iconUrl]];
     
     self.sendLabel.text = model.giftModel.rewardMsg;
-    [self.giftIV setImageWithURL:[NSURL URLWithString:model.giftModel.picUrl] placeholder:nil];
+    [self.giftIV setImageWithURL:[NSURL URLWithString:model.giftModel.picUrl] placeholder:[UIImage imageNamed:@"wy_common_placehoder_image"]];
     
 }
 
@@ -216,10 +216,11 @@ static CGFloat const kNumberAnimationTime = 0.25;/**< 数字改变动画时长 *
     }];
     
     [self.giftIV mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.nameLabel.mas_right).offset(10);
-        make.width.equalTo(@65);
-        make.height.equalTo(@55);
-        make.top.equalTo(self).and.offset(-10);
+        make.left.equalTo(self.nameLabel.mas_right).offset(10);//-25
+        make.width.equalTo(@60);//94
+        make.height.equalTo(@60);//94
+//        make.top.equalTo(self).and.offset(-10);
+        make.centerY.equalTo(self);
     }];
     
 //    self.multiplyLabel.backgroundColor = [UIColor whiteColor];

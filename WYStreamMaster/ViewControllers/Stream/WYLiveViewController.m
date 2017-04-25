@@ -336,21 +336,31 @@ WYAnchorInfoViewDelegate
 //    WYGiftModel *gifModel = [[WYGiftModel alloc] init];
 //    
 //    gifModel.giftId = @"1";
-//    gifModel.name = @"礼物1";
-//    int type = tempCount%3;
+//    gifModel.name = @"礼物礼物礼物礼物1";
+//    gifModel.noFrameIcon = kTempNetworkHTTPURL;
+//    int type = tempCount%5;
 //    if (type == 1) {
-////        gifModel.giftId = @"2";
-////        gifModel.name = @"礼物2";
-//        [self.roomView sendMessageWithText:@"你的谢腾飞，尬舞尬起来啊，我牛牛就问你怕不怕，我屮艸芔茻赢了1000万"];
-//        return;
+//        gifModel.giftId = @"2";
+//        gifModel.name = @"礼物礼物礼物礼物礼物2";
+//        gifModel.noFrameIcon = @"";
+////        [self.roomView sendMessageWithText:@"你的谢腾飞，尬舞尬起来啊，我牛牛就问你怕不怕，我屮艸芔茻赢了1000万"];
+////        return;
 //    }else if (type == 2){
-////        gifModel.giftId = @"3";
-////        gifModel.name = @"礼物3";
+//        gifModel.giftId = @"3";
+//        gifModel.name = @"礼物礼物礼物礼物礼物3";
+//        gifModel.noFrameIcon = @"http://103.230.243.174:8888/uploadfile/847336c0-a5c1-48d4-8a12-3a3c9dc49d43.gif";
+//    }else if (type == 3){
+//        gifModel.giftId = @"4";
+//        gifModel.name = @"大茄子";
+//        gifModel.noFrameIcon = @"";
+//    }else if (type == 4){
+//        gifModel.giftId = @"5";
+//        gifModel.name = @"5米黄瓜";
+//        gifModel.noFrameIcon = @"";
 //    }
 //    
 //    gifModel.sender = [WYLoginUserManager nickname];
 //    gifModel.clickNumber = 1;
-//    gifModel.noFrameIcon = kTempNetworkHTTPURL;
 //    [self.roomView.chatroomControl sendMessageWithGift:gifModel];
 //
 //    return;

@@ -248,7 +248,6 @@
             
             WYLoginModel *loginModel = (WYLoginModel *)dataObject;
             
-//            loginModel.icon = kTempNetworkHTTPURL;
 //            loginModel.chatRoomId = @"8276185";
             
             [WYLoginUserManager updateUserDataWithLoginModel:loginModel];

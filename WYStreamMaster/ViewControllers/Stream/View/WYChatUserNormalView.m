@@ -39,7 +39,7 @@
     NIMChatroomMember *roomMember = member;
     
     NSURL *avatarUrl = [NSURL URLWithString:roomMember.roomAvatar];
-    [WYCommonUtils setImageWithURL:avatarUrl setImageView:self.avatarImageView placeholderImage:@""];
+    [WYCommonUtils setImageWithURL:avatarUrl setImageView:self.avatarImageView placeholderImage:@"wy_common_placehoder_image"];
     self.userNameLabel.text = roomMember.roomNickname;
     
     if (roomMember.type == NIMChatroomMemberTypeManager) {

@@ -141,7 +141,7 @@ GMGridViewActionDelegate
 - (void)updateHeadViewData{
     
     NSURL *avatarUrl = [NSURL URLWithString:[WYLoginUserManager avatar]];
-    [WYCommonUtils setImageWithURL:avatarUrl setImageView:self.avatarImageView placeholderImage:@""];
+    [WYCommonUtils setImageWithURL:avatarUrl setImageView:self.avatarImageView placeholderImage:@"wy_common_placehoder_image"];
     
     self.nickNameLabel.text = [WYLoginUserManager nickname];
     self.roomNumLabel.text = [WYLoginUserManager roomId];
@@ -315,7 +315,7 @@ static int avatarImageView_tag = 201,nameLabel_tag = 202;
     WYRoomManagerModel *roomManagerModel = [self.roomManagerList objectAtIndex:index];
     
     NSURL *avatarUrl = [NSURL URLWithString:roomManagerModel.managerAvatar];
-    [WYCommonUtils setImageWithURL:avatarUrl setImageView:avatarImageView placeholderImage:@""];
+    [WYCommonUtils setImageWithURL:avatarUrl setImageView:avatarImageView placeholderImage:@"wy_common_placehoder_image"];
     nameLabel.text = roomManagerModel.managerUserName;
     
     return cell;

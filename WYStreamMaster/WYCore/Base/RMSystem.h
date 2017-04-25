@@ -68,6 +68,6 @@ static NSString* IMG_URL = @"http://img.wangyuhudong.com";
 
 #define kRoomChatViewCustomWidth  95 //15为.left
 
-#define kTempNetworkHTTPURL     @"http://v1.qzone.cc/skin/201512/08/12/33/56665d82d347e855.jpg!600x600.jpg"
+#define kTempNetworkHTTPURL     @"http://103.230.243.174:8888/uploadfile/263673c8-e1b6-494f-87c2-8c23bafbcaf1.png"
 
 #endif /* RMSystem_h */

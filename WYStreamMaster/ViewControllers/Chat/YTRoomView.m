@@ -139,9 +139,9 @@
     ZYGiftListModel *giftListModel = [[ZYGiftListModel alloc] init];
     giftListModel.type = [NSString stringWithFormat:@"%@_%@",giftAttachment.senderID,giftAttachment.giftID];
     giftListModel.goldCount = giftAttachment.giftNum;
-    if (![giftAttachment.giftShowImage hasPrefix:@"http://"]) {
-        giftAttachment.giftShowImage = [NSString stringWithFormat:@"%@/%@",[WYAPIGenerate sharedInstance].baseImgUrl,giftAttachment.giftShowImage];
-    }
+//    if (![giftAttachment.giftShowImage hasPrefix:@"http://"]) {
+//        giftAttachment.giftShowImage = [NSString stringWithFormat:@"%@/%@",[WYAPIGenerate sharedInstance].baseImgUrl,giftAttachment.giftShowImage];
+//    }
     giftListModel.rewardMsg = [NSString stringWithFormat:@"送 %@",giftAttachment.giftName];
     
     giftListModel.picUrl = giftAttachment.giftShowImage;

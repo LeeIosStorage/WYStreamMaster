@@ -68,7 +68,7 @@ PLMediaStreamingSessionDelegate
                     [MBProgressHUD showAlertMessage:@"直播成功" toView:nil];
                     
                 } else {
-                    [[[UIAlertView alloc] initWithTitle:@"错误" message:@"推流失败了" delegate:nil cancelButtonTitle:@"知道啦" otherButtonTitles:nil] show];
+                    [[[UIAlertView alloc] initWithTitle:@"错误" message:@"直播失败了，请返回重试" delegate:nil cancelButtonTitle:@"知道啦" otherButtonTitles:nil] show];
                 }
             });
         }];
@@ -137,15 +137,19 @@ PLMediaStreamingSessionDelegate
             [self.delegate streamingManager:self pushStreamStatusChanged:state];
         }
     }
+    else if (PLStreamStateDisconnected == state) {
+        [self startStream];
+    }
 }
 
 - (void)mediaStreamingSession:(PLMediaStreamingSession *)session didDisconnectWithError:(NSError *)error{
     /// @abstract 因产生了某个 error 而断开时的回调，error 错误码的含义可以查看 PLTypeDefines.h 文件
     /// 断开需重新连接
     
-    NSString *log = [NSString stringWithFormat:@"didDisconnectWithError: %@", [error localizedDescription ]];
+    NSString *log = [NSString stringWithFormat:@"didDisconnectWithError: %@", [error localizedDescription]];
     NSLog(@"%@", log);
     [MBProgressHUD showAlertMessage:log toView:nil];
+    [self startStream];
 }
 
 - (void)mediaStreamingSession:(PLMediaStreamingSession *)session streamStatusDidUpdate:(PLStreamStatus *)status{

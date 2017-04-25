@@ -105,7 +105,7 @@
 - (void)updateAnchorInfoWith:(id)anchorInfo{
     
     NSURL *avatarUrl = [NSURL URLWithString:[WYLoginUserManager avatar]];
-    [WYCommonUtils setImageWithURL:avatarUrl setImageView:self.anchorImageView placeholderImage:@""];
+    [WYCommonUtils setImageWithURL:avatarUrl setImageView:self.anchorImageView placeholderImage:@"wy_common_placehoder_image"];
     
     self.anchorNameLabel.text = [WYLoginUserManager nickname];
     
