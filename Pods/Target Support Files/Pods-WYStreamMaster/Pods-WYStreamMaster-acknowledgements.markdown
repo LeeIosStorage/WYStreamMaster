@@ -429,6 +429,11 @@ Apache License
    limitations under the License.
 
 
+## PgyUpdate
+
+Copyright 2015 pgyer.com. All rights reserved.
+
+
 ## QNNetDiag
 
 The MIT License (MIT)

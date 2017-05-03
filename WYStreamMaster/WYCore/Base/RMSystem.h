@@ -46,9 +46,9 @@ static NSString* IMG_URL = @"http://img.wangyuhudong.com";
 // 网易云信Key
 #define kNIMAppKey  @"93c2730be068bfa8557eca30c56287bb"
 // 蒲公英APPID
-#define kPGYAppId   @"f00dc3824232bd993b458464b95c15df"
+#define kPGYAppId   @"1179520d3659a8488b70bb086f0e74bc"
 // 友盟AppKey
-#define kUMAppKey   @"5847eddb310c9356ce001746"
+//#define kUMAppKey   @"5847eddb310c9356ce001746"
 
 
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)

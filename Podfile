@@ -17,6 +17,8 @@ pod 'GMGridView'
 
 #腾讯bug统计SDK
 pod 'Bugly'
+#蒲公英更新SDK
+pod 'PgyUpdate', '~> 1.2'
 
 # 下拉刷新
 pod 'MJRefresh'

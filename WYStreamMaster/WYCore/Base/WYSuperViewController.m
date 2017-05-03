@@ -56,7 +56,14 @@
 
 
 //    [self.navigationController.navigationBar lt_setBackgroundColor:[WYStyleSheet defaultStyleSheet].themeColor];
-    [self.navigationController.navigationBar setBarTintColor:[WYStyleSheet defaultStyleSheet].themeColor];
+//    [self.navigationController.navigationBar setBarTintColor:[WYStyleSheet defaultStyleSheet].themeColor];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    CGRect rect = self.navigationController.navigationBar.frame;
+    UIImageView *navbgImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, -20, rect.size.width, 72)];
+    navbgImageView.image = [UIImage imageNamed:@"wy_navbar_bg"];
+    [self.navigationController.navigationBar addSubview:navbgImageView];
+    
     [self.navigationController.navigationBar setTranslucent:NO];
     self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,[WYStyleSheet defaultStyleSheet].navTitleFont,NSFontAttributeName,nil];
     

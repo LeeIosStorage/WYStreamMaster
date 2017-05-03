@@ -15,6 +15,7 @@
 #import "WYCustomActionSheet.h"
 #import "WYGameModel.h"
 #import "WYDataMemoryManager.h"
+#import <PgyUpdate/PgyUpdateManager.h>
 
 @interface MainTabViewController ()
 <
@@ -63,6 +64,8 @@ UITextFieldDelegate
     [[WYDataMemoryManager sharedInstance] login];
     
     [self setupSubview];
+    [self checkAppUpdate];
+    
     [self refreshHeadViewShow];
     
     [self refreshGameList];
@@ -197,6 +200,12 @@ UITextFieldDelegate
     
     [self refreshHeadViewHeight];
     
+}
+
+- (void)checkAppUpdate
+{
+    [[PgyUpdateManager sharedPgyManager] startManagerWithAppId:kPGYAppId];
+    [[PgyUpdateManager sharedPgyManager] checkUpdate];
 }
 
 - (void)refreshHeadViewShow{
