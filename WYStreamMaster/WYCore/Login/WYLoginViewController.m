@@ -26,6 +26,7 @@
 #import "WYShareManager.h"
 #import "AppDelegate.h"
 #import "YTQuickLoginViewController.h"
+#import "WYRegisterViewController.h"
 
 #import "UIButton+YTLoginButton.h"
 #import "WYCommonUtils.h"
@@ -505,8 +506,12 @@
 
 - (IBAction)toQuickLogin:(id)sender
 {
-    YTQuickLoginViewController *quickLoginVC = [[YTQuickLoginViewController alloc] initWithNibName:@"YTQuickLoginViewController" bundle:nil];
-    [self.navigationController pushViewController:quickLoginVC animated:YES];
+    WYRegisterViewController *registerVc = [[WYRegisterViewController alloc] init];
+    WYNavigationController *createNav = [[WYNavigationController alloc] initWithRootViewController:registerVc];
+    [self.navigationController presentViewController:createNav animated:YES completion:NULL];
+    
+//    YTQuickLoginViewController *quickLoginVC = [[YTQuickLoginViewController alloc] initWithNibName:@"YTQuickLoginViewController" bundle:nil];
+//    [self.navigationController pushViewController:quickLoginVC animated:YES];
 }
 
 #pragma mark - custom

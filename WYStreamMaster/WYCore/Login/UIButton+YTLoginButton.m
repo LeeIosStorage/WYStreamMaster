@@ -24,12 +24,14 @@
 {
     self.backgroundColor = [UIColor colorWithHexString:@"9d9d9d"];
     self.userInteractionEnabled = NO;
+    [self setBackgroundImage:nil forState:UIControlStateNormal];
     [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 }
 
 - (void)buttonCanClickedStatus
 {
     self.userInteractionEnabled = YES;
+    [self setBackgroundImage:[UIImage imageNamed:@"wy_login_button_bg_icon"] forState:UIControlStateNormal];
     self.backgroundColor = [UIColor colorWithHexString:@"ff7e00"];
     [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 }

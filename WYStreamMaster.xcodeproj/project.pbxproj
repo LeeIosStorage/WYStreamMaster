@@ -65,6 +65,8 @@
 		44203DBD1E72551600D59B5E /* WYLiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203DBB1E72551600D59B5E /* WYLiveViewController.m */; };
 		44203DBE1E72551600D59B5E /* WYLiveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44203DBC1E72551600D59B5E /* WYLiveViewController.xib */; };
 		44203DC31E76380A00D59B5E /* WYStreamingSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203DC21E76380A00D59B5E /* WYStreamingSessionManager.m */; };
+		444AA54C1EB9A74900A80FB9 /* WYRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 444AA54A1EB9A74900A80FB9 /* WYRegisterViewController.m */; };
+		444AA54D1EB9A74900A80FB9 /* WYRegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 444AA54B1EB9A74900A80FB9 /* WYRegisterViewController.xib */; };
 		444DA64B1E89166A00C45DE5 /* WYGameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 444DA64A1E89166A00C45DE5 /* WYGameModel.m */; };
 		444DA64E1E8A6B6D00C45DE5 /* WYRoomManagerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 444DA64D1E8A6B6D00C45DE5 /* WYRoomManagerModel.m */; };
 		444DA6511E8A716E00C45DE5 /* WYChatUserNormalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 444DA6501E8A716E00C45DE5 /* WYChatUserNormalView.m */; };
@@ -223,6 +225,9 @@
 		44203DBC1E72551600D59B5E /* WYLiveViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYLiveViewController.xib; sourceTree = "<group>"; };
 		44203DC11E76380A00D59B5E /* WYStreamingSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYStreamingSessionManager.h; sourceTree = "<group>"; };
 		44203DC21E76380A00D59B5E /* WYStreamingSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYStreamingSessionManager.m; sourceTree = "<group>"; };
+		444AA5491EB9A74900A80FB9 /* WYRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYRegisterViewController.h; sourceTree = "<group>"; };
+		444AA54A1EB9A74900A80FB9 /* WYRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYRegisterViewController.m; sourceTree = "<group>"; };
+		444AA54B1EB9A74900A80FB9 /* WYRegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYRegisterViewController.xib; sourceTree = "<group>"; };
 		444DA6491E89166A00C45DE5 /* WYGameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYGameModel.h; sourceTree = "<group>"; };
 		444DA64A1E89166A00C45DE5 /* WYGameModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYGameModel.m; sourceTree = "<group>"; };
 		444DA64C1E8A6B6D00C45DE5 /* WYRoomManagerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYRoomManagerModel.h; sourceTree = "<group>"; };
@@ -448,6 +453,9 @@
 				44203D5B1E714BD600D59B5E /* WYLoginViewController.h */,
 				44203D5C1E714BD600D59B5E /* WYLoginViewController.m */,
 				44203D5D1E714BD600D59B5E /* WYLoginViewController.xib */,
+				444AA5491EB9A74900A80FB9 /* WYRegisterViewController.h */,
+				444AA54A1EB9A74900A80FB9 /* WYRegisterViewController.m */,
+				444AA54B1EB9A74900A80FB9 /* WYRegisterViewController.xib */,
 				44203D5E1E714BD600D59B5E /* WYSettingConfig.h */,
 				44203D5F1E714BD600D59B5E /* WYSettingConfig.m */,
 				44203D601E714BD600D59B5E /* YTLoginRegistPublic.h */,
@@ -837,6 +845,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				44D2F7E31E7FC30500122866 /* YTChatBottomView.xib in Resources */,
+				444AA54D1EB9A74900A80FB9 /* WYRegisterViewController.xib in Resources */,
 				44203D1F1E6FE78800D59B5E /* LaunchScreen.storyboard in Resources */,
 				44203D991E714BD600D59B5E /* WYImageCodeView.xib in Resources */,
 				44203DBE1E72551600D59B5E /* WYLiveViewController.xib in Resources */,
@@ -957,6 +966,7 @@
 				446D43281E837DAC002E5C52 /* WYAnchorManageView.m in Sources */,
 				44D2F7E71E7FC30500122866 /* YTEnterExtraModel.m in Sources */,
 				44203D951E714BD600D59B5E /* YTQuickLoginViewController.m in Sources */,
+				444AA54C1EB9A74900A80FB9 /* WYRegisterViewController.m in Sources */,
 				441C23EC1E83EEA30020557C /* WYGiftModel.m in Sources */,
 				44203D8E1E714BD600D59B5E /* UIButton+YTLoginButton.m in Sources */,
 				44203DBD1E72551600D59B5E /* WYLiveViewController.m in Sources */,
