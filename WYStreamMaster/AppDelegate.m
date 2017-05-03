@@ -100,6 +100,11 @@
 
 - (void)showLogin
 {
+    
+//    NSArray *languages = [[NSUserDefaults standardUserDefaults] valueForKey:@"AppleLanguages"];
+//    NSString *currentLanguage = languages.firstObject;
+//    NSLog(@"模拟器当前语言：%@",currentLanguage);
+    
     WS(weakSelf)
     [[WYLoginManager sharedManager] showLoginViewControllerFromWindow:self.window showCancelButton:NO success:^{
         [weakSelf initTab];

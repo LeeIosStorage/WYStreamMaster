@@ -149,7 +149,8 @@
     [[UIDevice currentDevice] setValue:
      [NSNumber numberWithInteger:UIInterfaceOrientationPortrait]
                                 forKey:@"orientation"];
-    self.title = @"登录";
+    
+    self.title = [WYCommonUtils acquireCurrentLocalizedText:@"wy_login"];
 
 }
 

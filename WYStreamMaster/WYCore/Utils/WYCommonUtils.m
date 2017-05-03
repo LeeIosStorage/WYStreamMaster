@@ -331,4 +331,9 @@ static bool dateFormatterOFUSInvalid ;
     return result;
 }
 
++ (NSString *)acquireCurrentLocalizedText:(NSString *)text{
+    NSString *localizedText = NSLocalizedString(text, nil);
+    return localizedText;
+}
+
 @end
