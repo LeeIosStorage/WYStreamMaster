@@ -172,13 +172,13 @@
 
 - (void)initViewUI {
     _phoneLoginType = YES;
-    NSString *placeholder = @"昵称/用户名";
+    NSString *placeholder = [WYCommonUtils acquireCurrentLocalizedText:@"wy_login_account_placeholder"];
     self.loginAccountTextField.attributedPlaceholder = [WYCommonUtils stringToColorAndFontAttributeString:placeholder range:NSMakeRange(0, placeholder.length) font:[WYStyleSheet currentStyleSheet].subheadLabelFont color:UIColorHex(0xcacaca)];
     
     placeholder = @"请输入6位短信验证码";
     self.loginMsgCodeTextField.attributedPlaceholder = [WYCommonUtils stringToColorAndFontAttributeString:placeholder range:NSMakeRange(0, placeholder.length) font:[WYStyleSheet currentStyleSheet].subheadLabelFont color:UIColorHex(0xcacaca)];
     
-    placeholder = @"输入密码";
+    placeholder = [WYCommonUtils acquireCurrentLocalizedText:@"wy_login_password_placeholder"];
     self.loginPasswordTextField.attributedPlaceholder = [WYCommonUtils stringToColorAndFontAttributeString:placeholder range:NSMakeRange(0, placeholder.length) font:[WYStyleSheet currentStyleSheet].subheadLabelFont color:UIColorHex(0xcacaca)];
     
     self.accountContainerView.layer.cornerRadius = 3.0;

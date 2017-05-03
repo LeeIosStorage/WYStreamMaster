@@ -7,3 +7,5 @@
 */
 
 CFBundleDisplayName = "传奇娱乐";
+NSCameraUsageDescription = "我们将访问相机进行直播";
+NSMicrophoneUsageDescription = "我们将访问麦克风权限以保证您在直播中声音正常";
