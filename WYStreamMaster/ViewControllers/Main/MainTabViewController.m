@@ -37,6 +37,9 @@ UITextFieldDelegate
 @property (nonatomic, weak) IBOutlet UIImageView *avatarImageView;
 @property (nonatomic, weak) IBOutlet UILabel *nickNameLabel;
 @property (nonatomic, weak) IBOutlet UILabel *roomNumLabel;
+
+@property (nonatomic, weak) IBOutlet UILabel *roomNameTipLabel;
+@property (nonatomic, weak) IBOutlet UILabel *roomNoticeTipLabel;
 @property (nonatomic, weak) IBOutlet UITextField *roomNameTextField;
 @property (nonatomic, weak) IBOutlet UITextField *roomNoticeTextField;
 @property (nonatomic, weak) IBOutlet UILabel *gameNameLabel;
@@ -50,6 +53,7 @@ UITextFieldDelegate
 @property (nonatomic, weak) IBOutlet UIView *codeRateView;
 
 @property (nonatomic, weak) IBOutlet UIButton *startLiveButton;
+@property (nonatomic, weak) IBOutlet UILabel *startLiveTipLabel;
 
 @property (nonatomic, strong) WYGiftRecordView *giftRecordView;
 
@@ -108,7 +112,7 @@ UITextFieldDelegate
         
     } failure:^(id responseObject, NSError *error) {
 //        [MBProgressHUD hideHUD];
-        [MBProgressHUD showAlertMessage:@"连接失败，请检查您的网络设置后重试" toView:weakSelf.view];
+        [MBProgressHUD showAlertMessage:[WYCommonUtils showServerErrorLocalizedText] toView:weakSelf.view];
     }];
 }
 
@@ -148,7 +152,7 @@ UITextFieldDelegate
         
     } failure:^(id responseObject, NSError *error) {
         [MBProgressHUD hideHUD];
-        [MBProgressHUD showAlertMessage:@"请求失败，请检查您的网络设置后重试" toView:weakSelf.view];
+        [MBProgressHUD showAlertMessage:[WYCommonUtils showServerErrorLocalizedText] toView:weakSelf.view];
     }];
 }
 
@@ -173,10 +177,14 @@ UITextFieldDelegate
     [WYStreamingConfig sharedConfig].videoQuality = VideoQualityStandardDefinition;
     [self setStreamingKpbsUIWith:[WYStreamingConfig sharedConfig].videoQuality + 1];
     
-    NSString *placeholder = @"给自己取一个闪亮的房间名字吧！";
+    self.roomNameTipLabel.text = [WYCommonUtils acquireCurrentLocalizedText:@"房间名称"];
+    self.roomNoticeTipLabel.text = [WYCommonUtils acquireCurrentLocalizedText:@"公告"];
+    self.startLiveTipLabel.text = [WYCommonUtils acquireCurrentLocalizedText:@"开始直播"];
+    
+    NSString *placeholder = [WYCommonUtils acquireCurrentLocalizedText:@"给自己取一个闪亮的房间名字吧！"];
     self.roomNameTextField.attributedPlaceholder = [WYCommonUtils stringToColorAndFontAttributeString:placeholder range:NSMakeRange(0, placeholder.length) font:[UIFont systemFontOfSize:12] color:UIColorHex(0xbcbbbb)];
     
-    placeholder = @"在此输入房间公告(不必填)";
+    placeholder = [WYCommonUtils acquireCurrentLocalizedText:@"在此输入房间公告(不必填)"];
     self.roomNoticeTextField.attributedPlaceholder = [WYCommonUtils stringToColorAndFontAttributeString:placeholder range:NSMakeRange(0, placeholder.length) font:[UIFont systemFontOfSize:12] color:UIColorHex(0xbcbbbb)];
     
     placeholder = @"输入房间密码";
@@ -188,7 +196,7 @@ UITextFieldDelegate
     
     NSString *gameNameText = [WYLoginUserManager gameCategory];
     if (gameNameText.length == 0) {
-        gameNameText = @"请选择直播的游戏";
+        gameNameText = [WYCommonUtils acquireCurrentLocalizedText:@"选择直播的游戏"];
     }
     self.gameNameLabel.text = gameNameText;
     
@@ -196,7 +204,7 @@ UITextFieldDelegate
     self.gameCategoryId = [WYLoginUserManager gameCategoryId];
     
     self.roomType = @"0";
-    self.roomTypeLabel.text = @"普通房间";
+    self.roomTypeLabel.text = [WYCommonUtils acquireCurrentLocalizedText:@"普通房间"];
     
     [self refreshHeadViewHeight];
     
@@ -223,7 +231,7 @@ UITextFieldDelegate
         self.headContainerView.height = 123 + 222 + 33;
         self.vipRoomPasswordView.hidden = NO;
     }else{
-        self.headContainerView.height = 123 + 222;
+        self.headContainerView.height = 123 + 167;
         self.vipRoomPasswordView.hidden = YES;
     }
     self.headContainerView.width = SCREEN_WIDTH;
@@ -330,7 +338,7 @@ UITextFieldDelegate
         [otherButtonTitles addObject:gameModel.gameName];
     }
     WEAKSELF
-    WYCustomActionSheet *actionSheet = [[WYCustomActionSheet alloc] initWithTitle:@"选择直播的游戏" actionBlock:^(NSInteger buttonIndex) {
+    WYCustomActionSheet *actionSheet = [[WYCustomActionSheet alloc] initWithTitle:[WYCommonUtils acquireCurrentLocalizedText:@"选择直播的游戏"] actionBlock:^(NSInteger buttonIndex) {
         if (buttonIndex >= otherButtonTitles.count) {
             return;
         }
@@ -339,7 +347,7 @@ UITextFieldDelegate
         weakSelf.gameCategoryId = gameModel.gameId;
         weakSelf.gameNameLabel.text = weakSelf.gameCategory;
         
-    } cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:otherButtonTitles];
+    } cancelButtonTitle:[WYCommonUtils acquireCurrentLocalizedText:@"wy_cancel"] destructiveButtonTitle:nil otherButtonTitles:otherButtonTitles];
     [actionSheet showInView:self.view];
 }
 
@@ -363,7 +371,7 @@ UITextFieldDelegate
         }
         [weakSelf refreshHeadViewHeight];
         
-    } cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:otherButtonTitles];
+    } cancelButtonTitle:[WYCommonUtils acquireCurrentLocalizedText:@"wy_cancel"] destructiveButtonTitle:nil otherButtonTitles:otherButtonTitles];
     [actionSheet showInView:self.view];
 }
 

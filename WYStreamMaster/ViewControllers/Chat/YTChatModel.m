@@ -102,7 +102,7 @@
                     
                     if (![member.userId isSelf]) {
                         if (member.nick.length > 0) {
-                            return [self renderingWithRoomNotification:member withContentString:[NSString stringWithFormat:@" 欢迎 %@ 进入房间",member.nick] eventType:notificationContent.eventType];
+                            return [self renderingWithRoomNotification:member withContentString:[NSString stringWithFormat:@" %@ %@ %@",[WYCommonUtils acquireCurrentLocalizedText:@"欢迎"],member.nick,[WYCommonUtils acquireCurrentLocalizedText:@"进入房间"]] eventType:notificationContent.eventType];
                         }
                     }
                     

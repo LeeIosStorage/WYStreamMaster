@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,10 +18,13 @@
                 <outlet property="headContainerView" destination="bKV-A3-0TW" id="QXV-qE-yG7"/>
                 <outlet property="nickNameLabel" destination="aHD-Ti-sSk" id="ZCj-cW-LvO"/>
                 <outlet property="roomNameTextField" destination="CiB-BJ-FNR" id="7Kb-Cq-V2b"/>
+                <outlet property="roomNameTipLabel" destination="IIQ-IR-hdh" id="QYN-28-NeI"/>
                 <outlet property="roomNoticeTextField" destination="iff-ak-PIF" id="0sB-pq-349"/>
+                <outlet property="roomNoticeTipLabel" destination="qwP-P4-qVF" id="39d-8p-6fm"/>
                 <outlet property="roomNumLabel" destination="86N-f4-M64" id="BQj-a8-u6L"/>
                 <outlet property="roomTypeLabel" destination="vwZ-Sm-aW0" id="tju-SE-oEp"/>
                 <outlet property="startLiveButton" destination="uYO-Iv-lGu" id="8aM-y4-8w8"/>
+                <outlet property="startLiveTipLabel" destination="tiJ-ZS-Q7U" id="mJd-mw-InC"/>
                 <outlet property="tableView" destination="VzT-eF-r7y" id="8rc-5d-Q2f"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="vipRoomPasswordTextField" destination="Qps-xp-aRb" id="k7J-oc-9Ud"/>
@@ -344,7 +347,7 @@
                         <constraint firstItem="L8b-f7-5yh" firstAttribute="top" secondItem="r4G-EW-XRU" secondAttribute="bottom" id="vgS-fM-rop"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FKf-dt-cMq">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FKf-dt-cMq">
                     <rect key="frame" x="0.0" y="290" width="375" height="55"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="普通房间" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwZ-Sm-aW0">

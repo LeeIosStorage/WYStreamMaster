@@ -199,7 +199,7 @@ UITableViewDataSource
         }
         
     } failure:^(id responseObject, NSError *error) {
-        [MBProgressHUD showAlertMessage:@"请求失败，请检查您的网络设置后重试" toView:nil];
+        [MBProgressHUD showAlertMessage:[WYCommonUtils showServerErrorLocalizedText] toView:nil];
     }];
     
 }
@@ -386,7 +386,7 @@ static int typeLabel_tag = 201, numLabel_tag = 202, priceLabel_tag = 203;
 
 - (UISegmentedControl *)segmentedControl{
     if (!_segmentedControl) {
-        _segmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"当天",@"本周",@"本月", nil]];
+        _segmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:[WYCommonUtils acquireCurrentLocalizedText:@"当天"],[WYCommonUtils acquireCurrentLocalizedText:@"本周"],[WYCommonUtils acquireCurrentLocalizedText:@"本月"], nil]];
         _segmentedControl.layer.masksToBounds = YES;
         _segmentedControl.layer.cornerRadius = 15;
         [_segmentedControl.layer setBorderWidth:1];
@@ -422,7 +422,7 @@ static int typeLabel_tag = 201, numLabel_tag = 202, priceLabel_tag = 203;
 //        _sectionHeadView.backgroundColor = _bgColor;
         
         UILabel *typeLabel = [[UILabel alloc] init];
-        typeLabel.text = @"种类";
+        typeLabel.text = [WYCommonUtils acquireCurrentLocalizedText:@"种类"];
         typeLabel.textAlignment = NSTextAlignmentCenter;
         typeLabel.textColor = [UIColor whiteColor];
         typeLabel.font = [UIFont systemFontOfSize:12];
@@ -434,7 +434,7 @@ static int typeLabel_tag = 201, numLabel_tag = 202, priceLabel_tag = 203;
         }];
         
         UILabel *numLabel = [[UILabel alloc] init];
-        numLabel.text = @"数量";
+        numLabel.text = [WYCommonUtils acquireCurrentLocalizedText:@"数量"];
         numLabel.textAlignment = NSTextAlignmentCenter;
         numLabel.textColor = [UIColor whiteColor];
         numLabel.font = [UIFont systemFontOfSize:12];
@@ -446,7 +446,7 @@ static int typeLabel_tag = 201, numLabel_tag = 202, priceLabel_tag = 203;
         }];
         
         UILabel *priceLabel = [[UILabel alloc] init];
-        priceLabel.text = @"价格";
+        priceLabel.text = [WYCommonUtils acquireCurrentLocalizedText:@"价格"];
         priceLabel.textAlignment = NSTextAlignmentCenter;
         priceLabel.textColor = [UIColor whiteColor];
         priceLabel.font = [UIFont systemFontOfSize:12];
@@ -476,7 +476,7 @@ static int typeLabel_tag = 201, numLabel_tag = 202, priceLabel_tag = 203;
         _footerView.backgroundColor = [UIColor clearColor];
         
         UILabel *typeLabel = [[UILabel alloc] init];
-        typeLabel.text = @"总计";
+        typeLabel.text = [WYCommonUtils acquireCurrentLocalizedText:@"总计"];
         typeLabel.textAlignment = NSTextAlignmentCenter;
         typeLabel.textColor = [UIColor whiteColor];
         typeLabel.font = [UIFont systemFontOfSize:12];

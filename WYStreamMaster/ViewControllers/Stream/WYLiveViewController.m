@@ -42,6 +42,8 @@ WYAnchorInfoViewDelegate
 @property (nonatomic, weak) IBOutlet UIButton *expandChatButton;
 @property (nonatomic, weak) IBOutlet UIButton *betTopButton;
 @property (nonatomic, weak) IBOutlet UIButton *giftHistoryButton;
+@property (nonatomic, weak) IBOutlet UILabel *betTopTipLabel;
+@property (nonatomic, weak) IBOutlet UILabel *giftHistoryTipLabel;
 
 
 @property (nonatomic, strong) WYAnchorInfoView *anchorInfoView;
@@ -165,6 +167,9 @@ WYAnchorInfoViewDelegate
 #pragma mark - Private Methods
 - (void)setupSubView{
     
+    self.betTopTipLabel.text = [WYCommonUtils acquireCurrentLocalizedText:@"押注排名"];
+    self.giftHistoryTipLabel.text = [WYCommonUtils acquireCurrentLocalizedText:@"礼物历史"];
+    
     self.betTopButton.layer.cornerRadius = 20;
     self.betTopButton.layer.masksToBounds = YES;
     [self.betTopButton.layer setBorderWidth:0.5];
@@ -285,9 +290,9 @@ WYAnchorInfoViewDelegate
     
     NSString *gameStatusTipText = nil;
     if (gameStatus == 1) {
-        gameStatusTipText = @"等待玩家下注";
+        gameStatusTipText = [WYCommonUtils acquireCurrentLocalizedText:@"等待玩家下注"];
     }else if (gameStatus == 2){
-        gameStatusTipText = @"正在发牌 等待游戏结果";
+        gameStatusTipText = [WYCommonUtils acquireCurrentLocalizedText:@"正在发牌 等待游戏结果"];
     }
     
     if (gameStatusTipText.length > 0) {

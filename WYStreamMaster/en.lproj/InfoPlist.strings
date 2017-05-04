@@ -9,3 +9,4 @@
 CFBundleDisplayName = "Legend";
 NSCameraUsageDescription = "We will visit the camera to broadcast live";
 NSMicrophoneUsageDescription = "We will access rights to the microphone in order to make sure you sound in the live normally";
+NSPhotoLibraryUsageDescription = "visit photo gallery";

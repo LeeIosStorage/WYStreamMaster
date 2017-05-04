@@ -9,3 +9,4 @@
 CFBundleDisplayName = "傳奇娛樂";
 NSCameraUsageDescription = "我們將訪問相機進行直播";
 NSMicrophoneUsageDescription = "我們將訪問麥克風權限以保證您在直播中聲音正常";
+NSPhotoLibraryUsageDescription = "訪問相冊";

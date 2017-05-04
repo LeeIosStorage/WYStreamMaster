@@ -33,9 +33,12 @@ GMGridViewActionDelegate
 @property (nonatomic, weak) IBOutlet UILabel *nickNameLabel;
 @property (nonatomic, weak) IBOutlet UILabel *roomNumLabel;
 @property (nonatomic, weak) IBOutlet UITextField *roomNameTextField;
+
+@property (nonatomic, weak) IBOutlet UILabel *noticeTipLabel;
 @property (nonatomic, weak) IBOutlet UITextView *noticeTextView;
 @property (nonatomic, weak) IBOutlet UILabel *textViewplaceholderLabel;
 
+@property (nonatomic, weak) IBOutlet UILabel *roomManagerListTipLabel;
 @property (nonatomic, strong) NSMutableArray *roomManagerList;
 @property (nonatomic, weak) IBOutlet GMGridView *gridView;
 
@@ -99,6 +102,9 @@ GMGridViewActionDelegate
     NSString *placeholder = @"修改房间名字";
     self.roomNameTextField.attributedPlaceholder = [WYCommonUtils stringToColorAndFontAttributeString:placeholder range:NSMakeRange(0, placeholder.length) font:[UIFont systemFontOfSize:12] color:UIColorHex(0xcacaca)];
     self.roomNameTextField.text = [WYLoginUserManager roomNameTitle];
+    
+    self.noticeTipLabel.text = [WYCommonUtils acquireCurrentLocalizedText:@"房间公告"];
+    self.roomManagerListTipLabel.text = [WYCommonUtils acquireCurrentLocalizedText:@"房管列表"];
     
     self.noticeTextView.text = [WYLoginUserManager roomNoticeTitle];
     [self textViewDidChange:self.noticeTextView];

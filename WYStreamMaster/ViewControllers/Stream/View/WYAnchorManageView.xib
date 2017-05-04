@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -38,6 +38,8 @@
                 <outlet property="headContainerView" destination="735-Em-7pn" id="ldR-Mp-Gy1"/>
                 <outlet property="nickNameLabel" destination="Pj9-ft-pkI" id="GUB-5M-tni"/>
                 <outlet property="noticeTextView" destination="Dq7-dN-vsF" id="RgR-TU-wuZ"/>
+                <outlet property="noticeTipLabel" destination="cmx-uf-OAU" id="Tb3-8s-v3e"/>
+                <outlet property="roomManagerListTipLabel" destination="JB4-ll-avf" id="Qs8-1Y-ZSc"/>
                 <outlet property="roomNameTextField" destination="ayV-7K-n8z" id="e7S-wb-hH2"/>
                 <outlet property="roomNumLabel" destination="w3Y-MM-8xb" id="G1t-wx-NRu"/>
                 <outlet property="textViewplaceholderLabel" destination="hNe-9K-heN" id="Lso-gX-LHu"/>

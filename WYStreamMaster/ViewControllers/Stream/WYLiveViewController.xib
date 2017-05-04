@@ -12,9 +12,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WYLiveViewController">
             <connections>
                 <outlet property="betTopButton" destination="JJD-Xm-U1y" id="zrI-uD-wts"/>
+                <outlet property="betTopTipLabel" destination="H7d-ER-qyg" id="T4Z-HP-ayS"/>
                 <outlet property="contentContainerView" destination="XvK-GL-Hax" id="mOU-Ce-IWr"/>
                 <outlet property="expandChatButton" destination="aDM-r6-u7R" id="YLq-9H-v6o"/>
                 <outlet property="giftHistoryButton" destination="Q88-Zz-gFx" id="4yS-7f-eG5"/>
+                <outlet property="giftHistoryTipLabel" destination="8op-ZV-XfK" id="6pS-B3-ra5"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

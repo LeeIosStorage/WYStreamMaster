@@ -336,4 +336,8 @@ static bool dateFormatterOFUSInvalid ;
     return localizedText;
 }
 
++ (NSString *)showServerErrorLocalizedText{
+    return [WYCommonUtils acquireCurrentLocalizedText:@"wy_server_request_errer_tip"];
+}
+
 @end

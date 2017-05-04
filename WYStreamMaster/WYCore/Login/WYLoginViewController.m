@@ -509,7 +509,7 @@
 {
     WYRegisterViewController *registerVc = [[WYRegisterViewController alloc] init];
     WYNavigationController *createNav = [[WYNavigationController alloc] initWithRootViewController:registerVc];
-    [self.navigationController presentViewController:createNav animated:YES completion:NULL];
+    [self presentViewController:createNav animated:YES completion:NULL];
     
 //    YTQuickLoginViewController *quickLoginVC = [[YTQuickLoginViewController alloc] initWithNibName:@"YTQuickLoginViewController" bundle:nil];
 //    [self.navigationController pushViewController:quickLoginVC animated:YES];

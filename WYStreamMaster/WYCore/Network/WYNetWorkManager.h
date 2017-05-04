@@ -45,4 +45,14 @@ responseClass:(Class)classType
      success:(WYRequestSuccessBlock)success
      failure:(WYRequestFailureBlock)failure;
 
+- (void)POST:(NSString *)URLString
+formFileName:(NSString *)formFileName
+    fileName:(NSString *)fileName
+    fileData:(NSData *)fileData
+    mimeType:(NSString *)mimeType
+  parameters:(id )parameters
+responseClass:(Class )classType
+     success:(WYRequestSuccessBlock)success
+     failure:(WYRequestFailureBlock)failure;
+
 @end
