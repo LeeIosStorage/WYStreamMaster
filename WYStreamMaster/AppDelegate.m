@@ -44,7 +44,7 @@
         [WYAPIGenerate sharedInstance].netWorkHost = [[NSUserDefaults standardUserDefaults] objectForKey:kNetworkHostCacheKey];
     } else {
         //默认先上环境
-        [WYAPIGenerate sharedInstance].netWorkHost = defaultNetworkHost;
+        [WYAPIGenerate sharedInstance].netWorkHost = defaultNetworkPreRelease;
     }
 #else
     [WYAPIGenerate sharedInstance].netWorkHost = defaultNetworkHost;

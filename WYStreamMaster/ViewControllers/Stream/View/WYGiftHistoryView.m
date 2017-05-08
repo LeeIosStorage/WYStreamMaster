@@ -304,7 +304,7 @@ static int userNameLabel_tag = 201, giftImageView_tag = 202,numLabel_tag = 203,t
         titleLabel.textColor = [UIColor blackColor];
         titleLabel.font = [UIFont boldSystemFontOfSize:16];
         titleLabel.textAlignment = NSTextAlignmentCenter;
-        titleLabel.text = @"礼物历史";
+        titleLabel.text = [WYCommonUtils acquireCurrentLocalizedText:@"礼物历史"];
         [_topView addSubview:titleLabel];
         [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(_topView);
@@ -339,7 +339,7 @@ static int userNameLabel_tag = 201, giftImageView_tag = 202,numLabel_tag = 203,t
         UIButton *confirmButton = [UIButton buttonWithType:UIButtonTypeCustom];
         confirmButton.layer.cornerRadius = 3;
         confirmButton.layer.masksToBounds = YES;
-        [confirmButton setTitle:@"确定" forState:UIControlStateNormal];
+        [confirmButton setTitle:[WYCommonUtils acquireCurrentLocalizedText:@"wy_affirm"] forState:UIControlStateNormal];
         [confirmButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         confirmButton.backgroundColor = [UIColor colorWithHexString:@"FF7300"];
         confirmButton.titleLabel.font = [UIFont systemFontOfSize:15];

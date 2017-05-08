@@ -44,7 +44,7 @@ static NSString* IMG_URL = @"http://img.wangyuhudong.com";
 // 腾讯Bugly
 #define kBuglyAppID  @"e49fd613ae"
 // 网易云信Key
-#define kNIMAppKey  @"93c2730be068bfa8557eca30c56287bb"
+#define kNIMAppKey  @"7c2bba77bb891fea78bf944199464577"
 // 蒲公英APPID
 #define kPGYAppId   @"1179520d3659a8488b70bb086f0e74bc"
 // 友盟AppKey

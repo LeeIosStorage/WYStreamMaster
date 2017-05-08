@@ -12,6 +12,7 @@
 #import "WYCustomActionSheet.h"
 #import "WYImagePickerController.h"
 #import "UIImage+ProportionalFill.h"
+#import "NSString+Value.h"
 
 typedef NS_ENUM(NSInteger, UploadImageType){
     UploadImageTypeAvatar = 0,   //avatar
@@ -61,6 +62,9 @@ UIImagePickerControllerDelegate
 @property (nonatomic, weak) IBOutlet UILabel *makeupTipLabel;
 @property (nonatomic, weak) IBOutlet UIButton *usrArtsButton;
 @property (nonatomic, weak) IBOutlet UILabel *artsTipLabel;
+
+@property (nonatomic, weak) IBOutlet UIView *agentContainerView;
+@property (nonatomic, weak) IBOutlet UITextField *agentTextField;
 
 @property (nonatomic, weak) IBOutlet UILabel *registerRemindLabel;
 @property (nonatomic, weak) IBOutlet UIButton *registerButton;
@@ -115,31 +119,85 @@ UIImagePickerControllerDelegate
 #pragma mark - Server
 - (void)userRegisterRequest{
     
-}
-
-- (void)uploadAvatarRequest{
+    NSString *accountText = [_accountTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString *emailText = [_emailTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString *agentText = [_agentTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    if (![emailText isValidateEmail]) {
+        [MBProgressHUD showError:@"请输入有效的邮箱"];
+        return;
+    }
+    
+    [MBProgressHUD showMessage:@"注册中..."];
+    
+    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"apply_anchor"];
+    
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
+    
+    [paramsDic setObject:accountText forKey:@"nick_name"];
+    [paramsDic setObject:emailText forKey:@"email"];
+    [paramsDic setObject:_avatarUrlStr forKey:@"head_icon"];
+    [paramsDic setObject:_sugaoUrlStr forKey:@"low_pic"];
+    [paramsDic setObject:_makeupUrlStr forKey:@"mid_pic"];
+    [paramsDic setObject:_artsUrlStr forKey:@"hig_pic"];
+    if (agentText.length > 0) {
+        [paramsDic setObject:agentText forKey:@"channel_code"];
+    }
+    
+    WS(weakSelf)
+    [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
+        NSLog(@"error:%@ data:%@",message,dataObject);
+        [MBProgressHUD hideHUD];
+        
+        if (requestType == WYRequestTypeSuccess) {
+            [MBProgressHUD showSuccess:@"注册成功" toView:weakSelf.view];
+            
+            [weakSelf performSelector:@selector(rightButtonClicked:) withObject:nil afterDelay:1.0];
+        }else{
+            
+            [MBProgressHUD showError:message toView:weakSelf.view];
+        }
+        
+    } failure:^(id responseObject, NSError *error) {
+        [MBProgressHUD hideHUD];
+        [MBProgressHUD showAlertMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_server_request_errer_tip"] toView:weakSelf.view];
+    }];
     
 }
 
 - (void)uploadWithImageData:(NSData *)imageData uploadType:(UploadImageType)uploadType
 {
     [MBProgressHUD showMessage:@"正在上传..."];
-    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"upload_image"];
+    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"uploadfile"];
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
-    [paramsDic setObject:imageData forKey:@"pic"];
+//    [paramsDic setObject:imageData forKey:@"pic"];
     WS(weakSelf);
-    [self.networkManager POST:requestUrl formFileName:@"pic" fileName:@"pic" fileData:imageData mimeType:@"image/png" parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
+    [self.networkManager POST:requestUrl formFileName:@"pic" fileName:@"img.jpg" fileData:imageData mimeType:@"image/jpeg" parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
         
         [MBProgressHUD hideHUD];
         if (requestType == WYRequestTypeSuccess) {
+            
+            NSString *urlStr = nil;
+            if ([dataObject isKindOfClass:[NSArray class]]) {
+                NSArray *array = dataObject;
+                if (array.count > 0) {
+                    id pathObject = [array objectAtIndex:0];
+                    if ([pathObject isKindOfClass:[NSDictionary class]]) {
+                        urlStr = [pathObject objectForKey:@"path"];
+                    }
+                }
+            }else if ([dataObject isKindOfClass:[NSString class]]){
+                urlStr = dataObject;
+            }
+            
             if (uploadType == UploadImageTypeAvatar) {
-                _avatarUrlStr = dataObject;
+                _avatarUrlStr = urlStr;
             }else if (uploadType == UploadImageTypeSugao){
-                _sugaoUrlStr = dataObject;
+                _sugaoUrlStr = urlStr;
             }else if (uploadType == UploadImageTypeMakeup){
-                _makeupUrlStr = dataObject;
+                _makeupUrlStr = urlStr;
             }else if (uploadType == UploadImageTypeArts){
-                _artsUrlStr = dataObject;
+                _artsUrlStr = urlStr;
             }
             [weakSelf refreshHeadViewShow];
         }
@@ -183,11 +241,18 @@ UIImagePickerControllerDelegate
     placeholder = [WYCommonUtils acquireCurrentLocalizedText:@"wy_register_email_placeholder"];
     self.emailTextField.attributedPlaceholder = [WYCommonUtils stringToColorAndFontAttributeString:placeholder range:NSMakeRange(0, placeholder.length) font:[WYStyleSheet currentStyleSheet].subheadLabelFont color:UIColorHex(0xcacaca)];
     
+    placeholder = [WYCommonUtils acquireCurrentLocalizedText:@"wy_register_agent_placeholder"];
+    self.agentTextField.attributedPlaceholder = [WYCommonUtils stringToColorAndFontAttributeString:placeholder range:NSMakeRange(0, placeholder.length) font:[WYStyleSheet currentStyleSheet].subheadLabelFont color:UIColorHex(0xcacaca)];
+    
+    
     self.accountContainerView.layer.cornerRadius = 3.0;
     self.accountContainerView.layer.masksToBounds = YES;
     
     self.emailContainerView.layer.cornerRadius = 3.0;
     self.emailContainerView.layer.masksToBounds = YES;
+    
+    self.agentContainerView.layer.cornerRadius = 3.0;
+    self.agentContainerView.layer.masksToBounds = YES;
     
     self.registerButton.layer.cornerRadius = 3.0;
     self.registerButton.layer.masksToBounds = YES;
@@ -201,6 +266,7 @@ UIImagePickerControllerDelegate
 - (void)textFieldResignFirstResponder{
     [self.accountTextField resignFirstResponder];
     [self.emailTextField resignFirstResponder];
+    [self.agentTextField resignFirstResponder];
 }
 
 - (void)refreshHeadViewShow{
@@ -211,18 +277,19 @@ UIImagePickerControllerDelegate
     [self.usrArtsButton setBackgroundImage:_artsImage forState:UIControlStateNormal];
     
     if (_avatarUrlStr.length > 0) {
-        [self.usrAvatarButton sd_setBackgroundImageWithURL:[NSURL URLWithString:_avatarUrlStr] forState:UIControlStateNormal placeholderImage:nil];
+        [self.usrAvatarButton sd_setBackgroundImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@",_avatarUrlStr]] forState:UIControlStateNormal placeholderImage:nil];
     }
     if (_sugaoUrlStr.length > 0) {
-        [self.usrSugaoButton sd_setBackgroundImageWithURL:[NSURL URLWithString:_sugaoUrlStr] forState:UIControlStateNormal placeholderImage:nil];
+        [self.usrSugaoButton sd_setBackgroundImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@",_sugaoUrlStr]] forState:UIControlStateNormal placeholderImage:nil];
     }
     if (_makeupUrlStr.length > 0) {
-        [self.usrMakeupButton sd_setBackgroundImageWithURL:[NSURL URLWithString:_makeupUrlStr] forState:UIControlStateNormal placeholderImage:nil];
+        [self.usrMakeupButton sd_setBackgroundImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@",_makeupUrlStr]] forState:UIControlStateNormal placeholderImage:nil];
     }
     if (_artsUrlStr.length > 0) {
-        [self.usrArtsButton sd_setBackgroundImageWithURL:[NSURL URLWithString:_artsUrlStr] forState:UIControlStateNormal placeholderImage:nil];
+        [self.usrArtsButton sd_setBackgroundImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@",_artsUrlStr]] forState:UIControlStateNormal placeholderImage:nil];
     }
     
+    [self loginButtonEnabled];
     
     self.tabelView.tableHeaderView = self.registerContainerView;
     [self.tabelView reloadData];
@@ -365,11 +432,15 @@ UIImagePickerControllerDelegate
     
     
     if (textField == _accountTextField && textField.markedTextRange == nil) {
-        if (newString.length > 13 && textField.text.length >= 13) {
+        if (newString.length > 16 && textField.text.length >= 16) {
             return NO;
         }
     }else if (textField == _emailTextField && textField.markedTextRange == nil){
         if (newString.length > 20 && textField.text.length >= 20) {
+            return NO;
+        }
+    }else if (textField == _agentTextField && textField.markedTextRange == nil){
+        if (newString.length > 16 && textField.text.length >= 16) {
             return NO;
         }
     }
@@ -406,20 +477,28 @@ UIImagePickerControllerDelegate
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString  *,id> *)info {
+    
+    CGFloat compressionQuality = WY_IMAGE_COMPRESSION_QUALITY;
     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
     if (!image) {
         image = [info objectForKey:UIImagePickerControllerOriginalImage];
+        compressionQuality = 0.1;
     }
     
     UIImage* imageAfterScale = image;
-    if (image.size.width != image.size.height) {
-        CGSize cropSize = image.size;
-        cropSize.height = MIN(image.size.width, image.size.height);
-        cropSize.width = MIN(image.size.width, image.size.height);
-        imageAfterScale = [image imageCroppedToFitSize:cropSize];
-    }
+//    if (image.size.width != image.size.height) {
+//        CGSize cropSize = image.size;
+////        cropSize.height = MIN(image.size.width, image.size.height);
+////        cropSize.width = MIN(image.size.width, image.size.height);
+//        imageAfterScale = [image imageCroppedToFitSize:cropSize];
+//    }
     
-    NSData *imageData = UIImageJPEGRepresentation(imageAfterScale, WY_IMAGE_COMPRESSION_QUALITY);
+    NSData *imageData = UIImageJPEGRepresentation(imageAfterScale, compressionQuality);
+    if (imageData.length > 400*1024) {
+        UIImage *newImage = [UIImage imageWithData:imageData];
+        imageAfterScale = newImage;
+        imageData = UIImageJPEGRepresentation(newImage, compressionQuality);
+    }
     if (self.uploadImageType == UploadImageTypeAvatar) {
         _avatarImage = imageAfterScale;
     }else if (self.uploadImageType == UploadImageTypeSugao){

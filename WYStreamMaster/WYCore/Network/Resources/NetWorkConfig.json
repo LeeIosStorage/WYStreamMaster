@@ -1,63 +1,74 @@
 {
     "login": {
         "protocol": "http",
-        "version" : "api",
-        "control" : "user",
-        "action"  : "login"
+        "version" : "user",
+        "control" : "api",
+        "action"  : "anchor/login.do"
     },
     "gameList": {
         "protocol": "http",
-        "version" : "api",
-        "control" : "game",
-        "action"  : "get_game_type"
+        "version" : "game_type",
+        "control" : "api",
+        "action"  : "get_game_type.do"
     },
     "gift_num_ranking": {
         "protocol": "http",
-        "version" : "api",
-        "control" : "gift",
-        "action"  : "gift_num_ranking"
+        "version" : "gift",
+        "control" : "api",
+        "action"  : "gift_num_ranking.do"
     },
     "gift_ranking": {
         "protocol": "http",
-        "version" : "api",
-        "control" : "gift",
-        "action"  : "gift_ranking"
+        "version" : "gift",
+        "control" : "api",
+        "action"  : "gift_ranking.do"
     },
     "get_gift_record": {
         "protocol": "http",
-        "version" : "api",
-        "control" : "gift",
-        "action"  : "get_gift_record"
+        "version" : "gift",
+        "control" : "api",
+        "action"  : "get_gift_record.do"
     },
     "anchor_on_off": {
         "protocol": "http",
-        "version" : "api",
-        "control" : "anchor",
-        "action"  : "anchor_on_off"
+        "version" : "anchor",
+        "control" : "api",
+        "action"  : "anchor_on_off.do"
     },
     "get_room_management": {
         "protocol": "http",
-        "version" : "api",
-        "control" : "anchor",
-        "action"  : "get_room_management"
+        "version" : "anchor",
+        "control" : "api",
+        "action"  : "get_room_management.do"
     },
     "save_room_management": {
         "protocol": "http",
-        "version" : "api",
-        "control" : "anchor",
-        "action"  : "save_room_management"
+        "version" : "anchor",
+        "control" : "api",
+        "action"  : "save_room_management.do"
     },
     "save_room_ban": {
         "protocol": "http",
-        "version" : "api",
-        "control" : "anchor",
-        "action"  : "save_room_ban"
+        "version" : "anchor",
+        "control" : "api",
+        "action"  : "save_room_ban.do"
     },
     "temporaryMute": {
         "protocol": "http",
         "version" : "netease",
         "control" : "chatroom",
-        "action"  : "temporaryMute"
+        "action"  : "temporaryMute.do"
     },
-    
+    "uploadfile": {
+        "protocol": "http",
+        "version" : "files",
+        "control" : "api",
+        "action"  : "uploadfile.do"
+    },
+    "apply_anchor": {
+        "protocol": "http",
+        "version" : "anchor",
+        "control" : "api",
+        "action"  : "apply_anchor.do"
+    },
 }

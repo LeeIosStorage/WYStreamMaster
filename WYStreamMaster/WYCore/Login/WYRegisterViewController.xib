@@ -13,6 +13,8 @@
             <connections>
                 <outlet property="accountContainerView" destination="o8s-Zs-fV6" id="gIU-L1-meP"/>
                 <outlet property="accountTextField" destination="aXu-wB-bUg" id="oXP-OO-JiC"/>
+                <outlet property="agentContainerView" destination="gq6-UX-mgh" id="rff-g5-M4a"/>
+                <outlet property="agentTextField" destination="FN8-Ir-ReN" id="PzS-uv-gRE"/>
                 <outlet property="artsTipLabel" destination="2Dx-Pm-Ev2" id="lWE-am-2ue"/>
                 <outlet property="avatarTipLabel" destination="mRC-6I-I1i" id="wnC-Z8-vgU"/>
                 <outlet property="emailContainerView" destination="P0S-av-3af" id="VPm-AI-nBH"/>
@@ -304,9 +306,33 @@
                         <constraint firstAttribute="trailing" secondItem="ddm-lY-25F" secondAttribute="trailing" id="tOa-HY-rMN"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gq6-UX-mgh">
+                    <rect key="frame" x="11" y="349" width="353" height="40"/>
+                    <subviews>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FN8-Ir-ReN">
+                            <rect key="frame" x="11" y="0.0" width="331" height="40"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="k04-2K-DgR"/>
+                            </connections>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="FN8-Ir-ReN" firstAttribute="leading" secondItem="gq6-UX-mgh" secondAttribute="leading" constant="11" id="NLp-Ju-M9I"/>
+                        <constraint firstAttribute="trailing" secondItem="FN8-Ir-ReN" secondAttribute="trailing" constant="11" id="Nr2-L9-2Dc"/>
+                        <constraint firstAttribute="bottom" secondItem="FN8-Ir-ReN" secondAttribute="bottom" id="bC6-Zc-2Rr"/>
+                        <constraint firstAttribute="height" constant="40" id="erl-GA-c9l"/>
+                        <constraint firstItem="FN8-Ir-ReN" firstAttribute="top" secondItem="gq6-UX-mgh" secondAttribute="top" id="fid-NT-9od"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="gq6-UX-mgh" secondAttribute="trailing" constant="11" id="2nR-jb-VpP"/>
+                <constraint firstItem="gq6-UX-mgh" firstAttribute="leading" secondItem="8KZ-sj-RCl" secondAttribute="leading" constant="11" id="4AW-Wc-AO2"/>
                 <constraint firstItem="DNL-V7-UFb" firstAttribute="top" secondItem="8KZ-sj-RCl" secondAttribute="top" constant="24" id="54B-g6-9PX"/>
                 <constraint firstAttribute="trailing" secondItem="o8s-Zs-fV6" secondAttribute="trailing" constant="11" id="9uz-XJ-xos"/>
                 <constraint firstAttribute="bottom" secondItem="sfA-0v-aBN" secondAttribute="bottom" id="M7z-iB-dpL"/>
@@ -318,6 +344,7 @@
                 <constraint firstItem="o8s-Zs-fV6" firstAttribute="top" secondItem="DNL-V7-UFb" secondAttribute="bottom" constant="16" id="Zfy-4T-Iad"/>
                 <constraint firstItem="DNL-V7-UFb" firstAttribute="leading" secondItem="8KZ-sj-RCl" secondAttribute="leading" constant="11" id="a1G-ca-JLb"/>
                 <constraint firstAttribute="trailing" secondItem="BXV-Ri-Nda" secondAttribute="trailing" constant="11" id="bQu-8E-3ll"/>
+                <constraint firstItem="gq6-UX-mgh" firstAttribute="top" secondItem="BXV-Ri-Nda" secondAttribute="bottom" constant="17" id="gaT-Fz-Uiu"/>
                 <constraint firstItem="sfA-0v-aBN" firstAttribute="leading" secondItem="8KZ-sj-RCl" secondAttribute="leading" constant="11" id="jbt-6e-op3"/>
                 <constraint firstAttribute="trailing" secondItem="P0S-av-3af" secondAttribute="trailing" constant="11" id="rJq-8P-sFO"/>
                 <constraint firstAttribute="trailing" secondItem="sfA-0v-aBN" secondAttribute="trailing" constant="11" id="sFB-fe-jQ7"/>

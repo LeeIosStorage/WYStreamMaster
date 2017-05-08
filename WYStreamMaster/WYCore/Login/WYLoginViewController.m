@@ -267,7 +267,7 @@
         
     } failure:^(id responseObject, NSError *error) {
         [MBProgressHUD hideHUD];
-        [MBProgressHUD showAlertMessage:@"连接失败，请检查您的网络设置后重试" toView:weakSelf.view];
+        [MBProgressHUD showAlertMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_server_request_errer_tip"] toView:weakSelf.view];
     }];
 }
 
@@ -750,7 +750,7 @@
     NSString *newString = [oldString stringByReplacingCharactersInRange:range withString:string];
     
     if (textField == self.loginAccountTextField) {
-        if (newString.length > 13 && self.loginPasswordTextField.text.length >= 6) {
+        if (newString.length > 16 && self.loginPasswordTextField.text.length >= 6) {
             self.loginButton.canClicked = YES;
         } else {
             self.loginButton.canClicked = NO;
@@ -775,7 +775,7 @@
     
     
     if (textField == _loginAccountTextField && textField.markedTextRange == nil) {
-        if (newString.length > 13 && textField.text.length >= 13) {
+        if (newString.length > 16 && textField.text.length >= 16) {
             return NO;
         }
     }else if (textField == _loginPasswordTextField && textField.markedTextRange == nil){

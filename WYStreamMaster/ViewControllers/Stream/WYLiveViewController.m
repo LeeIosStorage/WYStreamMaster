@@ -317,7 +317,7 @@ WYAnchorInfoViewDelegate
 - (IBAction)doBackAction:(id)sender{
     
     WEAKSELF
-    UIAlertView *alertView = [UIAlertView bk_showAlertViewWithTitle:@"确定要停止直播吗？" message:nil cancelButtonTitle:@"再想想" otherButtonTitles:@[@"确定"] handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
+    UIAlertView *alertView = [UIAlertView bk_showAlertViewWithTitle:[WYCommonUtils acquireCurrentLocalizedText:@"确定要停止直播吗？"] message:nil cancelButtonTitle:[WYCommonUtils acquireCurrentLocalizedText:@"再想想"] otherButtonTitles:@[[WYCommonUtils acquireCurrentLocalizedText:@"wy_affirm"]] handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
         if (buttonIndex == 1) {
             
             [weakSelf.streamingSessionManager destroyStream];
