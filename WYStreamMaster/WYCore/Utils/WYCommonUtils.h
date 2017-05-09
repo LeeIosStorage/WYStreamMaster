@@ -64,6 +64,9 @@
 
 + (WYSuperViewController *)getCurrentVC;
 
+//震动
++ (void)playSystemSoundVibrate;
+
 //取当前系统语言对应文案
 + (NSString *)acquireCurrentLocalizedText:(NSString *)text;
 + (NSString *)showServerErrorLocalizedText;

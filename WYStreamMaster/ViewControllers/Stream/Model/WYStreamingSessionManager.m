@@ -65,7 +65,7 @@ PLMediaStreamingSessionDelegate
             dispatch_async(dispatch_get_main_queue(), ^{
                 NSLog(@"%@", log);
                 if (PLStreamStartStateSuccess == feedback) {
-                    [MBProgressHUD showAlertMessage:@"直播成功" toView:nil];
+                    [MBProgressHUD showAlertMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_live_succeed_tip"] toView:nil];
                     
                 } else {
                     [[[UIAlertView alloc] initWithTitle:@"错误" message:@"直播失败了，请返回重试" delegate:nil cancelButtonTitle:@"知道啦" otherButtonTitles:nil] show];

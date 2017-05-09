@@ -314,7 +314,7 @@ static int medalImageView_tag = 201, nameLabel_tag = 202, priceLabel_tag = 203;
 }
 - (UISegmentedControl *)segmentedControl{
     if (!_segmentedControl) {
-        _segmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"贡献周榜",@"贡献月榜",@"贡献总榜", nil]];
+        _segmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:[WYCommonUtils acquireCurrentLocalizedText:@"wy_contribution_weekly"],[WYCommonUtils acquireCurrentLocalizedText:@"wy_contribution_monthly"],[WYCommonUtils acquireCurrentLocalizedText:@"wy_contribution_total"], nil]];
         _segmentedControl.layer.masksToBounds = YES;
         _segmentedControl.layer.cornerRadius = 15;
         [_segmentedControl.layer setBorderWidth:1];

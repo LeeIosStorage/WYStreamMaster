@@ -17,5 +17,6 @@
 @property (copy, nonatomic) NSString *senderName;
 @property (copy, nonatomic) NSString *senderID;
 @property (copy, nonatomic) NSString *giftShowImage;
+@property (assign, nonatomic) int isNeedNoticeAnchor;//加震动
 
 @end

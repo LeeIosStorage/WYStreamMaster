@@ -81,6 +81,7 @@
 		446D43251E829030002E5C52 /* WYContributionListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 446D43241E829030002E5C52 /* WYContributionListView.m */; };
 		446D43281E837DAC002E5C52 /* WYAnchorManageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 446D43271E837DAC002E5C52 /* WYAnchorManageView.m */; };
 		446D432A1E839520002E5C52 /* WYAnchorManageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 446D43291E839520002E5C52 /* WYAnchorManageView.xib */; };
+		449C663A1EC1A97500648A5F /* WYGiftAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 449C66391EC1A97500648A5F /* WYGiftAnimationManager.m */; };
 		44D2F7C01E7A6FBF00122866 /* WYStreamingConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2F7BF1E7A6FBF00122866 /* WYStreamingConfig.m */; };
 		44D2F7C51E7BCA6B00122866 /* WYSocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2F7C41E7BCA6B00122866 /* WYSocketManager.m */; };
 		44D2F7CA1E7BECFF00122866 /* WYGiftRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2F7C91E7BECFF00122866 /* WYGiftRecordView.m */; };
@@ -267,6 +268,8 @@
 		446D43261E837DAC002E5C52 /* WYAnchorManageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYAnchorManageView.h; sourceTree = "<group>"; };
 		446D43271E837DAC002E5C52 /* WYAnchorManageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYAnchorManageView.m; sourceTree = "<group>"; };
 		446D43291E839520002E5C52 /* WYAnchorManageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYAnchorManageView.xib; sourceTree = "<group>"; };
+		449C66381EC1A97500648A5F /* WYGiftAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYGiftAnimationManager.h; sourceTree = "<group>"; };
+		449C66391EC1A97500648A5F /* WYGiftAnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYGiftAnimationManager.m; sourceTree = "<group>"; };
 		44D2F7BE1E7A6FBF00122866 /* WYStreamingConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYStreamingConfig.h; sourceTree = "<group>"; };
 		44D2F7BF1E7A6FBF00122866 /* WYStreamingConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYStreamingConfig.m; sourceTree = "<group>"; };
 		44D2F7C31E7BCA6B00122866 /* WYSocketManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYSocketManager.h; sourceTree = "<group>"; };
@@ -696,6 +699,8 @@
 				44D2F7DA1E7FC30500122866 /* YTChatModel.m */,
 				44D2F7DD1E7FC30500122866 /* YTEnterExtraModel.h */,
 				44D2F7DE1E7FC30500122866 /* YTEnterExtraModel.m */,
+				449C66381EC1A97500648A5F /* WYGiftAnimationManager.h */,
+				449C66391EC1A97500648A5F /* WYGiftAnimationManager.m */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -1004,6 +1009,7 @@
 				44203D8E1E714BD600D59B5E /* UIButton+YTLoginButton.m in Sources */,
 				44203DBD1E72551600D59B5E /* WYLiveViewController.m in Sources */,
 				44203D871E714BD600D59B5E /* WYNavigationController.m in Sources */,
+				449C663A1EC1A97500648A5F /* WYGiftAnimationManager.m in Sources */,
 				444DA65C1E8BDEE700C45DE5 /* WYGiftHistoryModel.m in Sources */,
 				44D2F7FA1E7FFDB700122866 /* YTGiftAttachment.m in Sources */,
 				44203D141E6FE78800D59B5E /* AppDelegate.m in Sources */,

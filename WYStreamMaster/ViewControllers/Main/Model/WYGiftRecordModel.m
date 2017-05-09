@@ -11,10 +11,10 @@
 @implementation WYGiftRecordModel
 
 + (NSDictionary *)modelCustomPropertyMapper {
-    return @{@"giftId":@"gift_type_id_fk",
+    return @{@"giftId":@"giftId",
              @"giftName":@"gift_name",
              @"giftNumber":@"gift_number",
-             @"giftPrice":@"gift_total_value",
+             @"giftPrice":@"gift_value",
              };
 }
 

@@ -331,6 +331,10 @@ static bool dateFormatterOFUSInvalid ;
     return result;
 }
 
++ (void)playSystemSoundVibrate{
+    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+}
+
 + (NSString *)acquireCurrentLocalizedText:(NSString *)text{
     NSString *localizedText = NSLocalizedString(text, nil);
     return localizedText;

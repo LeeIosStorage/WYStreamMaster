@@ -12,7 +12,7 @@
 
 + (NSDictionary *)modelCustomPropertyMapper {
     return @{@"sendUserId":@"send_user_code",
-             @"giftTotalValue":@"gift_total_value",
+             @"giftTotalValue":@"gift_value",
              @"nickName":@"nickname",
              };
 }

@@ -23,6 +23,7 @@
 #import "WYCustomAlertView.h"
 #import "WYCustomActionSheet.h"
 #import "WYLiveViewController.h"
+#import "WYGiftAnimationManager.h"
 
 #define ChatData_MaxCount 100
 
@@ -39,6 +40,8 @@
 //@property (strong, nonatomic) YTChatBottomView  *bottomView;
 
 @property (strong, nonatomic) LiveGiftShow *giftShow;
+
+@property (strong, nonatomic) WYGiftAnimationManager *giftAnimationManager;
 
 @property (weak, nonatomic) WYLiveViewController  *liveRoomVC;
 
@@ -132,6 +135,10 @@
 - (void)startPresentAnimationWithChatModel:(YTChatModel *)chatModel
 {
     YTGiftAttachment *giftAttachment = ((NIMCustomObject *)chatModel.message.messageObject).attachment;
+    
+    //大礼物动画处理
+    [self.giftAnimationManager startPlaySystemSoundWithVibrate:giftAttachment];
+    
     UserModel *userModel = [[UserModel alloc] init];
     userModel.name = giftAttachment.senderName;
     userModel.iconUrl = @"";
@@ -582,6 +589,13 @@
 //        _giftShow.backgroundColor = [UIColor whiteColor];
     }
     return _giftShow;
+}
+
+- (WYGiftAnimationManager *)giftAnimationManager{
+    if (!_giftAnimationManager) {
+        _giftAnimationManager = [[WYGiftAnimationManager alloc] init];
+    }
+    return _giftAnimationManager;
 }
 
 - (WYLiveViewController *)liveRoomVC
