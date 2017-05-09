@@ -112,7 +112,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib. counting stars
     //self.edgesForExtendedLayout = UIRectEdgeTop;
-
+    
     [self initViewUI];
     //init subviews
     [self initSubviews];
@@ -229,7 +229,7 @@
 #pragma mark - request
 - (void)userLoginRequest{
     
-    [MBProgressHUD showMessage:@"登录中..."];
+    [MBProgressHUD showMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_log_in"]];
     
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"login"];
     

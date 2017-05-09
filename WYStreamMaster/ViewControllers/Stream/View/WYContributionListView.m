@@ -141,7 +141,7 @@ UITableViewDataSource
         }
         
     } failure:^(id responseObject, NSError *error) {
-        [MBProgressHUD showAlertMessage:@"请求失败，请检查您的网络设置后重试" toView:nil];
+        [MBProgressHUD showAlertMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_server_request_errer_tip"] toView:nil];
     }];
     
 }

@@ -124,11 +124,11 @@ UIImagePickerControllerDelegate
     NSString *agentText = [_agentTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
     if (![emailText isValidateEmail]) {
-        [MBProgressHUD showError:@"请输入有效的邮箱"];
+        [MBProgressHUD showError:[WYCommonUtils acquireCurrentLocalizedText:@"wy_validate_email_tip"]];
         return;
     }
     
-    [MBProgressHUD showMessage:@"注册中..."];
+    [MBProgressHUD showMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_info_submit_ing"]];
     
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"apply_anchor"];
     
@@ -150,7 +150,7 @@ UIImagePickerControllerDelegate
         [MBProgressHUD hideHUD];
         
         if (requestType == WYRequestTypeSuccess) {
-            [MBProgressHUD showSuccess:@"注册成功" toView:weakSelf.view];
+            [MBProgressHUD showSuccess:[WYCommonUtils acquireCurrentLocalizedText:@"wy_register_result_succeed_tip"] toView:weakSelf.view];
             
             [weakSelf performSelector:@selector(rightButtonClicked:) withObject:nil afterDelay:1.0];
         }else{
@@ -160,7 +160,7 @@ UIImagePickerControllerDelegate
         
     } failure:^(id responseObject, NSError *error) {
         [MBProgressHUD hideHUD];
-        [MBProgressHUD showAlertMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_server_request_errer_tip"] toView:weakSelf.view];
+        [MBProgressHUD showAlertMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_register_result_failure_tip"] toView:weakSelf.view];
     }];
     
 }
@@ -235,7 +235,7 @@ UIImagePickerControllerDelegate
     [rightButton setImage:[UIImage imageNamed:@"wy_login_close_icon"] forState:UIControlStateNormal];
     self.rightButton = rightButton;
     
-    NSString *placeholder = [WYCommonUtils acquireCurrentLocalizedText:@"wy_login_account_placeholder"];
+    NSString *placeholder = [WYCommonUtils acquireCurrentLocalizedText:@"wy_register_account_placeholder"];
     self.accountTextField.attributedPlaceholder = [WYCommonUtils stringToColorAndFontAttributeString:placeholder range:NSMakeRange(0, placeholder.length) font:[WYStyleSheet currentStyleSheet].subheadLabelFont color:UIColorHex(0xcacaca)];
     
     placeholder = [WYCommonUtils acquireCurrentLocalizedText:@"wy_register_email_placeholder"];
@@ -277,16 +277,16 @@ UIImagePickerControllerDelegate
     [self.usrArtsButton setBackgroundImage:_artsImage forState:UIControlStateNormal];
     
     if (_avatarUrlStr.length > 0) {
-        [self.usrAvatarButton sd_setBackgroundImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@",_avatarUrlStr]] forState:UIControlStateNormal placeholderImage:nil];
+        [self.usrAvatarButton sd_setBackgroundImageWithURL:[NSURL URLWithString:_avatarUrlStr] forState:UIControlStateNormal placeholderImage:nil];
     }
     if (_sugaoUrlStr.length > 0) {
-        [self.usrSugaoButton sd_setBackgroundImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@",_sugaoUrlStr]] forState:UIControlStateNormal placeholderImage:nil];
+        [self.usrSugaoButton sd_setBackgroundImageWithURL:[NSURL URLWithString:_sugaoUrlStr] forState:UIControlStateNormal placeholderImage:nil];
     }
     if (_makeupUrlStr.length > 0) {
-        [self.usrMakeupButton sd_setBackgroundImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@",_makeupUrlStr]] forState:UIControlStateNormal placeholderImage:nil];
+        [self.usrMakeupButton sd_setBackgroundImageWithURL:[NSURL URLWithString:_makeupUrlStr] forState:UIControlStateNormal placeholderImage:nil];
     }
     if (_artsUrlStr.length > 0) {
-        [self.usrArtsButton sd_setBackgroundImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@",_artsUrlStr]] forState:UIControlStateNormal placeholderImage:nil];
+        [self.usrArtsButton sd_setBackgroundImageWithURL:[NSURL URLWithString:_artsUrlStr] forState:UIControlStateNormal placeholderImage:nil];
     }
     
     [self loginButtonEnabled];

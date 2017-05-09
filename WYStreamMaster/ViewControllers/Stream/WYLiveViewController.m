@@ -137,7 +137,7 @@ WYAnchorInfoViewDelegate
         }
         
     } failure:^(id responseObject, NSError *error) {
-        [MBProgressHUD showAlertMessage:@"请求失败，请检查您的网络设置后重试" toView:weakSelf.view];
+        [MBProgressHUD showAlertMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_server_request_errer_tip"] toView:weakSelf.view];
     }];
 }
 
@@ -302,7 +302,7 @@ WYAnchorInfoViewDelegate
 
 - (void)serverNoticeFinishStream{
     
-    [MBProgressHUD showError:@"您已被暂时禁止直播，请联系娱乐传奇" toView:nil];
+    [MBProgressHUD showError:[WYCommonUtils acquireCurrentLocalizedText:@"wy_banned_live_tip"] toView:nil];
     
     [self.streamingSessionManager destroyStream];
     [self.roomView.chatroomControl exitRoom];

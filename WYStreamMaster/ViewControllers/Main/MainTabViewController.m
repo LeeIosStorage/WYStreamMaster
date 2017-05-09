@@ -118,7 +118,7 @@ UITextFieldDelegate
 
 - (void)anchorOnLineRequest{
     
-    [MBProgressHUD showMessage:@"直播准备中..."];
+    [MBProgressHUD showMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_live_prepare_ing"]];
     
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"anchor_on_off"];
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
@@ -264,11 +264,11 @@ UITextFieldDelegate
     self.roomNoticeTitle = self.roomNoticeTextField.text;
     
     if ([self.roomNameTitle length] == 0) {
-        [MBProgressHUD showError:@"给自己取一个闪亮的房间名字吧！"];
+        [MBProgressHUD showError:[WYCommonUtils acquireCurrentLocalizedText:@"给自己取一个闪亮的房间名字吧！"]];
         return;
     }
     if ([self.gameCategory length] == 0 || [self.gameCategoryId length] == 0) {
-        [MBProgressHUD showError:@"请选择直播的游戏"];
+        [MBProgressHUD showError:[WYCommonUtils acquireCurrentLocalizedText:@"选择直播的游戏"]];
         return;
     }
     if ([self.roomType intValue] == 1 && self.vipRoomPasswordTextField.text.length == 0) {
@@ -280,7 +280,7 @@ UITextFieldDelegate
         // 麦克风未授权
         WEAKSELF
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"无法访问麦克风或相机" message:@"请前往系统设置->隐私->麦克风/相机 打开权限" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:[WYCommonUtils acquireCurrentLocalizedText:@"wy_affirm"] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
             if([[UIApplication sharedApplication] canOpenURL:url]) {
                 NSURL*url =[NSURL URLWithString:UIApplicationOpenSettingsURLString];
