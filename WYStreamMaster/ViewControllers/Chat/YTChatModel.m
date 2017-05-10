@@ -201,18 +201,22 @@
 {
     YTGiftAttachment *giftAttachment = ((NIMCustomObject *)self.message.messageObject).attachment;
     NSString *contentString = nil;
+    NSString *senderUserName = giftAttachment.senderName;
+    if (!senderUserName) {
+        senderUserName = @"";
+    }
     if ([giftAttachment.giftNum integerValue] > 1) {
-        contentString = [NSString stringWithFormat:@"%@ : 送给主播1个 %@  %@连击!",[self getUserName],giftAttachment.giftName,giftAttachment.giftNum];
+        contentString = [NSString stringWithFormat:@"%@ : 送给主播1个 %@  %@连击!",senderUserName,giftAttachment.giftName,giftAttachment.giftNum];
     } else {
-        contentString = [NSString stringWithFormat:@"%@ : 送给主播1个 %@  ",[self getUserName],giftAttachment.giftName];
+        contentString = [NSString stringWithFormat:@"%@ : 送给主播1个 %@  ",senderUserName,giftAttachment.giftName];
     }
     self.contentString = contentString;
 
-    NSRange nameRane = [contentString rangeOfString:[NSString stringWithFormat:@"%@ :",[self getUserName]]];
+    NSRange nameRane = [contentString rangeOfString:[NSString stringWithFormat:@"%@ :",senderUserName]];
     self.nameRange = nameRane;
     NSMutableAttributedString *contentAttributedString = [[NSMutableAttributedString alloc] initWithString:contentString];
     
-    NSRange showRane = [contentString rangeOfString:[NSString stringWithFormat:@"%@ : 送给主播1个 %@",[self getUserName],giftAttachment.giftName]];
+    NSRange showRane = [contentString rangeOfString:[NSString stringWithFormat:@"%@ : 送给主播1个 %@",senderUserName,giftAttachment.giftName]];
     
     if ([giftAttachment.giftNum integerValue] > 0) {
         
@@ -242,7 +246,7 @@
 //    NSAttributedString *giftAttributed = [NSMutableAttributedString attachmentStringWithContent:bgView contentMode:UIViewContentModeCenter attachmentSize:bgView.frame.size alignToFont:[UIFont systemFontOfSize:20.f] alignment:YYTextVerticalAlignmentCenter];
     
     
-    NSMutableAttributedString *barrageAttributed = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ 送给主播1个 %@",[self getUserName],giftAttachment.giftName]];
+    NSMutableAttributedString *barrageAttributed = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ 送给主播1个 %@",senderUserName,giftAttachment.giftName]];
     
 //    if (giftAttributed) {
 //        [contentAttributedString insertAttributedString:giftAttributed atIndex:showRane.length];

@@ -34,7 +34,7 @@
                     ((YTGiftAttachment *)attachment).senderID = data[@"senderID"];
                     ((YTGiftAttachment *)attachment).senderName = data[@"senderName"];
                     ((YTGiftAttachment *)attachment).giftShowImage = data[@"giftShowImage"];
-                    ((YTGiftAttachment *)attachment).isNeedNoticeAnchor = (int)data[@"isNeedNoticeAnchor"];
+                    ((YTGiftAttachment *)attachment).isNeedNoticeAnchor = [data[@"isNeedNoticeAnchor"] intValue];
                     
                     break;
                 case CustomMessageTypeLocalNotification :

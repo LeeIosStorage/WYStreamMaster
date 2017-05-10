@@ -34,11 +34,12 @@
     
 }
 
-- (void)updateWithMemeber:(id )member{
+- (void)updateWithMemeber:(id)member{
     
-    NIMChatroomMember *roomMember = member;
+    NIMChatroomMember *roomMember = (NIMChatroomMember *)member;
     
-    NSURL *avatarUrl = [NSURL URLWithString:roomMember.roomAvatar];
+    NSString *urlStr = [roomMember.roomAvatar stringByReplacingOccurrencesOfString:@"https" withString:@"http"];
+    NSURL *avatarUrl = [NSURL URLWithString:urlStr];
     [WYCommonUtils setImageWithURL:avatarUrl setImageView:self.avatarImageView placeholderImage:@"wy_common_placehoder_image"];
     self.userNameLabel.text = roomMember.roomNickname;
     

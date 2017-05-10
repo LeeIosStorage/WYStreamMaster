@@ -218,7 +218,18 @@
 {
     WEAKSELF
     
-    if ([model.message.from isSelf]) {
+    NSString *userId = model.message.from;
+    BOOL giftMessage = NO;
+    if (model.message.messageType == NIMMessageTypeCustom) {
+        id attachment = ((NIMCustomObject *)model.message.messageObject).attachment;
+        if ([attachment isKindOfClass:[YTGiftAttachment class]]) {
+            giftMessage = YES;
+            YTGiftAttachment *giftAttachment = attachment;
+            userId = giftAttachment.senderID;
+        }
+    }
+    
+    if ([model.message.from isSelf] && !giftMessage) {
         return;
     }
 //    [self getMemberInfoWithUserId:[model.message.from realUserId]];
@@ -226,7 +237,7 @@
     
     NIMChatroomMembersByIdsRequest *request = [[NIMChatroomMembersByIdsRequest alloc] init];
     request.roomId = [WYLoginUserManager chatRoomId];
-    request.userIds = @[model.message.from];
+    request.userIds = @[userId];
     [[NIMSDK sharedSDK].chatroomManager fetchChatroomMembersByIds:request completion:^(NSError * _Nullable error, NSArray<NIMChatroomMember *> * _Nullable members) {
         
         if (members.count == 0) {

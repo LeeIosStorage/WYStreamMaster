@@ -13,6 +13,6 @@
 @property (copy, nonatomic) void (^letMemberMuteBlock)(void);
 @property (copy, nonatomic) void (^letManagerBlock)(void);
 
-- (void)updateWithMemeber:(id )member;
+- (void)updateWithMemeber:(id)member;
 
 @end
