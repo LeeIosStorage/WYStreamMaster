@@ -750,7 +750,7 @@
     NSString *newString = [oldString stringByReplacingCharactersInRange:range withString:string];
     
     if (textField == self.loginAccountTextField) {
-        if (newString.length > 16 && self.loginPasswordTextField.text.length >= 6) {
+        if (newString.length > 30 && self.loginPasswordTextField.text.length >= 6) {
             self.loginButton.canClicked = YES;
         } else {
             self.loginButton.canClicked = NO;
@@ -775,7 +775,7 @@
     
     
     if (textField == _loginAccountTextField && textField.markedTextRange == nil) {
-        if (newString.length > 16 && textField.text.length >= 16) {
+        if (newString.length > 30 && textField.text.length >= 30) {
             return NO;
         }
     }else if (textField == _loginPasswordTextField && textField.markedTextRange == nil){

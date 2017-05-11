@@ -432,7 +432,7 @@ UIImagePickerControllerDelegate
     
     
     if (textField == _accountTextField && textField.markedTextRange == nil) {
-        if (newString.length > 16 && textField.text.length >= 16) {
+        if (newString.length > 10 && textField.text.length >= 10) {
             return NO;
         }
     }else if (textField == _emailTextField && textField.markedTextRange == nil){
