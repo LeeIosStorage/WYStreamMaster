@@ -64,6 +64,8 @@
 		44203DBD1E72551600D59B5E /* WYLiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203DBB1E72551600D59B5E /* WYLiveViewController.m */; };
 		44203DBE1E72551600D59B5E /* WYLiveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44203DBC1E72551600D59B5E /* WYLiveViewController.xib */; };
 		44203DC31E76380A00D59B5E /* WYStreamingSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203DC21E76380A00D59B5E /* WYStreamingSessionManager.m */; };
+		442317801EC56A5A003AB4AE /* WYSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4423177E1EC56A5A003AB4AE /* WYSettingViewController.m */; };
+		442317811EC56A5A003AB4AE /* WYSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4423177F1EC56A5A003AB4AE /* WYSettingViewController.xib */; };
 		444AA54C1EB9A74900A80FB9 /* WYRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 444AA54A1EB9A74900A80FB9 /* WYRegisterViewController.m */; };
 		444AA54D1EB9A74900A80FB9 /* WYRegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 444AA54B1EB9A74900A80FB9 /* WYRegisterViewController.xib */; };
 		444AA55F1EB9C72000A80FB9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 444AA5611EB9C72000A80FB9 /* InfoPlist.strings */; };
@@ -229,6 +231,9 @@
 		44203DBC1E72551600D59B5E /* WYLiveViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYLiveViewController.xib; sourceTree = "<group>"; };
 		44203DC11E76380A00D59B5E /* WYStreamingSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYStreamingSessionManager.h; sourceTree = "<group>"; };
 		44203DC21E76380A00D59B5E /* WYStreamingSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYStreamingSessionManager.m; sourceTree = "<group>"; };
+		4423177D1EC56A5A003AB4AE /* WYSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYSettingViewController.h; sourceTree = "<group>"; };
+		4423177E1EC56A5A003AB4AE /* WYSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYSettingViewController.m; sourceTree = "<group>"; };
+		4423177F1EC56A5A003AB4AE /* WYSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYSettingViewController.xib; sourceTree = "<group>"; };
 		444AA5491EB9A74900A80FB9 /* WYRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYRegisterViewController.h; sourceTree = "<group>"; };
 		444AA54A1EB9A74900A80FB9 /* WYRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYRegisterViewController.m; sourceTree = "<group>"; };
 		444AA54B1EB9A74900A80FB9 /* WYRegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYRegisterViewController.xib; sourceTree = "<group>"; };
@@ -421,6 +426,7 @@
 		44203D3B1E7008BC00D59B5E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				4423177C1EC56A5A003AB4AE /* Set */,
 				44D2F7C11E7BCA2100122866 /* Chat */,
 				44203DB31E7245FA00D59B5E /* Main */,
 				44203DB91E7254A900D59B5E /* Stream */,
@@ -679,6 +685,16 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		4423177C1EC56A5A003AB4AE /* Set */ = {
+			isa = PBXGroup;
+			children = (
+				4423177D1EC56A5A003AB4AE /* WYSettingViewController.h */,
+				4423177E1EC56A5A003AB4AE /* WYSettingViewController.m */,
+				4423177F1EC56A5A003AB4AE /* WYSettingViewController.xib */,
+			);
+			path = Set;
+			sourceTree = "<group>";
+		};
 		44D2F7C11E7BCA2100122866 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
@@ -887,6 +903,7 @@
 				44203D1C1E6FE78800D59B5E /* Assets.xcassets in Resources */,
 				446D432A1E839520002E5C52 /* WYAnchorManageView.xib in Resources */,
 				44203D961E714BD600D59B5E /* YTQuickLoginViewController.xib in Resources */,
+				442317811EC56A5A003AB4AE /* WYSettingViewController.xib in Resources */,
 				44203DAE1E715A9100D59B5E /* NetWorkConfig.json in Resources */,
 				444DA6531E8A718000C45DE5 /* WYChatUserNormalView.xib in Resources */,
 				44D9B30B1E96831E00E15BEA /* WYLiveGameResultView.xib in Resources */,
@@ -1026,6 +1043,7 @@
 				441C24021E83FDA20020557C /* ZYGiftListModel.m in Sources */,
 				44203D111E6FE78800D59B5E /* main.m in Sources */,
 				44203D8D1E714BD600D59B5E /* UIButton+YTCodeVerify.m in Sources */,
+				442317801EC56A5A003AB4AE /* WYSettingViewController.m in Sources */,
 				44203D841E714BD600D59B5E /* RMSuperViewController.m in Sources */,
 				44203D891E714BD600D59B5E /* WYTabBarController.m in Sources */,
 				441C24011E83FDA20020557C /* YTGradientColorLabel.m in Sources */,

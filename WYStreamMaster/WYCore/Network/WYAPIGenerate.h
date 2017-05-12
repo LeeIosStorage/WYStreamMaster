@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-static NSString* defaultNetworkHost =  @"103.230.243.174:8888";//线上
+static NSString* defaultNetworkHost =  @"legend8888.com";//线上103.230.243.174:80 
 static NSString* defaultNetworkHostTest = @"172.16.10.27";//局域网
 static NSString* defaultNetworkPreRelease = @"139.196.180.249:6677";//以后接入testapi
 @interface WYAPIGenerate : NSObject

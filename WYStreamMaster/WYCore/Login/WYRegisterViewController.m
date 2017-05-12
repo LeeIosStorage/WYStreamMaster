@@ -13,6 +13,7 @@
 #import "WYImagePickerController.h"
 #import "UIImage+ProportionalFill.h"
 #import "NSString+Value.h"
+#import "UINavigationBar+Awesome.h"
 
 typedef NS_ENUM(NSInteger, UploadImageType){
     UploadImageTypeAvatar = 0,   //avatar
@@ -336,12 +337,7 @@ UIImagePickerControllerDelegate
     }
     imagePickerController.sourceType = sourceType;
     
-    [imagePickerController.navigationBar setBackgroundImage:[UIImage new] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
-    [imagePickerController.navigationBar setShadowImage:[UIImage new]];
-    CGRect rect = imagePickerController.navigationBar.frame;
-    UIImageView *navbgImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, -20, rect.size.width, 72)];
-    navbgImageView.image = [UIImage imageNamed:@"wy_navbar_bg"];
-    [imagePickerController.navigationBar addSubview:navbgImageView];
+    [imagePickerController.navigationBar lt_setBackgroundImage:[UIImage imageNamed:@"wy_navbar_bg"]];
     
     [imagePickerController.navigationBar setTranslucent:NO];
     imagePickerController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,[WYStyleSheet defaultStyleSheet].navTitleFont,NSFontAttributeName,nil];

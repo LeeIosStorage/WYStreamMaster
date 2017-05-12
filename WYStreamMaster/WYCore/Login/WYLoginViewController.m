@@ -250,7 +250,7 @@
             
             WYLoginModel *loginModel = (WYLoginModel *)dataObject;
             
-//            loginModel.chatRoomId = @"8276185";
+//            loginModel.anchorPushUrl = @"rtmp://218.6.110.176/pili-publish.kaisaiba.com/live/piaoliangmeizi2";
             
             [WYLoginUserManager updateUserDataWithLoginModel:loginModel];
             
