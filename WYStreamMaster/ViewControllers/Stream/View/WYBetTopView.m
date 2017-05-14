@@ -134,7 +134,8 @@
         UILabel *nameLabel = [view viewWithTag:2];
         
         NSDictionary *dicInfo = [self.betTopList objectAtIndex:index];
-        NSURL *avatarUrl = [NSURL URLWithString:[dicInfo objectForKey:@"icon"]];
+        
+        NSURL *avatarUrl = [NSURL URLWithString:[dicInfo stringObjectForKey:@"icon"]];
         [WYCommonUtils setImageWithURL:avatarUrl setImageView:avatarImageView placeholderImage:@"wy_common_placehoder_image"];
         UIImage *rankImage = [UIImage imageNamed:@"wy_betTop_1_icon"];
         if (index == 1) {

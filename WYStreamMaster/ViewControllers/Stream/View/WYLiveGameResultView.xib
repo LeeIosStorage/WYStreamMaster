@@ -20,10 +20,10 @@
                     <rect key="frame" x="1" y="3" width="93" height="106"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wy_game_player_1" translatesAutoresizingMaskIntoConstraints="NO" id="gpQ-w0-aWB">
-                            <rect key="frame" x="33" y="5" width="27" height="30"/>
+                            <rect key="frame" x="21" y="5" width="51" height="25"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="30" id="jMK-wl-pBV"/>
-                                <constraint firstAttribute="width" constant="27.5" id="kHe-xF-PWf"/>
+                                <constraint firstAttribute="height" constant="25" id="jMK-wl-pBV"/>
+                                <constraint firstAttribute="width" constant="51" id="kHe-xF-PWf"/>
                             </constraints>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wy_gameresult_bg" translatesAutoresizingMaskIntoConstraints="NO" id="BWy-VD-4B3">
@@ -59,10 +59,10 @@
                             </constraints>
                         </view>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wy_gameresult_win_1" translatesAutoresizingMaskIntoConstraints="NO" id="wxz-cg-fBr">
-                            <rect key="frame" x="22" y="81" width="50" height="21"/>
+                            <rect key="frame" x="17" y="80.5" width="60" height="22"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="21" id="tJd-TU-XeK"/>
-                                <constraint firstAttribute="width" constant="50" id="u0M-6x-wqE"/>
+                                <constraint firstAttribute="height" constant="22" id="tJd-TU-XeK"/>
+                                <constraint firstAttribute="width" constant="60" id="u0M-6x-wqE"/>
                             </constraints>
                         </imageView>
                     </subviews>
@@ -84,10 +84,10 @@
                     <rect key="frame" x="95" y="3" width="92.5" height="106"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wy_game_player_2" translatesAutoresizingMaskIntoConstraints="NO" id="pzv-LC-joG">
-                            <rect key="frame" x="32" y="5" width="27" height="30"/>
+                            <rect key="frame" x="20" y="5" width="51" height="25"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="27.5" id="xu0-K4-O6F"/>
-                                <constraint firstAttribute="height" constant="30" id="yRA-aC-9Kr"/>
+                                <constraint firstAttribute="width" constant="51" id="xu0-K4-O6F"/>
+                                <constraint firstAttribute="height" constant="25" id="yRA-aC-9Kr"/>
                             </constraints>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wy_gameresult_bg" translatesAutoresizingMaskIntoConstraints="NO" id="FG4-V4-MNK">
@@ -123,10 +123,10 @@
                             </constraints>
                         </view>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wy_gameresult_win_1" translatesAutoresizingMaskIntoConstraints="NO" id="S1U-ug-PeX">
-                            <rect key="frame" x="21" y="81" width="50" height="21"/>
+                            <rect key="frame" x="16" y="80.5" width="60" height="22"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="21" id="0OS-vh-UHO"/>
-                                <constraint firstAttribute="width" constant="50" id="JE9-JB-mv1"/>
+                                <constraint firstAttribute="height" constant="22" id="0OS-vh-UHO"/>
+                                <constraint firstAttribute="width" constant="60" id="JE9-JB-mv1"/>
                             </constraints>
                         </imageView>
                     </subviews>
@@ -148,10 +148,10 @@
                     <rect key="frame" x="188.5" y="3" width="93" height="106"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wy_game_player_3" translatesAutoresizingMaskIntoConstraints="NO" id="lK8-Wj-WsP">
-                            <rect key="frame" x="33" y="5" width="27" height="30"/>
+                            <rect key="frame" x="21" y="5" width="51" height="25"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="30" id="8fx-8R-gSn"/>
-                                <constraint firstAttribute="width" constant="27.5" id="oqM-GR-5IF"/>
+                                <constraint firstAttribute="height" constant="25" id="8fx-8R-gSn"/>
+                                <constraint firstAttribute="width" constant="51" id="oqM-GR-5IF"/>
                             </constraints>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wy_gameresult_bg" translatesAutoresizingMaskIntoConstraints="NO" id="HiJ-MB-x0d">
@@ -187,10 +187,10 @@
                             </constraints>
                         </view>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wy_gameresult_win_1" translatesAutoresizingMaskIntoConstraints="NO" id="8WE-ZR-yMy">
-                            <rect key="frame" x="22" y="81" width="50" height="21"/>
+                            <rect key="frame" x="17" y="80.5" width="60" height="22"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="21" id="1qf-IZ-yAM"/>
-                                <constraint firstAttribute="width" constant="50" id="mD6-E5-jOF"/>
+                                <constraint firstAttribute="height" constant="22" id="1qf-IZ-yAM"/>
+                                <constraint firstAttribute="width" constant="60" id="mD6-E5-jOF"/>
                             </constraints>
                         </imageView>
                     </subviews>
@@ -212,10 +212,10 @@
                     <rect key="frame" x="282.5" y="3" width="92" height="106"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wy_game_banker" translatesAutoresizingMaskIntoConstraints="NO" id="lOE-kq-qFh">
-                            <rect key="frame" x="32" y="5" width="27" height="30"/>
+                            <rect key="frame" x="30.5" y="5" width="30" height="25"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="27.5" id="YOW-Rq-E7l"/>
-                                <constraint firstAttribute="height" constant="30" id="sNo-ig-mC1"/>
+                                <constraint firstAttribute="width" constant="30" id="YOW-Rq-E7l"/>
+                                <constraint firstAttribute="height" constant="25" id="sNo-ig-mC1"/>
                             </constraints>
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qqk-Rc-Mgu">
@@ -293,12 +293,12 @@
         </view>
     </objects>
     <resources>
-        <image name="wy_game_banker" width="36" height="37"/>
-        <image name="wy_game_player_1" width="55" height="60"/>
-        <image name="wy_game_player_2" width="55" height="60"/>
-        <image name="wy_game_player_3" width="55" height="60"/>
+        <image name="wy_game_banker" width="30" height="25"/>
+        <image name="wy_game_player_1" width="51" height="25"/>
+        <image name="wy_game_player_2" width="51" height="25"/>
+        <image name="wy_game_player_3" width="51" height="25"/>
         <image name="wy_gameresult_bg" width="91" height="28"/>
         <image name="wy_gameresult_tip_bg" width="88" height="18"/>
-        <image name="wy_gameresult_win_1" width="50" height="21"/>
+        <image name="wy_gameresult_win_1" width="60" height="22"/>
     </resources>
 </document>

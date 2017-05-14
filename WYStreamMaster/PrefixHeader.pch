@@ -21,6 +21,7 @@
 #import "WYLoginUserManager.h"
 #import "MBProgressHUD+WYTools.h"
 #import "UIColor+Hex.h"
+#import "NSDictionary+ObjectForKey.h"
 
 #import <Masonry/Masonry.h>
 #import <YYKit/YYKit.h>

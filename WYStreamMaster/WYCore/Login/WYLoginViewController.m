@@ -32,6 +32,7 @@
 #import "WYCommonUtils.h"
 #import "UINavigationBar+Awesome.h"
 #import "WYLoginManager.h"
+#import "WYSettingViewController.h"
 
 
 @interface WYLoginViewController () <UITextFieldDelegate,WYImageCodeViewDelegate,SettingConfigChangeD>
@@ -89,7 +90,7 @@
     [WYSettingConfig staticInstance].settingDelegater = self;
     self.edgesForExtendedLayout = UIRectEdgeAll;
     
-//    [self.navigationController setNavigationBarHidden:YES];
+    [self.navigationController setNavigationBarHidden:NO];
     
 }
 
@@ -108,10 +109,36 @@
     self.edgesForExtendedLayout = UIRectEdgeBottom;
 }
 
+- (void)changeServerOperate{
+    UIButton *serverButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [serverButton setTitle:@"切换服务器" forState:UIControlStateNormal];
+    [serverButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [serverButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
+    [serverButton addTarget:self action:@selector(changeServerAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:serverButton];
+    [serverButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.view).offset(-10);
+        make.bottom.equalTo(self.view).offset(-10);
+    }];
+}
+- (void)changeServerAction{
+    WYSettingViewController *setVc = [[WYSettingViewController alloc] init];
+    [self.navigationController pushViewController:setVc animated:YES];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib. counting stars
     //self.edgesForExtendedLayout = UIRectEdgeTop;
+    
+    //测试时用
+#ifdef DEBUG
+    [self changeServerOperate];
+#else
+    
+#endif
+    
+    
     
     [self initViewUI];
     //init subviews

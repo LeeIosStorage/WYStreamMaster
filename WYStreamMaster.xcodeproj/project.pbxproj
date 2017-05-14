@@ -105,6 +105,7 @@
 		44D2F7FC1E7FFDB700122866 /* YTMessageNotificationAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2F7F71E7FFDB700122866 /* YTMessageNotificationAttachment.m */; };
 		44D9B3091E96830D00E15BEA /* WYLiveGameResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D9B3081E96830D00E15BEA /* WYLiveGameResultView.m */; };
 		44D9B30B1E96831E00E15BEA /* WYLiveGameResultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44D9B30A1E96831E00E15BEA /* WYLiveGameResultView.xib */; };
+		44F7361C1EC83C3A00BB68F9 /* NSDictionary+ObjectForKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F7361B1EC83C3A00BB68F9 /* NSDictionary+ObjectForKey.m */; };
 		44F8D9811E98CB37002EC952 /* WYServerNoticeAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F8D9801E98CB37002EC952 /* WYServerNoticeAttachment.m */; };
 		44F8D9841E9E30D2002EC952 /* WYDataMemoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F8D9831E9E30D2002EC952 /* WYDataMemoryManager.m */; };
 		C69795F58C80289B30CE5F15 /* libPods-WYStreamMaster.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D7A3645D8D449741FC609F4 /* libPods-WYStreamMaster.a */; };
@@ -316,6 +317,8 @@
 		44D9B3071E96830D00E15BEA /* WYLiveGameResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYLiveGameResultView.h; sourceTree = "<group>"; };
 		44D9B3081E96830D00E15BEA /* WYLiveGameResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYLiveGameResultView.m; sourceTree = "<group>"; };
 		44D9B30A1E96831E00E15BEA /* WYLiveGameResultView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYLiveGameResultView.xib; sourceTree = "<group>"; };
+		44F7361A1EC83C3A00BB68F9 /* NSDictionary+ObjectForKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+ObjectForKey.h"; sourceTree = "<group>"; };
+		44F7361B1EC83C3A00BB68F9 /* NSDictionary+ObjectForKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+ObjectForKey.m"; sourceTree = "<group>"; };
 		44F8D97F1E98CB37002EC952 /* WYServerNoticeAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYServerNoticeAttachment.h; sourceTree = "<group>"; };
 		44F8D9801E98CB37002EC952 /* WYServerNoticeAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYServerNoticeAttachment.m; sourceTree = "<group>"; };
 		44F8D9821E9E30D2002EC952 /* WYDataMemoryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYDataMemoryManager.h; sourceTree = "<group>"; };
@@ -596,6 +599,8 @@
 				44203D831E714BD600D59B5E /* WYCommonUtils.m */,
 				444AA5851EBB126900A80FB9 /* UIImage+ProportionalFill.h */,
 				444AA5861EBB126900A80FB9 /* UIImage+ProportionalFill.m */,
+				44F7361A1EC83C3A00BB68F9 /* NSDictionary+ObjectForKey.h */,
+				44F7361B1EC83C3A00BB68F9 /* NSDictionary+ObjectForKey.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1033,6 +1038,7 @@
 				444DA6591E8BD3B000C45DE5 /* WYGiftContributionModel.m in Sources */,
 				446D43251E829030002E5C52 /* WYContributionListView.m in Sources */,
 				44D2F7F81E7FFDB700122866 /* YTBaseCustomMessageAttachment.m in Sources */,
+				44F7361C1EC83C3A00BB68F9 /* NSDictionary+ObjectForKey.m in Sources */,
 				44D2F7CA1E7BECFF00122866 /* WYGiftRecordView.m in Sources */,
 				44203D931E714BD600D59B5E /* WYSettingConfig.m in Sources */,
 				441C23FF1E83FDA20020557C /* LiveGiftShowView.m in Sources */,
