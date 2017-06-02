@@ -24,6 +24,7 @@
 #import "WYCustomActionSheet.h"
 #import "WYLiveViewController.h"
 #import "WYGiftAnimationManager.h"
+#import "WYFaceRendererManager.h"
 
 #define ChatData_MaxCount 100
 
@@ -138,6 +139,9 @@
     
     //大礼物动画处理
     [self.giftAnimationManager startPlaySystemSoundWithVibrate:giftAttachment];
+    
+//    [[WYFaceRendererManager sharedInstance] loadItem];
+    
     
     UserModel *userModel = [[UserModel alloc] init];
     userModel.name = giftAttachment.senderName;

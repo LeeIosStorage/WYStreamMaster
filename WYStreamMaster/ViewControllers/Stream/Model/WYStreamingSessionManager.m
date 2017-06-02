@@ -8,6 +8,7 @@
 
 #import "WYStreamingSessionManager.h"
 #import "WYStreamingConfig.h"
+#import "WYFaceRendererManager.h"
 
 const char *stateNames[] = {
     "Unknow",
@@ -124,6 +125,7 @@ PLMediaStreamingSessionDelegate
     return _plSession;
 }
 
+
 #pragma mark - 
 #pragma mark - PLMediaStreamingSessionDelegate
 /// @abstract 流状态已变更的回调
@@ -161,6 +163,11 @@ PLMediaStreamingSessionDelegate
 - (void)mediaStreamingSession:(PLMediaStreamingSession *)session rtcDidFailWithError:(NSError *)error{
     NSString *log = [NSString stringWithFormat:@"rtcDidFailWithError: %@", [error localizedDescription]];
     NSLog(@"%@", log);
+}
+
+- (CVPixelBufferRef)mediaStreamingSession:(PLMediaStreamingSession *)session cameraSourceDidGetPixelBuffer:(CVPixelBufferRef)pixelBuffer{
+    
+    return [[WYFaceRendererManager sharedInstance] detectorFace:pixelBuffer];
 }
 
 @end

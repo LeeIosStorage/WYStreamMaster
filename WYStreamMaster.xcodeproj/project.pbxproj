@@ -7,6 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		440852491ED9274400F92C7A /* libnama.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 440852361ED9274400F92C7A /* libnama.a */; };
+		4408524A1ED9274400F92C7A /* face_beautification.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 440852381ED9274400F92C7A /* face_beautification.bundle */; };
+		4408524B1ED9274400F92C7A /* v3.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 440852391ED9274400F92C7A /* v3.bundle */; };
+		4408524C1ED9274400F92C7A /* BeagleDog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4408523B1ED9274400F92C7A /* BeagleDog.bundle */; };
+		4408524D1ED9274400F92C7A /* ColorCrown.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4408523C1ED9274400F92C7A /* ColorCrown.bundle */; };
+		4408524E1ED9274400F92C7A /* Deer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4408523D1ED9274400F92C7A /* Deer.bundle */; };
+		4408524F1ED9274400F92C7A /* HappyRabbi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4408523E1ED9274400F92C7A /* HappyRabbi.bundle */; };
+		440852501ED9274400F92C7A /* hartshorn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4408523F1ED9274400F92C7A /* hartshorn.bundle */; };
+		440852511ED9274400F92C7A /* heart_v2.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 440852401ED9274400F92C7A /* heart_v2.bundle */; };
+		440852521ED9274400F92C7A /* item0204.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 440852411ED9274400F92C7A /* item0204.bundle */; };
+		440852531ED9274400F92C7A /* item0208.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 440852421ED9274400F92C7A /* item0208.bundle */; };
+		440852541ED9274400F92C7A /* item0210.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 440852431ED9274400F92C7A /* item0210.bundle */; };
+		440852551ED9274400F92C7A /* item0501.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 440852441ED9274400F92C7A /* item0501.bundle */; };
+		440852561ED9274400F92C7A /* Mood.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 440852451ED9274400F92C7A /* Mood.bundle */; };
+		440852571ED9274400F92C7A /* PrincessCrown.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 440852461ED9274400F92C7A /* PrincessCrown.bundle */; };
+		440852581ED9274400F92C7A /* tiara.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 440852471ED9274400F92C7A /* tiara.bundle */; };
+		440852591ED9274400F92C7A /* YellowEar.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 440852481ED9274400F92C7A /* YellowEar.bundle */; };
+		4408525B1ED927A200F92C7A /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4408525A1ED927A200F92C7A /* Accelerate.framework */; };
+		4408525E1ED92B1F00F92C7A /* WYFaceRendererManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4408525D1ED92B1F00F92C7A /* WYFaceRendererManager.m */; };
 		441C23EC1E83EEA30020557C /* WYGiftModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 441C23EB1E83EEA30020557C /* WYGiftModel.m */; };
 		441C23FC1E83FDA20020557C /* LiveGiftShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 441C23EF1E83FDA20020557C /* LiveGiftShow.m */; };
 		441C23FD1E83FDA20020557C /* LiveGiftShowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 441C23F11E83FDA20020557C /* LiveGiftShowModel.m */; };
@@ -83,6 +102,7 @@
 		446D43251E829030002E5C52 /* WYContributionListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 446D43241E829030002E5C52 /* WYContributionListView.m */; };
 		446D43281E837DAC002E5C52 /* WYAnchorManageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 446D43271E837DAC002E5C52 /* WYAnchorManageView.m */; };
 		446D432A1E839520002E5C52 /* WYAnchorManageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 446D43291E839520002E5C52 /* WYAnchorManageView.xib */; };
+		446E83001EE112CB00C9A532 /* Cat.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 446E82FF1EE112CB00C9A532 /* Cat.bundle */; };
 		449C663A1EC1A97500648A5F /* WYGiftAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 449C66391EC1A97500648A5F /* WYGiftAnimationManager.m */; };
 		44D2F7C01E7A6FBF00122866 /* WYStreamingConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2F7BF1E7A6FBF00122866 /* WYStreamingConfig.m */; };
 		44D2F7C51E7BCA6B00122866 /* WYSocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2F7C41E7BCA6B00122866 /* WYSocketManager.m */; };
@@ -122,6 +142,29 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		440852311ED9274400F92C7A /* authpack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = authpack.h; sourceTree = "<group>"; };
+		440852341ED9274400F92C7A /* funama.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = funama.h; sourceTree = "<group>"; };
+		440852351ED9274400F92C7A /* FURenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FURenderer.h; sourceTree = "<group>"; };
+		440852361ED9274400F92C7A /* libnama.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libnama.a; sourceTree = "<group>"; };
+		440852381ED9274400F92C7A /* face_beautification.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = face_beautification.bundle; sourceTree = "<group>"; };
+		440852391ED9274400F92C7A /* v3.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = v3.bundle; sourceTree = "<group>"; };
+		4408523B1ED9274400F92C7A /* BeagleDog.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = BeagleDog.bundle; sourceTree = "<group>"; };
+		4408523C1ED9274400F92C7A /* ColorCrown.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = ColorCrown.bundle; sourceTree = "<group>"; };
+		4408523D1ED9274400F92C7A /* Deer.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = Deer.bundle; sourceTree = "<group>"; };
+		4408523E1ED9274400F92C7A /* HappyRabbi.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = HappyRabbi.bundle; sourceTree = "<group>"; };
+		4408523F1ED9274400F92C7A /* hartshorn.bundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hartshorn.bundle; sourceTree = "<group>"; };
+		440852401ED9274400F92C7A /* heart_v2.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = heart_v2.bundle; sourceTree = "<group>"; };
+		440852411ED9274400F92C7A /* item0204.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = item0204.bundle; sourceTree = "<group>"; };
+		440852421ED9274400F92C7A /* item0208.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = item0208.bundle; sourceTree = "<group>"; };
+		440852431ED9274400F92C7A /* item0210.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = item0210.bundle; sourceTree = "<group>"; };
+		440852441ED9274400F92C7A /* item0501.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = item0501.bundle; sourceTree = "<group>"; };
+		440852451ED9274400F92C7A /* Mood.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = Mood.bundle; sourceTree = "<group>"; };
+		440852461ED9274400F92C7A /* PrincessCrown.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = PrincessCrown.bundle; sourceTree = "<group>"; };
+		440852471ED9274400F92C7A /* tiara.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = tiara.bundle; sourceTree = "<group>"; };
+		440852481ED9274400F92C7A /* YellowEar.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = YellowEar.bundle; sourceTree = "<group>"; };
+		4408525A1ED927A200F92C7A /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		4408525C1ED92B1F00F92C7A /* WYFaceRendererManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYFaceRendererManager.h; sourceTree = "<group>"; };
+		4408525D1ED92B1F00F92C7A /* WYFaceRendererManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYFaceRendererManager.m; sourceTree = "<group>"; };
 		441C23EA1E83EEA30020557C /* WYGiftModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYGiftModel.h; sourceTree = "<group>"; };
 		441C23EB1E83EEA30020557C /* WYGiftModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYGiftModel.m; sourceTree = "<group>"; };
 		441C23EE1E83FDA20020557C /* LiveGiftShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveGiftShow.h; sourceTree = "<group>"; };
@@ -274,6 +317,7 @@
 		446D43261E837DAC002E5C52 /* WYAnchorManageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYAnchorManageView.h; sourceTree = "<group>"; };
 		446D43271E837DAC002E5C52 /* WYAnchorManageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYAnchorManageView.m; sourceTree = "<group>"; };
 		446D43291E839520002E5C52 /* WYAnchorManageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYAnchorManageView.xib; sourceTree = "<group>"; };
+		446E82FF1EE112CB00C9A532 /* Cat.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cat.bundle; sourceTree = "<group>"; };
 		449C66381EC1A97500648A5F /* WYGiftAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYGiftAnimationManager.h; sourceTree = "<group>"; };
 		449C66391EC1A97500648A5F /* WYGiftAnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYGiftAnimationManager.m; sourceTree = "<group>"; };
 		44D2F7BE1E7A6FBF00122866 /* WYStreamingConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYStreamingConfig.h; sourceTree = "<group>"; };
@@ -333,6 +377,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4408525B1ED927A200F92C7A /* Accelerate.framework in Frameworks */,
+				440852491ED9274400F92C7A /* libnama.a in Frameworks */,
 				C69795F58C80289B30CE5F15 /* libPods-WYStreamMaster.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -347,6 +393,74 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		440852051ED9262700F92C7A /* External */ = {
+			isa = PBXGroup;
+			children = (
+				440852301ED9274400F92C7A /* Faceunity */,
+			);
+			path = External;
+			sourceTree = "<group>";
+		};
+		440852301ED9274400F92C7A /* Faceunity */ = {
+			isa = PBXGroup;
+			children = (
+				440852311ED9274400F92C7A /* authpack.h */,
+				440852321ED9274400F92C7A /* FaceUnity-SDK-iOS */,
+				4408523A1ED9274400F92C7A /* items */,
+			);
+			path = Faceunity;
+			sourceTree = "<group>";
+		};
+		440852321ED9274400F92C7A /* FaceUnity-SDK-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				440852331ED9274400F92C7A /* Headers */,
+				440852361ED9274400F92C7A /* libnama.a */,
+				440852371ED9274400F92C7A /* Resources */,
+			);
+			path = "FaceUnity-SDK-iOS";
+			sourceTree = "<group>";
+		};
+		440852331ED9274400F92C7A /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				440852341ED9274400F92C7A /* funama.h */,
+				440852351ED9274400F92C7A /* FURenderer.h */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
+		440852371ED9274400F92C7A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				440852381ED9274400F92C7A /* face_beautification.bundle */,
+				440852391ED9274400F92C7A /* v3.bundle */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		4408523A1ED9274400F92C7A /* items */ = {
+			isa = PBXGroup;
+			children = (
+				446E82FF1EE112CB00C9A532 /* Cat.bundle */,
+				4408523B1ED9274400F92C7A /* BeagleDog.bundle */,
+				4408523C1ED9274400F92C7A /* ColorCrown.bundle */,
+				4408523D1ED9274400F92C7A /* Deer.bundle */,
+				4408523E1ED9274400F92C7A /* HappyRabbi.bundle */,
+				4408523F1ED9274400F92C7A /* hartshorn.bundle */,
+				440852401ED9274400F92C7A /* heart_v2.bundle */,
+				440852411ED9274400F92C7A /* item0204.bundle */,
+				440852421ED9274400F92C7A /* item0208.bundle */,
+				440852431ED9274400F92C7A /* item0210.bundle */,
+				440852441ED9274400F92C7A /* item0501.bundle */,
+				440852451ED9274400F92C7A /* Mood.bundle */,
+				440852461ED9274400F92C7A /* PrincessCrown.bundle */,
+				440852471ED9274400F92C7A /* tiara.bundle */,
+				440852481ED9274400F92C7A /* YellowEar.bundle */,
+			);
+			path = items;
+			sourceTree = "<group>";
+		};
 		441C23ED1E83FDA20020557C /* LiveGiftShowView */ = {
 			isa = PBXGroup;
 			children = (
@@ -393,6 +507,7 @@
 			children = (
 				44203D3C1E714BD600D59B5E /* WYCore */,
 				44203D3B1E7008BC00D59B5E /* ViewControllers */,
+				440852051ED9262700F92C7A /* External */,
 				44203D121E6FE78800D59B5E /* AppDelegate.h */,
 				44203D131E6FE78800D59B5E /* AppDelegate.m */,
 				44203D151E6FE78800D59B5E /* ViewController.h */,
@@ -658,6 +773,8 @@
 			children = (
 				44203DC11E76380A00D59B5E /* WYStreamingSessionManager.h */,
 				44203DC21E76380A00D59B5E /* WYStreamingSessionManager.m */,
+				4408525C1ED92B1F00F92C7A /* WYFaceRendererManager.h */,
+				4408525D1ED92B1F00F92C7A /* WYFaceRendererManager.m */,
 				44D2F7BE1E7A6FBF00122866 /* WYStreamingConfig.h */,
 				44D2F7BF1E7A6FBF00122866 /* WYStreamingConfig.m */,
 				44F8D9821E9E30D2002EC952 /* WYDataMemoryManager.h */,
@@ -805,6 +922,7 @@
 		646CB6BFF7BA4AA8B7CEA915 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4408525A1ED927A200F92C7A /* Accelerate.framework */,
 				7D7A3645D8D449741FC609F4 /* libPods-WYStreamMaster.a */,
 			);
 			name = Frameworks;
@@ -899,23 +1017,40 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				440852561ED9274400F92C7A /* Mood.bundle in Resources */,
 				44D2F7E31E7FC30500122866 /* YTChatBottomView.xib in Resources */,
 				444AA54D1EB9A74900A80FB9 /* WYRegisterViewController.xib in Resources */,
+				4408524F1ED9274400F92C7A /* HappyRabbi.bundle in Resources */,
 				44203D1F1E6FE78800D59B5E /* LaunchScreen.storyboard in Resources */,
+				440852581ED9274400F92C7A /* tiara.bundle in Resources */,
+				4408524A1ED9274400F92C7A /* face_beautification.bundle in Resources */,
 				44203D991E714BD600D59B5E /* WYImageCodeView.xib in Resources */,
+				440852551ED9274400F92C7A /* item0501.bundle in Resources */,
+				440852521ED9274400F92C7A /* item0204.bundle in Resources */,
 				444AA55F1EB9C72000A80FB9 /* InfoPlist.strings in Resources */,
 				44203DBE1E72551600D59B5E /* WYLiveViewController.xib in Resources */,
+				4408524E1ED9274400F92C7A /* Deer.bundle in Resources */,
+				440852501ED9274400F92C7A /* hartshorn.bundle in Resources */,
 				44203D1C1E6FE78800D59B5E /* Assets.xcassets in Resources */,
+				440852511ED9274400F92C7A /* heart_v2.bundle in Resources */,
 				446D432A1E839520002E5C52 /* WYAnchorManageView.xib in Resources */,
 				44203D961E714BD600D59B5E /* YTQuickLoginViewController.xib in Resources */,
 				442317811EC56A5A003AB4AE /* WYSettingViewController.xib in Resources */,
 				44203DAE1E715A9100D59B5E /* NetWorkConfig.json in Resources */,
 				444DA6531E8A718000C45DE5 /* WYChatUserNormalView.xib in Resources */,
+				440852591ED9274400F92C7A /* YellowEar.bundle in Resources */,
 				44D9B30B1E96831E00E15BEA /* WYLiveGameResultView.xib in Resources */,
+				4408524B1ED9274400F92C7A /* v3.bundle in Resources */,
 				44203DB81E7246D900D59B5E /* MainTabViewController.xib in Resources */,
 				444AA56D1EB9C85800A80FB9 /* Localizable.strings in Resources */,
+				440852531ED9274400F92C7A /* item0208.bundle in Resources */,
 				444AA5791EB9EBB500A80FB9 /* WYLoginViewController.xib in Resources */,
+				4408524C1ED9274400F92C7A /* BeagleDog.bundle in Resources */,
+				440852571ED9274400F92C7A /* PrincessCrown.bundle in Resources */,
+				440852541ED9274400F92C7A /* item0210.bundle in Resources */,
 				44203D1A1E6FE78800D59B5E /* Main.storyboard in Resources */,
+				446E83001EE112CB00C9A532 /* Cat.bundle in Resources */,
+				4408524D1ED9274400F92C7A /* ColorCrown.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -996,6 +1131,7 @@
 				441C23FE1E83FDA20020557C /* LiveGiftShowNumberView.m in Sources */,
 				44D2F7E61E7FC30500122866 /* YTChatRoomControl.m in Sources */,
 				44D2F7C01E7A6FBF00122866 /* WYStreamingConfig.m in Sources */,
+				4408525E1ED92B1F00F92C7A /* WYFaceRendererManager.m in Sources */,
 				441C24081E85032F0020557C /* WYGiftHistoryView.m in Sources */,
 				44D2F7F91E7FFDB700122866 /* YTCustomAttachmentDecoder.m in Sources */,
 				44203DB01E715A9100D59B5E /* WYCache.m in Sources */,
@@ -1244,6 +1380,10 @@
 				INFOPLIST_FILE = WYStreamMaster/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/WYStreamMaster/External/Faceunity/FaceUnity-SDK-iOS",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wangjing.saga;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1265,6 +1405,10 @@
 				INFOPLIST_FILE = WYStreamMaster/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/WYStreamMaster/External/Faceunity/FaceUnity-SDK-iOS",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wangjing.saga;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

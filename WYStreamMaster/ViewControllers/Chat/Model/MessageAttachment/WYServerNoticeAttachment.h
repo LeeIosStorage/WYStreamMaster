@@ -19,7 +19,9 @@
 
 @property (nonatomic, assign) NSInteger gameStatus;//游戏状态
 
-@property (nonatomic, assign) NSInteger anchorStatus;//主播状态1正常 2结束推流
+@property (nonatomic, assign) NSInteger anchorStatus;//主播状态1正常 2禁播结束推流
+
+@property (nonatomic, assign) NSInteger isForClient;//房间状态0正常 1房间关闭结束推流
 
 @property (nonatomic, strong) id contentData;//押注排行或者游戏结果
 

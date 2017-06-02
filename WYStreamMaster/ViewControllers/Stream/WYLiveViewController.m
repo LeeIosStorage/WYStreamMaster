@@ -18,6 +18,7 @@
 #import "WYLoginManager.h"
 #import "WYLiveGameResultView.h"
 #import "WYServerNoticeAttachment.h"
+#import "WYFaceRendererManager.h"
 
 // 直播通知重试次数
 static NSInteger kLiveNotifyRetryCount = 0;
@@ -65,6 +66,7 @@ WYAnchorInfoViewDelegate
 - (void)dealloc{
     WYLog(@"%@ dealloc !!!",NSStringFromClass([self class]));
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[WYFaceRendererManager sharedInstance] stopTimer];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -87,6 +89,16 @@ WYAnchorInfoViewDelegate
     [self setupSubView];
     
     [self prepareForCameraSetting];
+    
+    //开始检测人脸礼物动效
+    [[WYFaceRendererManager sharedInstance] stopTimer];
+    [[WYFaceRendererManager sharedInstance] startTimer];
+    
+//    YTGiftAttachment *giftModel = [[YTGiftAttachment alloc] init];
+//    giftModel.giftID = [NSString stringWithFormat:@"%d",1];
+//    giftModel.senderID = @"10010";
+//    [[WYFaceRendererManager sharedInstance] addGiftModel:giftModel];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -158,8 +170,14 @@ WYAnchorInfoViewDelegate
         
         //是否要结束推流
         if (serverNoticeAttachment.anchorStatus == 2) {
+            
+            [MBProgressHUD showError:[WYCommonUtils acquireCurrentLocalizedText:@"wy_banned_live_tip"] toView:nil];
             [self serverNoticeFinishStream];
         }
+//        if (serverNoticeAttachment.isForClient == 1) {
+//            [MBProgressHUD showError:[WYCommonUtils acquireCurrentLocalizedText:@"wy_closed_live_tip"] toView:nil];
+//            [self serverNoticeFinishStream];
+//        }
     }
 }
 
@@ -291,6 +309,12 @@ WYAnchorInfoViewDelegate
     NSString *gameStatusTipText = nil;
     if (gameStatus == 1) {
         gameStatusTipText = [WYCommonUtils acquireCurrentLocalizedText:@"等待玩家下注"];
+        for (int i = 2; i < 6; i ++) {
+            YTGiftAttachment *giftModel = [[YTGiftAttachment alloc] init];
+            giftModel.giftID = [NSString stringWithFormat:@"%d",i];
+            giftModel.senderID = @"10010";
+            [[WYFaceRendererManager sharedInstance] addGiftModel:giftModel];
+        }
     }else if (gameStatus == 2){
         gameStatusTipText = [WYCommonUtils acquireCurrentLocalizedText:@"正在发牌 等待游戏结果"];
     }
@@ -301,8 +325,6 @@ WYAnchorInfoViewDelegate
 }
 
 - (void)serverNoticeFinishStream{
-    
-    [MBProgressHUD showError:[WYCommonUtils acquireCurrentLocalizedText:@"wy_banned_live_tip"] toView:nil];
     
     [self.streamingSessionManager destroyStream];
     [self.roomView.chatroomControl exitRoom];

@@ -211,9 +211,9 @@ UITextFieldDelegate
     
     //测试时用
 #ifdef DEBUG
-        [self changeServerOperate];
+    [self changeServerOperate];
 #else
-    
+//    [self changeServerOperate];
 #endif
 
 }

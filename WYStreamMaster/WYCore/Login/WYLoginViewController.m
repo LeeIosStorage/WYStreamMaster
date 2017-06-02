@@ -135,7 +135,7 @@
 #ifdef DEBUG
     [self changeServerOperate];
 #else
-    
+//    [self changeServerOperate];
 #endif
     
     
@@ -277,7 +277,7 @@
             
             WYLoginModel *loginModel = (WYLoginModel *)dataObject;
             
-//            loginModel.anchorPushUrl = @"rtmp://218.6.110.176/pili-publish.kaisaiba.com/live/piaoliangmeizi2";
+//            loginModel.anchorPushUrl = @"rtmp://pili-publish.kaisaiba.com/xklive/xklivetest";
             
             [WYLoginUserManager updateUserDataWithLoginModel:loginModel];
             
