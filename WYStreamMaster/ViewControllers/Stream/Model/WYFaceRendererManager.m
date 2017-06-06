@@ -13,7 +13,7 @@
 #include <sys/mman.h>
 #include <sys/stat.h>
 
-#define gift_duration  6
+#define gift_duration  16
 
 @interface WYFaceModel : NSObject
 
@@ -152,6 +152,10 @@ static EAGLContext *mcontext;
     if (_items[2] == 0) {
         [self loadHeart];
     }
+    
+    fuItemSetParamd(_items[1], "color_level", 0.5); //美白
+    fuItemSetParamd(_items[1], "blur_level", 1.0 * 6); //磨皮
+    fuItemSetParamd(_items[1], "red_level", 0.5);//红润
     
     [[FURenderer shareRenderer] renderPixelBuffer:pixelBuffer withFrameId:_frameID items:_items itemCount:3 flipx:YES];//flipx 参数设为YES可以使道具做水平方向的镜像翻转
     _frameID += 1;

@@ -94,10 +94,10 @@ WYAnchorInfoViewDelegate
     [[WYFaceRendererManager sharedInstance] stopTimer];
     [[WYFaceRendererManager sharedInstance] startTimer];
     
-//    YTGiftAttachment *giftModel = [[YTGiftAttachment alloc] init];
-//    giftModel.giftID = [NSString stringWithFormat:@"%d",1];
-//    giftModel.senderID = @"10010";
-//    [[WYFaceRendererManager sharedInstance] addGiftModel:giftModel];
+    YTGiftAttachment *giftModel = [[YTGiftAttachment alloc] init];
+    giftModel.giftID = [NSString stringWithFormat:@"%d",2];
+    giftModel.senderID = @"10010";
+    [[WYFaceRendererManager sharedInstance] addGiftModel:giftModel];
     
 }
 

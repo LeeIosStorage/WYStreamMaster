@@ -175,7 +175,7 @@ UITextFieldDelegate
     
     self.tableView.scrollEnabled = NO;
     
-    [WYStreamingConfig sharedConfig].videoQuality = VideoQualityStandardDefinition;
+    [WYStreamingConfig sharedConfig].videoQuality = VideoQualitySuperDefinition;
     [self setStreamingKpbsUIWith:[WYStreamingConfig sharedConfig].videoQuality + 1];
     
     self.roomNameTipLabel.text = [WYCommonUtils acquireCurrentLocalizedText:@"房间名称"];
