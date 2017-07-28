@@ -19,6 +19,7 @@
 #import "WYLiveGameResultView.h"
 #import "WYServerNoticeAttachment.h"
 #import "WYFaceRendererManager.h"
+#import "WYGiftRecordView.h"
 
 // 直播通知重试次数
 static NSInteger kLiveNotifyRetryCount = 0;
@@ -39,6 +40,7 @@ WYAnchorInfoViewDelegate
 
 @property (nonatomic, strong) UIImageView *liveBgImageView;
 
+@property (nonatomic, weak) IBOutlet UIButton *backButton;
 @property (nonatomic, weak) IBOutlet UIView *contentContainerView;
 @property (nonatomic, weak) IBOutlet UIButton *expandChatButton;
 @property (nonatomic, weak) IBOutlet UIButton *betTopButton;
@@ -52,6 +54,7 @@ WYAnchorInfoViewDelegate
 @property (nonatomic, strong) WYAnchorManageView *anchorManageView;//主播管理View
 
 @property (strong, nonatomic) WYContributionListView *contributionListView;//贡献榜
+@property (nonatomic, strong) WYGiftRecordView *giftRecordView;
 
 @property (strong, nonatomic) WYBetTopView *betTopView;//押注排行
 
@@ -94,10 +97,13 @@ WYAnchorInfoViewDelegate
     [[WYFaceRendererManager sharedInstance] stopTimer];
     [[WYFaceRendererManager sharedInstance] startTimer];
     
-    YTGiftAttachment *giftModel = [[YTGiftAttachment alloc] init];
-    giftModel.giftID = [NSString stringWithFormat:@"%d",2];
-    giftModel.senderID = @"10010";
-    [[WYFaceRendererManager sharedInstance] addGiftModel:giftModel];
+    
+//    for (int i = 39; i < 47; i ++) {
+//        YTGiftAttachment *giftModel = [[YTGiftAttachment alloc] init];
+//        giftModel.giftID = [NSString stringWithFormat:@"%d",i];
+//        giftModel.senderID = @"10010";
+//        [[WYFaceRendererManager sharedInstance] addGiftModel:giftModel];
+//    }
     
 }
 
@@ -134,9 +140,11 @@ WYAnchorInfoViewDelegate
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
     [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchor_user_code"];
     [paramsDic setObject:@"0" forKey:@"anchor_status"];
-    [paramsDic setObject:[WYLoginUserManager gameCategoryId] forKey:@"game_type"];
-    [paramsDic setObject:[WYLoginUserManager roomId] forKey:@"room_id_pk"];
-    [paramsDic setObject:[NSNumber numberWithInt:0] forKey:@"room_type"];
+//    [paramsDic setObject:[WYLoginUserManager gameCategoryId] forKey:@"game_type"];
+    if ([WYLoginUserManager roomId].length > 0) {
+        [paramsDic setObject:[WYLoginUserManager roomId] forKey:@"room_id_pk"];
+    }
+//    [paramsDic setObject:[NSNumber numberWithInt:0] forKey:@"room_type"];
     
     WEAKSELF
     [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
@@ -223,6 +231,21 @@ WYAnchorInfoViewDelegate
         make.top.equalTo(self.contentContainerView.mas_bottom);
     }];
     [self.liveGameResultView updateWithGameResultInfo:nil];
+    
+
+    if ([WYLoginUserManager liveGameType] == LiveGameTypeSlots){
+        self.liveGameResultView.hidden = YES;
+        [self.contentContainerView removeFromSuperview];
+        [self.view addSubview:self.contentContainerView];
+        [self.contentContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.top.equalTo(self.view);
+            make.bottom.equalTo(self.view).offset(-12);
+        }];
+        
+        [self.view insertSubview:self.contentContainerView belowSubview:self.backButton];
+    }
+    
+    
 }
 
 - (void)initRoomView
@@ -306,15 +329,20 @@ WYAnchorInfoViewDelegate
     WYServerNoticeAttachment *serverNoticeAttachment = gameResultInfo;
     NSInteger gameStatus = serverNoticeAttachment.gameStatus;
     
+    if (serverNoticeAttachment.anchorStatus == 0 || [WYLoginUserManager liveGameType] == LiveGameTypeSlots) {
+        //不处理游戏状态
+        return;
+    }
+    
     NSString *gameStatusTipText = nil;
     if (gameStatus == 1) {
         gameStatusTipText = [WYCommonUtils acquireCurrentLocalizedText:@"等待玩家下注"];
-        for (int i = 2; i < 6; i ++) {
-            YTGiftAttachment *giftModel = [[YTGiftAttachment alloc] init];
-            giftModel.giftID = [NSString stringWithFormat:@"%d",i];
-            giftModel.senderID = @"10010";
-            [[WYFaceRendererManager sharedInstance] addGiftModel:giftModel];
-        }
+//        for (int i = 1; i < 10; i ++) {
+//            YTGiftAttachment *giftModel = [[YTGiftAttachment alloc] init];
+//            giftModel.giftID = [NSString stringWithFormat:@"%d",i];
+//            giftModel.senderID = @"10010";
+//            [[WYFaceRendererManager sharedInstance] addGiftModel:giftModel];
+//        }
     }else if (gameStatus == 2){
         gameStatusTipText = [WYCommonUtils acquireCurrentLocalizedText:@"正在发牌 等待游戏结果"];
     }
@@ -412,7 +440,8 @@ WYAnchorInfoViewDelegate
 }
 
 - (IBAction)contributionAction:(id)sender{
-    [self.contributionListView show];
+//    [self.contributionListView show];
+    [self.giftRecordView show];
 }
 
 - (IBAction)changeChatViewFrameAction:(id)sender{
@@ -452,6 +481,13 @@ WYAnchorInfoViewDelegate
     return _contributionListView;
 }
 
+- (WYGiftRecordView *)giftRecordView{
+    if (!_giftRecordView) {
+        _giftRecordView = [[WYGiftRecordView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    }
+    return _giftRecordView;
+}
+
 - (WYBetTopView *)betTopView{
     if (!_betTopView) {
         _betTopView = [[WYBetTopView alloc] init];
@@ -477,7 +513,17 @@ WYAnchorInfoViewDelegate
 
 - (WYLiveGameResultView *)liveGameResultView{
     if (!_liveGameResultView) {
-        _liveGameResultView = (WYLiveGameResultView *)[[NSBundle mainBundle] loadNibNamed:@"WYLiveGameResultView" owner:self options:nil].firstObject;
+        NSString *nibNamed = @"WYLiveGameResultView";
+        if ([WYLoginUserManager liveGameType] == LiveGameTypeTexasPoker || [WYLoginUserManager liveGameType] == LiveGameTypeTaurus) {
+            nibNamed = @"WYLiveGameResultView";
+        }else if ([WYLoginUserManager liveGameType] == LiveGameTypeTiger){
+            nibNamed = @"WYLiveTigerResultView";
+        }else if ([WYLoginUserManager liveGameType] == LiveGameTypeBaccarat){
+            nibNamed = @"WYLiveBaccaratResultView";
+        }else if ([WYLoginUserManager liveGameType] == LiveGameTypeSlots){
+            return nil;
+        }
+        _liveGameResultView = (WYLiveGameResultView *)[[NSBundle mainBundle] loadNibNamed:nibNamed owner:self options:nil].firstObject;
     }
     return _liveGameResultView;
 }

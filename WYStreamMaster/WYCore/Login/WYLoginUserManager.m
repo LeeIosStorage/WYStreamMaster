@@ -32,6 +32,7 @@ static NSString *const kGameCategoryID = @"kGameCategoryID";
 
 static NSString *const kOrintationType = @"kOrintationType";
 static NSString *const kVideoQuality = @"kVideoQuality";
+static NSString *const kLiveGameType = @"kLiveGameType";
 
 static NSString *const kYuerCoin = @"kYuerCoin";
 static NSString *const kYuerBait = @"kYuerBait";
@@ -260,6 +261,20 @@ static NSString *const kLiveDuration = @"kLiveDuration";
 + (void)setVideoQuality:(VideoQuality)videoQuality
 {
     [self saveToUserDefaultsObject:[NSNumber numberWithInteger:videoQuality] forKey:kVideoQuality];
+}
+
+
++ (LiveGameType)liveGameType
+{
+    if (![self objectFromUserDefaultsKey:kLiveGameType]) {
+        return LiveGameTypeNormal;
+    }
+    return [[self objectFromUserDefaultsKey:kLiveGameType] integerValue];
+    
+}
++ (void)setLiveGameType:(LiveGameType)liveGameType
+{
+    [self saveToUserDefaultsObject:[NSNumber numberWithInteger:liveGameType] forKey:kLiveGameType];
 }
 
 #pragma mark -  token info

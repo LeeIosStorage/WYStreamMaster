@@ -71,4 +71,10 @@
         "control" : "api",
         "action"  : "apply_anchor.do"
     },
+    "queryCountry": {
+        "protocol": "http",
+        "version" : "anchor",
+        "control" : "api",
+        "action"  : "queryCountry.do"
+    },
 }

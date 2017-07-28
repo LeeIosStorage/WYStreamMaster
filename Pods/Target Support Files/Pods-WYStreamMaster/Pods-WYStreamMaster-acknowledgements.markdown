@@ -42,7 +42,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ## Bugly
 
-Copyright 2016 tencent.com. All rights reserved.
+Copyright 2017 tencent.com. All rights reserved.
 
 
 ## DZNEmptyDataSet
@@ -198,7 +198,7 @@ THE SOFTWARE.
 
 ## NIMSDK
 
-Copyright 2016 Netease 
+Copyright 2017 Netease 
 
 ## NJKWebViewProgress
 

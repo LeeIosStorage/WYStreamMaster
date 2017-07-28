@@ -134,6 +134,10 @@ typedef NS_ENUM(NSInteger, CPLoginUserType){
 + (VideoQuality)videoQuality;
 + (void)setVideoQuality:(VideoQuality)videoQuality;
 
+//直播的游戏类型
++ (LiveGameType)liveGameType;
++ (void)setLiveGameType:(LiveGameType)liveGameType;
+
 #pragma mark -  token info
 /**
  *  用户登录后授权令牌

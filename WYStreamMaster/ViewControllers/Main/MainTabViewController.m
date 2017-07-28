@@ -125,8 +125,9 @@ UITextFieldDelegate
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
     [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchor_user_code"];
     [paramsDic setObject:@"1" forKey:@"anchor_status"];
-    [paramsDic setObject:self.gameCategoryId forKey:@"game_type"];
-    [paramsDic setObject:[WYLoginUserManager roomId] forKey:@"room_id_pk"];
+    if ([WYLoginUserManager roomId].length > 0) {
+        [paramsDic setObject:[WYLoginUserManager roomId] forKey:@"room_id_pk"];
+    }
     [paramsDic setObject:self.roomType forKey:@"room_type"];
     [paramsDic setObject:self.roomNameTitle forKey:@"anchor_title"];
     if (self.roomNoticeTitle.length > 0) {
@@ -136,12 +137,22 @@ UITextFieldDelegate
         [paramsDic setObject:self.vipRoomPasswordTextField.text forKey:@"password"];
     }
     
+    //测试
+//    [paramsDic setObject:[NSNumber numberWithInt:4] forKey:@"game_type"];
+    
+    
     WEAKSELF
     [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
         NSLog(@"error:%@ data:%@",message,dataObject);
         [MBProgressHUD hideHUD];
         
         if (requestType == WYRequestTypeSuccess) {
+            
+            NSInteger gameType = 0;
+            if ([dataObject isKindOfClass:[NSDictionary class]]) {
+                gameType = [[dataObject objectForKey:@"game_type"] integerValue];
+            }
+            [WYLoginUserManager setLiveGameType:gameType];
             
             WYLiveViewController *liveVc = [[WYLiveViewController alloc] init];
             liveVc.streamURL = [WYLoginUserManager anchorPushUrl];
@@ -256,7 +267,7 @@ UITextFieldDelegate
         self.headContainerView.height = 123 + 222 + 33;
         self.vipRoomPasswordView.hidden = NO;
     }else{
-        self.headContainerView.height = 123 + 167;
+        self.headContainerView.height = 123 + 167 - 55;//-55为去掉游戏选择的view
         self.vipRoomPasswordView.hidden = YES;
     }
     self.headContainerView.width = SCREEN_WIDTH;
@@ -292,10 +303,10 @@ UITextFieldDelegate
         [MBProgressHUD showError:[WYCommonUtils acquireCurrentLocalizedText:@"给自己取一个闪亮的房间名字吧！"]];
         return;
     }
-    if ([self.gameCategory length] == 0 || [self.gameCategoryId length] == 0) {
-        [MBProgressHUD showError:[WYCommonUtils acquireCurrentLocalizedText:@"选择直播的游戏"]];
-        return;
-    }
+//    if ([self.gameCategory length] == 0 || [self.gameCategoryId length] == 0) {
+//        [MBProgressHUD showError:[WYCommonUtils acquireCurrentLocalizedText:@"选择直播的游戏"]];
+//        return;
+//    }
     if ([self.roomType intValue] == 1 && self.vipRoomPasswordTextField.text.length == 0) {
         [MBProgressHUD showError:@"请为VIP房间设置密码"];
         return;

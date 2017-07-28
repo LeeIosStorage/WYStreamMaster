@@ -278,7 +278,7 @@
                                 <constraint firstAttribute="bottom" secondItem="qwP-P4-qVF" secondAttribute="bottom" constant="10" id="nS9-9b-LfL"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9eY-BK-4dV">
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9eY-BK-4dV">
                             <rect key="frame" x="0.0" y="112" width="375" height="55"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="德州扑克" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tSB-So-SKK">

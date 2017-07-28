@@ -88,6 +88,8 @@ static NSString* const apiFileExtension = @"json";
         host = self.netWorkHost;
     }
     
+//    apiProtocol = @"https";
+    
 #ifdef DEBUG
     if (!host) {
         host = defaultNetworkHostTest;

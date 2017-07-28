@@ -41,6 +41,7 @@ UITableViewDelegate
     [self.serverLists addObject:defaultNetworkHost];
     [self.serverLists addObject:defaultNetworkPreRelease];
     [self.serverLists addObject:defaultNetworkHostTest];
+    [self.serverLists addObject:@"183.60.106.181:80"];
     [self.serverLists addObject:@"103.230.243.174:80"];
     
     [self.tableView reloadData];

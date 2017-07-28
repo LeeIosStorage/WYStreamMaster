@@ -9,6 +9,7 @@
 #import "WYGiftRecordView.h"
 #import "UIColor+Hex.h"
 #import "WYGiftRecordModel.h"
+#import "WYGiftContributionModel.h"
 
 @interface WYGiftRecordView ()
 <
@@ -119,20 +120,23 @@ UITableViewDataSource
         make.height.mas_equalTo(31);
     }];
     
+    
     [self.containerView addSubview:self.sectionHeadView];
     [self.sectionHeadView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.containerView);
         make.top.equalTo(self.segmentedControl.mas_bottom);
-        make.height.mas_equalTo(45);
+        make.height.mas_equalTo(0);
     }];
+    self.sectionHeadView.hidden = YES;
     
     [self.containerView addSubview:self.footerView];
     [self.footerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.containerView).offset(10);
         make.right.equalTo(self.containerView).offset(-10);
         make.bottom.equalTo(self.containerView);
-        make.height.mas_equalTo(30);
+        make.height.mas_equalTo(0);
     }];
+    self.footerView.hidden = YES;
     
     [self.containerView addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -146,6 +150,63 @@ UITableViewDataSource
 
 #pragma mark -
 #pragma mark - Server
+- (void)refreshGiftRecordListWithIndex:(NSInteger)index{
+    
+    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"gift_ranking"];
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
+    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchor_user_code"];
+    
+    WEAKSELF
+    [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
+        //        NSLog(@"error:%@ data:%@",message,dataObject);
+        
+        if (requestType == WYRequestTypeSuccess) {
+            
+            weakSelf.giftRecordList = [[NSMutableArray alloc] init];
+            
+            weakSelf.mutRecordDic = [[NSMutableDictionary alloc] init];
+            
+            NSMutableArray *weekArray = [NSMutableArray array];
+            for (NSDictionary *dic in [dataObject objectForKey:@"week"]) {
+                //dictionaryWithPlistString
+                WYGiftContributionModel *giftContributionModel = [[WYGiftContributionModel alloc] init];
+                [giftContributionModel modelSetWithDictionary:dic];
+                [weekArray addObject:giftContributionModel];
+            }
+            [weakSelf.mutRecordDic setObject:weekArray forKey:@"0"];
+            
+            NSMutableArray *monthArray = [NSMutableArray array];
+            for (NSDictionary *dic in [dataObject objectForKey:@"month"]) {
+                //dictionaryWithPlistString
+                WYGiftContributionModel *giftContributionModel = [[WYGiftContributionModel alloc] init];
+                [giftContributionModel modelSetWithDictionary:dic];
+                [monthArray addObject:giftContributionModel];
+            }
+            [weakSelf.mutRecordDic setObject:monthArray forKey:@"1"];
+            
+            NSMutableArray *totalArray = [NSMutableArray array];
+            for (NSDictionary *dic in [dataObject objectForKey:@"total"]) {
+                //dictionaryWithPlistString
+                WYGiftContributionModel *giftContributionModel = [[WYGiftContributionModel alloc] init];
+                [giftContributionModel modelSetWithDictionary:dic];
+                [totalArray addObject:giftContributionModel];
+            }
+            [weakSelf.mutRecordDic setObject:totalArray forKey:@"2"];
+            
+            
+            [weakSelf segmentedControlAction:weakSelf.segmentedControl];
+            
+        }else{
+            [MBProgressHUD showError:message toView:nil];
+        }
+        
+    } failure:^(id responseObject, NSError *error) {
+        [MBProgressHUD showAlertMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_server_request_errer_tip"] toView:nil];
+    }];
+    
+}
+
+/*************带价格的礼物排行
 - (void)refreshGiftRecordListWithIndex:(NSInteger)index{
     
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"gift_num_ranking"];
@@ -203,6 +264,7 @@ UITableViewDataSource
     }];
     
 }
+ *****************/
 
 #pragma mark -
 #pragma mark - Button Clicked
@@ -217,12 +279,12 @@ UITableViewDataSource
     self.giftRecordList = [NSMutableArray arrayWithArray:[self.mutRecordDic objectForKey:[NSString stringWithFormat:@"%d",(int)_selectedSegmentIndex]]];
     [self.tableView reloadData];
     
-    int totalPrice = 0;
-    for (WYGiftRecordModel *model in self.giftRecordList) {
-        totalPrice += [model.giftPrice intValue];
-    }
-    
-    self.totalPriceLabel.text = [NSString stringWithFormat:@"%d",totalPrice];
+//    int totalPrice = 0;
+//    for (WYGiftRecordModel *model in self.giftRecordList) {
+//        totalPrice += [model.giftPrice intValue];
+//    }
+//    
+//    self.totalPriceLabel.text = [NSString stringWithFormat:@"%d",totalPrice];
 }
 
 - (void)show
@@ -267,9 +329,119 @@ UITableViewDataSource
 //}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 45;
+    return 47;
 }
 
+static int medalImageView_tag = 201, nameLabel_tag = 202, priceLabel_tag = 203,avatarImage_tag = 204;
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"CellIdentifier";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.contentView.backgroundColor = [UIColor clearColor];
+        cell.backgroundColor = [UIColor clearColor];
+        
+        UIImageView *medalImageView = [[UIImageView alloc] init];
+        [cell.contentView addSubview:medalImageView];
+        medalImageView.tag = medalImageView_tag;
+        [medalImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(cell.contentView).offset(18);
+            make.centerY.equalTo(cell.contentView);
+            make.size.mas_equalTo(CGSizeMake(25, 25));
+        }];
+        
+        UIImageView *avatarImageView = [[UIImageView alloc] init];
+        avatarImageView.layer.cornerRadius = 18;
+        avatarImageView.layer.masksToBounds = YES;
+        [cell.contentView addSubview:avatarImageView];
+        avatarImageView.tag = avatarImage_tag;
+        [avatarImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(medalImageView.mas_right).offset(10);
+            make.centerY.equalTo(cell.contentView);
+            make.size.mas_equalTo(CGSizeMake(36, 36));
+        }];
+        
+        UILabel *nameLabel = [[UILabel alloc] init];
+        nameLabel.text = @"--";
+        nameLabel.textAlignment = NSTextAlignmentLeft;
+        nameLabel.textColor = [UIColor whiteColor];
+        nameLabel.font = [UIFont systemFontOfSize:13];
+        nameLabel.tag = nameLabel_tag;
+//        nameLabel.shadowOffset = CGSizeMake(1, 1);
+//        nameLabel.shadowColor = [UIColor colorWithHex:0 withAlpha:0.4];
+        [cell.contentView addSubview:nameLabel];
+        [nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(avatarImageView.mas_right).offset(40);
+            make.top.bottom.equalTo(cell.contentView);
+            make.right.equalTo(cell.contentView.mas_right).offset(-5);
+        }];
+        
+        UIImageView *bottomLineImageView = [[UIImageView alloc] init];
+        bottomLineImageView.backgroundColor = [UIColor colorWithHex:0 withAlpha:0.2];
+        [cell.contentView addSubview:bottomLineImageView];
+        [bottomLineImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(cell.contentView).offset(26);
+            make.right.equalTo(cell.contentView).offset(-26);
+            make.bottom.equalTo(cell.contentView);
+            make.height.mas_equalTo(0.5);
+        }];
+        
+//        UILabel *priceLabel = [[UILabel alloc] init];
+//        priceLabel.text = @"--";
+//        priceLabel.textAlignment = NSTextAlignmentCenter;
+//        priceLabel.textColor = [UIColor whiteColor];
+//        priceLabel.font = [UIFont systemFontOfSize:10];
+//        priceLabel.tag = priceLabel_tag;
+//        priceLabel.shadowOffset = CGSizeMake(1, 1);
+//        priceLabel.shadowColor = [UIColor colorWithHex:0 withAlpha:0.4];
+//        [cell.contentView addSubview:priceLabel];
+//        [priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.equalTo(cell.contentView.mas_centerX);
+//            make.top.bottom.equalTo(cell.contentView);
+//            make.width.mas_equalTo(110);
+//        }];
+        
+    }
+    
+    UIImageView *medalImageView = [cell.contentView viewWithTag:medalImageView_tag];
+    UIImageView *avatarImageView = [cell.contentView viewWithTag:avatarImage_tag];
+    UILabel *nameLabel = [cell.contentView viewWithTag:nameLabel_tag];
+    
+    WYGiftContributionModel *contributionInfo = [self.giftRecordList objectAtIndex:indexPath.row];
+    
+    NSString *nickName = contributionInfo.nickName;
+    if (nickName.length == 0) {
+        nickName = @"--";
+    }
+    nameLabel.text = nickName;
+    nameLabel.textColor = [UIColor colorWithHexString:@"FFB82F"];
+    nameLabel.font = [UIFont boldSystemFontOfSize:13];
+    
+    [WYCommonUtils setImageWithURL:[NSURL URLWithString:contributionInfo.headIcon] setImageView:avatarImageView placeholderImage:@"wy_common_placehoder_image"];
+    
+    medalImageView.hidden = YES;
+    if (indexPath.row == 0) {
+        medalImageView.hidden = NO;
+        medalImageView.image = [UIImage imageNamed:@"wy_rank_medal_1"];
+        
+    }else if (indexPath.row == 1){
+        medalImageView.hidden = NO;
+        medalImageView.image = [UIImage imageNamed:@"wy_rank_medal_2"];
+        
+    }else if (indexPath.row == 2){
+        medalImageView.hidden = NO;
+        medalImageView.image = [UIImage imageNamed:@"wy_rank_medal_3"];
+        
+    }else{
+        nameLabel.textColor = [UIColor whiteColor];
+    }
+    
+    return cell;
+}
+
+/************
 static int typeLabel_tag = 201, numLabel_tag = 202, priceLabel_tag = 203;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -341,6 +513,7 @@ static int typeLabel_tag = 201, numLabel_tag = 202, priceLabel_tag = 203;
     
     return cell;
 }
+***********/
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -386,7 +559,7 @@ static int typeLabel_tag = 201, numLabel_tag = 202, priceLabel_tag = 203;
 
 - (UISegmentedControl *)segmentedControl{
     if (!_segmentedControl) {
-        _segmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:[WYCommonUtils acquireCurrentLocalizedText:@"当天"],[WYCommonUtils acquireCurrentLocalizedText:@"本周"],[WYCommonUtils acquireCurrentLocalizedText:@"本月"], nil]];
+        _segmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:[WYCommonUtils acquireCurrentLocalizedText:@"wy_contribution_weekly"],[WYCommonUtils acquireCurrentLocalizedText:@"wy_contribution_monthly"],[WYCommonUtils acquireCurrentLocalizedText:@"wy_contribution_total"], nil]];
         _segmentedControl.layer.masksToBounds = YES;
         _segmentedControl.layer.cornerRadius = 15;
         [_segmentedControl.layer setBorderWidth:1];

@@ -13,7 +13,7 @@
 #include <sys/mman.h>
 #include <sys/stat.h>
 
-#define gift_duration  16
+#define gift_duration  5
 
 @interface WYFaceModel : NSObject
 
@@ -148,10 +148,10 @@ static EAGLContext *mcontext;
     
     _items[1] = 0;
     
-    //加载爱心道具
-    if (_items[2] == 0) {
-        [self loadHeart];
-    }
+//    //加载爱心道具
+//    if (_items[2] == 0) {
+//        [self loadHeart];
+//    }
     
     fuItemSetParamd(_items[1], "color_level", 0.5); //美白
     fuItemSetParamd(_items[1], "blur_level", 1.0 * 6); //磨皮
@@ -213,23 +213,26 @@ static EAGLContext *mcontext;
     if (!_currentFaceModel || _currentFaceModel.giftId.length == 0) {
         return bundle;
     }
-    if ([_currentFaceModel.giftId isEqualToString:@"1"]) {
-        bundle = [@"Cat" stringByAppendingString:@".bundle"];
-    }else if ([_currentFaceModel.giftId isEqualToString:@"2"]) {
-        bundle = [@"ColorCrown" stringByAppendingString:@".bundle"];
-    }else if ([_currentFaceModel.giftId isEqualToString:@"3"]) {
-        bundle = [@"Deer" stringByAppendingString:@".bundle"];
-    }else if ([_currentFaceModel.giftId isEqualToString:@"4"]) {
-        bundle = [@"HappyRabbi" stringByAppendingString:@".bundle"];
-    }else if ([_currentFaceModel.giftId isEqualToString:@"5"]) {
-        bundle = [@"hartshorn" stringByAppendingString:@".bundle"];
-    }else if ([_currentFaceModel.giftId isEqualToString:@"6"]) {
-        bundle = [@"YellowEar" stringByAppendingString:@".bundle"];
-    }else if ([_currentFaceModel.giftId isEqualToString:@"7"]) {
-        bundle = [@"Mood" stringByAppendingString:@".bundle"];
-    }else if ([_currentFaceModel.giftId isEqualToString:@"8"]) {
-        bundle = [@"PrincessCrown" stringByAppendingString:@".bundle"];
+    if ([_currentFaceModel.giftId isEqualToString:@"39"]) {
+        bundle = [@"wj_huahuan" stringByAppendingString:@".bundle"];
+    }else if ([_currentFaceModel.giftId isEqualToString:@"40"]) {
+        bundle = [@"wj_leisi" stringByAppendingString:@".bundle"];
+    }else if ([_currentFaceModel.giftId isEqualToString:@"41"]) {
+        bundle = [@"wj_birth" stringByAppendingString:@".bundle"];
+    }else if ([_currentFaceModel.giftId isEqualToString:@"42"]) {
+        bundle = [@"wj_tunvlang" stringByAppendingString:@".bundle"];
+    }else if ([_currentFaceModel.giftId isEqualToString:@"43"]) {
+        bundle = [@"wj_xiangsumojing" stringByAppendingString:@".bundle"];
+    }else if ([_currentFaceModel.giftId isEqualToString:@"44"]) {
+        bundle = [@"wj_xiaochou" stringByAppendingString:@".bundle"];
+    }else if ([_currentFaceModel.giftId isEqualToString:@"45"]) {
+        bundle = [@"wj_qinqin" stringByAppendingString:@".bundle"];
+    }else if ([_currentFaceModel.giftId isEqualToString:@"46"]) {
+        bundle = [@"wj_qiubite" stringByAppendingString:@".bundle"];
     }
+//    else if ([_currentFaceModel.giftId isEqualToString:@"7"]) {
+//        bundle = [@"wj_huangguan" stringByAppendingString:@".bundle"];
+//    }
     return bundle;
 }
 
@@ -242,7 +245,9 @@ static EAGLContext *mcontext;
     if (!_faceGiftList) {
         _faceGiftList = [[NSMutableArray alloc] init];
     }
-    [_faceGiftList addObject:faceModel];
+    if ([giftModel.giftID intValue] >= 39 && [giftModel.giftID intValue] <= 46) {
+        [_faceGiftList addObject:faceModel];
+    }
     
 }
 
@@ -283,6 +288,8 @@ static EAGLContext *mcontext;
         }else{
             _currentFaceModel = nil;
         }
+        
+//        WYLog(@"----------------------\n faceGiftList count-- %d --",[_faceGiftList count]);
         
         [self loadItem];
         return;

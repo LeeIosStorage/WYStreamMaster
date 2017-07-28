@@ -14,6 +14,7 @@
     return @{@"sendUserId":@"send_user_code",
              @"giftTotalValue":@"gift_value",
              @"nickName":@"nickname",
+             @"headIcon":@"head_icon",
              };
 }
 

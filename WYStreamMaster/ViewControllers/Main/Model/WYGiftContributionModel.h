@@ -13,5 +13,6 @@
 @property (nonatomic, strong) NSString *sendUserId;
 @property (nonatomic, strong) NSString *nickName;
 @property (nonatomic, strong) NSString *giftTotalValue;
+@property (nonatomic, strong) NSString *headIcon;
 
 @end

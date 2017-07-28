@@ -20,6 +20,15 @@ typedef enum : NSUInteger {
     VideoQualitySuperDefinition,        // 超清
 } VideoQuality;
 
+typedef enum : NSUInteger {
+    LiveGameTypeNormal = 0,
+    LiveGameTypeTexasPoker,            //德州扑克
+    LiveGameTypeTaurus,                //牛牛
+    LiveGameTypeTiger,                 //龙虎
+    LiveGameTypeBaccarat,              //百家乐
+    LiveGameTypeSlots,                 //老虎机
+} LiveGameType;
+
 static NSString* IMG_URL = @"http://img.wangyuhudong.com";
 
 #ifdef DEBUG

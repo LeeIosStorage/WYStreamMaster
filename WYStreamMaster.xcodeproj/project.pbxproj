@@ -99,11 +99,22 @@
 		444DA6561E8BB56000C45DE5 /* WYGiftRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 444DA6551E8BB56000C45DE5 /* WYGiftRecordModel.m */; };
 		444DA6591E8BD3B000C45DE5 /* WYGiftContributionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 444DA6581E8BD3B000C45DE5 /* WYGiftContributionModel.m */; };
 		444DA65C1E8BDEE700C45DE5 /* WYGiftHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 444DA65B1E8BDEE700C45DE5 /* WYGiftHistoryModel.m */; };
+		4460B5F21EFBB39400085F8F /* wj_tunvlang.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4460B5F11EFBB39400085F8F /* wj_tunvlang.bundle */; };
+		4460B5F61F023B5F00085F8F /* wj_xiangsumojing.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4460B5F51F023B5F00085F8F /* wj_xiangsumojing.bundle */; };
+		4460B5FC1F023BBA00085F8F /* wj_huangguan.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4460B5F71F023BBA00085F8F /* wj_huangguan.bundle */; };
+		4460B5FD1F023BBA00085F8F /* wj_qinqin.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4460B5F81F023BBA00085F8F /* wj_qinqin.bundle */; };
+		4460B5FE1F023BBA00085F8F /* wj_qiubite.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4460B5F91F023BBA00085F8F /* wj_qiubite.bundle */; };
+		4460B5FF1F023BBA00085F8F /* wj_leisi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4460B5FA1F023BBA00085F8F /* wj_leisi.bundle */; };
+		4460B6001F023BBA00085F8F /* wj_xiaochou.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4460B5FB1F023BBA00085F8F /* wj_xiaochou.bundle */; };
+		4460B6021F039BCE00085F8F /* WYLiveBaccaratResultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4460B6011F039BCE00085F8F /* WYLiveBaccaratResultView.xib */; };
+		4460B6041F04E8BC00085F8F /* WYLiveTigerResultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4460B6031F04E8BC00085F8F /* WYLiveTigerResultView.xib */; };
 		446D43251E829030002E5C52 /* WYContributionListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 446D43241E829030002E5C52 /* WYContributionListView.m */; };
 		446D43281E837DAC002E5C52 /* WYAnchorManageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 446D43271E837DAC002E5C52 /* WYAnchorManageView.m */; };
 		446D432A1E839520002E5C52 /* WYAnchorManageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 446D43291E839520002E5C52 /* WYAnchorManageView.xib */; };
 		446E83001EE112CB00C9A532 /* Cat.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 446E82FF1EE112CB00C9A532 /* Cat.bundle */; };
 		449C663A1EC1A97500648A5F /* WYGiftAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 449C66391EC1A97500648A5F /* WYGiftAnimationManager.m */; };
+		44BCC6B11F09DF940032D7DA /* wj_birth.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 44BCC6B01F09DF940032D7DA /* wj_birth.bundle */; };
+		44BCC6B31F09DFA50032D7DA /* wj_huahuan.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 44BCC6B21F09DFA50032D7DA /* wj_huahuan.bundle */; };
 		44D2F7C01E7A6FBF00122866 /* WYStreamingConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2F7BF1E7A6FBF00122866 /* WYStreamingConfig.m */; };
 		44D2F7C51E7BCA6B00122866 /* WYSocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2F7C41E7BCA6B00122866 /* WYSocketManager.m */; };
 		44D2F7CA1E7BECFF00122866 /* WYGiftRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2F7C91E7BECFF00122866 /* WYGiftRecordView.m */; };
@@ -312,6 +323,15 @@
 		444DA6581E8BD3B000C45DE5 /* WYGiftContributionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYGiftContributionModel.m; sourceTree = "<group>"; };
 		444DA65A1E8BDEE700C45DE5 /* WYGiftHistoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYGiftHistoryModel.h; sourceTree = "<group>"; };
 		444DA65B1E8BDEE700C45DE5 /* WYGiftHistoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYGiftHistoryModel.m; sourceTree = "<group>"; };
+		4460B5F11EFBB39400085F8F /* wj_tunvlang.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = wj_tunvlang.bundle; sourceTree = "<group>"; };
+		4460B5F51F023B5F00085F8F /* wj_xiangsumojing.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = wj_xiangsumojing.bundle; sourceTree = "<group>"; };
+		4460B5F71F023BBA00085F8F /* wj_huangguan.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = wj_huangguan.bundle; sourceTree = "<group>"; };
+		4460B5F81F023BBA00085F8F /* wj_qinqin.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = wj_qinqin.bundle; sourceTree = "<group>"; };
+		4460B5F91F023BBA00085F8F /* wj_qiubite.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = wj_qiubite.bundle; sourceTree = "<group>"; };
+		4460B5FA1F023BBA00085F8F /* wj_leisi.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = wj_leisi.bundle; sourceTree = "<group>"; };
+		4460B5FB1F023BBA00085F8F /* wj_xiaochou.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = wj_xiaochou.bundle; sourceTree = "<group>"; };
+		4460B6011F039BCE00085F8F /* WYLiveBaccaratResultView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYLiveBaccaratResultView.xib; sourceTree = "<group>"; };
+		4460B6031F04E8BC00085F8F /* WYLiveTigerResultView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYLiveTigerResultView.xib; sourceTree = "<group>"; };
 		446D43231E829030002E5C52 /* WYContributionListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYContributionListView.h; sourceTree = "<group>"; };
 		446D43241E829030002E5C52 /* WYContributionListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYContributionListView.m; sourceTree = "<group>"; };
 		446D43261E837DAC002E5C52 /* WYAnchorManageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYAnchorManageView.h; sourceTree = "<group>"; };
@@ -320,6 +340,8 @@
 		446E82FF1EE112CB00C9A532 /* Cat.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cat.bundle; sourceTree = "<group>"; };
 		449C66381EC1A97500648A5F /* WYGiftAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYGiftAnimationManager.h; sourceTree = "<group>"; };
 		449C66391EC1A97500648A5F /* WYGiftAnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYGiftAnimationManager.m; sourceTree = "<group>"; };
+		44BCC6B01F09DF940032D7DA /* wj_birth.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = wj_birth.bundle; sourceTree = "<group>"; };
+		44BCC6B21F09DFA50032D7DA /* wj_huahuan.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = wj_huahuan.bundle; sourceTree = "<group>"; };
 		44D2F7BE1E7A6FBF00122866 /* WYStreamingConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYStreamingConfig.h; sourceTree = "<group>"; };
 		44D2F7BF1E7A6FBF00122866 /* WYStreamingConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYStreamingConfig.m; sourceTree = "<group>"; };
 		44D2F7C31E7BCA6B00122866 /* WYSocketManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYSocketManager.h; sourceTree = "<group>"; };
@@ -442,6 +464,15 @@
 		4408523A1ED9274400F92C7A /* items */ = {
 			isa = PBXGroup;
 			children = (
+				44BCC6B21F09DFA50032D7DA /* wj_huahuan.bundle */,
+				44BCC6B01F09DF940032D7DA /* wj_birth.bundle */,
+				4460B5F71F023BBA00085F8F /* wj_huangguan.bundle */,
+				4460B5F81F023BBA00085F8F /* wj_qinqin.bundle */,
+				4460B5F91F023BBA00085F8F /* wj_qiubite.bundle */,
+				4460B5FA1F023BBA00085F8F /* wj_leisi.bundle */,
+				4460B5FB1F023BBA00085F8F /* wj_xiaochou.bundle */,
+				4460B5F51F023B5F00085F8F /* wj_xiangsumojing.bundle */,
+				4460B5F11EFBB39400085F8F /* wj_tunvlang.bundle */,
 				446E82FF1EE112CB00C9A532 /* Cat.bundle */,
 				4408523B1ED9274400F92C7A /* BeagleDog.bundle */,
 				4408523C1ED9274400F92C7A /* ColorCrown.bundle */,
@@ -803,6 +834,8 @@
 				44D9B3071E96830D00E15BEA /* WYLiveGameResultView.h */,
 				44D9B3081E96830D00E15BEA /* WYLiveGameResultView.m */,
 				44D9B30A1E96831E00E15BEA /* WYLiveGameResultView.xib */,
+				4460B6011F039BCE00085F8F /* WYLiveBaccaratResultView.xib */,
+				4460B6031F04E8BC00085F8F /* WYLiveTigerResultView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1017,6 +1050,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44BCC6B11F09DF940032D7DA /* wj_birth.bundle in Resources */,
 				440852561ED9274400F92C7A /* Mood.bundle in Resources */,
 				44D2F7E31E7FC30500122866 /* YTChatBottomView.xib in Resources */,
 				444AA54D1EB9A74900A80FB9 /* WYRegisterViewController.xib in Resources */,
@@ -1032,23 +1066,33 @@
 				4408524E1ED9274400F92C7A /* Deer.bundle in Resources */,
 				440852501ED9274400F92C7A /* hartshorn.bundle in Resources */,
 				44203D1C1E6FE78800D59B5E /* Assets.xcassets in Resources */,
+				4460B5FE1F023BBA00085F8F /* wj_qiubite.bundle in Resources */,
 				440852511ED9274400F92C7A /* heart_v2.bundle in Resources */,
 				446D432A1E839520002E5C52 /* WYAnchorManageView.xib in Resources */,
 				44203D961E714BD600D59B5E /* YTQuickLoginViewController.xib in Resources */,
 				442317811EC56A5A003AB4AE /* WYSettingViewController.xib in Resources */,
 				44203DAE1E715A9100D59B5E /* NetWorkConfig.json in Resources */,
+				44BCC6B31F09DFA50032D7DA /* wj_huahuan.bundle in Resources */,
 				444DA6531E8A718000C45DE5 /* WYChatUserNormalView.xib in Resources */,
 				440852591ED9274400F92C7A /* YellowEar.bundle in Resources */,
 				44D9B30B1E96831E00E15BEA /* WYLiveGameResultView.xib in Resources */,
+				4460B5F61F023B5F00085F8F /* wj_xiangsumojing.bundle in Resources */,
 				4408524B1ED9274400F92C7A /* v3.bundle in Resources */,
 				44203DB81E7246D900D59B5E /* MainTabViewController.xib in Resources */,
 				444AA56D1EB9C85800A80FB9 /* Localizable.strings in Resources */,
 				440852531ED9274400F92C7A /* item0208.bundle in Resources */,
+				4460B6001F023BBA00085F8F /* wj_xiaochou.bundle in Resources */,
+				4460B5FD1F023BBA00085F8F /* wj_qinqin.bundle in Resources */,
 				444AA5791EB9EBB500A80FB9 /* WYLoginViewController.xib in Resources */,
+				4460B5F21EFBB39400085F8F /* wj_tunvlang.bundle in Resources */,
 				4408524C1ED9274400F92C7A /* BeagleDog.bundle in Resources */,
 				440852571ED9274400F92C7A /* PrincessCrown.bundle in Resources */,
 				440852541ED9274400F92C7A /* item0210.bundle in Resources */,
+				4460B6021F039BCE00085F8F /* WYLiveBaccaratResultView.xib in Resources */,
 				44203D1A1E6FE78800D59B5E /* Main.storyboard in Resources */,
+				4460B6041F04E8BC00085F8F /* WYLiveTigerResultView.xib in Resources */,
+				4460B5FC1F023BBA00085F8F /* wj_huangguan.bundle in Resources */,
+				4460B5FF1F023BBA00085F8F /* wj_leisi.bundle in Resources */,
 				446E83001EE112CB00C9A532 /* Cat.bundle in Resources */,
 				4408524D1ED9274400F92C7A /* ColorCrown.bundle in Resources */,
 			);
@@ -1372,6 +1416,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 22K9LD86B6;
 				ENABLE_BITCODE = NO;
@@ -1397,6 +1442,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 22K9LD86B6;
 				ENABLE_BITCODE = NO;

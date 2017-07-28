@@ -344,4 +344,13 @@ static bool dateFormatterOFUSInvalid ;
     return [WYCommonUtils acquireCurrentLocalizedText:@"wy_server_request_errer_tip"];
 }
 
++ (NSString *)getPreferredLanguage
+{
+    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+    NSArray * allLanguages = [defaults objectForKey:@"AppleLanguages"];
+    NSString * preferredLang = [allLanguages objectAtIndex:0];
+    return preferredLang;
+    
+}
+
 @end

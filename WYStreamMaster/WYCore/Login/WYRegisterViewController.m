@@ -45,6 +45,8 @@ UIImagePickerControllerDelegate
 
 @property (nonatomic, assign) UploadImageType uploadImageType;
 
+@property (nonatomic, strong) NSMutableArray *areaListArray;
+
 @property (nonatomic, weak) IBOutlet UITableView *tabelView;
 
 @property (nonatomic, weak) IBOutlet UIView *registerContainerView;
@@ -66,6 +68,7 @@ UIImagePickerControllerDelegate
 
 @property (nonatomic, weak) IBOutlet UIView *agentContainerView;
 @property (nonatomic, weak) IBOutlet UITextField *agentTextField;
+@property (nonatomic, strong) NSString *areaCode;
 
 @property (nonatomic, weak) IBOutlet UILabel *registerRemindLabel;
 @property (nonatomic, weak) IBOutlet UIButton *registerButton;
@@ -97,6 +100,8 @@ UIImagePickerControllerDelegate
     // Do any additional setup after loading the view from its nib.
     [self setupSubview];
     
+    [self getAreaRequest];
+    
     UITapGestureRecognizer *gestureRecongnizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gestureRecognizer:)];
     [self.view addGestureRecognizer:gestureRecongnizer];
 }
@@ -118,14 +123,41 @@ UIImagePickerControllerDelegate
 
 #pragma mark -
 #pragma mark - Server
+
+- (void)getAreaRequest{
+    
+    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"queryCountry"];
+    WS(weakSelf)
+    [self.networkManager GET:requestUrl needCache:NO parameters:nil responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
+        NSLog(@"error:%@ data:%@",message,dataObject);
+        
+        if (requestType == WYRequestTypeSuccess) {
+            
+            weakSelf.areaListArray = [NSMutableArray array];
+            if ([dataObject isKindOfClass:[NSArray class]]) {
+                weakSelf.areaListArray = dataObject;
+            }
+            
+        }else{
+        }
+        
+    } failure:^(id responseObject, NSError *error) {
+//        [MBProgressHUD showAlertMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_register_result_failure_tip"] toView:weakSelf.view];
+    }];
+}
+
 - (void)userRegisterRequest{
     
     NSString *accountText = [_accountTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSString *emailText = [_emailTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    NSString *agentText = [_agentTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+//    NSString *agentText = [_agentTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
     if (![emailText isValidateEmail]) {
         [MBProgressHUD showError:[WYCommonUtils acquireCurrentLocalizedText:@"wy_validate_email_tip"]];
+        return;
+    }
+    if (!self.areaCode) {
+        [MBProgressHUD showError:[WYCommonUtils acquireCurrentLocalizedText:@"wy_register_agent_placeholder"]];
         return;
     }
     
@@ -141,8 +173,8 @@ UIImagePickerControllerDelegate
     [paramsDic setObject:_sugaoUrlStr forKey:@"low_pic"];
     [paramsDic setObject:_makeupUrlStr forKey:@"mid_pic"];
     [paramsDic setObject:_artsUrlStr forKey:@"hig_pic"];
-    if (agentText.length > 0) {
-        [paramsDic setObject:agentText forKey:@"channel_code"];
+    if (self.areaCode.length > 0) {
+        [paramsDic setObject:self.areaCode forKey:@"anchor_country"];//channel_code
     }
     
     WS(weakSelf)
@@ -244,6 +276,8 @@ UIImagePickerControllerDelegate
     
     placeholder = [WYCommonUtils acquireCurrentLocalizedText:@"wy_register_agent_placeholder"];
     self.agentTextField.attributedPlaceholder = [WYCommonUtils stringToColorAndFontAttributeString:placeholder range:NSMakeRange(0, placeholder.length) font:[WYStyleSheet currentStyleSheet].subheadLabelFont color:UIColorHex(0xcacaca)];
+    self.agentTextField.text = nil;
+    self.areaCode = nil;
     
     
     self.accountContainerView.layer.cornerRadius = 3.0;
@@ -352,6 +386,34 @@ UIImagePickerControllerDelegate
     [self presentViewController:imagePickerController animated:YES completion:nil];
 }
 
+- (void)showSelectAreaView{
+    
+    NSMutableArray *otherButtonTitles = [NSMutableArray array];
+    
+    for (NSDictionary *dic in self.areaListArray) {
+        NSString *areaName = [dic stringObjectForKey:@"Chain_name"];
+        if ([[WYCommonUtils getPreferredLanguage] containsString:@"en"]) {
+            areaName = [dic stringObjectForKey:@"English_name"];
+        }
+        [otherButtonTitles addObject:areaName];
+    }
+    WEAKSELF
+    WYCustomActionSheet *actionSheet = [[WYCustomActionSheet alloc] initWithTitle:nil actionBlock:^(NSInteger buttonIndex) {
+        if (buttonIndex >= otherButtonTitles.count) {
+            return;
+        }
+        NSDictionary *dic = [weakSelf.areaListArray objectAtIndex:buttonIndex];
+        weakSelf.agentTextField.text = [dic stringObjectForKey:@"Chain_name"];
+        if ([[WYCommonUtils getPreferredLanguage] rangeOfString:@"en"].location !=NSNotFound) {
+            weakSelf.agentTextField.text = [dic stringObjectForKey:@"English_name"];
+        }
+        weakSelf.areaCode = [dic stringObjectForKey:@"short_name"];
+        
+    } cancelButtonTitle:[WYCommonUtils acquireCurrentLocalizedText:@"wy_cancel"] destructiveButtonTitle:nil otherButtonTitles:otherButtonTitles];
+    [actionSheet showInView:self.view];
+    
+}
+
 #pragma mark -
 #pragma mark - Button Clicked
 - (void)rightButtonClicked:(id)sender{
@@ -403,6 +465,10 @@ UIImagePickerControllerDelegate
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
+    if (textField == self.agentTextField) {
+        [self showSelectAreaView];
+        return NO;
+    }
     return YES;
 }
 

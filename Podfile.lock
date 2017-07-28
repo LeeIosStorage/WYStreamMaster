@@ -29,21 +29,21 @@ PODS:
   - BlocksKit/UIKit (2.2.5):
     - BlocksKit/Core
     - BlocksKit/DynamicDelegate
-  - Bugly (2.4.6)
-  - DeviceUtil (2.0.3)
+  - Bugly (2.4.8)
+  - DeviceUtil (2.0.4)
   - DZNEmptyDataSet (1.8.1)
   - GMGridView (1.1.1)
   - HappyDNS (0.3.10)
   - Masonry (1.0.2)
   - MBProgressHUD (1.0.0)
   - MJRefresh (3.1.12)
-  - NIMSDK (3.3.0)
+  - NIMSDK (4.0.0)
   - NJKWebViewProgress (0.2.3):
     - NJKWebViewProgress/Core (= 0.2.3)
     - NJKWebViewProgress/ProgressView (= 0.2.3)
   - NJKWebViewProgress/Core (0.2.3)
   - NJKWebViewProgress/ProgressView (0.2.3)
-  - PgyUpdate (1.3)
+  - PgyUpdate (1.4)
   - pili-librtmp (1.0.6)
   - PLMediaStreamingKit (2.1.6):
     - HappyDNS (= 0.3.10)
@@ -113,17 +113,17 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
-  Bugly: 7756e72c59387b0d490f46e83ab458ae94ee7fba
-  DeviceUtil: bd9597d040b3960698b71f3c1b940c7143a06eae
+  Bugly: da3c02408c14838d498429320545a8e439392978
+  DeviceUtil: 767aaa647d29828b169f686939dc3e9300ab895f
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   GMGridView: 0e91e818e8b4768cfa1132ff3fdff24391ee230c
   HappyDNS: 06a9fed2796663fd87626dbf02552933265bf059
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
-  NIMSDK: e8bbffed00573f15da73a7ba7748c1da8dc2aa50
+  NIMSDK: f919c8315c0d5775f8a0a84ce7c5ef12060b025d
   NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
-  PgyUpdate: 38634295d19aca6c63dc4a87a595c92a13838e5b
+  PgyUpdate: 9e90cb8071e84df415d7ea56dbfc497f7be11d8c
   pili-librtmp: da10df0e835f135a75696cef429cc306773dd6f6
   PLMediaStreamingKit: 64427cb01e454fede4b6d4b85df93d7279ca9ab1
   QNNetDiag: 90727185d3cdd4f62f92b7f9b7d586451cf745d1
