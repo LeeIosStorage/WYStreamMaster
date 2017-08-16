@@ -88,7 +88,7 @@ static NSString* const apiFileExtension = @"json";
         host = self.netWorkHost;
     }
     
-//    apiProtocol = @"https";
+    
     
 #ifdef DEBUG
     if (!host) {
@@ -101,7 +101,9 @@ static NSString* const apiFileExtension = @"json";
     
 #endif
     
-//    host = defaultNetworkPreRelease;
+    if ([host isEqualToString:defaultNetworkHost]) {
+        apiProtocol = @"https";
+    }
     
     //拼接url
     //拼接主机地址

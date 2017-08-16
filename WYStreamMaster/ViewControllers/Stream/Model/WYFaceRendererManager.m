@@ -270,7 +270,7 @@ static EAGLContext *mcontext;
 }
 
 - (void)waitTimerInterval:(NSTimer *)aTimer{
-    WYLog(@"a Timer with WYFaceRendererManager waitTimerInterval = %d",_waitTimeSecond);
+//    WYLog(@"a Timer with WYFaceRendererManager waitTimerInterval = %d",_waitTimeSecond);
     if (_waitTimeSecond <= 0){
         _waitTimeSecond = 0;
         

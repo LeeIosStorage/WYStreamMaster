@@ -20,6 +20,7 @@
 #import "WYServerNoticeAttachment.h"
 #import "WYFaceRendererManager.h"
 #import "WYGiftRecordView.h"
+#import "ZegoAVManager.h"
 
 // 直播通知重试次数
 static NSInteger kLiveNotifyRetryCount = 0;
@@ -28,7 +29,8 @@ static NSInteger kLiveNotifyRetryMaxCount = 3;
 @interface WYLiveViewController ()
 <
 WYStreamingSessionManagerDelegate,
-WYAnchorInfoViewDelegate
+WYAnchorInfoViewDelegate,
+ZegoLivePublisherDelegate
 >
 {
     
@@ -39,6 +41,11 @@ WYAnchorInfoViewDelegate
 @property (nonatomic, strong) PLMediaStreamingSession *plSession;
 
 @property (nonatomic, strong) UIImageView *liveBgImageView;
+
+@property (nonatomic, strong) UIView *liveContainerView;
+@property (nonatomic, strong) UIView *preView;
+@property (nonatomic, strong) UIImageView *videoView;
+@property (nonatomic, strong) NSTimer *previewTimer;
 
 @property (nonatomic, weak) IBOutlet UIButton *backButton;
 @property (nonatomic, weak) IBOutlet UIView *contentContainerView;
@@ -69,7 +76,7 @@ WYAnchorInfoViewDelegate
 - (void)dealloc{
     WYLog(@"%@ dealloc !!!",NSStringFromClass([self class]));
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [[WYFaceRendererManager sharedInstance] stopTimer];
+//    [[WYFaceRendererManager sharedInstance] stopTimer];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -94,10 +101,10 @@ WYAnchorInfoViewDelegate
     [self prepareForCameraSetting];
     
     //开始检测人脸礼物动效
-    [[WYFaceRendererManager sharedInstance] stopTimer];
-    [[WYFaceRendererManager sharedInstance] startTimer];
-    
-    
+//    [[WYFaceRendererManager sharedInstance] stopTimer];
+//    [[WYFaceRendererManager sharedInstance] startTimer];
+//    
+//    
 //    for (int i = 39; i < 47; i ++) {
 //        YTGiftAttachment *giftModel = [[YTGiftAttachment alloc] init];
 //        giftModel.giftID = [NSString stringWithFormat:@"%d",i];
@@ -212,6 +219,12 @@ WYAnchorInfoViewDelegate
         make.edges.equalTo(self.view);
     }];
     
+    [self.view addSubview:self.liveContainerView];
+    [self.view insertSubview:self.liveContainerView aboveSubview:self.liveBgImageView];
+    [self.liveContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
+    
     //直播信息
     [self.contentContainerView addSubview:self.anchorInfoView];
     [self.anchorInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -264,6 +277,16 @@ WYAnchorInfoViewDelegate
 
 - (void)prepareForCameraSetting
 {
+    // 设置屏幕长亮
+    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
+    
+    
+    //即构科技推流
+    [self addPreview];
+//    [self addExternalCaptureView];
+    
+    
+    /*********************七牛推流
     NSURL *streamURL = [NSURL URLWithString:self.streamURL];
     self.streamingSessionManager = [[WYStreamingSessionManager alloc] initWithStreamURL:streamURL];
     _streamingSessionManager.delegate = self;
@@ -283,12 +306,74 @@ WYAnchorInfoViewDelegate
 //            make.size.mas_equalTo(CGSizeMake(100, 200));
         }];
     });
-    // 设置屏幕长亮
-    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     
     [self.streamingSessionManager startStream];
-    
+    ********************/
 }
+
+- (void)addPreview
+{
+    self.preView = [[UIView alloc] init];
+    [self.liveContainerView addSubview:self.preView];
+    [self.liveContainerView sendSubviewToBack:self.preView];
+    
+    [self.preView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.liveContainerView);
+    }];
+    
+    [[ZegoHelper api] setPublisherDelegate:self];
+    [ZegoHelper setAnchorConfig:self.preView];
+}
+
+- (void)addExternalCaptureView
+{
+    if (self.videoView)
+    {
+        [self.videoView removeFromSuperview];
+        self.videoView = nil;
+    }
+    
+    if (self.previewTimer)
+    {
+        [self.previewTimer invalidate];
+        self.previewTimer = nil;
+    }
+    
+    _videoView = [[UIImageView alloc] init];
+    self.videoView.translatesAutoresizingMaskIntoConstraints = YES;
+    [self.preView addSubview:self.videoView];
+    self.videoView.frame = self.preView.bounds;
+    
+    //timer
+    self.previewTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/60 target:self selector:@selector(handlePreview) userInfo:nil repeats:YES];
+}
+
+- (void)removeExternalCaptureView
+{
+    [self.previewTimer invalidate];
+    self.previewTimer = nil;
+    
+    if (self.videoView)
+    {
+        [self.videoView removeFromSuperview];
+        self.videoView = nil;
+        [self.preView setNeedsLayout];
+    }
+}
+
+- (void)handlePreview
+{
+//    WYLog(@"handlePreview-------------------------------------");
+    VideoCaptureFactoryDemo *demo = [ZegoHelper getVideoCaptureFactory];
+    if (demo)
+    {
+        UIImage *image = [demo getCaptureDevice].videoImage;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.videoView.image = image;
+        });
+    }
+}
+
 
 - (void)connectionChangeStreamingAction{
     
@@ -337,12 +422,6 @@ WYAnchorInfoViewDelegate
     NSString *gameStatusTipText = nil;
     if (gameStatus == 1) {
         gameStatusTipText = [WYCommonUtils acquireCurrentLocalizedText:@"等待玩家下注"];
-//        for (int i = 1; i < 10; i ++) {
-//            YTGiftAttachment *giftModel = [[YTGiftAttachment alloc] init];
-//            giftModel.giftID = [NSString stringWithFormat:@"%d",i];
-//            giftModel.senderID = @"10010";
-//            [[WYFaceRendererManager sharedInstance] addGiftModel:giftModel];
-//        }
     }else if (gameStatus == 2){
         gameStatusTipText = [WYCommonUtils acquireCurrentLocalizedText:@"正在发牌 等待游戏结果"];
     }
@@ -354,12 +433,23 @@ WYAnchorInfoViewDelegate
 
 - (void)serverNoticeFinishStream{
     
+    [self stopPublishing];
+    
     [self.streamingSessionManager destroyStream];
     [self.roomView.chatroomControl exitRoom];
     //通知服务器停止直播了
     [self closeLive];
     
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)stopPublishing
+{
+    [[ZegoHelper api] stopPreview];
+    [[ZegoHelper api] setPreviewView:nil];
+    [[ZegoHelper api] stopPublishing];
+    [[ZegoHelper api] logoutRoom];
+    [self removeExternalCaptureView];
 }
 
 #pragma mark -
@@ -370,12 +460,14 @@ WYAnchorInfoViewDelegate
     UIAlertView *alertView = [UIAlertView bk_showAlertViewWithTitle:[WYCommonUtils acquireCurrentLocalizedText:@"确定要停止直播吗？"] message:nil cancelButtonTitle:[WYCommonUtils acquireCurrentLocalizedText:@"再想想"] otherButtonTitles:@[[WYCommonUtils acquireCurrentLocalizedText:@"wy_affirm"]] handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
         if (buttonIndex == 1) {
             
-            [weakSelf.streamingSessionManager destroyStream];
-            [weakSelf.roomView.chatroomControl exitRoom];
-            //通知服务器停止直播了
-            [weakSelf closeLive];
+            [weakSelf serverNoticeFinishStream];
             
-            [weakSelf.navigationController popViewControllerAnimated:YES];
+//            [weakSelf.streamingSessionManager destroyStream];
+//            [weakSelf.roomView.chatroomControl exitRoom];
+//            //通知服务器停止直播了
+//            [weakSelf closeLive];
+//            
+//            [weakSelf.navigationController popViewControllerAnimated:YES];
         }
     }];
     
@@ -383,6 +475,7 @@ WYAnchorInfoViewDelegate
     
 }
 
+static bool frontCamera = YES;
 //static int tempCount = 0;
 - (IBAction)changeCameraAction:(id)sender{
     
@@ -422,6 +515,9 @@ WYAnchorInfoViewDelegate
     
     
     [self.plSession toggleCamera];
+    
+    frontCamera = !frontCamera;
+    [[ZegoHelper api] setFrontCam:frontCamera];
     
     
 //    [_plSession getScreenshotWithCompletionHandler:^(UIImage * _Nullable image) {
@@ -511,6 +607,13 @@ WYAnchorInfoViewDelegate
     return _liveBgImageView;
 }
 
+- (UIView *)liveContainerView{
+    if (!_liveContainerView) {
+        _liveContainerView = [[UIView alloc] init];
+    }
+    return _liveContainerView;
+}
+
 - (WYLiveGameResultView *)liveGameResultView{
     if (!_liveGameResultView) {
         NSString *nibNamed = @"WYLiveGameResultView";
@@ -547,6 +650,39 @@ WYAnchorInfoViewDelegate
             [weakSelf notifiyLive];
         });
     }
+}
+
+#pragma mark - ZegoLivePublisherDelegate
+
+- (void)onPublishStateUpdate:(int)stateCode streamID:(NSString *)streamID streamInfo:(NSDictionary *)info
+{
+    WYLog(@"%s, stream: %@, state: %d", __func__, streamID, stateCode);
+    if (stateCode == 0)
+    {
+        [MBProgressHUD showAlertMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_live_succeed_tip"] toView:nil];
+    }
+    else
+    {
+        NSString *error = [NSString stringWithFormat:@"zegoLive error stateCode: %d",stateCode];
+        
+//        NSAssert(stateCode == 0, error);
+    }
+}
+
+- (void)onPublishQualityUpdate:(NSString *)streamID quality:(ZegoApiPublishQuality)quality
+{
+//    UIView *view = self.viewContainersDict[streamID];
+//    if (view)
+//        [self updateQuality:quality.quality view:view];
+//    
+//    [self addStaticsInfo:YES stream:streamID fps:quality.fps kbs:quality.kbps];
+    NSString *totalString = [NSString stringWithFormat:@"fps %.3f, kbs %.3f",quality.fps, quality.kbps];
+    WYLog(@"~~~~~~~~~onPublishQualityUpdate: %@", totalString);
+}
+
+- (void)onAuxCallback:(void *)pData dataLen:(int *)pDataLen sampleRate:(int *)pSampleRate channelCount:(int *)pChannelCount
+{
+//    [self auxCallback:pData dataLen:pDataLen sampleRate:pSampleRate channelCount:pChannelCount];
 }
 
 @end

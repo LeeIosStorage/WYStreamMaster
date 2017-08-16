@@ -53,9 +53,11 @@ responseClass:(Class)classType
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
-//    AFSecurityPolicy *securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
-//    [securityPolicy setValidatesDomainName:YES];
-//    manager.securityPolicy = securityPolicy;
+    
+    AFSecurityPolicy *securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
+    [securityPolicy setValidatesDomainName:YES];
+    manager.securityPolicy = securityPolicy;
+    
     
     // app版本
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];

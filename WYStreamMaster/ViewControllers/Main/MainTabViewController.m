@@ -138,7 +138,7 @@ UITextFieldDelegate
     }
     
     //测试
-//    [paramsDic setObject:[NSNumber numberWithInt:4] forKey:@"game_type"];
+//    [paramsDic setObject:[NSNumber numberWithInt:LiveGameTypeTexasPoker] forKey:@"game_type"];
     
     
     WEAKSELF

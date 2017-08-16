@@ -140,8 +140,9 @@
     //大礼物动画处理
     [self.giftAnimationManager startPlaySystemSoundWithVibrate:giftAttachment];
     
-    //
-    [[WYFaceRendererManager sharedInstance] addGiftModel:giftAttachment];
+    
+    //脸部动画
+//    [[WYFaceRendererManager sharedInstance] addGiftModel:giftAttachment];
     
     
     UserModel *userModel = [[UserModel alloc] init];
