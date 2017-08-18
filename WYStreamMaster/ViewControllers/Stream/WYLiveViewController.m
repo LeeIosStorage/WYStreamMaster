@@ -92,6 +92,7 @@ ZegoLivePublisherDelegate
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
     self.navigationController.navigationBar.hidden = YES;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(serverNoticeCustomAttachment:) name:WYServerNoticeAttachment_Notification object:nil];
@@ -663,8 +664,7 @@ static bool frontCamera = YES;
     }
     else
     {
-        NSString *error = [NSString stringWithFormat:@"zegoLive error stateCode: %d",stateCode];
-        
+//        NSString *error = [NSString stringWithFormat:@"zegoLive error stateCode: %d",stateCode];
 //        NSAssert(stateCode == 0, error);
     }
 }

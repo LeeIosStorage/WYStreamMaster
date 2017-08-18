@@ -33,6 +33,11 @@
 	<string>我们将访问麦克风权限以保证您在直播中声音正常</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>访问相册</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+		<string>fetch</string>
+	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

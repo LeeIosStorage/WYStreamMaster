@@ -8,6 +8,7 @@
 //
 
 #import "WYGiftAnimationManager.h"
+#import "ZegoAVManager.h"
 
 @implementation WYGiftAnimationManager
 

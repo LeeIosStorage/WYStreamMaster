@@ -46,8 +46,8 @@ static __strong id<ZegoVideoCaptureFactory> g_factory = NULL;
             }
         }
         
-        [ZegoLiveRoomApi requireHardwareDecoder:YES];
-        [ZegoLiveRoomApi requireHardwareEncoder:YES];
+//        [ZegoLiveRoomApi requireHardwareDecoder:YES];
+//        [ZegoLiveRoomApi requireHardwareEncoder:YES];
         
         [g_ZegoApi enableTrafficControl:YES properties:ZEGOAPI_TRAFFIC_FPS | ZEGOAPI_TRAFFIC_RESOLUTION];
     }
@@ -65,13 +65,22 @@ static __strong id<ZegoVideoCaptureFactory> g_factory = NULL;
 + (void)setAnchorConfig:(UIView *)publishView{
     
     ZegoAVConfig *config = [ZegoAVConfig presetConfigOf:ZegoAVConfigPreset_High];
-    CGSize videoSize = CGSizeMake(720, 1280);
+    CGSize videoSize = CGSizeMake(360, 640);
     config.videoEncodeResolution = CGSizeMake(videoSize.width,videoSize.height);
     config.videoCaptureResolution = config.videoEncodeResolution;
+    config.fps = 15;
+    config.bitrate = 800000;
+    //fps 15
+    //bitrate 800000
+    
     [[ZegoHelper api] setAVConfig:config];
-    [[ZegoHelper api] enableBeautifying:ZEGO_BEAUTIFY_POLISH | ZEGO_BEAUTIFY_WHITEN];
+    [[ZegoHelper api] enableBeautifying:ZEGO_BEAUTIFY_POLISH | ZEGO_BEAUTIFY_WHITEN | ZEGO_BEAUTIFY_SKINWHITEN];
+    [[ZegoHelper api] setPolishStep:2.0];
+    [[ZegoHelper api] setPolishFactor:4.0];
+    [[ZegoHelper api] setWhitenFactor:0.5];
+    
     [[ZegoHelper api] setFrontCam:YES];
-    [[ZegoHelper api] enableRateControl:YES];//开启码率控制
+//    [[ZegoHelper api] enableRateControl:YES];//开启码率控制
     
 //    [[ZegoHelper api] enableCamera:NO];
 //    [[ZegoHelper api] enableCaptureMirror:YES];
