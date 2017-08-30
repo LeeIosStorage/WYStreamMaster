@@ -1267,7 +1267,7 @@
 				TargetAttributes = {
 					44203D0B1E6FE78800D59B5E = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 22K9LD86B6;
+						DevelopmentTeam = X6SBM2786Q;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -1277,7 +1277,7 @@
 					};
 					44203D241E6FE78800D59B5E = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 22K9LD86B6;
+						DevelopmentTeam = X6SBM2786Q;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 44203D0B1E6FE78800D59B5E;
 					};
@@ -1889,7 +1889,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 22K9LD86B6;
+				DEVELOPMENT_TEAM = X6SBM2786Q;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1925,7 +1925,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 22K9LD86B6;
+				DEVELOPMENT_TEAM = X6SBM2786Q;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1957,7 +1957,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = 22K9LD86B6;
+				DEVELOPMENT_TEAM = X6SBM2786Q;
 				INFOPLIST_FILE = WYStreamMasterTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.WYStreamMasterTests;
@@ -1970,7 +1970,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = 22K9LD86B6;
+				DEVELOPMENT_TEAM = X6SBM2786Q;
 				INFOPLIST_FILE = WYStreamMasterTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.WYStreamMasterTests;

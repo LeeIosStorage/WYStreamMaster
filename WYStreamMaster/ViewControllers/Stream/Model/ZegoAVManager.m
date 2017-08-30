@@ -23,7 +23,7 @@ static __strong id<ZegoVideoCaptureFactory> g_factory = NULL;
     
     if (g_ZegoApi == nil) {
         
-        [ZegoLiveRoomApi setUseTestEnv:YES];
+        [ZegoLiveRoomApi setUseTestEnv:NO];
 //        [ZegoLiveRoomApi prepareReplayLiveCapture];
 //        [ZegoLiveRoomApi enableExternalRender:[self usingExternalRender]];
         
@@ -89,8 +89,6 @@ static __strong id<ZegoVideoCaptureFactory> g_factory = NULL;
     [[ZegoHelper api] setPreviewView:publishView];
     [[ZegoHelper api] setPreviewViewMode:ZegoVideoViewModeScaleAspectFill];
     [[ZegoHelper api] startPreview];
-    
-    
     
     [ZegoHelper loginChatRoom];
 }

@@ -1,0 +1,68 @@
+/* 
+  Localizable.strings
+  WYStreamMaster
+
+  Created by Leejun on 2017/5/3.
+  Copyright © 2017年 Leejun. All rights reserved.
+*/
+
+/* 登录 注册*/
+"wy_login" = "登錄";
+"wy_login_account_placeholder" = "賬號";
+"wy_register_account_placeholder" = "昵稱（4-10位漢字、字母或數字）";
+"wy_login_password_placeholder" = "輸入密碼";
+"wy_register_agent_placeholder" = "請選擇您所在的地區";
+"wy_log_in" = "登錄中...";
+"wy_register" = "注册";
+"wy_register_email_placeholder" = "請輸入您的郵箱賬號";
+"wy_register_upload_avatar_tip" = "上傳頭像";
+"wy_register_upload_sugaor_tip" = "素顏";
+"wy_register_upload_makeup_tip" = "上妝";
+"wy_register_upload_arts_tip" = "藝術";
+"wy_register_upload_images_tip" = "請按規定上傳三張照片";
+"wy_register_remind_tip" = "*昵稱注册後不能隨意更改";
+"wy_info_submit_ing" = "信息提交中...";
+"wy_validate_email_tip" = "請輸入有效的郵箱";
+"wy_register_result_succeed_tip" = "提交成功\n請關注郵箱資訊";
+"wy_register_result_failure_tip" = "提交失敗，請重新嘗試";
+"wy_cancel" = "取消";
+"wy_affirm" = "確定";
+"wy_take_photos" = "拍照";
+"wy_photo_library" = "從手機相冊選擇";
+"wy_photo_upload_errer_tip" = "圖片上傳失敗，請重新上傳";
+"wy_server_request_errer_tip" = "請求失敗，請檢查您的網絡設置後重試";
+
+/* 主页 */
+"房间名称" = "房間名稱";
+"公告" = "公告";
+"选择直播的游戏" = "選擇直播的遊戲";
+"普通房间" = "普通房間";
+"开始直播" = "開始直播";
+"当天" = "當天";
+"本周" = "本周";
+"本月" = "本月";
+"种类" = "種類";
+"数量" = "數量";
+"价格" = "價格";
+"总计" = "總計";
+"给自己取一个闪亮的房间名字吧！" = "給自己取一個閃亮的房間名稱吧！";
+"在此输入房间公告(不必填)" = "在此輸入房間公告(不必填)";
+"wy_live_prepare_ing" = "直播準備中...";
+
+/* 直播 */
+"押注排名" = "押注排名";
+"礼物历史" = "禮物歷史";
+"房管列表" = "房管清單";
+"等待玩家下注" = "等待玩家下注";
+"正在发牌 等待游戏结果" = "正在發牌 等待遊戲結果";
+"欢迎" = "歡迎";
+"进入房间" = "進入房間";
+"房间公告" = "房間公告";
+"确定要停止直播吗？" = "確定要停止直播嗎？";
+"再想想" = "再想想";
+"wy_live_succeed_tip" = "直播成功";
+"wy_banned_live_tip" = "妳已被禁播，需聯系傳奇娛樂方";
+"wy_closed_live_tip" = "房間被關閉";
+"wy_contribution_weekly" = "貢獻周榜";
+"wy_contribution_monthly" = "貢獻月榜";
+"wy_contribution_total" = "貢獻總榜";

@@ -1,0 +1,15 @@
+
+/* Class = "UITextField"; placeholder = "昵称/用户名"; ObjectID = "4kg-lc-pfc"; */
+"4kg-lc-pfc.placeholder" = "昵称/用户名";
+
+/* Class = "UIButton"; normalTitle = "快速注册"; ObjectID = "RUE-zi-8sL"; */
+"RUE-zi-8sL.normalTitle" = "Sign Up";
+
+/* Class = "UITextField"; placeholder = "输入密码"; ObjectID = "d0H-73-0Zd"; */
+"d0H-73-0Zd.placeholder" = "输入密码";
+
+/* Class = "UIButton"; normalTitle = "忘记密码?"; ObjectID = "pgQ-72-w0p"; */
+"pgQ-72-w0p.normalTitle" = "Forgot password?";
+
+/* Class = "UIButton"; normalTitle = "登录"; ObjectID = "yoB-0a-sys"; */
+"yoB-0a-sys.normalTitle" = "Log In";

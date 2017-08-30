@@ -81,8 +81,8 @@
     [avatarImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.right.equalTo(view);
         make.height.mas_equalTo(40);
+        make.height.mas_equalTo(40);
     }];
-    
     UIImageView *rankImageView = [[UIImageView alloc] init];
     rankImageView.tag = 1;
     [view addSubview:rankImageView];
