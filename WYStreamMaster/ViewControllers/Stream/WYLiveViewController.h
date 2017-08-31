@@ -15,4 +15,7 @@
 
 @property (nonatomic, strong) NSString *streamURL;
 
+
+@property (nonatomic, assign)BOOL isShowFaceUnity ;
+
 @end

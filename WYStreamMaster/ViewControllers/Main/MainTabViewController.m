@@ -155,6 +155,7 @@ UITextFieldDelegate
             [WYLoginUserManager setLiveGameType:gameType];
             
             WYLiveViewController *liveVc = [[WYLiveViewController alloc] init];
+            liveVc.isShowFaceUnity = YES;
             liveVc.streamURL = [WYLoginUserManager anchorPushUrl];
             [self.navigationController pushViewController:liveVc animated:YES];
             

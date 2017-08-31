@@ -7,23 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		440852491ED9274400F92C7A /* libnama.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 440852361ED9274400F92C7A /* libnama.a */; };
-		4408524A1ED9274400F92C7A /* face_beautification.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 440852381ED9274400F92C7A /* face_beautification.bundle */; };
-		4408524B1ED9274400F92C7A /* v3.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 440852391ED9274400F92C7A /* v3.bundle */; };
-		4408524C1ED9274400F92C7A /* BeagleDog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4408523B1ED9274400F92C7A /* BeagleDog.bundle */; };
-		4408524D1ED9274400F92C7A /* ColorCrown.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4408523C1ED9274400F92C7A /* ColorCrown.bundle */; };
-		4408524E1ED9274400F92C7A /* Deer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4408523D1ED9274400F92C7A /* Deer.bundle */; };
-		4408524F1ED9274400F92C7A /* HappyRabbi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4408523E1ED9274400F92C7A /* HappyRabbi.bundle */; };
-		440852501ED9274400F92C7A /* hartshorn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4408523F1ED9274400F92C7A /* hartshorn.bundle */; };
-		440852511ED9274400F92C7A /* heart_v2.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 440852401ED9274400F92C7A /* heart_v2.bundle */; };
-		440852521ED9274400F92C7A /* item0204.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 440852411ED9274400F92C7A /* item0204.bundle */; };
-		440852531ED9274400F92C7A /* item0208.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 440852421ED9274400F92C7A /* item0208.bundle */; };
-		440852541ED9274400F92C7A /* item0210.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 440852431ED9274400F92C7A /* item0210.bundle */; };
-		440852551ED9274400F92C7A /* item0501.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 440852441ED9274400F92C7A /* item0501.bundle */; };
-		440852561ED9274400F92C7A /* Mood.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 440852451ED9274400F92C7A /* Mood.bundle */; };
-		440852571ED9274400F92C7A /* PrincessCrown.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 440852461ED9274400F92C7A /* PrincessCrown.bundle */; };
-		440852581ED9274400F92C7A /* tiara.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 440852471ED9274400F92C7A /* tiara.bundle */; };
-		440852591ED9274400F92C7A /* YellowEar.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 440852481ED9274400F92C7A /* YellowEar.bundle */; };
 		4408525B1ED927A200F92C7A /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4408525A1ED927A200F92C7A /* Accelerate.framework */; };
 		4408525E1ED92B1F00F92C7A /* WYFaceRendererManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4408525D1ED92B1F00F92C7A /* WYFaceRendererManager.m */; };
 		441C23EC1E83EEA30020557C /* WYGiftModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 441C23EB1E83EEA30020557C /* WYGiftModel.m */; };
@@ -85,8 +68,6 @@
 		44203DC31E76380A00D59B5E /* WYStreamingSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 44203DC21E76380A00D59B5E /* WYStreamingSessionManager.m */; };
 		442317801EC56A5A003AB4AE /* WYSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4423177E1EC56A5A003AB4AE /* WYSettingViewController.m */; };
 		442317811EC56A5A003AB4AE /* WYSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4423177F1EC56A5A003AB4AE /* WYSettingViewController.xib */; };
-		442563CC1F385DD70075467A /* ZegoLiveRoom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442563BC1F385DD70075467A /* ZegoLiveRoom.framework */; };
-		442563CD1F385DD70075467A /* ZegoLiveRoom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442563BE1F385DD70075467A /* ZegoLiveRoom.framework */; };
 		442563CE1F385DD70075467A /* zegoliveroom.version.txt in Resources */ = {isa = PBXBuildFile; fileRef = 442563BF1F385DD70075467A /* zegoliveroom.version.txt */; };
 		442563CF1F385DD70075467A /* ZegoImageFilter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442563C31F385DD70075467A /* ZegoImageFilter.framework */; };
 		442563D01F385DD70075467A /* ZegoImageFilter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442563C51F385DD70075467A /* ZegoImageFilter.framework */; };
@@ -132,22 +113,12 @@
 		444DA6561E8BB56000C45DE5 /* WYGiftRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 444DA6551E8BB56000C45DE5 /* WYGiftRecordModel.m */; };
 		444DA6591E8BD3B000C45DE5 /* WYGiftContributionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 444DA6581E8BD3B000C45DE5 /* WYGiftContributionModel.m */; };
 		444DA65C1E8BDEE700C45DE5 /* WYGiftHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 444DA65B1E8BDEE700C45DE5 /* WYGiftHistoryModel.m */; };
-		4460B5F21EFBB39400085F8F /* wj_tunvlang.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4460B5F11EFBB39400085F8F /* wj_tunvlang.bundle */; };
-		4460B5F61F023B5F00085F8F /* wj_xiangsumojing.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4460B5F51F023B5F00085F8F /* wj_xiangsumojing.bundle */; };
-		4460B5FC1F023BBA00085F8F /* wj_huangguan.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4460B5F71F023BBA00085F8F /* wj_huangguan.bundle */; };
-		4460B5FD1F023BBA00085F8F /* wj_qinqin.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4460B5F81F023BBA00085F8F /* wj_qinqin.bundle */; };
-		4460B5FE1F023BBA00085F8F /* wj_qiubite.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4460B5F91F023BBA00085F8F /* wj_qiubite.bundle */; };
-		4460B5FF1F023BBA00085F8F /* wj_leisi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4460B5FA1F023BBA00085F8F /* wj_leisi.bundle */; };
-		4460B6001F023BBA00085F8F /* wj_xiaochou.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4460B5FB1F023BBA00085F8F /* wj_xiaochou.bundle */; };
 		4460B6021F039BCE00085F8F /* WYLiveBaccaratResultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4460B6011F039BCE00085F8F /* WYLiveBaccaratResultView.xib */; };
 		4460B6041F04E8BC00085F8F /* WYLiveTigerResultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4460B6031F04E8BC00085F8F /* WYLiveTigerResultView.xib */; };
 		446D43251E829030002E5C52 /* WYContributionListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 446D43241E829030002E5C52 /* WYContributionListView.m */; };
 		446D43281E837DAC002E5C52 /* WYAnchorManageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 446D43271E837DAC002E5C52 /* WYAnchorManageView.m */; };
 		446D432A1E839520002E5C52 /* WYAnchorManageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 446D43291E839520002E5C52 /* WYAnchorManageView.xib */; };
-		446E83001EE112CB00C9A532 /* Cat.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 446E82FF1EE112CB00C9A532 /* Cat.bundle */; };
 		449C663A1EC1A97500648A5F /* WYGiftAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 449C66391EC1A97500648A5F /* WYGiftAnimationManager.m */; };
-		44BCC6B11F09DF940032D7DA /* wj_birth.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 44BCC6B01F09DF940032D7DA /* wj_birth.bundle */; };
-		44BCC6B31F09DFA50032D7DA /* wj_huahuan.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 44BCC6B21F09DFA50032D7DA /* wj_huahuan.bundle */; };
 		44D2F7C01E7A6FBF00122866 /* WYStreamingConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2F7BF1E7A6FBF00122866 /* WYStreamingConfig.m */; };
 		44D2F7C51E7BCA6B00122866 /* WYSocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2F7C41E7BCA6B00122866 /* WYSocketManager.m */; };
 		44D2F7CA1E7BECFF00122866 /* WYGiftRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2F7C91E7BECFF00122866 /* WYGiftRecordView.m */; };
@@ -172,6 +143,21 @@
 		44F7361C1EC83C3A00BB68F9 /* NSDictionary+ObjectForKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F7361B1EC83C3A00BB68F9 /* NSDictionary+ObjectForKey.m */; };
 		44F8D9811E98CB37002EC952 /* WYServerNoticeAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F8D9801E98CB37002EC952 /* WYServerNoticeAttachment.m */; };
 		44F8D9841E9E30D2002EC952 /* WYDataMemoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F8D9831E9E30D2002EC952 /* WYDataMemoryManager.m */; };
+		782119031F5805F00073CBC2 /* ZegoLiveRoom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 782119001F5805F00073CBC2 /* ZegoLiveRoom.framework */; };
+		782119041F5805F00073CBC2 /* ZegoLiveRoom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 782119021F5805F00073CBC2 /* ZegoLiveRoom.framework */; };
+		789DAA171F56874C0012075C /* FUManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 789DAA161F56874C0012075C /* FUManager.m */; };
+		789DAA2A1F5688200012075C /* libnama.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 789DAA1E1F5688200012075C /* libnama.a */; };
+		789DAA2B1F5688200012075C /* release_note.txt in Resources */ = {isa = PBXBuildFile; fileRef = 789DAA1F1F5688200012075C /* release_note.txt */; };
+		789DAA2C1F5688200012075C /* face_beautification.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 789DAA211F5688200012075C /* face_beautification.bundle */; };
+		789DAA2D1F5688200012075C /* v3.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 789DAA221F5688200012075C /* v3.bundle */; };
+		789DAA2E1F5688200012075C /* EatRabbi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 789DAA241F5688200012075C /* EatRabbi.bundle */; };
+		789DAA2F1F5688200012075C /* lixiaolong.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 789DAA251F5688200012075C /* lixiaolong.bundle */; };
+		789DAA301F5688200012075C /* mask_matianyu.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 789DAA261F5688200012075C /* mask_matianyu.bundle */; };
+		789DAA311F5688200012075C /* Mood.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 789DAA271F5688200012075C /* Mood.bundle */; };
+		789DAA321F5688200012075C /* yazui.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 789DAA281F5688200012075C /* yazui.bundle */; };
+		789DAA331F5688200012075C /* yuguan.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 789DAA291F5688200012075C /* yuguan.bundle */; };
+		789DAA351F568C060012075C /* FUAPIDemoBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 789DAA341F568C060012075C /* FUAPIDemoBar.framework */; };
+		789DAA361F568FB80012075C /* FUAPIDemoBar.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 789DAA341F568C060012075C /* FUAPIDemoBar.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C69795F58C80289B30CE5F15 /* libPods-WYStreamMaster.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D7A3645D8D449741FC609F4 /* libPods-WYStreamMaster.a */; };
 /* End PBXBuildFile section */
 
@@ -192,6 +178,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				789DAA361F568FB80012075C /* FUAPIDemoBar.framework in Embed Frameworks */,
 				442563D51F385F330075467A /* ZegoLiveRoom.framework in Embed Frameworks */,
 				442563D71F3860760075467A /* ZegoImageFilter.framework in Embed Frameworks */,
 			);
@@ -201,26 +188,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		440852311ED9274400F92C7A /* authpack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = authpack.h; sourceTree = "<group>"; };
-		440852341ED9274400F92C7A /* funama.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = funama.h; sourceTree = "<group>"; };
-		440852351ED9274400F92C7A /* FURenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FURenderer.h; sourceTree = "<group>"; };
-		440852361ED9274400F92C7A /* libnama.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libnama.a; sourceTree = "<group>"; };
-		440852381ED9274400F92C7A /* face_beautification.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = face_beautification.bundle; sourceTree = "<group>"; };
-		440852391ED9274400F92C7A /* v3.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = v3.bundle; sourceTree = "<group>"; };
-		4408523B1ED9274400F92C7A /* BeagleDog.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = BeagleDog.bundle; sourceTree = "<group>"; };
-		4408523C1ED9274400F92C7A /* ColorCrown.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = ColorCrown.bundle; sourceTree = "<group>"; };
-		4408523D1ED9274400F92C7A /* Deer.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = Deer.bundle; sourceTree = "<group>"; };
-		4408523E1ED9274400F92C7A /* HappyRabbi.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = HappyRabbi.bundle; sourceTree = "<group>"; };
-		4408523F1ED9274400F92C7A /* hartshorn.bundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hartshorn.bundle; sourceTree = "<group>"; };
-		440852401ED9274400F92C7A /* heart_v2.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = heart_v2.bundle; sourceTree = "<group>"; };
-		440852411ED9274400F92C7A /* item0204.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = item0204.bundle; sourceTree = "<group>"; };
-		440852421ED9274400F92C7A /* item0208.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = item0208.bundle; sourceTree = "<group>"; };
-		440852431ED9274400F92C7A /* item0210.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = item0210.bundle; sourceTree = "<group>"; };
-		440852441ED9274400F92C7A /* item0501.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = item0501.bundle; sourceTree = "<group>"; };
-		440852451ED9274400F92C7A /* Mood.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = Mood.bundle; sourceTree = "<group>"; };
-		440852461ED9274400F92C7A /* PrincessCrown.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = PrincessCrown.bundle; sourceTree = "<group>"; };
-		440852471ED9274400F92C7A /* tiara.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = tiara.bundle; sourceTree = "<group>"; };
-		440852481ED9274400F92C7A /* YellowEar.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = YellowEar.bundle; sourceTree = "<group>"; };
 		4408525A1ED927A200F92C7A /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		4408525C1ED92B1F00F92C7A /* WYFaceRendererManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYFaceRendererManager.h; sourceTree = "<group>"; };
 		4408525D1ED92B1F00F92C7A /* WYFaceRendererManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYFaceRendererManager.m; sourceTree = "<group>"; };
@@ -337,8 +304,6 @@
 		4423177D1EC56A5A003AB4AE /* WYSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYSettingViewController.h; sourceTree = "<group>"; };
 		4423177E1EC56A5A003AB4AE /* WYSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYSettingViewController.m; sourceTree = "<group>"; };
 		4423177F1EC56A5A003AB4AE /* WYSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYSettingViewController.xib; sourceTree = "<group>"; };
-		442563BC1F385DD70075467A /* ZegoLiveRoom.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoLiveRoom.framework; sourceTree = "<group>"; };
-		442563BE1F385DD70075467A /* ZegoLiveRoom.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoLiveRoom.framework; sourceTree = "<group>"; };
 		442563BF1F385DD70075467A /* zegoliveroom.version.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = zegoliveroom.version.txt; sourceTree = "<group>"; };
 		442563C31F385DD70075467A /* ZegoImageFilter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoImageFilter.framework; sourceTree = "<group>"; };
 		442563C51F385DD70075467A /* ZegoImageFilter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoImageFilter.framework; sourceTree = "<group>"; };
@@ -440,13 +405,6 @@
 		444DA6581E8BD3B000C45DE5 /* WYGiftContributionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYGiftContributionModel.m; sourceTree = "<group>"; };
 		444DA65A1E8BDEE700C45DE5 /* WYGiftHistoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYGiftHistoryModel.h; sourceTree = "<group>"; };
 		444DA65B1E8BDEE700C45DE5 /* WYGiftHistoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYGiftHistoryModel.m; sourceTree = "<group>"; };
-		4460B5F11EFBB39400085F8F /* wj_tunvlang.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = wj_tunvlang.bundle; sourceTree = "<group>"; };
-		4460B5F51F023B5F00085F8F /* wj_xiangsumojing.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = wj_xiangsumojing.bundle; sourceTree = "<group>"; };
-		4460B5F71F023BBA00085F8F /* wj_huangguan.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = wj_huangguan.bundle; sourceTree = "<group>"; };
-		4460B5F81F023BBA00085F8F /* wj_qinqin.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = wj_qinqin.bundle; sourceTree = "<group>"; };
-		4460B5F91F023BBA00085F8F /* wj_qiubite.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = wj_qiubite.bundle; sourceTree = "<group>"; };
-		4460B5FA1F023BBA00085F8F /* wj_leisi.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = wj_leisi.bundle; sourceTree = "<group>"; };
-		4460B5FB1F023BBA00085F8F /* wj_xiaochou.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = wj_xiaochou.bundle; sourceTree = "<group>"; };
 		4460B6011F039BCE00085F8F /* WYLiveBaccaratResultView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYLiveBaccaratResultView.xib; sourceTree = "<group>"; };
 		4460B6031F04E8BC00085F8F /* WYLiveTigerResultView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYLiveTigerResultView.xib; sourceTree = "<group>"; };
 		446D43231E829030002E5C52 /* WYContributionListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYContributionListView.h; sourceTree = "<group>"; };
@@ -454,11 +412,8 @@
 		446D43261E837DAC002E5C52 /* WYAnchorManageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYAnchorManageView.h; sourceTree = "<group>"; };
 		446D43271E837DAC002E5C52 /* WYAnchorManageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYAnchorManageView.m; sourceTree = "<group>"; };
 		446D43291E839520002E5C52 /* WYAnchorManageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYAnchorManageView.xib; sourceTree = "<group>"; };
-		446E82FF1EE112CB00C9A532 /* Cat.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cat.bundle; sourceTree = "<group>"; };
 		449C66381EC1A97500648A5F /* WYGiftAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYGiftAnimationManager.h; sourceTree = "<group>"; };
 		449C66391EC1A97500648A5F /* WYGiftAnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYGiftAnimationManager.m; sourceTree = "<group>"; };
-		44BCC6B01F09DF940032D7DA /* wj_birth.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = wj_birth.bundle; sourceTree = "<group>"; };
-		44BCC6B21F09DFA50032D7DA /* wj_huahuan.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = wj_huahuan.bundle; sourceTree = "<group>"; };
 		44D2F7BE1E7A6FBF00122866 /* WYStreamingConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYStreamingConfig.h; sourceTree = "<group>"; };
 		44D2F7BF1E7A6FBF00122866 /* WYStreamingConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYStreamingConfig.m; sourceTree = "<group>"; };
 		44D2F7C31E7BCA6B00122866 /* WYSocketManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYSocketManager.h; sourceTree = "<group>"; };
@@ -507,6 +462,24 @@
 		44F8D9821E9E30D2002EC952 /* WYDataMemoryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYDataMemoryManager.h; sourceTree = "<group>"; };
 		44F8D9831E9E30D2002EC952 /* WYDataMemoryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYDataMemoryManager.m; sourceTree = "<group>"; };
 		544D39187087EFD6B76825B2 /* Pods-WYStreamMaster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WYStreamMaster.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WYStreamMaster/Pods-WYStreamMaster.debug.xcconfig"; sourceTree = "<group>"; };
+		782119001F5805F00073CBC2 /* ZegoLiveRoom.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoLiveRoom.framework; sourceTree = "<group>"; };
+		782119021F5805F00073CBC2 /* ZegoLiveRoom.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoLiveRoom.framework; sourceTree = "<group>"; };
+		789DAA151F56874C0012075C /* FUManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FUManager.h; sourceTree = "<group>"; };
+		789DAA161F56874C0012075C /* FUManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FUManager.m; sourceTree = "<group>"; };
+		789DAA191F5688200012075C /* authpack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = authpack.h; sourceTree = "<group>"; };
+		789DAA1C1F5688200012075C /* funama.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = funama.h; sourceTree = "<group>"; };
+		789DAA1D1F5688200012075C /* FURenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FURenderer.h; sourceTree = "<group>"; };
+		789DAA1E1F5688200012075C /* libnama.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libnama.a; sourceTree = "<group>"; };
+		789DAA1F1F5688200012075C /* release_note.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_note.txt; sourceTree = "<group>"; };
+		789DAA211F5688200012075C /* face_beautification.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = face_beautification.bundle; sourceTree = "<group>"; };
+		789DAA221F5688200012075C /* v3.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = v3.bundle; sourceTree = "<group>"; };
+		789DAA241F5688200012075C /* EatRabbi.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = EatRabbi.bundle; sourceTree = "<group>"; };
+		789DAA251F5688200012075C /* lixiaolong.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = lixiaolong.bundle; sourceTree = "<group>"; };
+		789DAA261F5688200012075C /* mask_matianyu.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = mask_matianyu.bundle; sourceTree = "<group>"; };
+		789DAA271F5688200012075C /* Mood.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = Mood.bundle; sourceTree = "<group>"; };
+		789DAA281F5688200012075C /* yazui.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = yazui.bundle; sourceTree = "<group>"; };
+		789DAA291F5688200012075C /* yuguan.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = yuguan.bundle; sourceTree = "<group>"; };
+		789DAA341F568C060012075C /* FUAPIDemoBar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FUAPIDemoBar.framework; sourceTree = "<group>"; };
 		7D7A3645D8D449741FC609F4 /* libPods-WYStreamMaster.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WYStreamMaster.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4223266790A64B80390313C /* Pods-WYStreamMaster.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WYStreamMaster.release.xcconfig"; path = "Pods/Target Support Files/Pods-WYStreamMaster/Pods-WYStreamMaster.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -516,15 +489,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				442563CC1F385DD70075467A /* ZegoLiveRoom.framework in Frameworks */,
-				442563CD1F385DD70075467A /* ZegoLiveRoom.framework in Frameworks */,
+				789DAA351F568C060012075C /* FUAPIDemoBar.framework in Frameworks */,
 				442563D21F385DD70075467A /* ZegoImageFilter.framework in Frameworks */,
 				4408525B1ED927A200F92C7A /* Accelerate.framework in Frameworks */,
 				442563D11F385DD70075467A /* ZegoImageFilter.framework in Frameworks */,
-				440852491ED9274400F92C7A /* libnama.a in Frameworks */,
 				442563D31F385DD70075467A /* ZegoLiveRoom.framework in Frameworks */,
 				C69795F58C80289B30CE5F15 /* libPods-WYStreamMaster.a in Frameworks */,
 				442563D41F385F330075467A /* ZegoLiveRoom.framework in Frameworks */,
+				789DAA2A1F5688200012075C /* libnama.a in Frameworks */,
+				782119031F5805F00073CBC2 /* ZegoLiveRoom.framework in Frameworks */,
+				782119041F5805F00073CBC2 /* ZegoLiveRoom.framework in Frameworks */,
 				442563D01F385DD70075467A /* ZegoImageFilter.framework in Frameworks */,
 				442563CF1F385DD70075467A /* ZegoImageFilter.framework in Frameworks */,
 				442563D61F3860760075467A /* ZegoImageFilter.framework in Frameworks */,
@@ -545,78 +519,8 @@
 			isa = PBXGroup;
 			children = (
 				442563A21F3849370075467A /* ZegoLibs */,
-				440852301ED9274400F92C7A /* Faceunity */,
 			);
 			path = External;
-			sourceTree = "<group>";
-		};
-		440852301ED9274400F92C7A /* Faceunity */ = {
-			isa = PBXGroup;
-			children = (
-				440852311ED9274400F92C7A /* authpack.h */,
-				440852321ED9274400F92C7A /* FaceUnity-SDK-iOS */,
-				4408523A1ED9274400F92C7A /* items */,
-			);
-			path = Faceunity;
-			sourceTree = "<group>";
-		};
-		440852321ED9274400F92C7A /* FaceUnity-SDK-iOS */ = {
-			isa = PBXGroup;
-			children = (
-				440852331ED9274400F92C7A /* Headers */,
-				440852361ED9274400F92C7A /* libnama.a */,
-				440852371ED9274400F92C7A /* Resources */,
-			);
-			path = "FaceUnity-SDK-iOS";
-			sourceTree = "<group>";
-		};
-		440852331ED9274400F92C7A /* Headers */ = {
-			isa = PBXGroup;
-			children = (
-				440852341ED9274400F92C7A /* funama.h */,
-				440852351ED9274400F92C7A /* FURenderer.h */,
-			);
-			path = Headers;
-			sourceTree = "<group>";
-		};
-		440852371ED9274400F92C7A /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				440852381ED9274400F92C7A /* face_beautification.bundle */,
-				440852391ED9274400F92C7A /* v3.bundle */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		4408523A1ED9274400F92C7A /* items */ = {
-			isa = PBXGroup;
-			children = (
-				44BCC6B21F09DFA50032D7DA /* wj_huahuan.bundle */,
-				44BCC6B01F09DF940032D7DA /* wj_birth.bundle */,
-				4460B5F71F023BBA00085F8F /* wj_huangguan.bundle */,
-				4460B5F81F023BBA00085F8F /* wj_qinqin.bundle */,
-				4460B5F91F023BBA00085F8F /* wj_qiubite.bundle */,
-				4460B5FA1F023BBA00085F8F /* wj_leisi.bundle */,
-				4460B5FB1F023BBA00085F8F /* wj_xiaochou.bundle */,
-				4460B5F51F023B5F00085F8F /* wj_xiangsumojing.bundle */,
-				4460B5F11EFBB39400085F8F /* wj_tunvlang.bundle */,
-				446E82FF1EE112CB00C9A532 /* Cat.bundle */,
-				4408523B1ED9274400F92C7A /* BeagleDog.bundle */,
-				4408523C1ED9274400F92C7A /* ColorCrown.bundle */,
-				4408523D1ED9274400F92C7A /* Deer.bundle */,
-				4408523E1ED9274400F92C7A /* HappyRabbi.bundle */,
-				4408523F1ED9274400F92C7A /* hartshorn.bundle */,
-				440852401ED9274400F92C7A /* heart_v2.bundle */,
-				440852411ED9274400F92C7A /* item0204.bundle */,
-				440852421ED9274400F92C7A /* item0208.bundle */,
-				440852431ED9274400F92C7A /* item0210.bundle */,
-				440852441ED9274400F92C7A /* item0501.bundle */,
-				440852451ED9274400F92C7A /* Mood.bundle */,
-				440852461ED9274400F92C7A /* PrincessCrown.bundle */,
-				440852471ED9274400F92C7A /* tiara.bundle */,
-				440852481ED9274400F92C7A /* YellowEar.bundle */,
-			);
-			path = items;
 			sourceTree = "<group>";
 		};
 		441C23ED1E83FDA20020557C /* LiveGiftShowView */ = {
@@ -703,6 +607,7 @@
 		44203D3B1E7008BC00D59B5E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				789DAA111F56871F0012075C /* Face */,
 				4423177C1EC56A5A003AB4AE /* Set */,
 				44D2F7C11E7BCA2100122866 /* Chat */,
 				44203DB31E7245FA00D59B5E /* Main */,
@@ -985,37 +890,13 @@
 		442563A21F3849370075467A /* ZegoLibs */ = {
 			isa = PBXGroup;
 			children = (
-				442563BA1F385DD70075467A /* ZegoLiveRoom-all */,
+				789DAA341F568C060012075C /* FUAPIDemoBar.framework */,
+				789DAA181F5688200012075C /* Faceunity */,
 				442563BF1F385DD70075467A /* zegoliveroom.version.txt */,
 				442563C01F385DD70075467A /* libsZegoImageFilter */,
 				442563CB1F385DD70075467A /* ZegoLiveRoom.framework */,
 			);
 			path = ZegoLibs;
-			sourceTree = "<group>";
-		};
-		442563BA1F385DD70075467A /* ZegoLiveRoom-all */ = {
-			isa = PBXGroup;
-			children = (
-				442563BB1F385DD70075467A /* iphoneos */,
-				442563BD1F385DD70075467A /* iphoneos_simulator */,
-			);
-			path = "ZegoLiveRoom-all";
-			sourceTree = "<group>";
-		};
-		442563BB1F385DD70075467A /* iphoneos */ = {
-			isa = PBXGroup;
-			children = (
-				442563BC1F385DD70075467A /* ZegoLiveRoom.framework */,
-			);
-			path = iphoneos;
-			sourceTree = "<group>";
-		};
-		442563BD1F385DD70075467A /* iphoneos_simulator */ = {
-			isa = PBXGroup;
-			children = (
-				442563BE1F385DD70075467A /* ZegoLiveRoom.framework */,
-			);
-			path = iphoneos_simulator;
 			sourceTree = "<group>";
 		};
 		442563C01F385DD70075467A /* libsZegoImageFilter */ = {
@@ -1214,6 +1095,117 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		782118FE1F5805F00073CBC2 /* ZegoLiveRoom-all */ = {
+			isa = PBXGroup;
+			children = (
+				782118FF1F5805F00073CBC2 /* iphoneos */,
+				782119011F5805F00073CBC2 /* iphoneos_simulator */,
+			);
+			path = "ZegoLiveRoom-all";
+			sourceTree = "<group>";
+		};
+		782118FF1F5805F00073CBC2 /* iphoneos */ = {
+			isa = PBXGroup;
+			children = (
+				782119001F5805F00073CBC2 /* ZegoLiveRoom.framework */,
+			);
+			path = iphoneos;
+			sourceTree = "<group>";
+		};
+		782119011F5805F00073CBC2 /* iphoneos_simulator */ = {
+			isa = PBXGroup;
+			children = (
+				782119021F5805F00073CBC2 /* ZegoLiveRoom.framework */,
+			);
+			path = iphoneos_simulator;
+			sourceTree = "<group>";
+		};
+		789DAA111F56871F0012075C /* Face */ = {
+			isa = PBXGroup;
+			children = (
+				789DAA121F56871F0012075C /* controller */,
+				789DAA131F56871F0012075C /* model */,
+				789DAA141F56871F0012075C /* view */,
+			);
+			path = Face;
+			sourceTree = "<group>";
+		};
+		789DAA121F56871F0012075C /* controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		789DAA131F56871F0012075C /* model */ = {
+			isa = PBXGroup;
+			children = (
+				789DAA151F56874C0012075C /* FUManager.h */,
+				789DAA161F56874C0012075C /* FUManager.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		789DAA141F56871F0012075C /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		789DAA181F5688200012075C /* Faceunity */ = {
+			isa = PBXGroup;
+			children = (
+				782118FE1F5805F00073CBC2 /* ZegoLiveRoom-all */,
+				789DAA191F5688200012075C /* authpack.h */,
+				789DAA1A1F5688200012075C /* FaceUnity-SDK-iOS */,
+				789DAA231F5688200012075C /* items */,
+			);
+			path = Faceunity;
+			sourceTree = "<group>";
+		};
+		789DAA1A1F5688200012075C /* FaceUnity-SDK-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				789DAA1B1F5688200012075C /* Headers */,
+				789DAA1E1F5688200012075C /* libnama.a */,
+				789DAA1F1F5688200012075C /* release_note.txt */,
+				789DAA201F5688200012075C /* Resources */,
+			);
+			path = "FaceUnity-SDK-iOS";
+			sourceTree = "<group>";
+		};
+		789DAA1B1F5688200012075C /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				789DAA1C1F5688200012075C /* funama.h */,
+				789DAA1D1F5688200012075C /* FURenderer.h */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
+		789DAA201F5688200012075C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				789DAA211F5688200012075C /* face_beautification.bundle */,
+				789DAA221F5688200012075C /* v3.bundle */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		789DAA231F5688200012075C /* items */ = {
+			isa = PBXGroup;
+			children = (
+				789DAA241F5688200012075C /* EatRabbi.bundle */,
+				789DAA251F5688200012075C /* lixiaolong.bundle */,
+				789DAA261F5688200012075C /* mask_matianyu.bundle */,
+				789DAA271F5688200012075C /* Mood.bundle */,
+				789DAA281F5688200012075C /* yazui.bundle */,
+				789DAA291F5688200012075C /* yuguan.bundle */,
+			);
+			path = items;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1309,71 +1301,54 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				44BCC6B11F09DF940032D7DA /* wj_birth.bundle in Resources */,
-				440852561ED9274400F92C7A /* Mood.bundle in Resources */,
 				44D2F7E31E7FC30500122866 /* YTChatBottomView.xib in Resources */,
 				444AA54D1EB9A74900A80FB9 /* WYRegisterViewController.xib in Resources */,
-				4408524F1ED9274400F92C7A /* HappyRabbi.bundle in Resources */,
+				789DAA2E1F5688200012075C /* EatRabbi.bundle in Resources */,
+				789DAA2F1F5688200012075C /* lixiaolong.bundle in Resources */,
 				442563FD1F429B030075467A /* gr_xian_3_icon@2x.png in Resources */,
 				4425642A1F42AA830075467A /* wy_gameresult_lose_1@2x.png in Resources */,
 				44203D1F1E6FE78800D59B5E /* LaunchScreen.storyboard in Resources */,
-				440852581ED9274400F92C7A /* tiara.bundle in Resources */,
+				789DAA2C1F5688200012075C /* face_beautification.bundle in Resources */,
 				4425642D1F42AA830075467A /* wy_gameresult_win_1@2x.png in Resources */,
 				442564211F42AA830075467A /* gr_hu_icon@2x.png in Resources */,
-				4408524A1ED9274400F92C7A /* face_beautification.bundle in Resources */,
+				789DAA301F5688200012075C /* mask_matianyu.bundle in Resources */,
+				789DAA2D1F5688200012075C /* v3.bundle in Resources */,
 				44203D991E714BD600D59B5E /* WYImageCodeView.xib in Resources */,
-				440852551ED9274400F92C7A /* item0501.bundle in Resources */,
 				442563EC1F42933B0075467A /* gr_xian_1_icon@2x.png in Resources */,
-				440852521ED9274400F92C7A /* item0204.bundle in Resources */,
 				444AA55F1EB9C72000A80FB9 /* InfoPlist.strings in Resources */,
 				44203DBE1E72551600D59B5E /* WYLiveViewController.xib in Resources */,
 				442564291F42AA830075467A /* wy_gameresult_he@2x.png in Resources */,
 				442564221F42AA830075467A /* gr_long_icon@2x.png in Resources */,
-				4408524E1ED9274400F92C7A /* Deer.bundle in Resources */,
-				440852501ED9274400F92C7A /* hartshorn.bundle in Resources */,
 				44203D1C1E6FE78800D59B5E /* Assets.xcassets in Resources */,
-				4460B5FE1F023BBA00085F8F /* wj_qiubite.bundle in Resources */,
-				440852511ED9274400F92C7A /* heart_v2.bundle in Resources */,
 				442564251F42AA830075467A /* gr_xian_icon@2x.png in Resources */,
 				442563F61F4299680075467A /* gr_xian_2_icon@2x.png in Resources */,
 				442564241F42AA830075467A /* gr_win_icon@2x.png in Resources */,
 				442563CE1F385DD70075467A /* zegoliveroom.version.txt in Resources */,
 				446D432A1E839520002E5C52 /* WYAnchorManageView.xib in Resources */,
+				789DAA321F5688200012075C /* yazui.bundle in Resources */,
 				442564201F42AA830075467A /* gr_he_icon@2x.png in Resources */,
 				44203D961E714BD600D59B5E /* YTQuickLoginViewController.xib in Resources */,
 				442317811EC56A5A003AB4AE /* WYSettingViewController.xib in Resources */,
 				44203DAE1E715A9100D59B5E /* NetWorkConfig.json in Resources */,
-				44BCC6B31F09DFA50032D7DA /* wj_huahuan.bundle in Resources */,
 				444DA6531E8A718000C45DE5 /* WYChatUserNormalView.xib in Resources */,
-				440852591ED9274400F92C7A /* YellowEar.bundle in Resources */,
 				4425642B1F42AA830075467A /* wy_gameresult_lose_2@2x.png in Resources */,
 				44D9B30B1E96831E00E15BEA /* WYLiveGameResultView.xib in Resources */,
 				4425642C1F42AA830075467A /* wy_gameresult_lose_3@2x.png in Resources */,
-				4460B5F61F023B5F00085F8F /* wj_xiangsumojing.bundle in Resources */,
-				4408524B1ED9274400F92C7A /* v3.bundle in Resources */,
 				44203DB81E7246D900D59B5E /* MainTabViewController.xib in Resources */,
 				442564231F42AA830075467A /* gr_lose_icon@2x.png in Resources */,
+				789DAA311F5688200012075C /* Mood.bundle in Resources */,
 				4425642F1F42AA830075467A /* wy_gameresult_win_3@2x.png in Resources */,
 				444AA56D1EB9C85800A80FB9 /* Localizable.strings in Resources */,
 				442564271F42AA830075467A /* gr_zhuang_icon@2x.png in Resources */,
-				440852531ED9274400F92C7A /* item0208.bundle in Resources */,
-				4460B6001F023BBA00085F8F /* wj_xiaochou.bundle in Resources */,
-				4460B5FD1F023BBA00085F8F /* wj_qinqin.bundle in Resources */,
 				444AA5791EB9EBB500A80FB9 /* WYLoginViewController.xib in Resources */,
-				4460B5F21EFBB39400085F8F /* wj_tunvlang.bundle in Resources */,
 				442564261F42AA830075467A /* gr_xiandui_icon@2x.png in Resources */,
-				4408524C1ED9274400F92C7A /* BeagleDog.bundle in Resources */,
-				440852571ED9274400F92C7A /* PrincessCrown.bundle in Resources */,
-				440852541ED9274400F92C7A /* item0210.bundle in Resources */,
 				4460B6021F039BCE00085F8F /* WYLiveBaccaratResultView.xib in Resources */,
 				44203D1A1E6FE78800D59B5E /* Main.storyboard in Resources */,
+				789DAA2B1F5688200012075C /* release_note.txt in Resources */,
 				4460B6041F04E8BC00085F8F /* WYLiveTigerResultView.xib in Resources */,
-				4460B5FC1F023BBA00085F8F /* wj_huangguan.bundle in Resources */,
-				4460B5FF1F023BBA00085F8F /* wj_leisi.bundle in Resources */,
-				446E83001EE112CB00C9A532 /* Cat.bundle in Resources */,
 				4425642E1F42AA830075467A /* wy_gameresult_win_2@2x.png in Resources */,
+				789DAA331F5688200012075C /* yuguan.bundle in Resources */,
 				442564281F42AA830075467A /* gr_zhuangdui_icon@2x.png in Resources */,
-				4408524D1ED9274400F92C7A /* ColorCrown.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1399,7 +1374,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		88EC280235A2217E0E54723B /* [CP] Copy Pods Resources */ = {
@@ -1513,6 +1488,7 @@
 				442317801EC56A5A003AB4AE /* WYSettingViewController.m in Sources */,
 				44203D841E714BD600D59B5E /* RMSuperViewController.m in Sources */,
 				44203D891E714BD600D59B5E /* WYTabBarController.m in Sources */,
+				789DAA171F56874C0012075C /* FUManager.m in Sources */,
 				441C24011E83FDA20020557C /* YTGradientColorLabel.m in Sources */,
 				441C24001E83FDA20020557C /* UserModel.m in Sources */,
 				44203D9B1E714BD600D59B5E /* WYRefreshHeader.m in Sources */,
@@ -1901,6 +1877,8 @@
 					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs/libsZegoImageFilter/ReleaseStatic/ReleaseStatic-iphoneos",
 					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs/libsZegoImageFilter/ReleaseStatic/ReleaseStatic-iphoneosAndRelease-iphonesimulator",
 					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs",
+					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs/Faceunity/ZegoLiveRoom-all/iphoneos",
+					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs/Faceunity/ZegoLiveRoom-all/iphoneos_simulator",
 				);
 				GCC_PREFIX_HEADER = WYStreamMaster/PrefixHeader.pch;
 				INFOPLIST_FILE = WYStreamMaster/Info.plist;
@@ -1909,6 +1887,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/WYStreamMaster/External/Faceunity/FaceUnity-SDK-iOS",
+					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs/Faceunity/FaceUnity-SDK-iOS",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wangjing.saga;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1937,6 +1916,8 @@
 					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs/libsZegoImageFilter/ReleaseStatic/ReleaseStatic-iphoneos",
 					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs/libsZegoImageFilter/ReleaseStatic/ReleaseStatic-iphoneosAndRelease-iphonesimulator",
 					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs",
+					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs/Faceunity/ZegoLiveRoom-all/iphoneos",
+					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs/Faceunity/ZegoLiveRoom-all/iphoneos_simulator",
 				);
 				GCC_PREFIX_HEADER = WYStreamMaster/PrefixHeader.pch;
 				INFOPLIST_FILE = WYStreamMaster/Info.plist;
@@ -1945,6 +1926,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/WYStreamMaster/External/Faceunity/FaceUnity-SDK-iOS",
+					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs/Faceunity/FaceUnity-SDK-iOS",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wangjing.saga;
 				PRODUCT_NAME = "$(TARGET_NAME)";

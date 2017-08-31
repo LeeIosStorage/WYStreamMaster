@@ -21,6 +21,8 @@
 #import "WYFaceRendererManager.h"
 #import "WYGiftRecordView.h"
 #import "ZegoAVManager.h"
+#import <FUAPIDemoBar/FUAPIDemoBar.h>
+#import "FUManager.h"
 
 // 直播通知重试次数
 static NSInteger kLiveNotifyRetryCount = 0;
@@ -30,7 +32,8 @@ static NSInteger kLiveNotifyRetryMaxCount = 3;
 <
 WYStreamingSessionManagerDelegate,
 WYAnchorInfoViewDelegate,
-ZegoLivePublisherDelegate
+ZegoLivePublisherDelegate,
+FUAPIDemoBarDelegate
 >
 {
     
@@ -69,6 +72,9 @@ ZegoLivePublisherDelegate
 
 @property (strong, nonatomic) WYLiveGameResultView *liveGameResultView;//游戏结果
 
+@property (nonatomic, strong) UIButton *demoBtn ;
+@property (nonatomic, strong) FUAPIDemoBar *demoBar ;
+
 @end
 
 @implementation WYLiveViewController
@@ -78,6 +84,20 @@ ZegoLivePublisherDelegate
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 //    [[WYFaceRendererManager sharedInstance] stopTimer];
 }
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    if (self.isShowFaceUnity) {
+        [self.view addSubview:self.demoBtn];
+        [self.view addSubview:self.demoBar];
+        
+        [[FUManager shareManager] setUpFaceunity];
+        [FUManager shareManager].isShown = YES ;
+        
+    }
+}
+
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -258,9 +278,8 @@ ZegoLivePublisherDelegate
         
         [self.view insertSubview:self.contentContainerView belowSubview:self.backButton];
     }
-    
-    
 }
+
 
 - (void)initRoomView
 {
@@ -632,12 +651,78 @@ static bool frontCamera = YES;
     return _liveGameResultView;
 }
 
+-(UIButton *)demoBtn {
+    if (!_demoBtn) {
+        _demoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _demoBtn.frame  = CGRectMake(self.view.frame.size.width - 130 - 16, 100, 130, 55);
+        //        [_demoBtn setImage:[UIImage imageNamed:@"camera_btn_filter_normal"] forState:UIControlStateNormal];
+        [_demoBtn.titleLabel setFont:[UIFont systemFontOfSize:15]];
+        [_demoBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [_demoBtn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+        [_demoBtn setTitle:@"隐藏 FaceUnity" forState:UIControlStateNormal];
+        [_demoBtn setTitle:@"显示 FaceUnity" forState:UIControlStateSelected];
+        [_demoBtn addTarget:self action:@selector(showDemoBar) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _demoBtn ;
+}
+
+-(FUAPIDemoBar *)demoBar{
+    if (!_demoBar) {
+        _demoBar = [[FUAPIDemoBar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 208, self.view.frame.size.width, 208)];
+        
+        _demoBar.itemsDataSource =  [FUManager shareManager].itemsDataSource;
+        _demoBar.filtersDataSource = [FUManager shareManager].filtersDataSource;
+        
+        _demoBar.selectedItem = [FUManager shareManager].selectedItem;
+        _demoBar.selectedFilter = [FUManager shareManager].selectedFilter;
+        _demoBar.selectedBlur = [FUManager shareManager].selectedBlur;
+        _demoBar.beautyLevel = [FUManager shareManager].beautyLevel;
+        _demoBar.thinningLevel = [FUManager shareManager].thinningLevel;
+        _demoBar.enlargingLevel = [FUManager shareManager].enlargingLevel;
+        _demoBar.faceShapeLevel = [FUManager shareManager].faceShapeLevel;
+        _demoBar.faceShape = [FUManager shareManager].faceShape;
+        _demoBar.redLevel = [FUManager shareManager].redLevel;
+        
+        _demoBar.delegate = self;
+    }
+    return _demoBar ;
+}
+
+- (void)syncBeautyParams
+{
+    [FUManager shareManager].selectedFilter = _demoBar.selectedFilter;
+    [FUManager shareManager].selectedBlur = _demoBar.selectedBlur;
+    [FUManager shareManager].beautyLevel = _demoBar.beautyLevel;
+    [FUManager shareManager].redLevel = _demoBar.redLevel;
+    [FUManager shareManager].faceShape = _demoBar.faceShape;
+    [FUManager shareManager].faceShapeLevel = _demoBar.faceShapeLevel;
+    [FUManager shareManager].thinningLevel = _demoBar.thinningLevel;
+    [FUManager shareManager].enlargingLevel = _demoBar.enlargingLevel;
+}
+
 #pragma mark -
 #pragma mark - WYAnchorInfoViewDelegate
 - (void)anchorInfoViewAvatarClicked{
     //主播信息
     [self.anchorManageView show];
 }
+
+#pragma mark - FUAPIDemoBarDelegate
+- (void)demoBarDidSelectedItem:(NSString *)item {
+    NSLog(@"------------- %@ ~",item);
+    [[FUManager shareManager] loadItem:item];
+}
+
+- (void)demoBarDidSelectedFilter:(NSString *)filter {
+    
+    [FUManager shareManager].selectedFilter = filter ;
+}
+
+- (void)demoBarBeautyParamChanged {
+    
+    [self syncBeautyParams];
+}
+
 
 #pragma mark
 #pragma mark - WYStreamingSessionManagerDelegate
