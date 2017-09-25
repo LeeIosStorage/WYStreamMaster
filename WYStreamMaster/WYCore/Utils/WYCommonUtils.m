@@ -97,6 +97,9 @@
 
 // 加载图片
 + (void)setImageWithURL:(NSURL *)url setImageView:(UIImageView *)imageView placeholderImage:(NSString *)placeholderImage{
+    if (![url isEqual:[NSNull null]]) {
+        url = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.legend8888.com%@", [url absoluteString]]];
+    }
     if (!placeholderImage) {
         placeholderImage = @"wy_common_placehoder_image";
     }

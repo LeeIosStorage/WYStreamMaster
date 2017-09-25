@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -19,6 +19,7 @@
                 <outlet property="avatarTipLabel" destination="mRC-6I-I1i" id="wnC-Z8-vgU"/>
                 <outlet property="emailContainerView" destination="P0S-av-3af" id="VPm-AI-nBH"/>
                 <outlet property="emailTextField" destination="grL-sU-UjJ" id="eLT-5Y-xLs"/>
+                <outlet property="invitationTextField" destination="4mE-qS-Kze" id="Fs5-gW-6Jr"/>
                 <outlet property="makeupTipLabel" destination="Hpk-oe-HK5" id="SDB-FP-DLx"/>
                 <outlet property="registerButton" destination="ddm-lY-25F" id="zcV-JO-tQg"/>
                 <outlet property="registerContainerView" destination="8KZ-sj-RCl" id="uDC-f6-7Hp"/>
@@ -56,7 +57,7 @@
             </constraints>
         </view>
         <view contentMode="scaleToFill" id="8KZ-sj-RCl">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="479"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="519"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DNL-V7-UFb">
@@ -269,10 +270,10 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sfA-0v-aBN">
-                    <rect key="frame" x="11" y="412" width="353" height="67"/>
+                    <rect key="frame" x="11" y="452" width="353" height="67"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*昵称注册后不能随意更改" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fyi-Vt-fM6">
-                            <rect key="frame" x="0.0" y="0.0" width="129.5" height="13.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="130" height="14"/>
                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                             <color key="textColor" red="1" green="0.61176470588235299" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -307,10 +308,14 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gq6-UX-mgh">
-                    <rect key="frame" x="11" y="349" width="353" height="40"/>
+                    <rect key="frame" x="11" y="349" width="353" height="90"/>
                     <subviews>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FN8-Ir-ReN">
                             <rect key="frame" x="11" y="0.0" width="331" height="40"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="KCR-Pj-mHl"/>
+                            </constraints>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <textInputTraits key="textInputTraits"/>
@@ -318,13 +323,23 @@
                                 <outlet property="delegate" destination="-1" id="k04-2K-DgR"/>
                             </connections>
                         </textField>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入您的邀请码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4mE-qS-Kze">
+                            <rect key="frame" x="11" y="50" width="331" height="40"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstAttribute="bottom" secondItem="4mE-qS-Kze" secondAttribute="bottom" id="M45-cO-gLg"/>
                         <constraint firstItem="FN8-Ir-ReN" firstAttribute="leading" secondItem="gq6-UX-mgh" secondAttribute="leading" constant="11" id="NLp-Ju-M9I"/>
                         <constraint firstAttribute="trailing" secondItem="FN8-Ir-ReN" secondAttribute="trailing" constant="11" id="Nr2-L9-2Dc"/>
-                        <constraint firstAttribute="bottom" secondItem="FN8-Ir-ReN" secondAttribute="bottom" id="bC6-Zc-2Rr"/>
-                        <constraint firstAttribute="height" constant="40" id="erl-GA-c9l"/>
+                        <constraint firstAttribute="trailing" secondItem="4mE-qS-Kze" secondAttribute="trailing" constant="11" id="ZFz-li-MjA"/>
+                        <constraint firstItem="4mE-qS-Kze" firstAttribute="leading" secondItem="gq6-UX-mgh" secondAttribute="leading" constant="11" id="d9i-xH-lBJ"/>
+                        <constraint firstAttribute="height" constant="90" id="erl-GA-c9l"/>
+                        <constraint firstItem="4mE-qS-Kze" firstAttribute="top" secondItem="FN8-Ir-ReN" secondAttribute="bottom" constant="10" id="euU-Ag-LxS"/>
                         <constraint firstItem="FN8-Ir-ReN" firstAttribute="top" secondItem="gq6-UX-mgh" secondAttribute="top" id="fid-NT-9od"/>
                     </constraints>
                 </view>
@@ -338,7 +353,7 @@
                 <constraint firstAttribute="bottom" secondItem="sfA-0v-aBN" secondAttribute="bottom" id="M7z-iB-dpL"/>
                 <constraint firstItem="BXV-Ri-Nda" firstAttribute="top" secondItem="P0S-av-3af" secondAttribute="bottom" constant="17" id="SPV-2C-CgC"/>
                 <constraint firstItem="BXV-Ri-Nda" firstAttribute="leading" secondItem="8KZ-sj-RCl" secondAttribute="leading" constant="11" id="To6-3e-TrF"/>
-                <constraint firstItem="sfA-0v-aBN" firstAttribute="top" secondItem="BXV-Ri-Nda" secondAttribute="bottom" constant="80" id="VJz-gt-lx4"/>
+                <constraint firstItem="sfA-0v-aBN" firstAttribute="top" secondItem="BXV-Ri-Nda" secondAttribute="bottom" constant="120" id="VJz-gt-lx4"/>
                 <constraint firstItem="P0S-av-3af" firstAttribute="leading" secondItem="8KZ-sj-RCl" secondAttribute="leading" constant="11" id="WcP-0v-GNf"/>
                 <constraint firstItem="P0S-av-3af" firstAttribute="top" secondItem="o8s-Zs-fV6" secondAttribute="bottom" constant="17" id="Wcx-lL-Szu"/>
                 <constraint firstItem="o8s-Zs-fV6" firstAttribute="top" secondItem="DNL-V7-UFb" secondAttribute="bottom" constant="16" id="Zfy-4T-Iad"/>
@@ -351,7 +366,7 @@
                 <constraint firstItem="o8s-Zs-fV6" firstAttribute="leading" secondItem="8KZ-sj-RCl" secondAttribute="leading" constant="11" id="vk5-RN-dIQ"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="30.5" y="735.5"/>
+            <point key="canvasLocation" x="-60" y="630"/>
         </view>
     </objects>
     <resources>

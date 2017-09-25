@@ -252,15 +252,15 @@
 		44203D581E714BD600D59B5E /* WYLoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYLoginManager.m; sourceTree = "<group>"; };
 		44203D591E714BD600D59B5E /* WYLoginUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYLoginUserManager.h; sourceTree = "<group>"; };
 		44203D5A1E714BD600D59B5E /* WYLoginUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYLoginUserManager.m; sourceTree = "<group>"; };
-		44203D5B1E714BD600D59B5E /* WYLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYLoginViewController.h; sourceTree = "<group>"; };
-		44203D5C1E714BD600D59B5E /* WYLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYLoginViewController.m; sourceTree = "<group>"; };
+		44203D5B1E714BD600D59B5E /* WYLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WYLoginViewController.h; path = ../WYLoginViewController.h; sourceTree = "<group>"; };
+		44203D5C1E714BD600D59B5E /* WYLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WYLoginViewController.m; path = ../WYLoginViewController.m; sourceTree = "<group>"; };
 		44203D5E1E714BD600D59B5E /* WYSettingConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYSettingConfig.h; sourceTree = "<group>"; };
 		44203D5F1E714BD600D59B5E /* WYSettingConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYSettingConfig.m; sourceTree = "<group>"; };
 		44203D601E714BD600D59B5E /* YTLoginRegistPublic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTLoginRegistPublic.h; sourceTree = "<group>"; };
 		44203D611E714BD600D59B5E /* YTLoginRegistPublic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTLoginRegistPublic.m; sourceTree = "<group>"; };
-		44203D621E714BD600D59B5E /* YTQuickLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTQuickLoginViewController.h; sourceTree = "<group>"; };
-		44203D631E714BD600D59B5E /* YTQuickLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTQuickLoginViewController.m; sourceTree = "<group>"; };
-		44203D641E714BD600D59B5E /* YTQuickLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YTQuickLoginViewController.xib; sourceTree = "<group>"; };
+		44203D621E714BD600D59B5E /* YTQuickLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YTQuickLoginViewController.h; path = ../YTQuickLoginViewController.h; sourceTree = "<group>"; };
+		44203D631E714BD600D59B5E /* YTQuickLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YTQuickLoginViewController.m; path = ../YTQuickLoginViewController.m; sourceTree = "<group>"; };
+		44203D641E714BD600D59B5E /* YTQuickLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = YTQuickLoginViewController.xib; path = ../YTQuickLoginViewController.xib; sourceTree = "<group>"; };
 		44203D681E714BD600D59B5E /* WYCustomAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCustomAlertView.h; sourceTree = "<group>"; };
 		44203D691E714BD600D59B5E /* WYCustomAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCustomAlertView.m; sourceTree = "<group>"; };
 		44203D6B1E714BD600D59B5E /* WYImageCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYImageCodeView.h; sourceTree = "<group>"; };
@@ -371,9 +371,9 @@
 		4425644D1F42AB930075467A /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/gr_win_icon@2x.png"; sourceTree = "<group>"; };
 		4425644E1F42AB970075467A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hant"; path = "zh-Hant.lproj/gr_lose_icon@2x.png"; sourceTree = "<group>"; };
 		4425644F1F42AB990075467A /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/gr_lose_icon@2x.png"; sourceTree = "<group>"; };
-		444AA5491EB9A74900A80FB9 /* WYRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYRegisterViewController.h; sourceTree = "<group>"; };
-		444AA54A1EB9A74900A80FB9 /* WYRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYRegisterViewController.m; sourceTree = "<group>"; };
-		444AA54B1EB9A74900A80FB9 /* WYRegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYRegisterViewController.xib; sourceTree = "<group>"; };
+		444AA5491EB9A74900A80FB9 /* WYRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WYRegisterViewController.h; path = ../WYRegisterViewController.h; sourceTree = "<group>"; };
+		444AA54A1EB9A74900A80FB9 /* WYRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WYRegisterViewController.m; path = ../WYRegisterViewController.m; sourceTree = "<group>"; };
+		444AA54B1EB9A74900A80FB9 /* WYRegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WYRegisterViewController.xib; path = ../WYRegisterViewController.xib; sourceTree = "<group>"; };
 		444AA5591EB9C6FC00A80FB9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		444AA55A1EB9C6FC00A80FB9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		444AA55B1EB9C70200A80FB9 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -657,6 +657,8 @@
 		44203D4F1E714BD600D59B5E /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				78B82A261F78A44600279366 /* view */,
+				78B82A251F78A43C00279366 /* controller */,
 				44203D501E714BD600D59B5E /* Model */,
 				44203D531E714BD600D59B5E /* UIButton+YTCodeVerify.h */,
 				44203D541E714BD600D59B5E /* UIButton+YTCodeVerify.m */,
@@ -666,19 +668,10 @@
 				44203D581E714BD600D59B5E /* WYLoginManager.m */,
 				44203D591E714BD600D59B5E /* WYLoginUserManager.h */,
 				44203D5A1E714BD600D59B5E /* WYLoginUserManager.m */,
-				44203D5B1E714BD600D59B5E /* WYLoginViewController.h */,
-				44203D5C1E714BD600D59B5E /* WYLoginViewController.m */,
-				444AA57B1EB9EBB500A80FB9 /* WYLoginViewController.xib */,
-				444AA5491EB9A74900A80FB9 /* WYRegisterViewController.h */,
-				444AA54A1EB9A74900A80FB9 /* WYRegisterViewController.m */,
-				444AA54B1EB9A74900A80FB9 /* WYRegisterViewController.xib */,
 				44203D5E1E714BD600D59B5E /* WYSettingConfig.h */,
 				44203D5F1E714BD600D59B5E /* WYSettingConfig.m */,
 				44203D601E714BD600D59B5E /* YTLoginRegistPublic.h */,
 				44203D611E714BD600D59B5E /* YTLoginRegistPublic.m */,
-				44203D621E714BD600D59B5E /* YTQuickLoginViewController.h */,
-				44203D631E714BD600D59B5E /* YTQuickLoginViewController.m */,
-				44203D641E714BD600D59B5E /* YTQuickLoginViewController.xib */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -1204,6 +1197,29 @@
 				789DAA291F5688200012075C /* yuguan.bundle */,
 			);
 			path = items;
+			sourceTree = "<group>";
+		};
+		78B82A251F78A43C00279366 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				44203D5B1E714BD600D59B5E /* WYLoginViewController.h */,
+				44203D5C1E714BD600D59B5E /* WYLoginViewController.m */,
+				444AA57B1EB9EBB500A80FB9 /* WYLoginViewController.xib */,
+				444AA5491EB9A74900A80FB9 /* WYRegisterViewController.h */,
+				444AA54A1EB9A74900A80FB9 /* WYRegisterViewController.m */,
+				444AA54B1EB9A74900A80FB9 /* WYRegisterViewController.xib */,
+				44203D621E714BD600D59B5E /* YTQuickLoginViewController.h */,
+				44203D631E714BD600D59B5E /* YTQuickLoginViewController.m */,
+				44203D641E714BD600D59B5E /* YTQuickLoginViewController.xib */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		78B82A261F78A44600279366 /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1762,6 +1778,7 @@
 				444AA5811EB9EBDF00A80FB9 /* zh-Hans */,
 			);
 			name = WYLoginViewController.xib;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

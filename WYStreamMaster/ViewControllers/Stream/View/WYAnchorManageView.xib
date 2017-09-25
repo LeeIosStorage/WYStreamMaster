@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -133,7 +133,7 @@
                         <constraint firstItem="lF9-ko-yrD" firstAttribute="centerY" secondItem="GB6-sP-zAL" secondAttribute="centerY" constant="-10" id="xg7-zn-o7q"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w9K-6u-2F6">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w9K-6u-2F6">
                     <rect key="frame" x="0.0" y="90" width="375" height="185"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="biQ-ki-m0I">
@@ -220,7 +220,7 @@
                         <constraint firstAttribute="trailing" secondItem="biQ-ki-m0I" secondAttribute="trailing" constant="10" id="xrW-AA-yVq"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dzy-Q3-uKb">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dzy-Q3-uKb">
                     <rect key="frame" x="0.0" y="277" width="375" height="123"/>
                     <subviews>
                         <view alpha="0.070000000000000007" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IwB-tu-hN0">

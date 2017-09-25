@@ -23,6 +23,7 @@
 #import "ZegoAVManager.h"
 #import <FUAPIDemoBar/FUAPIDemoBar.h>
 #import "FUManager.h"
+#import "AFNetworkReachabilityManager.h"
 
 // 直播通知重试次数
 static NSInteger kLiveNotifyRetryCount = 0;
@@ -74,6 +75,9 @@ FUAPIDemoBarDelegate
 
 @property (nonatomic, strong) UIButton *demoBtn ;
 @property (nonatomic, strong) FUAPIDemoBar *demoBar ;
+@property (nonatomic, assign) NSInteger pauseTime;
+
+@property (nonatomic ,strong) NSTimer *pauseTimers;
 
 @end
 
@@ -88,14 +92,14 @@ FUAPIDemoBarDelegate
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    if (self.isShowFaceUnity) {
-        [self.view addSubview:self.demoBtn];
-        [self.view addSubview:self.demoBar];
-        
-        [[FUManager shareManager] setUpFaceunity];
-        [FUManager shareManager].isShown = YES ;
-        
-    }
+//    if (self.isShowFaceUnity) {
+//        [self.view addSubview:self.demoBtn];
+//        [self.view addSubview:self.demoBar];
+//        
+//        [[FUManager shareManager] setUpFaceunity];
+//        [FUManager shareManager].isShown = YES ;
+//        
+//    }
 }
 
 
@@ -116,6 +120,8 @@ FUAPIDemoBarDelegate
     self.navigationController.navigationBar.hidden = YES;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(serverNoticeCustomAttachment:) name:WYServerNoticeAttachment_Notification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ReachabilityDidChangeNotification:) name:AFNetworkingReachabilityDidChangeNotification object:nil];
+
     
     [self setupSubView];
     
@@ -299,12 +305,11 @@ FUAPIDemoBarDelegate
 {
     // 设置屏幕长亮
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
-    
+    kAUVoiceIOProperty_VoiceProcessingEnableAGC;
     
     //即构科技推流
     [self addPreview];
 //    [self addExternalCaptureView];
-    
     
     /*********************七牛推流
     NSURL *streamURL = [NSURL URLWithString:self.streamURL];
@@ -763,6 +768,44 @@ static bool frontCamera = YES;
 //    [self addStaticsInfo:YES stream:streamID fps:quality.fps kbs:quality.kbps];
     NSString *totalString = [NSString stringWithFormat:@"fps %.3f, kbs %.3f",quality.fps, quality.kbps];
     WYLog(@"~~~~~~~~~onPublishQualityUpdate: %@", totalString);
+}
+
+- (void)setReachabilityStatusChangeBlock:(nullable void (^)(AFNetworkReachabilityStatus status))block
+{
+    NSLog(@"aaaaaaaaaaa");
+}
+
+- (void)ReachabilityDidChangeNotification:(NSNotificationCenter *)sender
+{
+    [self.pauseTimers setFireDate:[NSDate date]];
+}
+
+- (NSTimer *)pauseTimers{
+    if (!_pauseTimers) {
+        _pauseTimers =  [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(liveTimerRunning) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:_pauseTimers forMode:NSRunLoopCommonModes];
+    }
+    return _pauseTimers;
+}
+
+- (void)stopTimer{
+    if (_pauseTimers) {
+        [_pauseTimers invalidate];
+        _pauseTimers = nil;
+    }
+}
+
+- (void)liveTimerRunning{
+    NSInteger status = [AFNetworkReachabilityManager sharedManager].networkReachabilityStatus;
+    if (status == AFNetworkReachabilityStatusNotReachable) {
+        self.pauseTime++;
+    } else {
+        if (self.pauseTime > 90) {
+            [self prepareForCameraSetting];
+        }
+        self.pauseTime = 0;
+        [self stopTimer];
+    }
 }
 
 - (void)onAuxCallback:(void *)pData dataLen:(int *)pDataLen sampleRate:(int *)pSampleRate channelCount:(int *)pChannelCount

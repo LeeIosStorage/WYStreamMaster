@@ -296,13 +296,12 @@ UITextFieldDelegate
 
 - (void)toCreateLiveRoom{
     
-    
     self.roomNameTitle = self.roomNameTextField.text;
     self.roomNoticeTitle = self.roomNoticeTextField.text;
     
     if ([self.roomNameTitle length] == 0) {
-        [MBProgressHUD showError:[WYCommonUtils acquireCurrentLocalizedText:@"给自己取一个闪亮的房间名字吧！"]];
-        return;
+//        [MBProgressHUD showError:[WYCommonUtils acquireCurrentLocalizedText:@"给自己取一个闪亮的房间名字吧！"]];
+//        return;
     }
 //    if ([self.gameCategory length] == 0 || [self.gameCategoryId length] == 0) {
 //        [MBProgressHUD showError:[WYCommonUtils acquireCurrentLocalizedText:@"选择直播的游戏"]];

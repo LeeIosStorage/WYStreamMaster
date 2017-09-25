@@ -23,7 +23,8 @@ static __strong id<ZegoVideoCaptureFactory> g_factory = NULL;
     
     if (g_ZegoApi == nil) {
         
-        [ZegoLiveRoomApi setUseTestEnv:NO];
+        [ZegoLiveRoomApi setUseTestEnv:false];
+        
 //        [ZegoLiveRoomApi prepareReplayLiveCapture];
 //        [ZegoLiveRoomApi enableExternalRender:[self usingExternalRender]];
         
@@ -39,7 +40,7 @@ static __strong id<ZegoVideoCaptureFactory> g_factory = NULL;
 //        [ZegoHelper setUsingExternalCapture];
         
         uint32_t appID = 1196318866;//
-        if (appID > 0) {    // 手动输入为空的情况下容错
+        if (appID > 0) {    //  手动输入为空的情况下容错
             NSData *appSign = [self getZegoAppSign];
             if (appSign) {
                 g_ZegoApi = [[ZegoLiveRoomApi alloc] initWithAppID:appID appSignature:appSign];
@@ -108,7 +109,7 @@ static __strong id<ZegoVideoCaptureFactory> g_factory = NULL;
             NSString *logString = [NSString stringWithFormat:NSLocalizedString(@"登录房间成功. roomId %@", nil), roomID];
             WYLog(@"%@",logString);
             
-            bool b = [[ZegoHelper api] startPublishing:streamID title:liveTitle flag:ZEGOAPI_SINGLE_ANCHOR];
+            bool b = [[ZegoHelper api] startPublishing:streamID title:liveTitle flag:ZEGOAPI_JOIN_PUBLISH];
             if (b){
                 WYLog(@"%@",[NSString stringWithFormat:NSLocalizedString(@"开始直播，流ID:%@", nil),streamID]);
             }
@@ -118,9 +119,7 @@ static __strong id<ZegoVideoCaptureFactory> g_factory = NULL;
             NSString *logString = [NSString stringWithFormat:NSLocalizedString(@"登录房间失败. error: %d", nil), errorCode];
             WYLog(@"%@",logString);
         }
-        
     }];
-    
 }
 
 + (void)setUsingExternalCapture
@@ -128,12 +127,26 @@ static __strong id<ZegoVideoCaptureFactory> g_factory = NULL;
     if (g_factory == nil)
         g_factory = [[VideoCaptureFactoryDemo alloc] init];
     [ZegoLiveRoomApi setVideoCaptureFactory:g_factory];
-    
 }
 
 + (VideoCaptureFactoryDemo *)getVideoCaptureFactory
 {
     return g_factory;
+}
+
+- (void)audioSessionWasInterrupted:(NSNotification *)notification
+{
+    NSLog(@"%s: %@", __func__, notification);
+    if (AVAudioSessionInterruptionTypeBegan == [notification.userInfo[AVAudioSessionInterruptionTypeKey] intValue])
+    {
+        // 暂停音频设备
+        [[ZegoHelper api] pauseModule:ZEGOAPI_MODULE_AUDIO];
+    }
+    else if(AVAudioSessionInterruptionTypeEnded == [notification.userInfo[AVAudioSessionInterruptionTypeKey] intValue])
+    {
+        // 恢复音频设备
+        [[ZegoHelper api] resumeModule:ZEGOAPI_MODULE_AUDIO];
+    }
 }
 
 @end

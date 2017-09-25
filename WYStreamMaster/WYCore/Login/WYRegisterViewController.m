@@ -72,6 +72,7 @@ UIImagePickerControllerDelegate
 
 @property (nonatomic, weak) IBOutlet UILabel *registerRemindLabel;
 @property (nonatomic, weak) IBOutlet UIButton *registerButton;
+@property (strong, nonatomic) IBOutlet UITextField *invitationTextField;
 
 @end
 
@@ -150,6 +151,9 @@ UIImagePickerControllerDelegate
     
     NSString *accountText = [_accountTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSString *emailText = [_emailTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    NSString *invitationText = [_invitationTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
 //    NSString *agentText = [_agentTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
     if (![emailText isValidateEmail]) {

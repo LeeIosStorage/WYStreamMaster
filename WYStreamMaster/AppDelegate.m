@@ -14,7 +14,7 @@
 #import "YTCustomAttachmentDecoder.h"
 #import <Bugly/Bugly.h>
 #import "ZegoAVManager.h"
-
+#import "AFNetworkReachabilityManager.h"
 @interface AppDelegate ()
 
 @end
@@ -56,6 +56,12 @@
 //    [self initTab];
     [self reLogin];
     
+    // 延时启动网络监听
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        AFNetworkReachabilityManager *networkManager = [AFNetworkReachabilityManager sharedManager];
+        
+        [networkManager startMonitoring];
+    });
     
     [self.window makeKeyAndVisible];
     
