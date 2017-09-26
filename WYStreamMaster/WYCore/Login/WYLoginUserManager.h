@@ -115,6 +115,10 @@ typedef NS_ENUM(NSInteger, CPLoginUserType){
 + (BOOL )localNotificationToClose;
 + (void)setLocalNotificationToClose:(BOOL)localNotificationToClose;
 
+// 用户操作
+// 是否记住密码 0 不记住 1 记住
++ (NSString *)rememberPassword;
++ (void)setRememberPassword:(NSString *)rememberPassword;
 #pragma mark - User Setting
 
 

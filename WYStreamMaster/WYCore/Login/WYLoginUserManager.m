@@ -37,6 +37,7 @@ static NSString *const kLiveGameType = @"kLiveGameType";
 static NSString *const kYuerCoin = @"kYuerCoin";
 static NSString *const kYuerBait = @"kYuerBait";
 static NSString *const kLiveDuration = @"kLiveDuration";
+static NSString *const kRememberPassword = @"kRememberPassword";
 
 @implementation WYLoginUserManager
 
@@ -234,6 +235,17 @@ static NSString *const kLiveDuration = @"kLiveDuration";
 + (void)setLiveDuration:(NSString *)liveDuration
 {
     [self saveToUserDefaultsObject:liveDuration forKey:kLiveDuration];
+}
+
+// 是否记住密码
++ (NSString *)rememberPassword
+{
+    return [self objectFromUserDefaultsKey:kRememberPassword];
+}
+
++ (void)setRememberPassword:(NSString *)rememberPassword;
+{
+    [self saveToUserDefaultsObject:rememberPassword forKey:kRememberPassword];
 }
 
 #pragma mark - User Setting

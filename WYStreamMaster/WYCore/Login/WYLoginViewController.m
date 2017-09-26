@@ -33,8 +33,8 @@
 #import "UINavigationBar+Awesome.h"
 #import "WYLoginManager.h"
 #import "WYSettingViewController.h"
-
-
+#import "WYRegistersViewController.h"
+#import "WYForgotPasswordViewController.h"
 @interface WYLoginViewController () <UITextFieldDelegate,WYImageCodeViewDelegate,SettingConfigChangeD>
 {
     BOOL _phoneLoginType;
@@ -59,6 +59,7 @@
 @property (nonatomic, weak) IBOutlet UIButton *changeLoginButton;
 @property (nonatomic, weak) IBOutlet UIButton *loginButton;
 @property (nonatomic, weak) IBOutlet UIButton *sendCodeButton;
+@property (strong, nonatomic) IBOutlet UIButton *rememberPasswordButton;
 
 @property (nonatomic, weak) IBOutlet UIView *loginTipView;
 
@@ -90,7 +91,7 @@
     [WYSettingConfig staticInstance].settingDelegater = self;
     self.edgesForExtendedLayout = UIRectEdgeAll;
     
-    [self.navigationController setNavigationBarHidden:NO];
+//    [self.navigationController setNavigationBarHidden:NO];
     
 }
 
@@ -128,8 +129,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    [self.navigationController.navigationBar lt_setBackgroundColor:[[UIColor clearColor] colorWithAlphaComponent:0]];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
     // Do any additional setup after loading the view from its nib. counting stars
-    //self.edgesForExtendedLayout = UIRectEdgeTop;
+    self.edgesForExtendedLayout = UIRectEdgeAll;
     
     //测试时用
 #ifdef DEBUG
@@ -193,8 +196,13 @@
     self.loginButton.canClicked = NO;
     
     self.loginAccountTextField.text = [WYLoginUserManager account];
-    self.loginPasswordTextField.text = [WYLoginUserManager password];
+    if ([[WYLoginUserManager rememberPassword] isEqualToString:@"1"]) {
+        self.loginPasswordTextField.text = [WYLoginUserManager password];
+    }
     [self stringFormatWithPhone:self.loginAccountTextField.text];
+    
+    self.rememberPasswordButton.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
+    self.rememberPasswordButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 5);
 }
 
 - (void)initViewUI {
@@ -208,18 +216,21 @@
     placeholder = [WYCommonUtils acquireCurrentLocalizedText:@"wy_login_password_placeholder"];
     self.loginPasswordTextField.attributedPlaceholder = [WYCommonUtils stringToColorAndFontAttributeString:placeholder range:NSMakeRange(0, placeholder.length) font:[WYStyleSheet currentStyleSheet].subheadLabelFont color:UIColorHex(0xcacaca)];
     
-    self.accountContainerView.layer.cornerRadius = 3.0;
+    self.accountContainerView.layer.cornerRadius = 20.0;
     self.accountContainerView.layer.masksToBounds = YES;
     
-    self.passwordContainerView.layer.cornerRadius = 3.0;
+    self.passwordContainerView.layer.cornerRadius = 20.0;
     self.passwordContainerView.layer.masksToBounds = YES;
     
-    self.loginButton.layer.cornerRadius = 3.0;
+    self.loginButton.layer.cornerRadius = 4.0;
     self.loginButton.layer.masksToBounds = YES;
     
     UITapGestureRecognizer *gestureRecongnizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gestureRecognizer:)];
     [self.view addGestureRecognizer:gestureRecongnizer];
     
+    if ([[WYLoginUserManager rememberPassword] isEqualToString:@"1"]) {
+        self.rememberPasswordButton.selected = YES;
+    }
 }
 
 - (void)setupLoginContainerView{
@@ -506,14 +517,14 @@
     
 }
 - (IBAction)thirdLoginAction:(id)sender {
-    NSInteger tag = ((UIButton *)sender).tag;
+//    NSInteger tag = ((UIButton *)sender).tag;
     //[self socialLoginWithType:tag];
 }
 
 - (IBAction)forgetPasswordAction:(id)sender
 {
-//    YTInputAccountViewController *inputAccountVc = [[YTInputAccountViewController alloc] init];
-//    [self.navigationController pushViewController:inputAccountVc animated:YES];
+    WYForgotPasswordViewController *forgotPasswordVC = [[WYForgotPasswordViewController alloc] init];
+    [self.navigationController pushViewController:forgotPasswordVC animated:YES];
 }
 
 - (IBAction)getCodeAction:(id)sender {
@@ -534,14 +545,23 @@
 
 - (IBAction)toQuickLogin:(id)sender
 {
-    WYRegisterViewController *registerVc = [[WYRegisterViewController alloc] init];
-    WYNavigationController *createNav = [[WYNavigationController alloc] initWithRootViewController:registerVc];
-    [self presentViewController:createNav animated:YES completion:NULL];
+    WYRegistersViewController *registerVc = [[WYRegistersViewController alloc] init];
+//    WYNavigationController *createNav = [[WYNavigationController alloc] initWithRootViewController:registerVc];
+    [self presentViewController:registerVc animated:YES completion:NULL];
     
 //    YTQuickLoginViewController *quickLoginVC = [[YTQuickLoginViewController alloc] initWithNibName:@"YTQuickLoginViewController" bundle:nil];
 //    [self.navigationController pushViewController:quickLoginVC animated:YES];
 }
 
+- (IBAction)clickRememberPasswordButtonAction:(id)sender {
+    UIButton *rememberPasswordButton = sender;
+    rememberPasswordButton.selected = !rememberPasswordButton.selected;
+    if (rememberPasswordButton.selected) {
+        [WYLoginUserManager setRememberPassword:@"1"];
+    } else {
+        [WYLoginUserManager setRememberPassword:@"0"];
+    }
+}
 #pragma mark - custom
 - (void)refreshViewUI{
     
