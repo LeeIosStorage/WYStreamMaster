@@ -156,7 +156,8 @@
 //        giftAttachment.giftShowImage = [NSString stringWithFormat:@"%@/%@",[WYAPIGenerate sharedInstance].baseImgUrl,giftAttachment.giftShowImage];
 //    }
     giftListModel.rewardMsg = [NSString stringWithFormat:@"送 %@",giftAttachment.giftName];
-    
+    giftAttachment.giftShowImage = [NSString stringWithFormat:@"https://www.legend8888.com%@", giftAttachment.giftShowImage];
+
     giftListModel.picUrl = giftAttachment.giftShowImage;
     
     LiveGiftShowModel *showListModel = [LiveGiftShowModel giftModel:giftListModel userModel:userModel];
