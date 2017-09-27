@@ -35,6 +35,8 @@
 #import "WYSettingViewController.h"
 #import "WYRegistersViewController.h"
 #import "WYForgotPasswordViewController.h"
+#import "WYHelpViewController.h"
+#import "WYHomePageViewController.h"
 @interface WYLoginViewController () <UITextFieldDelegate,WYImageCodeViewDelegate,SettingConfigChangeD>
 {
     BOOL _phoneLoginType;
@@ -91,7 +93,7 @@
     [WYSettingConfig staticInstance].settingDelegater = self;
     self.edgesForExtendedLayout = UIRectEdgeAll;
     
-//    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setNavigationBarHidden:YES];
     
 }
 
@@ -100,7 +102,7 @@
     [super viewWillDisappear:animated];
     _bViewDisappear = YES;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextFieldTextDidChangeNotification object:nil];
-//    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setNavigationBarHidden:NO];
     
 }
 
@@ -498,6 +500,9 @@
 
 - (IBAction)doLogin:(id)sender
 {
+    WYHomePageViewController *homepageVC = [[WYHomePageViewController alloc] init];
+    [self.navigationController pushViewController:homepageVC animated:YES];
+    return;
     [self.loginAccountTextField resignFirstResponder];
     [self.loginPasswordTextField resignFirstResponder];
     [self.loginMsgCodeTextField resignFirstResponder];
@@ -549,8 +554,8 @@
 //    WYNavigationController *createNav = [[WYNavigationController alloc] initWithRootViewController:registerVc];
     [self presentViewController:registerVc animated:YES completion:NULL];
     
-//    YTQuickLoginViewController *quickLoginVC = [[YTQuickLoginViewController alloc] initWithNibName:@"YTQuickLoginViewController" bundle:nil];
-//    [self.navigationController pushViewController:quickLoginVC animated:YES];
+//    WYHelpViewController *helpVC = [[WYHelpViewController alloc] init];
+//    [self.navigationController pushViewController:helpVC animated:YES];
 }
 
 - (IBAction)clickRememberPasswordButtonAction:(id)sender {

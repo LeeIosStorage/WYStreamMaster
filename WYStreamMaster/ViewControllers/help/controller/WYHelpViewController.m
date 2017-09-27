@@ -7,16 +7,23 @@
 //
 
 #import "WYHelpViewController.h"
-
-@interface WYHelpViewController ()
+#import "WYHelpCell.h"
+@interface WYHelpViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *tableview;
+@property (nonatomic, strong) NSMutableArray *helpDataArray;
 
 @end
 
 @implementation WYHelpViewController
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+//    [self.navigationController setNavigationBarHidden:NO];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"帮助中心";
     [self setupView];
     [self setupData];
     // Do any additional setup after loading the view from its nib.
@@ -34,26 +41,16 @@
     
     self.tableview.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableview.backgroundColor = [UIColor clearColor];
+//    self.tableview.backgroundColor = [UIColor clearColor];
     
     [self.view addSubview:self.tableview];
     
-    [self.tableview registerNib:[UINib nibWithNibName:@"YTMineNewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
-    self.mineHomeHeaderView = [[NSBundle mainBundle] loadNibNamed:@"YTMineHomeHeaderView" owner:self options:nil].lastObject;
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH + 57)];
-    headerView.backgroundColor = [UIColor clearColor];
-    self.mineHomeHeaderView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH + 57);
-    self.mineHomeHeaderView.delegate = self;
-    [headerView addSubview:self.mineHomeHeaderView];
-    self.tableView.tableHeaderView = headerView;
+    [self.tableview registerNib:[UINib nibWithNibName:@"WYHelpCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+
     
-    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 20.f)];
-    footerView.backgroundColor = [UIColor clearColor];
-    self.tableView.tableFooterView = footerView;
-    self.tableView.rowHeight = 50.f;
     
     WS(weakSelf)
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.tableview mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.width.equalTo(weakSelf.view);
         make.bottom.equalTo(weakSelf.view).and.offset(0);
     }];
@@ -62,7 +59,105 @@
 
 - (void)setupData
 {
+    self.helpDataArray = [NSMutableArray array];
+    [self.helpDataArray addObjectsFromArray:@[@[
+                                              @{},
+                                              @{@"title":@"如何成为传奇娱乐主播?"},
+                                              @{},
+                                              @{@"title":@"直播出现卡顿?"},
+                                              @{},
+                                              @{@"title":@"直播间管理条例?"},
+                                              @{},
+                                              @{@"title":@"解封流程?"},
+                                              ]]];
     
+    [self.helpDataArray addObjectsFromArray:@[@[
+                                              @{},
+                                              @{@"title":@"直播界面介绍"},
+                                              @{},
+                                              @{@"title":@"消息中心介绍"},
+                                              @{},
+                                              @{@"title":@"信息更换流程"},
+                                              ]]];
+
+}
+
+#pragma mark - UITableView DataSource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self.helpDataArray[section] count];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return [self.helpDataArray count];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 30;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return @"常见问题";
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row % 2 != 0 ) {
+        static NSString *cellIndentifier = @"cell";
+        WYHelpCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];
+        NSDictionary *dic = self.helpDataArray[indexPath.section][indexPath.row];
+        [cell updateCell:dic];
+        cell.contentView.backgroundColor = [UIColor whiteColor];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    } else {
+        static NSString *cellIndentifierx = @"cellx";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifierx];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifierx];
+        }
+//        cell.backgroundColor = [UIColor clearColor];
+        cell.hidden = YES;
+        cell.selectionStyle = UITableViewCellSeparatorStyleNone;
+       
+        return cell;
+    }
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row % 2 != 0) {
+        return 40.f;
+    } else {
+        return 1;
+    }
+    return 0.f;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return .1;
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSDictionary *dic = self.helpDataArray[indexPath.section][indexPath.row];
+    NSString *titleString = dic[@"title"];
+    if ([titleString isEqualToString:@"意见反馈"]) {
+       
+    } else if ([titleString isEqualToString:@"设置"]) {
+        
+    } else if ([titleString isEqualToString:@"我的糖果"]) {
+        
+    } else if ([titleString isEqualToString:@"我的等级"]) {
+        
+    } else if ([titleString isEqualToString:@"邀请好友"]) {
+        
+    }
 }
 
 - (void)didReceiveMemoryWarning {

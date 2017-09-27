@@ -9,9 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WYHelpViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WYMessageViewController">
             <connections>
-                <outlet property="tableview" destination="36T-B7-ajY" id="aAb-Ts-rxx"/>
+                <outlet property="tableview" destination="0Fx-Hp-gVV" id="u6u-df-Ba1"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,17 +20,17 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="30" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="36T-B7-ajY">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0Fx-Hp-gVV">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="36T-B7-ajY" secondAttribute="trailing" id="8bf-Ns-dZk"/>
-                <constraint firstItem="36T-B7-ajY" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="HNk-At-nrq"/>
-                <constraint firstAttribute="bottom" secondItem="36T-B7-ajY" secondAttribute="bottom" id="cDx-wV-jWB"/>
-                <constraint firstItem="36T-B7-ajY" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="wO1-FJ-FAy"/>
+                <constraint firstItem="0Fx-Hp-gVV" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="4lU-pn-muH"/>
+                <constraint firstAttribute="trailing" secondItem="0Fx-Hp-gVV" secondAttribute="trailing" id="F4H-qc-lug"/>
+                <constraint firstItem="0Fx-Hp-gVV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="K05-7Q-aTF"/>
+                <constraint firstAttribute="bottom" secondItem="0Fx-Hp-gVV" secondAttribute="bottom" id="l95-yg-7fg"/>
             </constraints>
         </view>
     </objects>
