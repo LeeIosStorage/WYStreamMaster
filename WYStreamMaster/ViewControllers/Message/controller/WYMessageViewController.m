@@ -56,11 +56,12 @@
 {
     UIView *headerView = [[UIView alloc] init];
     headerView.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
-    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake((kScreenWidth - 100) / 2.0, 15, 100, 30)];
+    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake((kScreenWidth - 95) / 2.0, 15, 95, 30)];
     headerLabel.text = @"2017.5.18";
     [headerLabel setTextAlignment:NSTextAlignmentCenter];
     headerLabel.backgroundColor = [UIColor colorWithHexString:@"c8c8c8"];
     [headerLabel setTextColor:[UIColor colorWithHexString:@"ffffff"]];
+    headerLabel.font = [UIFont systemFontOfSize:12.0];
     headerLabel.layer.cornerRadius = 15.0;
     headerLabel.layer.masksToBounds = YES;
     [headerView addSubview:headerLabel];

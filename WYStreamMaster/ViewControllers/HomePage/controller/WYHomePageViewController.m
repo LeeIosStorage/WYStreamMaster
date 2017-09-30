@@ -10,6 +10,8 @@
 #import "WYLiveSetViewController.h"
 #import "WYHelpViewController.h"
 #import "WYMessageViewController.h"
+#import "WYIncomeRecordViewController.h"
+#import "WYSpaceViewController.h"
 @interface WYHomePageViewController ()
 @property (strong, nonatomic) IBOutlet UIButton *messageButton;
 @property (strong, nonatomic) IBOutlet UIButton *profitRecordButton;
@@ -48,12 +50,16 @@
     [self.navigationController pushViewController:liveSetVC animated:YES];
 }
 - (IBAction)clickProfitRecordButton:(id)sender {
+    WYIncomeRecordViewController *incomeRecordVC = [[WYIncomeRecordViewController alloc] init];
+    [self.navigationController pushViewController:incomeRecordVC animated:YES];
 }
 - (IBAction)clickHelpCenterButton:(id)sender {
     WYHelpViewController *helpCenterVC = [[WYHelpViewController alloc] init];
     [self.navigationController pushViewController:helpCenterVC animated:YES];
 }
 - (IBAction)clickSpaceButton:(UIButton *)sender {
+    WYSpaceViewController *spaceVC = [[WYSpaceViewController alloc] init];
+    [self.navigationController pushViewController:spaceVC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

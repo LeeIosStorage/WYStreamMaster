@@ -8,7 +8,7 @@
 
 #import "WYLiveSetViewController.h"
 
-@interface WYLiveSetViewController ()
+@interface WYLiveSetViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *tableview;
 @property (strong, nonatomic) IBOutlet UIView *tableviewHeaderView;
 
@@ -34,9 +34,12 @@
 //        make.top.equalTo(@0);
 //        make.bottom.equalTo(@64);
 //    }];
-    [self.tableview.tableHeaderView layoutIfNeeded];
-    self.tableview.tableHeaderView = self.tableviewHeaderView;
+//    self.tableview.tableHeaderView = self.tableviewHeaderView;
+    self.tableview.delegate = self;
+    self.tableview.dataSource = self;
     [self.tableview reloadData];
+//    [self.view insertSubview:self.tableview.tableHeaderView atIndex:0];
+
 }
 
 #pragma mark - UITableViewDataSource
@@ -53,6 +56,27 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 0;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 568;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+//    UIView *headerView = [[UIView alloc] init];
+//    headerView.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
+//    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake((kScreenWidth - 95) / 2.0, 15, 95, 30)];
+//    headerLabel.text = @"2017.5.18";
+//    [headerLabel setTextAlignment:NSTextAlignmentCenter];
+//    headerLabel.backgroundColor = [UIColor colorWithHexString:@"c8c8c8"];
+//    [headerLabel setTextColor:[UIColor colorWithHexString:@"ffffff"]];
+//    headerLabel.font = [UIFont systemFontOfSize:12.0];
+//    headerLabel.layer.cornerRadius = 15.0;
+//    headerLabel.layer.masksToBounds = YES;
+//    [headerView addSubview:headerLabel];
+    return self.tableviewHeaderView;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"placeholder-name";

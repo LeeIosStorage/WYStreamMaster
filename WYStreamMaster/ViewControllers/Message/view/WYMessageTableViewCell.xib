@@ -44,6 +44,12 @@
                             <constraint firstItem="mzg-WS-7RP" firstAttribute="leading" secondItem="KvA-5y-ZTg" secondAttribute="leading" constant="15" id="vmo-qa-nqW"/>
                             <constraint firstItem="mzg-WS-7RP" firstAttribute="top" secondItem="lEM-39-Vxp" secondAttribute="bottom" constant="15" id="yrJ-mG-6GB"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
                 <constraints>
