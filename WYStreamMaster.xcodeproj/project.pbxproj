@@ -183,6 +183,10 @@
 		78D1D3431F7E20F5007261E4 /* WYSpaceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78D1D3411F7E20F5007261E4 /* WYSpaceViewController.xib */; };
 		78D1D3471F7E42E6007261E4 /* WYSpaceHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D1D3451F7E42E6007261E4 /* WYSpaceHeaderView.m */; };
 		78D1D3481F7E42E6007261E4 /* WYSpaceHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78D1D3461F7E42E6007261E4 /* WYSpaceHeaderView.xib */; };
+		78D1D34B1F8B41C6007261E4 /* WYBaseCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D1D34A1F8B41C6007261E4 /* WYBaseCollectionController.m */; };
+		78D1D34F1F8B44E2007261E4 /* YTCommunityCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D1D34D1F8B44E2007261E4 /* YTCommunityCollectionCell.m */; };
+		78D1D3501F8B44E2007261E4 /* YTCommunityCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78D1D34E1F8B44E2007261E4 /* YTCommunityCollectionCell.xib */; };
+		78D1D3531F8B451A007261E4 /* YTClassifyBBSDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D1D3521F8B451A007261E4 /* YTClassifyBBSDetailModel.m */; };
 		C69795F58C80289B30CE5F15 /* libPods-WYStreamMaster.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D7A3645D8D449741FC609F4 /* libPods-WYStreamMaster.a */; };
 /* End PBXBuildFile section */
 
@@ -540,6 +544,13 @@
 		78D1D3441F7E42E6007261E4 /* WYSpaceHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYSpaceHeaderView.h; sourceTree = "<group>"; };
 		78D1D3451F7E42E6007261E4 /* WYSpaceHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYSpaceHeaderView.m; sourceTree = "<group>"; };
 		78D1D3461F7E42E6007261E4 /* WYSpaceHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYSpaceHeaderView.xib; sourceTree = "<group>"; };
+		78D1D3491F8B41C6007261E4 /* WYBaseCollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYBaseCollectionController.h; sourceTree = "<group>"; };
+		78D1D34A1F8B41C6007261E4 /* WYBaseCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYBaseCollectionController.m; sourceTree = "<group>"; };
+		78D1D34C1F8B44E2007261E4 /* YTCommunityCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTCommunityCollectionCell.h; sourceTree = "<group>"; };
+		78D1D34D1F8B44E2007261E4 /* YTCommunityCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTCommunityCollectionCell.m; sourceTree = "<group>"; };
+		78D1D34E1F8B44E2007261E4 /* YTCommunityCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YTCommunityCollectionCell.xib; sourceTree = "<group>"; };
+		78D1D3511F8B451A007261E4 /* YTClassifyBBSDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTClassifyBBSDetailModel.h; sourceTree = "<group>"; };
+		78D1D3521F8B451A007261E4 /* YTClassifyBBSDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTClassifyBBSDetailModel.m; sourceTree = "<group>"; };
 		7D7A3645D8D449741FC609F4 /* libPods-WYStreamMaster.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WYStreamMaster.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4223266790A64B80390313C /* Pods-WYStreamMaster.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WYStreamMaster.release.xcconfig"; path = "Pods/Target Support Files/Pods-WYStreamMaster/Pods-WYStreamMaster.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1560,6 +1571,8 @@
 		78D1D33C1F7E10AA007261E4 /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				78D1D3491F8B41C6007261E4 /* WYBaseCollectionController.h */,
+				78D1D34A1F8B41C6007261E4 /* WYBaseCollectionController.m */,
 				78D1D33F1F7E20F5007261E4 /* WYSpaceViewController.h */,
 				78D1D3401F7E20F5007261E4 /* WYSpaceViewController.m */,
 				78D1D3411F7E20F5007261E4 /* WYSpaceViewController.xib */,
@@ -1570,6 +1583,8 @@
 		78D1D33D1F7E10AA007261E4 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				78D1D3511F8B451A007261E4 /* YTClassifyBBSDetailModel.h */,
+				78D1D3521F8B451A007261E4 /* YTClassifyBBSDetailModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1577,6 +1592,9 @@
 		78D1D33E1F7E10AA007261E4 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				78D1D34C1F8B44E2007261E4 /* YTCommunityCollectionCell.h */,
+				78D1D34D1F8B44E2007261E4 /* YTCommunityCollectionCell.m */,
+				78D1D34E1F8B44E2007261E4 /* YTCommunityCollectionCell.xib */,
 				78D1D3441F7E42E6007261E4 /* WYSpaceHeaderView.h */,
 				78D1D3451F7E42E6007261E4 /* WYSpaceHeaderView.m */,
 				78D1D3461F7E42E6007261E4 /* WYSpaceHeaderView.xib */,
@@ -1688,6 +1706,7 @@
 				4425642A1F42AA830075467A /* wy_gameresult_lose_1@2x.png in Resources */,
 				78B82A2F1F78DB1B00279366 /* WYRegistersViewController.xib in Resources */,
 				44203D1F1E6FE78800D59B5E /* LaunchScreen.storyboard in Resources */,
+				78D1D3501F8B44E2007261E4 /* YTCommunityCollectionCell.xib in Resources */,
 				789DAA2C1F5688200012075C /* face_beautification.bundle in Resources */,
 				4425642D1F42AA830075467A /* wy_gameresult_win_1@2x.png in Resources */,
 				442564211F42AA830075467A /* gr_hu_icon@2x.png in Resources */,
@@ -1839,6 +1858,8 @@
 				44203D861E714BD600D59B5E /* UINavigationBar+Awesome.m in Sources */,
 				44F8D9841E9E30D2002EC952 /* WYDataMemoryManager.m in Sources */,
 				44203D8B1E714BD600D59B5E /* YTBaseTableViewController.m in Sources */,
+				78D1D34B1F8B41C6007261E4 /* WYBaseCollectionController.m in Sources */,
+				78D1D34F1F8B44E2007261E4 /* YTCommunityCollectionCell.m in Sources */,
 				78D1D3221F7BC0C1007261E4 /* WYMessageTableViewCell.m in Sources */,
 				44D9B3091E96830D00E15BEA /* WYLiveGameResultView.m in Sources */,
 				444AA5841EBB0D4E00A80FB9 /* WYImagePickerController.m in Sources */,
@@ -1865,6 +1886,7 @@
 				449C663A1EC1A97500648A5F /* WYGiftAnimationManager.m in Sources */,
 				444DA65C1E8BDEE700C45DE5 /* WYGiftHistoryModel.m in Sources */,
 				44D2F7FA1E7FFDB700122866 /* YTGiftAttachment.m in Sources */,
+				78D1D3531F8B451A007261E4 /* YTClassifyBBSDetailModel.m in Sources */,
 				44203D141E6FE78800D59B5E /* AppDelegate.m in Sources */,
 				444DA6591E8BD3B000C45DE5 /* WYGiftContributionModel.m in Sources */,
 				446D43251E829030002E5C52 /* WYContributionListView.m in Sources */,

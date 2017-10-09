@@ -23,6 +23,8 @@
 #import "UIColor+Hex.h"
 #import "NSDictionary+ObjectForKey.h"
 
+#import "WYRefreshHeader.h"
+#import "WYRefreshFooter.h"
 #import <Masonry/Masonry.h>
 #import <YYKit/YYKit.h>
 #import <NIMSDK/NIMSDK.h>

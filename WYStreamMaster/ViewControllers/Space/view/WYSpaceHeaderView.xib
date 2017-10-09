@@ -30,14 +30,20 @@
             <constraints>
                 <constraint firstItem="4MI-GG-HUC" firstAttribute="centerX" secondItem="F8h-Pg-1AF" secondAttribute="centerX" id="0pj-Qx-zDM"/>
                 <constraint firstItem="F8h-Pg-1AF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="8E4-bC-XTk"/>
+                <constraint firstAttribute="bottom" secondItem="F8h-Pg-1AF" secondAttribute="bottom" id="E3c-RH-fTW"/>
+                <constraint firstAttribute="bottom" secondItem="4MI-GG-HUC" secondAttribute="bottom" constant="15" id="JEY-Gj-1Lp"/>
+                <constraint firstItem="F8h-Pg-1AF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="JT8-4E-kNk"/>
                 <constraint firstItem="4MI-GG-HUC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="90" id="M9D-aT-cvn"/>
+                <constraint firstItem="4MI-GG-HUC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="90" id="Phc-PD-jci"/>
+                <constraint firstAttribute="trailing" secondItem="F8h-Pg-1AF" secondAttribute="trailing" id="R50-o6-rKM"/>
                 <constraint firstAttribute="trailing" secondItem="F8h-Pg-1AF" secondAttribute="trailing" id="RUb-78-b7c"/>
                 <constraint firstItem="F8h-Pg-1AF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="qJN-f5-5aO"/>
                 <constraint firstAttribute="bottom" secondItem="F8h-Pg-1AF" secondAttribute="bottom" id="rOv-Cf-x8f"/>
+                <constraint firstItem="F8h-Pg-1AF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="xqm-eQ-OK8"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-2404.5" y="-129"/>
+            <point key="canvasLocation" x="-2303" y="-156"/>
         </view>
     </objects>
     <resources>

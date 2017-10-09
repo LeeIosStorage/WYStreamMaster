@@ -6,8 +6,8 @@
 //  Copyright © 2017年 Leejun. All rights reserved.
 //
 
-#import "WYSuperViewController.h"
+#import "WYBaseCollectionController.h"
 
-@interface WYSpaceViewController : WYSuperViewController
+@interface WYSpaceViewController : WYBaseCollectionController
 
 @end
