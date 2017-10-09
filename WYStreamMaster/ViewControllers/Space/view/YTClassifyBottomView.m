@@ -9,8 +9,7 @@
 #import "YTClassifyBottomView.h"
 #import "YTClassifyBBSDetailModel.h"
 
-#import "YTTopicDetailViewController.h"
-#import "WYNewVideoDetailViewController.h"
+//#import "WYNewVideoDetailViewController.h"
 
 #import "WYShareActionSheet.h"
 
@@ -68,29 +67,29 @@
 
 - (void)onCommunityInfoShareButtonClick:(UIButton *)button
 {
-    WYSuperViewController *currentVC = (WYSuperViewController *)[WYCommonUtils getCurrentVC];
-    
-    self.shareAction = [[WYShareActionSheet alloc] init];
-    self.shareAction.owner = currentVC;
-    
-    [self.shareAction shareInfoData:self.bbsDetail];
-    [self.shareAction showShareAction];    
-    
-    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"share_statistics"];
-    
-    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
-    [paramsDic setObject:self.bbsDetail.postsID forKey:@"id"];
-    // 帖子 1  资讯 2
-    [paramsDic setValue:@"1" forKey:@"type"];
-    WYNetWorkManager *networkManager = [[WYNetWorkManager alloc] init];
-    [networkManager GET:requestUrl needCache:NO caCheKey:nil parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
-        
-        if (requestType == WYRequestTypeSuccess) {
-            
-        }
-    } failure:^(id responseObject, NSError *error) {
-        
-    }];
+//    WYSuperViewController *currentVC = (WYSuperViewController *)[WYCommonUtils getCurrentVC];
+//    
+//    self.shareAction = [[WYShareActionSheet alloc] init];
+//    self.shareAction.owner = currentVC;
+//    
+//    [self.shareAction shareInfoData:self.bbsDetail];
+//    [self.shareAction showShareAction];    
+//    
+//    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"share_statistics"];
+//    
+//    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
+//    [paramsDic setObject:self.bbsDetail.postsID forKey:@"id"];
+//    // 帖子 1  资讯 2
+//    [paramsDic setValue:@"1" forKey:@"type"];
+//    WYNetWorkManager *networkManager = [[WYNetWorkManager alloc] init];
+//    [networkManager GET:requestUrl needCache:NO caCheKey:nil parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
+//        
+//        if (requestType == WYRequestTypeSuccess) {
+//            
+//        }
+//    } failure:^(id responseObject, NSError *error) {
+//        
+//    }];
 }
 
 - (void)onCommunityInfoCommentButtonClick:(UIButton *)button
@@ -98,17 +97,17 @@
     WYSuperViewController *currentVC = (WYSuperViewController *)[WYCommonUtils getCurrentVC];
     if (currentVC) {
         
-        if (self.bbsDetail.bbsType == YTBBSTypeVideo) {
-            WYNewVideoDetailViewController *vc = [[WYNewVideoDetailViewController alloc] init];
-            vc.videoId = self.bbsDetail.videoID;
-            [currentVC.navigationController pushViewController:vc animated:YES];
-        } else {
-            YTTopicDetailViewController *vc = [[YTTopicDetailViewController alloc] init];
-            vc.topicId = self.bbsDetail.postsID;
-            vc.isClickCommentBtn = YES;
-            vc.hidesBottomBarWhenPushed = YES;
-            [currentVC.navigationController pushViewController:vc animated:YES];
-        }
+//        if (self.bbsDetail.bbsType == YTBBSTypeVideo) {
+//            WYNewVideoDetailViewController *vc = [[WYNewVideoDetailViewController alloc] init];
+//            vc.videoId = self.bbsDetail.videoID;
+//            [currentVC.navigationController pushViewController:vc animated:YES];
+//        } else {
+//            YTTopicDetailViewController *vc = [[YTTopicDetailViewController alloc] init];
+//            vc.topicId = self.bbsDetail.postsID;
+//            vc.isClickCommentBtn = YES;
+//            vc.hidesBottomBarWhenPushed = YES;
+//            [currentVC.navigationController pushViewController:vc animated:YES];
+//        }
     }
 }
 
@@ -116,42 +115,42 @@
 {
     WEAKSELF
     
-    if (button.selected) {
-        return;
-    }
-    //    /判断是否有登录
-    WYSuperViewController *vc = [WYCommonUtils getCurrentVC];
-    if ([[WYLoginManager sharedManager] needUserLogin:vc]) {
-        return;
-    }
-    
-    button.selected = !button.selected;
-    if (button.selected) {
-        self.bbsDetail.praiseNumber = [NSString stringWithFormat:@"%d",([self.bbsDetail.praiseNumber intValue] + 1)];
-        self.bbsDetail.isPraise = YES;
-        [self.bottomLikeButton setTitle:self.bbsDetail.praiseNumber forState:UIControlStateNormal];
-    }
-    
-    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"do_praise"];
-    
-    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
-    [paramsDic setObject:self.bbsDetail.postsID forKey:@"id"];
-    [paramsDic setValue:@"2" forKey:@"type"];
-     WYNetWorkManager *networkManager = [[WYNetWorkManager alloc] init];
-    [networkManager GET:requestUrl needCache:NO caCheKey:nil parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
-        STRONGSELF
-        if (requestType == WYRequestTypeSuccess) {
-            // 点赞成功
-        } else {
-            button.selected = NO;
-            strongSelf.bbsDetail.praiseNumber = [NSString stringWithFormat:@"%d",([strongSelf.bbsDetail.praiseNumber intValue] - 1)];
-            strongSelf.bbsDetail.isPraise = NO;
-             [strongSelf.bottomLikeButton setTitle:[NSString stringWithFormat:@"%d", [strongSelf.bbsDetail.praiseNumber intValue]] forState:UIControlStateNormal];
-            [MBProgressHUD showError:message];
-        }
-    } failure:^(id responseObject, NSError *error) {
-        
-    }];
+//    if (button.selected) {
+//        return;
+//    }
+//    //    /判断是否有登录
+//    WYSuperViewController *vc = [WYCommonUtils getCurrentVC];
+//    if ([[WYLoginManager sharedManager] needUserLogin:vc]) {
+//        return;
+//    }
+//    
+//    button.selected = !button.selected;
+//    if (button.selected) {
+//        self.bbsDetail.praiseNumber = [NSString stringWithFormat:@"%d",([self.bbsDetail.praiseNumber intValue] + 1)];
+//        self.bbsDetail.isPraise = YES;
+//        [self.bottomLikeButton setTitle:self.bbsDetail.praiseNumber forState:UIControlStateNormal];
+//    }
+//    
+//    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"do_praise"];
+//    
+//    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
+//    [paramsDic setObject:self.bbsDetail.postsID forKey:@"id"];
+//    [paramsDic setValue:@"2" forKey:@"type"];
+//     WYNetWorkManager *networkManager = [[WYNetWorkManager alloc] init];
+//    [networkManager GET:requestUrl needCache:NO caCheKey:nil parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
+//        STRONGSELF
+//        if (requestType == WYRequestTypeSuccess) {
+//            // 点赞成功
+//        } else {
+//            button.selected = NO;
+//            strongSelf.bbsDetail.praiseNumber = [NSString stringWithFormat:@"%d",([strongSelf.bbsDetail.praiseNumber intValue] - 1)];
+//            strongSelf.bbsDetail.isPraise = NO;
+//             [strongSelf.bottomLikeButton setTitle:[NSString stringWithFormat:@"%d", [strongSelf.bbsDetail.praiseNumber intValue]] forState:UIControlStateNormal];
+//            [MBProgressHUD showError:message];
+//        }
+//    } failure:^(id responseObject, NSError *error) {
+//        
+//    }];
 
 }
 
