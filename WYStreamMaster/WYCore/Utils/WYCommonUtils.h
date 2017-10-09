@@ -22,6 +22,16 @@
  *  @return text的Size
  */
 + (CGSize)sizeWithAttributedText:(NSString *)text lineSpacing:(CGFloat)lineSpacing font:(UIFont *)font width:(float)width;
+
+/*! @brief  根据固定的Width 获取 普通String 的Size
+ *
+ *  @param  text  文本
+ *  @param  font  字体
+ *  @param  width 固定的Width
+ *  @return text的Size
+ */
++ (CGSize)sizeWithText:(NSString *)text font:(UIFont *)font width:(float)width;
+
 /**
  *  NSString转为NSAttributedString
  *

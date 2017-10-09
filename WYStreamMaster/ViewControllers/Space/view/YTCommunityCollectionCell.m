@@ -8,8 +8,8 @@
 
 #import "YTCommunityCollectionCell.h"
 #import "YTClassifyBBSDetailModel.h"
-//#import "YTClassifyCommunityImageView.h"
-//#import "YTClassifyBottomView.h"
+#import "YTClassifyCommunityImageView.h"
+#import "YTClassifyBottomView.h"
 
 #define kCommunityAvatarWidth  28
 
@@ -29,8 +29,8 @@
 
 @property (strong, nonatomic) UIButton *gameCategoryButton;
 
-//@property (strong, nonatomic) YTClassifyBottomView *bottomView;
-//@property (strong, nonatomic) YTClassifyCommunityImageView *imagesview;
+@property (strong, nonatomic) YTClassifyBottomView *bottomView;
+@property (strong, nonatomic) YTClassifyCommunityImageView *imagesview;
 
 @property (strong, nonatomic) YTClassifyBBSDetailModel *bbsInfo;
 
@@ -59,7 +59,7 @@
     
     cellHeight = contentTextY;
     CGFloat textHeight;
-//    textHeight = [WYCommonUtils sizeWithText:model.content font:[UIFont systemFontOfSize:11] width:kScreenWidth - 25*2].height;
+    textHeight = [WYCommonUtils sizeWithText:model.content font:[UIFont systemFontOfSize:11] width:kScreenWidth - 25*2].height;
     if (textHeight > 40) {
         // 最多显示三行
         textHeight = 40;
@@ -180,13 +180,12 @@
     }];
     
     // 图片view
-//    [self addSubview:self.imagesview];
-//    [self.imagesview mas_makeConstraints:^(MASConstraintMaker *make) {
-//        STRONGSELF
-//        make.top.mas_equalTo(strongSelf.contentLabel.mas_bottom).offset(10);
-//        make.left.right.equalTo(strongSelf);
-//        make.height.mas_equalTo(80);
-//    }];
+    [self addSubview:self.imagesview];
+    [self.imagesview mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.contentLabel.mas_bottom).offset(10);
+        make.left.right.equalTo(self);
+        make.height.mas_equalTo(80);
+    }];
     
     // 视频封面 宽高比25/14
     [self addSubview:self.videoCoverImageView];
@@ -199,12 +198,11 @@
     self.videoCoverImageView.hidden = YES;
     
     // 底部操作view
-//    [self addSubview:self.bottomView];
-//    [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        STRONGSELF
-//        make.left.bottom.right.equalTo(strongSelf);
-//        make.height.mas_equalTo(37);
-//    }];
+    [self addSubview:self.bottomView];
+    [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.bottom.right.equalTo(self);
+        make.height.mas_equalTo(37);
+    }];
     
     // 游戏分类label
     [self addSubview:self.gameCategoryButton];

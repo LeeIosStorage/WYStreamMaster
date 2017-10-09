@@ -38,6 +38,14 @@
     return attrString;
 }
 
++ (CGSize)sizeWithText:(NSString *)text font:(UIFont *)font width:(float)width{
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+    paragraphStyle.lineBreakMode = NSLineBreakByCharWrapping;
+    NSDictionary *attributes = @{NSFontAttributeName:font};
+    CGSize textSize = [text boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options:NSStringDrawingTruncatesLastVisibleLine| NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attributes context:nil].size;
+    return textSize;
+}
+
 + (NSMutableAttributedString *)stringToColorAndFontAttributeString:(NSString *)text range:(NSRange)range font:(UIFont *)font color:(UIColor *)color{
     NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc]initWithString:text];
     if (color) {
