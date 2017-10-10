@@ -24,7 +24,7 @@
 #import <FUAPIDemoBar/FUAPIDemoBar.h>
 #import "FUManager.h"
 #import "AFNetworkReachabilityManager.h"
-
+#import "WYSocketManager.h"
 // 直播通知重试次数
 static NSInteger kLiveNotifyRetryCount = 0;
 static NSInteger kLiveNotifyRetryMaxCount = 3;
@@ -126,7 +126,7 @@ FUAPIDemoBarDelegate
     [self setupSubView];
     
     [self prepareForCameraSetting];
-    
+    [self crateWebSocket];
     //开始检测人脸礼物动效
 //    [[WYFaceRendererManager sharedInstance] stopTimer];
 //    [[WYFaceRendererManager sharedInstance] startTimer];
@@ -225,6 +225,12 @@ FUAPIDemoBarDelegate
 
 #pragma mark -
 #pragma mark - Private Methods
+- (void)crateWebSocket
+{
+    NSString *webSocketString = [NSString stringWithFormat:@"ws://www.legend8888.com/chat_room/ws.do?userCode=%@&anchor_user_code=%@&game_type=%zd", [WYLoginUserManager userID], [WYLoginUserManager userID], [WYLoginUserManager liveGameType]];
+    [[WYSocketManager sharedInstance] initSocketURL:[NSURL URLWithString:webSocketString]];
+}
+
 - (void)setupSubView{
     
     self.betTopTipLabel.text = [WYCommonUtils acquireCurrentLocalizedText:@"押注排名"];

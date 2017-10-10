@@ -178,6 +178,7 @@
                                 forKey:@"orientation"];
     
     self.title = [WYCommonUtils acquireCurrentLocalizedText:@"wy_login"];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userLoginRequest) name:@"userLoginRequest" object:nil];
 
 }
 

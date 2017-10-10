@@ -13,6 +13,7 @@
 
 static NSString *const kUserInfoUserID = @"kUserInfoUserID";
 static NSString *const kUserInfoNickname = @"kUserInfoNickname";
+static NSString *const kUserInfoUserCode = @"kUserInfoUserCode";
 static NSString *const kUserInfoAvatar = @"kUserInfoAvatar";
 static NSString *const kUserInfoUserName = @"kUserInfoUserName";
 
@@ -91,6 +92,14 @@ static NSString *const kLiveDuration = @"kLiveDuration";
 
 + (void)setNickname:(NSString *)nickname{
     [self saveToKeyChainObject:nickname forKey:kUserInfoNickname];
+}
+
++ (NSString *)usercode {
+    return [self objectFromKeyChainKey:kUserInfoUserCode];
+}
+
++ (void)setUsercode:(NSString *)usercode{
+    [self saveToKeyChainObject:usercode forKey:kUserInfoUserCode];
 }
 
 + (NSString *)username{
@@ -335,10 +344,21 @@ static NSString *const kLiveDuration = @"kLiveDuration";
     [WYLoginUserManager setNickname:loginModel.nickname];
     [WYLoginUserManager setChatRoomId:loginModel.chatRoomId];
     
-    
     [WYLoginUserManager setAnchorPushUrl:loginModel.anchorPushUrl];
     [WYLoginUserManager setRoomNameTitle:loginModel.anchorTitle];
     [WYLoginUserManager setRoomNoticeTitle:loginModel.anchorDescription];
+}
+
++ (void)liveUpdateUserDataWithAnchorModel:(WYAnchorDataModel *)anchorModel
+{
+//    [WYLoginUserManager setAvatar:anchorModel.icon];
+//    [WYLoginUserManager setNickname:anchorModel.nickname];
+//    [WYLoginUserManager setChatRoomId:anchorModel.chatRoomId];
+//    
+//    [WYLoginUserManager setRoomId:anchorModel.roomNumber];
+//    [WYLoginUserManager setAnchorPushUrl:anchorModel.anchor_push_ur];
+//    [WYLoginUserManager setRoomNameTitle:anchorModel.anchor_title];
+//    [WYLoginUserManager setRoomNoticeTitle:anchorModel.anchor_description];
 }
 
 + (BOOL)hasLogged

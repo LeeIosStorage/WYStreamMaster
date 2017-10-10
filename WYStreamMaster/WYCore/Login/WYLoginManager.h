@@ -38,4 +38,5 @@
 
 - (void)autoLogin;
 
+- (void)didLoginSuccess;
 @end

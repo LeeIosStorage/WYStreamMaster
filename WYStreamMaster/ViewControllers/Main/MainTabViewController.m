@@ -17,7 +17,8 @@
 #import "WYDataMemoryManager.h"
 #import <PgyUpdate/PgyUpdateManager.h>
 #import "WYSettingViewController.h"
-
+#import "WYLoginManager.h"
+#import "WYAnchorDataModel.h"
 @interface MainTabViewController ()
 <
 UITableViewDelegate,
@@ -74,7 +75,8 @@ UITextFieldDelegate
     [self refreshHeadViewShow];
     
     [self refreshGameList];
-    
+
+
     //判断是否开启麦克风权限
     if (![WYCommonUtils checkMicrophonePermissionStatus]) {
         [WYCommonUtils requsetMicrophonePermission];
@@ -168,6 +170,33 @@ UITextFieldDelegate
         [MBProgressHUD showAlertMessage:[WYCommonUtils showServerErrorLocalizedText] toView:weakSelf.view];
     }];
 }
+
+- (void)userLoginRequest{
+    
+    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"get_anchor_detail"];
+
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
+    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchor_user_code"];
+    [paramsDic setObject:@"CNY" forKey:@"currency"];
+   
+    WS(weakSelf)
+    [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:[WYAnchorDataModel class] success:^(WYRequestType requestType, NSString *message, id dataObject) {
+        NSLog(@"error:%@ data:%@",message,dataObject);
+        if (requestType == WYRequestTypeSuccess) {
+            WYAnchorDataModel *anchorModel = (WYAnchorDataModel *)dataObject;
+            //            loginModel.anchorPushUrl = @"rtmp://pili-publish.kaisaiba.com/xklive/xklivetest";
+            [WYLoginUserManager liveUpdateUserDataWithAnchorModel:anchorModel];
+            
+            [weakSelf gestureRecognizer:nil];
+            [weakSelf toCreateLiveRoom];
+        }else{
+            NSLog(@"skdsakdsa");
+        }
+    } failure:^(id responseObject, NSError *error) {
+        NSLog(@"skdsakdsa");
+    }];
+}
+
 
 #pragma mark -
 #pragma mark - Private Methods
@@ -347,9 +376,12 @@ UITextFieldDelegate
 //    [self.navigationController pushViewController:liveVc animated:YES];
 }
 
+
 #pragma mark -
 #pragma mark - Button Clicked
 - (void)startLiveAction:(id)sender{
+    // 直播前先更新数据
+//    [self userLoginRequest];
     [self gestureRecognizer:nil];
     [self toCreateLiveRoom];
 }

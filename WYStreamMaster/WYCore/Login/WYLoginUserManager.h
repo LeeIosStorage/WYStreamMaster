@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "WYLoginModel.h"
-
+#import "WYAnchorDataModel.h"
 /**
  *  用户身份类型
  */
@@ -49,6 +49,9 @@ typedef NS_ENUM(NSInteger, CPLoginUserType){
 
 + (NSString *)nickname;
 + (void)setNickname:(NSString *)nickname;
+
++ (NSString *)usercode;
++ (void)setUsercode:(NSString *)usercode;
 
 + (NSString *)username;
 + (void)setUsername:(NSString *)username;
@@ -151,7 +154,10 @@ typedef NS_ENUM(NSInteger, CPLoginUserType){
  *  刷新用户数据
  */
 + (void)updateUserDataWithLoginModel:(WYLoginModel *)loginModel;
-
+/**
+ *  开启直播刷新用户数据
+ */
++ (void)liveUpdateUserDataWithAnchorModel:(WYAnchorDataModel *)anchorModel;
 #pragma mark - 公用方法
 
 /**
