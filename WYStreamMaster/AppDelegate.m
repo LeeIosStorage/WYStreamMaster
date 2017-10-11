@@ -30,7 +30,7 @@
     
     // 初始化七牛推流SDK
     [PLStreamingEnv initEnv];
-//    [ZegoHelper api];
+    [ZegoHelper api];
     
     //登录云信
     [[NIMSDK sharedSDK] registerWithAppID:kNIMAppKey cerName:@""];

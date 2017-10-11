@@ -15,7 +15,8 @@
 
 + (WYSocketManager *)sharedInstance;
 - (void)initSocketURL:(NSURL *)url;
-
+// 关闭连接
+- (void)SRWebSocketClose;
 //发送消息
 - (void)sendData:(id)data;
 

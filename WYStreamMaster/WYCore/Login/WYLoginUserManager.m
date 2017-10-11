@@ -356,7 +356,7 @@ static NSString *const kLiveDuration = @"kLiveDuration";
 //    [WYLoginUserManager setChatRoomId:anchorModel.chatRoomId];
 //    
 //    [WYLoginUserManager setRoomId:anchorModel.roomNumber];
-//    [WYLoginUserManager setAnchorPushUrl:anchorModel.anchor_push_ur];
+    [WYLoginUserManager setAnchorPushUrl:anchorModel.anchor_push_ur];
 //    [WYLoginUserManager setRoomNameTitle:anchorModel.anchor_title];
 //    [WYLoginUserManager setRoomNoticeTitle:anchorModel.anchor_description];
 }

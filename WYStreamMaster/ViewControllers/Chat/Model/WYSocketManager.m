@@ -114,6 +114,7 @@ SRWebSocketDelegate
             }
         } else {
             NSLog(@"没网络，发送失败，一旦断网 socket 会被我设置 nil 的");
+            [self SRWebSocketClose];
         }
     });
 }
@@ -121,7 +122,35 @@ SRWebSocketDelegate
 #pragma mark -
 #pragma mark - SRWebSocketDelegate
 - (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message{
+    NSData *data = [message dataUsingEncoding:NSASCIIStringEncoding];
     WYLog(@"SRWebSocket 收到服务器消息 = %@",message);
+    NSDictionary *dic = (NSDictionary *)[self toArrayOrNSDictionary:data];
+    
+    if ([dic objectForKey:@"action"]) {
+        if ([dic[@"action"] isEqualToString:@"wsConnect"]) {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"此账号在其他地方登录，您已下线", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alertView show];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"wsConnect" object:nil];
+        }
+    }
+}
+
+// 将JSON串转化为字典或者数组
+- (id)toArrayOrNSDictionary:(NSData *)jsonData{
+    NSError *error = nil;
+    if (jsonData) {
+        id jsonObject = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                        options:NSJSONReadingAllowFragments
+                                                          error:&error];
+        if (jsonObject != nil && error == nil){
+            return jsonObject;
+        }else{
+            // 解析错误
+            return nil;
+        }
+    } else {
+        return nil;
+    }
 }
 
 - (void)webSocketDidOpen:(SRWebSocket *)webSocket{

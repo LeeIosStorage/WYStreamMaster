@@ -34,7 +34,8 @@ static NSInteger kLiveNotifyRetryMaxCount = 3;
 WYStreamingSessionManagerDelegate,
 WYAnchorInfoViewDelegate,
 ZegoLivePublisherDelegate,
-FUAPIDemoBarDelegate
+FUAPIDemoBarDelegate,
+ZegoRoomDelegate
 >
 {
     
@@ -116,17 +117,19 @@ FUAPIDemoBarDelegate
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
     self.navigationController.navigationBar.hidden = YES;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(serverNoticeCustomAttachment:) name:WYServerNoticeAttachment_Notification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ReachabilityDidChangeNotification:) name:AFNetworkingReachabilityDidChangeNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(serverNoticeFinishStream) name:@"wsConnect" object:nil];
 
     
     [self setupSubView];
     
     [self prepareForCameraSetting];
     [self crateWebSocket];
+
     //开始检测人脸礼物动效
 //    [[WYFaceRendererManager sharedInstance] stopTimer];
 //    [[WYFaceRendererManager sharedInstance] startTimer];
@@ -169,7 +172,8 @@ FUAPIDemoBarDelegate
 }
 
 - (void)closeLive{
-    
+    // 关闭长连接
+    [[WYSocketManager sharedInstance] SRWebSocketClose];
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"anchor_on_off"];
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
     [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchor_user_code"];

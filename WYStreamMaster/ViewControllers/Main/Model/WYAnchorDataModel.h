@@ -13,7 +13,7 @@
 @property (nonatomic, strong) NSString *anchor_description;
 @property (nonatomic, strong) NSString *anchor_live_time;
 @property (nonatomic, strong) NSString *anchor_mood;
-@property (nonatomic, assign) NSString *anchor_push_ur;
+@property (nonatomic, strong) NSString *anchor_push_ur;
 @property (nonatomic, strong) NSString *anchor_push_ur_H5;
 @property (nonatomic, strong) NSString *anchor_push_ur_PC;
 @property (nonatomic, strong) NSString *anchor_show_H5;

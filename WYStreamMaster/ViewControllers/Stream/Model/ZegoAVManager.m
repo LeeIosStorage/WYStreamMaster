@@ -13,7 +13,7 @@ static ZegoLiveRoomApi *g_ZegoApi = nil;
 
 static __strong id<ZegoVideoCaptureFactory> g_factory = NULL;
 
-@interface ZegoHelper ()
+@interface ZegoHelper () <ZegoRoomDelegate>
 
 @end
 
@@ -22,11 +22,9 @@ static __strong id<ZegoVideoCaptureFactory> g_factory = NULL;
 + (ZegoLiveRoomApi *)api{
     
     if (g_ZegoApi == nil) {
-        
+
         [ZegoLiveRoomApi setUseTestEnv:false];
-        
 //        [ZegoLiveRoomApi prepareReplayLiveCapture];
-//        [ZegoLiveRoomApi enableExternalRender:[self usingExternalRender]];
         
 #ifdef DEBUG
         [ZegoLiveRoomApi setVerbose:YES];
@@ -57,6 +55,7 @@ static __strong id<ZegoVideoCaptureFactory> g_factory = NULL;
     
 }
 
+
 + (NSData *)getZegoAppSign
 {
     Byte signkey[] = {0x0e,0x5d,0x53,0x13,0x4e,0xf0,0x86,0xa4,0x66,0x43,0x13,0xab,0xd2,0x32,0x98,0xd0,0x34,0x49,0x78,0xdd,0x22,0xe8,0xa8,0xe2,0x85,0x6d,0x26,0x9c,0x3d,0x04,0x71,0x96};
@@ -64,7 +63,7 @@ static __strong id<ZegoVideoCaptureFactory> g_factory = NULL;
 }
 
 + (void)setAnchorConfig:(UIView *)publishView{
-    
+
     ZegoAVConfig *config = [ZegoAVConfig presetConfigOf:ZegoAVConfigPreset_High];
     CGSize videoSize = CGSizeMake(360, 640);
     config.videoEncodeResolution = CGSizeMake(videoSize.width,videoSize.height);
@@ -75,7 +74,7 @@ static __strong id<ZegoVideoCaptureFactory> g_factory = NULL;
     //bitrate 800000
     
     [[ZegoHelper api] setAVConfig:config];
-    [[ZegoHelper api] enableBeautifying:ZEGO_BEAUTIFY_SKINWHITEN];
+    [[ZegoHelper api] enableBeautifying:ZEGO_BEAUTIFY_POLISH | ZEGO_BEAUTIFY_WHITEN | ZEGO_BEAUTIFY_SKINWHITEN];
     [[ZegoHelper api] setPolishStep:2.0];
     [[ZegoHelper api] setPolishFactor:4.0];
     [[ZegoHelper api] setWhitenFactor:0.5];
@@ -90,7 +89,6 @@ static __strong id<ZegoVideoCaptureFactory> g_factory = NULL;
     [[ZegoHelper api] setPreviewView:publishView];
     [[ZegoHelper api] setPreviewViewMode:ZegoVideoViewModeScaleAspectFill];
     [[ZegoHelper api] startPreview];
-    
     [ZegoHelper loginChatRoom];
 }
 

@@ -132,6 +132,8 @@ UITextFieldDelegate
     }
     [paramsDic setObject:self.roomType forKey:@"room_type"];
     [paramsDic setObject:self.roomNameTitle forKey:@"anchor_title"];
+//    [paramsDic setObject:@"5" forKey:@"game_type"];
+
     if (self.roomNoticeTitle.length > 0) {
         [paramsDic setObject:self.roomNoticeTitle forKey:@"anchor_description"];//房间公告
     }
@@ -140,7 +142,7 @@ UITextFieldDelegate
     }
     
     //测试
-//    [paramsDic setObject:[NSNumber numberWithInt:LiveGameTypeTexasPoker] forKey:@"game_type"];
+//    [paramsDic setObject:[NSNumber numberWithInt:LiveGameTypeSlots] forKey:@"game_type"];
     
     
     WEAKSELF
@@ -183,7 +185,8 @@ UITextFieldDelegate
     [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:[WYAnchorDataModel class] success:^(WYRequestType requestType, NSString *message, id dataObject) {
         NSLog(@"error:%@ data:%@",message,dataObject);
         if (requestType == WYRequestTypeSuccess) {
-            WYAnchorDataModel *anchorModel = (WYAnchorDataModel *)dataObject;
+            NSArray *anchorArray = (NSArray *)dataObject;
+            WYAnchorDataModel *anchorModel = anchorArray[0];
             //            loginModel.anchorPushUrl = @"rtmp://pili-publish.kaisaiba.com/xklive/xklivetest";
             [WYLoginUserManager liveUpdateUserDataWithAnchorModel:anchorModel];
             
@@ -381,9 +384,9 @@ UITextFieldDelegate
 #pragma mark - Button Clicked
 - (void)startLiveAction:(id)sender{
     // 直播前先更新数据
-//    [self userLoginRequest];
-    [self gestureRecognizer:nil];
-    [self toCreateLiveRoom];
+    [self userLoginRequest];
+//    [self gestureRecognizer:nil];
+//    [self toCreateLiveRoom];
 }
 
 - (IBAction)giftListAction:(id)sender{
