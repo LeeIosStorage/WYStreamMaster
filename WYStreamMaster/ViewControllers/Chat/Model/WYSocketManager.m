@@ -125,12 +125,11 @@ SRWebSocketDelegate
     NSData *data = [message dataUsingEncoding:NSASCIIStringEncoding];
     WYLog(@"SRWebSocket 收到服务器消息 = %@",message);
     NSDictionary *dic = (NSDictionary *)[self toArrayOrNSDictionary:data];
-    
     if ([dic objectForKey:@"action"]) {
         if ([dic[@"action"] isEqualToString:@"wsConnect"]) {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"此账号在其他地方登录，您已下线", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alertView show];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"wsConnect" object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:WYNotificationWSConnect object:nil];
         }
     }
 }

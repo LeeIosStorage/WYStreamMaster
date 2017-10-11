@@ -49,7 +49,7 @@ static NSString* IMG_URL = @"http://img.wangyuhudong.com";
 
 #define WY_IMAGE_COMPRESSION_QUALITY 0.4
 #define MAX_WX_IMAGE_SIZE 32*1024
-
+/****************************** key值 **************************/
 // 腾讯Bugly
 #define kBuglyAppID  @"e49fd613ae"
 // 网易云信Key
@@ -78,5 +78,7 @@ static NSString* IMG_URL = @"http://img.wangyuhudong.com";
 #define kRoomChatViewCustomWidth  95 //15为.left
 
 #define kTempNetworkHTTPURL     @"http://103.230.243.174:8888/uploadfile/263673c8-e1b6-494f-87c2-8c23bafbcaf1.png"
+/****************************** 通知 **************************/
+#define WYNotificationWSConnect   @"WYNotificationWSConnect"
 
 #endif /* RMSystem_h */
