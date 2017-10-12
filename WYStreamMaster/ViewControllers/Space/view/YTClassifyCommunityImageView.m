@@ -8,7 +8,7 @@
 
 #import "YTClassifyCommunityImageView.h"
 
-#define kImageWidth  75.f*kScreenWidth/375.f
+#define kImageWidth  100.f*kScreenWidth/375.f
 
 
 @interface YTClassifyCommunityImageView ()
@@ -34,7 +34,7 @@
         if (i == 3) {
             [self addSubview:self.viewAllButton];
             self.viewAllButton.frame = CGRectMake(kImageWidth * 3 + 27, kImageWidth - 20, 45, 16);
-            self.viewAllButton.hidden = NO;
+            self.viewAllButton.hidden = YES;
         } else {
             self.viewAllButton.hidden = YES;
         }
@@ -45,7 +45,7 @@
         
         NSString *imageURL = [NSString stringWithFormat:@"%@",array[i]];
         UIImageView *imageView = [[UIImageView alloc] init];
-        [imageView setImageWithURL:[NSURL URLWithString:imageURL] placeholder:[UIImage imageNamed:@"common_default_avatar_100"]];
+        [imageView setImageWithURL:[NSURL URLWithString:imageURL] placeholder:[UIImage imageNamed:@"common_headImage"]];
         imageView.contentMode = UIViewContentModeScaleAspectFill;
         // 解决图片出界之后还显示问题
         imageView.clipsToBounds = YES;
@@ -58,6 +58,7 @@
 - (UIButton *)viewAllButton {
     if (!_viewAllButton) {
         _viewAllButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _viewAllButton.hidden = YES;
         _viewAllButton.layer.cornerRadius = 3;
         _viewAllButton.backgroundColor = [UIColor whiteColor];
         NSAttributedString *buttonString = [[NSAttributedString alloc] initWithString:@"查看全部" attributes: @{NSFontAttributeName:[UIFont systemFontOfSize:9], NSForegroundColorAttributeName:[UIColor colorWithHexString:@"333333"]}];

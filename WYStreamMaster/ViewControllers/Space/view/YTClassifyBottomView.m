@@ -61,7 +61,8 @@
         }
         
         self.bottomLikeButton.selected = self.bbsDetail.isPraise;
-        
+        [self.bottomCommentButton setTitle:@"892" forState:UIControlStateNormal];
+        [self.bottomLikeButton setTitle:@"7277" forState:UIControlStateNormal];
     }
 }
 

@@ -17,14 +17,14 @@
 
 @property (strong, nonatomic) UIImageView *avatarImageView;
 @property (strong, nonatomic) UIImageView *genderImageView;
-@property (strong, nonatomic) UIImageView *identiImageView;
+//@property (strong, nonatomic) UIImageView *identiImageView;
 
 @property (strong, nonatomic) UIImageView *videoCoverImageView;
 
 @property (strong, nonatomic) UILabel *nickNameLabel;
 @property (strong, nonatomic) UILabel *creatDateLabel;
 
-@property (strong, nonatomic) UILabel *titleLabel;
+//@property (strong, nonatomic) UILabel *titleLabel;
 @property (strong, nonatomic) UILabel *contentLabel;
 
 @property (strong, nonatomic) UIButton *gameCategoryButton;
@@ -52,7 +52,7 @@
     }
     CGFloat cellHeight = 0;
     CGFloat contentTextY = 60; // 文字的y坐标
-    CGFloat imageViewHeight = 100;
+    CGFloat imageViewHeight = 100.0*kScreenWidth / 375.0;
     CGFloat videoViewHeight = 160;
     CGFloat categoryHeight = 40;
     CGFloat bottomViewHeight = 38;
@@ -88,15 +88,15 @@
 {
     if (model) {
         _bbsInfo = model;
-        [self.avatarImageView setImageWithURL:model.avatarImageURL placeholder:[UIImage imageNamed:@"common_default_avatar_70"]];
-        [self.videoCoverImageView setImageWithURL:model.coverImageURL placeholder:[UIImage imageNamed:@"common_list_placehoder_image"]];
-        self.nickNameLabel.text = model.nickName;
-        self.identiImageView.hidden = !model.isCertificate;
+        [self.avatarImageView setImageWithURL:model.avatarImageURL placeholder:[UIImage imageNamed:@"common_headImage"]];
+        [self.videoCoverImageView setImageWithURL:model.coverImageURL placeholder:[UIImage imageNamed:@"common_headImage"]];
+        self.nickNameLabel.text = @"爱打lol的妹子";
+//        self.identiImageView.hidden = !model.isCertificate;
         self.genderImageView.image = [UIImage imageNamed:model.isFemale ? @"home_female_label" : @"home_male_label"];
 
-        self.titleLabel.text = model.title;
-        self.contentLabel.text = model.content;
-        
+//        self.titleLabel.text = @"爱打lol的妹子";
+        self.contentLabel.text = @"今天天气真心不错，相当的好，我们大家一起出去玩吧";
+        self.creatDateLabel.text = @"2017.10.11";
         if (model.bbsType == YTBBSTypeText) {
             
         } else if (model.bbsType == YTBBSTypeGraphic) {
@@ -113,6 +113,8 @@
             make.width.mas_equalTo(gameWidth);
         }];
         
+        [self.imagesview updateImageViewWithArray:model.imagesArray];
+        [self.bottomView updateBottomViewWithInfo:model];
     }
 }
 
@@ -143,15 +145,15 @@
         make.left.equalTo(self.nickNameLabel.mas_right).offset(10);
     }];
     
-    // 认证标示
-    [self addSubview:self.identiImageView];
-    [self.identiImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.genderImageView.mas_right).offset(10);
-        make.height.mas_equalTo(15);
-        make.width.mas_equalTo(13);
-        make.centerY.equalTo(self.nickNameLabel.mas_centerY);
-        make.right.lessThanOrEqualTo(self.mas_right).offset(-10);
-    }];
+//    // 认证标示
+//    [self addSubview:self.identiImageView];
+//    [self.identiImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self.genderImageView.mas_right).offset(10);
+//        make.height.mas_equalTo(15);
+//        make.width.mas_equalTo(13);
+//        make.centerY.equalTo(self.nickNameLabel.mas_centerY);
+//        make.right.lessThanOrEqualTo(self.mas_right).offset(-10);
+//    }];
     
     // 创建日期
     [self addSubview:self.creatDateLabel];
@@ -162,20 +164,20 @@
     }];
     
     // 标题
-    [self addSubview:self.titleLabel];
-    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.avatarImageView.mas_left);
-        make.top.equalTo(self.avatarImageView.mas_bottom).offset(15);
-        make.right.equalTo(self.mas_right).offset(-12);
-        make.height.priority(10);
-    }];
+//    [self addSubview:self.titleLabel];
+//    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self.avatarImageView.mas_left);
+//        make.top.equalTo(self.avatarImageView.mas_bottom).offset(15);
+//        make.right.equalTo(self.mas_right).offset(-12);
+//        make.height.priority(10);
+//    }];
     
     // 内容
     [self addSubview:self.contentLabel];
     [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.titleLabel.mas_bottom).offset(10);
-        make.left.equalTo(self.titleLabel.mas_left);
-        make.right.equalTo(self.mas_right).offset(-10);
+        make.left.equalTo(self.avatarImageView.mas_left);
+        make.top.equalTo(self.avatarImageView.mas_bottom).offset(15);
+        make.right.equalTo(self.mas_right).offset(-12);
         make.height.mas_lessThanOrEqualTo(45).with.priority(15);
     }];
     
@@ -261,16 +263,16 @@
     return _genderImageView;
 }
 
-- (UIImageView *)identiImageView {
-    if (!_identiImageView) {
-        _identiImageView = [[UIImageView alloc] init];
-        _identiImageView.contentMode = UIViewContentModeScaleAspectFill;
-        _identiImageView.image = [UIImage imageNamed:@"authentication"];
-        _identiImageView.opaque = NO;
-    }
-    
-    return _identiImageView;
-}
+//- (UIImageView *)identiImageView {
+//    if (!_identiImageView) {
+//        _identiImageView = [[UIImageView alloc] init];
+//        _identiImageView.contentMode = UIViewContentModeScaleAspectFill;
+//        _identiImageView.image = [UIImage imageNamed:@"authentication"];
+//        _identiImageView.opaque = NO;
+//    }
+//    
+//    return _identiImageView;
+//}
 
 - (UIImageView *)videoCoverImageView {
     if (!_videoCoverImageView) {
@@ -291,7 +293,7 @@
         _nickNameLabel.numberOfLines = 1;
         _nickNameLabel.font = [UIFont systemFontOfSize:13];
 //        _nickNameLabel.text = @"一人我饮酒醉，醉把家人成双对";
-        _nickNameLabel.textColor = [WYStyleSheet defaultStyleSheet].navTextColor;
+        _nickNameLabel.textColor = [UIColor colorWithHexString:@"333333"];
         _nickNameLabel.userInteractionEnabled = YES;
         WEAKSELF
         UITapGestureRecognizer *tapNickname = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
@@ -315,17 +317,17 @@
     return _creatDateLabel;
 }
 
-- (UILabel *)titleLabel {
-    if (!_titleLabel) {
-        _titleLabel = [[UILabel alloc] init];
-        _titleLabel.backgroundColor = [UIColor clearColor];
-        _titleLabel.font = [UIFont systemFontOfSize:11];
-        _titleLabel.textColor = [WYStyleSheet defaultStyleSheet].navTextColor;
-//        _titleLabel.text = @"王者农药，天上天下，唯朕独尊";
-    }
-    
-    return _titleLabel;
-}
+//- (UILabel *)titleLabel {
+//    if (!_titleLabel) {
+//        _titleLabel = [[UILabel alloc] init];
+//        _titleLabel.backgroundColor = [UIColor clearColor];
+//        _titleLabel.font = [UIFont systemFontOfSize:11];
+//        _titleLabel.textColor = [UIColor colorWithHexString:@"333333"];
+////        _titleLabel.text = @"王者农药，天上天下，唯朕独尊";
+//    }
+//    
+//    return _titleLabel;
+//}
 
 
 - (UILabel *)contentLabel {
@@ -350,6 +352,24 @@
     }
     
     return _gameCategoryButton;
+}
+
+- (YTClassifyBottomView *)bottomView
+{
+    if (!_bottomView) {
+        _bottomView = [[[NSBundle mainBundle] loadNibNamed:@"YTClassifyBottomView" owner:self options:nil] objectAtIndex:0];
+    }
+    
+    return _bottomView;
+}
+
+- (YTClassifyCommunityImageView *)imagesview
+{
+    if (!_imagesview) {
+        _imagesview = [[[NSBundle mainBundle] loadNibNamed:@"YTClassifyCommunityImageView" owner:self options:nil] objectAtIndex:0];
+    }
+    
+    return _imagesview;
 }
 
 @end

@@ -13,6 +13,7 @@
 #import "YTClassifyBBSDetailModel.h"
 #define kClassifyHeaderHeight (kScreenWidth * 210 / 375 + 44)
 static NSString *const kCommunityCollectionCell = @"YTCommunityCollectionCell";
+static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
 
 @interface WYSpaceViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 @property (strong, nonatomic) WYSpaceHeaderView *headerView;
@@ -29,21 +30,23 @@ static NSString *const kCommunityCollectionCell = @"YTCommunityCollectionCell";
 #pragma mark - setup
 - (void)setupView
 {
-    [self.view addSubview:self.headerView];
-    [self.headerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.view);
-        make.top.equalTo(self.view);
-        make.height.mas_offset(175);
-    }];
+//    [self.view addSubview:self.headerView];
+//    [self.headerView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.right.equalTo(self.view);
+//        make.top.equalTo(self.view);
+//        make.height.mas_offset(175);
+//    }];
     
     self.collectionView.backgroundColor = [WYStyleSheet currentStyleSheet].themeBackgroundColor;
     
     [self.collectionView registerNib:[UINib nibWithNibName:kCommunityCollectionCell bundle:nil] forCellWithReuseIdentifier:kCommunityCollectionCell];
+    [self.collectionView registerNib:[UINib nibWithNibName:kSpaceHeaderView bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kSpaceHeaderView];
+
     YTClassifyBBSDetailModel *model = [[YTClassifyBBSDetailModel alloc] init];
     model.content = @"橙卡，橙卡，橙卡";
     model.createDate = @"2017-09-19 08:51:34";
     model.gameName = @"炉石传说";
-    model.imgs = @"";
+    model.imgs = @"uploadfile/9048c6d1-b9d6-4a6b-8371-d670e83737bb.jpg,uploadfile/9048c6d1-b9d6-4a6b-8371-d670e83737bb.jpg,uploadfile/9048c6d1-b9d6-4a6b-8371-d670e83737bb.jpg,uploadfile/9048c6d1-b9d6-4a6b-8371-d670e83737bb.jpg";
     model.postsID = @"1802";
     [self.dataSource addObject:model];
     [self.dataSource addObject:model];
@@ -51,23 +54,23 @@ static NSString *const kCommunityCollectionCell = @"YTCommunityCollectionCell";
     [self.dataSource addObject:model];
 
     WEAKSELF
-    [self addRefreshHeaderWithBlock:^{
-        weakSelf.startIndexPage = 1;
-        
-//        [weakSelf requestClassifyBBSListWithGameId:weakSelf.gameID page:weakSelf.startIndexPage pageSize:DATA_LOAD_PAGESIZE_COUNT result:^(YTClassifyBBSListModel *model) {
-//            if (model) {
-//                [weakSelf handleBBSListData:model];
-//            }
-//        }];
-    }];
+//    [self addRefreshHeaderWithBlock:^{
+//        weakSelf.startIndexPage = 1;
+//        
+////        [weakSelf requestClassifyBBSListWithGameId:weakSelf.gameID page:weakSelf.startIndexPage pageSize:DATA_LOAD_PAGESIZE_COUNT result:^(YTClassifyBBSListModel *model) {
+////            if (model) {
+////                [weakSelf handleBBSListData:model];
+////            }
+////        }];
+//    }];
     
-    [self addRefreshFooterWithBlock:^{
-//        [weakSelf requestClassifyBBSListWithGameId:weakSelf.gameID page:weakSelf.startIndexPage pageSize:DATA_LOAD_PAGESIZE_COUNT result:^(YTClassifyBBSListModel *model) {
-//            if (model) {
-//                [weakSelf handleBBSListData:model];
-//            }
-//        }];
-    }];
+//    [self addRefreshFooterWithBlock:^{
+////        [weakSelf requestClassifyBBSListWithGameId:weakSelf.gameID page:weakSelf.startIndexPage pageSize:DATA_LOAD_PAGESIZE_COUNT result:^(YTClassifyBBSListModel *model) {
+////            if (model) {
+////                [weakSelf handleBBSListData:model];
+////            }
+////        }];
+//    }];
     
     [self.view addSubview:self.collectionView];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -79,6 +82,7 @@ static NSString *const kCommunityCollectionCell = @"YTCommunityCollectionCell";
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     YTClassifyBBSDetailModel *model = (YTClassifyBBSDetailModel *)self.dataSource[indexPath.row];
+    model.bbsType = YTBBSTypeGraphic;
     CGFloat itemHeight = [YTCommunityCollectionCell heightWithEntity:model];
     return CGSizeMake(kScreenWidth - 12*2, itemHeight);
 //    return CGSizeMake(kScreenWidth - 12*2, 40);
@@ -90,21 +94,18 @@ static NSString *const kCommunityCollectionCell = @"YTCommunityCollectionCell";
     return UIEdgeInsetsMake(5, 12, 12, 12);
 }
 
-//- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-//{
-//    if ([kind isEqualToString:UICollectionElementKindSectionHeader] ) {
-//        
-//        YTClassifyBaseCollectionReusableView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kYTClassifyBaseCollectionReusableView forIndexPath:indexPath];
-//        
-//        return header;
-//    }
-//    return nil;
-//}
-
+// 创建头视图
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
+           viewForSupplementaryElementOfKind:(NSString *)kind
+                                 atIndexPath:(NSIndexPath *)indexPath {
+    self.headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kSpaceHeaderView forIndexPath:indexPath];
+    self.headerView.backgroundColor = [UIColor whiteColor];
+    return self.headerView;
+}
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-    CGSize headerSize = CGSizeMake(SCREEN_WIDTH, kClassifyHeaderHeight);
+    CGSize headerSize = CGSizeMake(SCREEN_WIDTH, 175);
     return headerSize;
 }
 

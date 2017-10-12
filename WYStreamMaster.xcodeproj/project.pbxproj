@@ -143,6 +143,8 @@
 		787ADB701F8B509B005331C9 /* YTClassifyCommunityImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 787ADB6E1F8B509B005331C9 /* YTClassifyCommunityImageView.xib */; };
 		787ADB741F8B50AB005331C9 /* YTClassifyBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 787ADB721F8B50AB005331C9 /* YTClassifyBottomView.m */; };
 		787ADB751F8B50AB005331C9 /* YTClassifyBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 787ADB731F8B50AB005331C9 /* YTClassifyBottomView.xib */; };
+		787ADB8D1F8F45F1005331C9 /* WYIncomeRecordHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 787ADB8B1F8F45F1005331C9 /* WYIncomeRecordHeaderView.m */; };
+		787ADB8E1F8F45F1005331C9 /* WYIncomeRecordHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 787ADB8C1F8F45F1005331C9 /* WYIncomeRecordHeaderView.xib */; };
 		789DAA171F56874C0012075C /* FUManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 789DAA161F56874C0012075C /* FUManager.m */; };
 		789DAA2A1F5688200012075C /* libnama.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 789DAA1E1F5688200012075C /* libnama.a */; };
 		789DAA2B1F5688200012075C /* release_note.txt in Resources */ = {isa = PBXBuildFile; fileRef = 789DAA1F1F5688200012075C /* release_note.txt */; };
@@ -491,6 +493,9 @@
 		787ADB711F8B50AB005331C9 /* YTClassifyBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTClassifyBottomView.h; sourceTree = "<group>"; };
 		787ADB721F8B50AB005331C9 /* YTClassifyBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTClassifyBottomView.m; sourceTree = "<group>"; };
 		787ADB731F8B50AB005331C9 /* YTClassifyBottomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YTClassifyBottomView.xib; sourceTree = "<group>"; };
+		787ADB8A1F8F45F1005331C9 /* WYIncomeRecordHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYIncomeRecordHeaderView.h; sourceTree = "<group>"; };
+		787ADB8B1F8F45F1005331C9 /* WYIncomeRecordHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYIncomeRecordHeaderView.m; sourceTree = "<group>"; };
+		787ADB8C1F8F45F1005331C9 /* WYIncomeRecordHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYIncomeRecordHeaderView.xib; sourceTree = "<group>"; };
 		789DAA151F56874C0012075C /* FUManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FUManager.h; sourceTree = "<group>"; };
 		789DAA161F56874C0012075C /* FUManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FUManager.m; sourceTree = "<group>"; };
 		789DAA191F5688200012075C /* authpack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = authpack.h; sourceTree = "<group>"; };
@@ -1552,6 +1557,9 @@
 		78D1D3271F7C9D87007261E4 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				787ADB8A1F8F45F1005331C9 /* WYIncomeRecordHeaderView.h */,
+				787ADB8B1F8F45F1005331C9 /* WYIncomeRecordHeaderView.m */,
+				787ADB8C1F8F45F1005331C9 /* WYIncomeRecordHeaderView.xib */,
 				78D1D3361F7CEF0A007261E4 /* WYIncomeRecordTableViewCell.h */,
 				78D1D3371F7CEF0A007261E4 /* WYIncomeRecordTableViewCell.m */,
 				78D1D3381F7CEF0A007261E4 /* WYIncomeRecordTableViewCell.xib */,
@@ -1717,6 +1725,7 @@
 				44D2F7E31E7FC30500122866 /* YTChatBottomView.xib in Resources */,
 				789DAA2E1F5688200012075C /* EatRabbi.bundle in Resources */,
 				789DAA2F1F5688200012075C /* lixiaolong.bundle in Resources */,
+				787ADB8E1F8F45F1005331C9 /* WYIncomeRecordHeaderView.xib in Resources */,
 				787ADB701F8B509B005331C9 /* YTClassifyCommunityImageView.xib in Resources */,
 				78D1D3151F7B49BE007261E4 /* WYHomePageViewController.xib in Resources */,
 				442563FD1F429B030075467A /* gr_xian_3_icon@2x.png in Resources */,
@@ -1859,6 +1868,7 @@
 				441C23FE1E83FDA20020557C /* LiveGiftShowNumberView.m in Sources */,
 				78B82A2E1F78DB1B00279366 /* WYRegistersViewController.m in Sources */,
 				44D2F7E61E7FC30500122866 /* YTChatRoomControl.m in Sources */,
+				787ADB8D1F8F45F1005331C9 /* WYIncomeRecordHeaderView.m in Sources */,
 				44D2F7C01E7A6FBF00122866 /* WYStreamingConfig.m in Sources */,
 				4408525E1ED92B1F00F92C7A /* WYFaceRendererManager.m in Sources */,
 				441C24081E85032F0020557C /* WYGiftHistoryView.m in Sources */,

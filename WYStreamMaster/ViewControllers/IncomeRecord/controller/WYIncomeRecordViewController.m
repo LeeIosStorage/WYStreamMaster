@@ -15,6 +15,7 @@
 #import "YTItemView.h"
 #import "WYCustomAlertView.h"
 #import "WYIncomeRecordTableViewCell.h"
+#import "WYIncomeRecordHeaderView.h"
 typedef NS_ENUM(NSInteger, HomePageCellStyle) {
     HomePageCellStyleMessage = 0,
     HomePageCellStyleFans,
@@ -41,8 +42,8 @@ static NSString *const kIncomeRecordTableViewCell = @"WYIncomeRecordTableViewCel
 @property (assign, nonatomic) BOOL                  commentCanLoadMore;
 @property (assign, nonatomic) int                   totalCommentNum;
 @property (strong, nonatomic) NSMutableArray        *commentLists;
-//@property (strong, nonatomic) YTHomePageUserView    *userView;
-
+@property (strong, nonatomic) WYIncomeRecordHeaderView *headerView;
+@property (nonatomic, strong) UIImageView *effectImgView;
 ///空view
 @property (nonatomic, strong) UIView *emptyNoticeView;
 
@@ -75,7 +76,6 @@ static NSString *const kIncomeRecordTableViewCell = @"WYIncomeRecordTableViewCel
     self.view.backgroundColor = [WYStyleSheet defaultStyleSheet].themeBackgroundColor;
     [self initData];
     [self initSubviews];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -107,8 +107,11 @@ static NSString *const kIncomeRecordTableViewCell = @"WYIncomeRecordTableViewCel
 
 - (void)initSubviews
 {
-    WEAKSELF
+    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [rightButton setTitle:@"CNY" forState:UIControlStateNormal];
+    [self setRightButton:rightButton];
     
+    WEAKSELF
     [self.view addSubview:self.homePageTable];
     [self initHeaderImageView];
     
@@ -119,8 +122,7 @@ static NSString *const kIncomeRecordTableViewCell = @"WYIncomeRecordTableViewCel
         make.leading.bottom.trailing.equalTo(weakSelf.view);
     }];
     
-    
-    //添加管理员
+    // 添加管理员
     self.addManagerButton.hidden = YES;
     [self.view addSubview:_addManagerButton];
     [self.addManagerButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -128,12 +130,33 @@ static NSString *const kIncomeRecordTableViewCell = @"WYIncomeRecordTableViewCel
         make.centerX.equalTo(weakSelf.view);
         make.size.mas_equalTo(CGSizeMake(50, 25));
     }];
+    
+    [self.view addSubview:self.headerView];
+    self.headerView.hidden = YES;
+    [self.headerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(weakSelf.view);
+        make.leading.right.trailing.equalTo(weakSelf.view);
+        make.height.mas_offset(110);
+    }];
+    
+    UIImageView *effectImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 110, kScreenWidth, kScreenHeight - 110)];
+    effectImgView.contentMode = UIViewContentModeScaleAspectFill;
+    effectImgView.userInteractionEnabled = YES;
+    effectImgView.backgroundColor = [UIColor blackColor];
+    effectImgView.alpha = 0.4;
+    [self.view addSubview:effectImgView];
+
+    UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+    UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:effect];
+    effectView.frame = CGRectMake(0, 0, effectImgView.frame.size.width, effectImgView.frame.size.height);
+    [effectImgView addSubview:effectView];
+    self.effectImgView = effectImgView;
+    self.effectImgView.hidden = YES;
+    
 }
 
 - (void)initHeaderImageView
 {
-    WEAKSELF
-    
     
 }
 
@@ -269,11 +292,9 @@ static NSString *const kIncomeRecordTableViewCell = @"WYIncomeRecordTableViewCel
         
         if (offsetY > NAVBAR_CHANGE_POINT) {
             CGFloat alpha = MIN(1, 1 - ((NAVBAR_CHANGE_POINT + 64 - offsetY) / 64));
-//            self.title = self.homePageModel.infoModel.userNickName;
             [self setNeedsStatusBarAppearanceUpdate];
             
         } else {
-            self.title = @"";
             [self setNeedsStatusBarAppearanceUpdate];
         }
     } else if (scrollView == self.headerScroll) {
@@ -284,6 +305,18 @@ static NSString *const kIncomeRecordTableViewCell = @"WYIncomeRecordTableViewCel
 
 #pragma mark
 #pragma mark - Action
+- (void)rightButtonClicked:(id)sender
+{
+    UIButton *rightButton = (UIButton *)sender;
+    rightButton.selected = !rightButton.selected;
+    if (rightButton.selected) {
+        self.headerView.hidden = NO;
+        self.effectImgView.hidden = NO;
+    } else {
+        self.headerView.hidden = YES;
+        self.effectImgView.hidden = YES;
+    }
+}
 - (void)showAddManagerView
 {
     //    if(!self.addManagerView) {
@@ -420,6 +453,15 @@ static NSString *const kIncomeRecordTableViewCell = @"WYIncomeRecordTableViewCel
     }
     return _addManagerButton;
 }
+
+- (WYIncomeRecordHeaderView *)headerView
+{
+    if (!_headerView) {
+        _headerView = (WYIncomeRecordHeaderView *)[[NSBundle mainBundle] loadNibNamed:@"WYIncomeRecordHeaderView" owner:self options:nil].lastObject;
+    }
+    return _headerView;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

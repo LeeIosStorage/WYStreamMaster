@@ -15,6 +15,7 @@
 #import <Bugly/Bugly.h>
 #import "ZegoAVManager.h"
 #import "AFNetworkReachabilityManager.h"
+#import "WYHomePageViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -99,7 +100,7 @@
 #pragma mark - Action
 - (void)initTab
 {
-    MainTabViewController *mineVC = [[MainTabViewController alloc] init];
+    WYHomePageViewController *mineVC = [[WYHomePageViewController alloc] init];
     WYNavigationController *createNav = [[WYNavigationController alloc] initWithRootViewController:mineVC];
     [createNav setNavigationBarHidden:YES];
     

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WYSpaceHeaderView : UIView
+@interface WYSpaceHeaderView : UICollectionReusableView
 
 - (void)updateHeaderViewWithData:(id)data;
 
