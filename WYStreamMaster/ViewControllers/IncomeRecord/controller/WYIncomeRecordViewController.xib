@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WYIncomeRecordViewController">
             <connections>
+                <outlet property="incomeHeaderView" destination="3mY-tT-ivn" id="fFg-6v-SFF"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -23,7 +24,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ITo-0v-upv">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="240"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="income_background" translatesAutoresizingMaskIntoConstraints="NO" id="3mY-tT-ivn">
+                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="income_background" translatesAutoresizingMaskIntoConstraints="NO" id="3mY-tT-ivn">
                             <rect key="frame" x="15" y="15" width="345" height="205"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今日CNY收益" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cYq-0l-LPU">

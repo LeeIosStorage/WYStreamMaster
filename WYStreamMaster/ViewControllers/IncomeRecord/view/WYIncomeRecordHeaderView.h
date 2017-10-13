@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 @class YTClassifyBBSDetailModel;
+@protocol WYIncomeRecordHeaderViewDelegate <NSObject>
+@optional
 
+- (void)clickCurrencyButtonDelegate:(NSString *)currencyString;
+@end
 @interface WYIncomeRecordHeaderView : UIView
-
-
+@property (nonatomic, weak) id<WYIncomeRecordHeaderViewDelegate> delegate;
 @end

@@ -16,6 +16,7 @@
 #import "WYCustomAlertView.h"
 #import "WYIncomeRecordTableViewCell.h"
 #import "WYIncomeRecordHeaderView.h"
+#import "WYIncomeRewardViewController.h"
 typedef NS_ENUM(NSInteger, HomePageCellStyle) {
     HomePageCellStyleMessage = 0,
     HomePageCellStyleFans,
@@ -26,7 +27,7 @@ typedef NS_ENUM(NSInteger, HomePageCellStyle) {
 
 static NSString *const kIncomeRecordTableViewCell = @"WYIncomeRecordTableViewCell";
 
-@interface WYIncomeRecordViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface WYIncomeRecordViewController () <UITableViewDataSource, UITableViewDelegate, WYIncomeRecordHeaderViewDelegate>
 @property (strong, nonatomic) UIScrollView          *headerScroll;
 @property (strong, nonatomic) NSArray               *itemArray;
 @property (assign, nonatomic) HomePageCellStyle     cellStyle;
@@ -46,6 +47,8 @@ static NSString *const kIncomeRecordTableViewCell = @"WYIncomeRecordTableViewCel
 @property (nonatomic, strong) UIImageView *effectImgView;
 ///空view
 @property (nonatomic, strong) UIView *emptyNoticeView;
+
+@property (strong, nonatomic) IBOutlet UIImageView *incomeHeaderView;
 
 @end
 
@@ -98,8 +101,6 @@ static NSString *const kIncomeRecordTableViewCell = @"WYIncomeRecordTableViewCel
 
 - (void)reloadUI
 {
-
-    
     [self.homePageTable reloadData];
     //拿完数据看看有米有关注
     //[self setupNavigation];
@@ -109,7 +110,13 @@ static NSString *const kIncomeRecordTableViewCell = @"WYIncomeRecordTableViewCel
 {
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [rightButton setTitle:@"CNY" forState:UIControlStateNormal];
+    [rightButton setImage:[UIImage imageNamed:@"income_record_down"] forState:UIControlStateNormal];
+    [rightButton setTitleEdgeInsets:UIEdgeInsetsMake(0,0,0,10)];
+    [rightButton setImageEdgeInsets:UIEdgeInsetsMake(0,50,0,0)];
     [self setRightButton:rightButton];
+    // 点击收益
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureIncomeHeaderView:)];
+    [self.incomeHeaderView addGestureRecognizer:tapGesture];
     
     WEAKSELF
     [self.view addSubview:self.homePageTable];
@@ -317,6 +324,13 @@ static NSString *const kIncomeRecordTableViewCell = @"WYIncomeRecordTableViewCel
         self.effectImgView.hidden = YES;
     }
 }
+
+- (void)tapGestureIncomeHeaderView:(UITapGestureRecognizer *)sender
+{
+    WYIncomeRewardViewController *incomeRewardVC = [[WYIncomeRewardViewController alloc] init];
+    [self.navigationController pushViewController:incomeRewardVC animated:YES];
+}
+
 - (void)showAddManagerView
 {
     //    if(!self.addManagerView) {
@@ -458,11 +472,17 @@ static NSString *const kIncomeRecordTableViewCell = @"WYIncomeRecordTableViewCel
 {
     if (!_headerView) {
         _headerView = (WYIncomeRecordHeaderView *)[[NSBundle mainBundle] loadNibNamed:@"WYIncomeRecordHeaderView" owner:self options:nil].lastObject;
+        _headerView.delegate = self;
+        
     }
     return _headerView;
 }
 
-
+#pragma mark - WYIncomeRecordHeaderViewDelegate
+- (void)clickCurrencyButtonDelegate:(NSString *)currencyString
+{
+    [self.rightButton setTitle:currencyString forState:UIControlStateNormal];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

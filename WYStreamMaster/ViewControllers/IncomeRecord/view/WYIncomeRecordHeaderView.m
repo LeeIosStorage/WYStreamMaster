@@ -27,6 +27,9 @@
             UIButton *button = (UIButton *)subView;
             if (button.tag == sender.tag) {
                 [self selectedCurrencyButton:sender];
+                if ([self.delegate respondsToSelector:@selector(clickCurrencyButtonDelegate:)]) {
+                    [self.delegate clickCurrencyButtonDelegate:sender.titleLabel.text];
+                }
             } else {
                 [self normalCurrencyButton:button];
             }
