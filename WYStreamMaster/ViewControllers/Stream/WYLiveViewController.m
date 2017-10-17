@@ -294,7 +294,7 @@ FUAPIDemoBarDelegate
     CGFloat height = (250/667.0)*SCREEN_HEIGHT;
     [self.contentContainerView addSubview:self.roomView];
     [self.roomView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.contentContainerView).offset(-55);
+        make.bottom.equalTo(self.contentContainerView).offset(-120);
         make.left.equalTo(self.contentContainerView).offset(8);
         make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH-kRoomChatViewCustomWidth, height));
     }];
@@ -648,7 +648,7 @@ static bool frontCamera = YES;
             nibNamed = @"WYLiveTigerResultView";
         }else if ([WYLoginUserManager liveGameType] == LiveGameTypeBaccarat){
             nibNamed = @"WYLiveBaccaratResultView";
-        }else if ([WYLoginUserManager liveGameType] == LiveGameTypeSlots){
+        } else if ([WYLoginUserManager liveGameType] == LiveGameTypeSlots) {
             return nil;
         }
         _liveGameResultView = (WYLiveGameResultView *)[[NSBundle mainBundle] loadNibNamed:nibNamed owner:self options:nil].firstObject;

@@ -147,6 +147,8 @@
 		787ADB8E1F8F45F1005331C9 /* WYIncomeRecordHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 787ADB8C1F8F45F1005331C9 /* WYIncomeRecordHeaderView.xib */; };
 		787ADB921F909E2B005331C9 /* WYIncomeRewardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787ADB901F909E2B005331C9 /* WYIncomeRewardViewController.m */; };
 		787ADB931F909E2B005331C9 /* WYIncomeRewardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 787ADB911F909E2B005331C9 /* WYIncomeRewardViewController.xib */; };
+		787ADB971F95A87D005331C9 /* YTBetRankingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 787ADB951F95A87D005331C9 /* YTBetRankingView.m */; };
+		787ADB981F95A87D005331C9 /* YTBetRankingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 787ADB961F95A87D005331C9 /* YTBetRankingView.xib */; };
 		789DAA171F56874C0012075C /* FUManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 789DAA161F56874C0012075C /* FUManager.m */; };
 		789DAA2A1F5688200012075C /* libnama.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 789DAA1E1F5688200012075C /* libnama.a */; };
 		789DAA2B1F5688200012075C /* release_note.txt in Resources */ = {isa = PBXBuildFile; fileRef = 789DAA1F1F5688200012075C /* release_note.txt */; };
@@ -501,6 +503,9 @@
 		787ADB8F1F909E2B005331C9 /* WYIncomeRewardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYIncomeRewardViewController.h; sourceTree = "<group>"; };
 		787ADB901F909E2B005331C9 /* WYIncomeRewardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYIncomeRewardViewController.m; sourceTree = "<group>"; };
 		787ADB911F909E2B005331C9 /* WYIncomeRewardViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYIncomeRewardViewController.xib; sourceTree = "<group>"; };
+		787ADB941F95A87D005331C9 /* YTBetRankingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTBetRankingView.h; sourceTree = "<group>"; };
+		787ADB951F95A87D005331C9 /* YTBetRankingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTBetRankingView.m; sourceTree = "<group>"; };
+		787ADB961F95A87D005331C9 /* YTBetRankingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YTBetRankingView.xib; sourceTree = "<group>"; };
 		789DAA151F56874C0012075C /* FUManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FUManager.h; sourceTree = "<group>"; };
 		789DAA161F56874C0012075C /* FUManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FUManager.m; sourceTree = "<group>"; };
 		789DAA191F5688200012075C /* authpack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = authpack.h; sourceTree = "<group>"; };
@@ -631,6 +636,9 @@
 				441C23F91E83FDA20020557C /* YTGradientColorLabel.m */,
 				441C23FA1E83FDA20020557C /* ZYGiftListModel.h */,
 				441C23FB1E83FDA20020557C /* ZYGiftListModel.m */,
+				787ADB941F95A87D005331C9 /* YTBetRankingView.h */,
+				787ADB951F95A87D005331C9 /* YTBetRankingView.m */,
+				787ADB961F95A87D005331C9 /* YTBetRankingView.xib */,
 			);
 			path = LiveGiftShowView;
 			sourceTree = "<group>";
@@ -1773,6 +1781,7 @@
 				44D9B30B1E96831E00E15BEA /* WYLiveGameResultView.xib in Resources */,
 				4425642C1F42AA830075467A /* wy_gameresult_lose_3@2x.png in Resources */,
 				44203DB81E7246D900D59B5E /* MainTabViewController.xib in Resources */,
+				787ADB981F95A87D005331C9 /* YTBetRankingView.xib in Resources */,
 				442564231F42AA830075467A /* gr_lose_icon@2x.png in Resources */,
 				78D1D3031F7A5087007261E4 /* WYHelpCell.xib in Resources */,
 				789DAA311F5688200012075C /* Mood.bundle in Resources */,
@@ -1867,6 +1876,7 @@
 				44D2F7E81E7FC30500122866 /* YTRoomView.m in Sources */,
 				44203D881E714BD600D59B5E /* WYSuperViewController.m in Sources */,
 				44D2F7D11E7FA8F300122866 /* WYAnchorInfoView.m in Sources */,
+				787ADB971F95A87D005331C9 /* YTBetRankingView.m in Sources */,
 				44D2F7E41E7FC30500122866 /* YTChatCell.m in Sources */,
 				44203D171E6FE78800D59B5E /* ViewController.m in Sources */,
 				78B82A3B1F7914C700279366 /* YTQuickLoginViewController.m in Sources */,

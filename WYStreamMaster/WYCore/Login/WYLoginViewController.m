@@ -500,9 +500,9 @@
 
 - (IBAction)doLogin:(id)sender
 {
-    WYHomePageViewController *homepageVC = [[WYHomePageViewController alloc] init];
-    [self.navigationController pushViewController:homepageVC animated:YES];
-    return;
+//    WYHomePageViewController *homepageVC = [[WYHomePageViewController alloc] init];
+//    [self.navigationController pushViewController:homepageVC animated:YES];
+//    return;
     [self.loginAccountTextField resignFirstResponder];
     [self.loginPasswordTextField resignFirstResponder];
     [self.loginMsgCodeTextField resignFirstResponder];

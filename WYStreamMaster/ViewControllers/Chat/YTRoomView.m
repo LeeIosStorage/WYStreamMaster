@@ -109,7 +109,7 @@
         make.width.equalTo(@244);
         make.height.equalTo(@50);
         make.left.equalTo(self.mas_left).offset(-5);
-        make.bottom.equalTo(self.mas_top);
+        make.top.equalTo(self.mas_bottom);
     }];
 }
 
