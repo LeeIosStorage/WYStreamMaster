@@ -24,7 +24,7 @@
 #import <FUAPIDemoBar/FUAPIDemoBar.h>
 #import "FUManager.h"
 #import "AFNetworkReachabilityManager.h"
-
+#import "YTBetRankingView.h"
 // 直播通知重试次数
 static NSInteger kLiveNotifyRetryCount = 0;
 static NSInteger kLiveNotifyRetryMaxCount = 3;
@@ -76,8 +76,8 @@ FUAPIDemoBarDelegate
 @property (nonatomic, strong) UIButton *demoBtn ;
 @property (nonatomic, strong) FUAPIDemoBar *demoBar ;
 @property (nonatomic, assign) NSInteger pauseTime;
-
 @property (nonatomic ,strong) NSTimer *pauseTimers;
+@property (strong, nonatomic) YTBetRankingView *betRankingView;//chatView
 
 @end
 
@@ -263,7 +263,7 @@ FUAPIDemoBarDelegate
     
     [self.anchorInfoView updateAnchorInfoWith:nil];
     
-    [self initRoomView];
+    [self initView];
     
     [self.view addSubview:self.liveGameResultView];
     [self.liveGameResultView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -287,7 +287,7 @@ FUAPIDemoBarDelegate
 }
 
 
-- (void)initRoomView
+- (void)initView
 {
     self.expandChatButton.selected = NO;
     
@@ -299,6 +299,14 @@ FUAPIDemoBarDelegate
         make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH-kRoomChatViewCustomWidth, height));
     }];
     [self.roomView roomViewPrepare];
+    
+//    CGFloat height = (250/667.0)*SCREEN_HEIGHT;
+    [self.view addSubview:self.betRankingView];
+    [self.betRankingView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.view);
+        make.left.right.equalTo(self.view);
+        make.height.mas_equalTo(130);
+    }];
 }
 
 - (void)prepareForCameraSetting
@@ -593,6 +601,13 @@ static bool frontCamera = YES;
         _roomView = [[YTRoomView alloc] init];
     }
     return _roomView;
+}
+
+- (YTBetRankingView *)betRankingView{
+    if (!_betRankingView) {
+        _betRankingView = [[YTBetRankingView alloc] init];
+    }
+    return _betRankingView;
 }
 
 - (WYContributionListView *)contributionListView{
