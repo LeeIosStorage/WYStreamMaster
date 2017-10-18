@@ -77,7 +77,8 @@ FUAPIDemoBarDelegate
 @property (nonatomic, strong) FUAPIDemoBar *demoBar ;
 @property (nonatomic, assign) NSInteger pauseTime;
 @property (nonatomic ,strong) NSTimer *pauseTimers;
-@property (strong, nonatomic) YTBetRankingView *betRankingView;//chatView
+@property (strong, nonatomic) YTBetRankingView *betRankingView;
+@property (strong, nonatomic) YTBetRankingView *primaryBetRankingView;
 
 @end
 
@@ -266,6 +267,7 @@ FUAPIDemoBarDelegate
     [self initView];
     
     [self.view addSubview:self.liveGameResultView];
+    self.liveGameResultView.hidden = YES;
     [self.liveGameResultView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.view);
         make.top.equalTo(self.contentContainerView.mas_bottom);
@@ -294,7 +296,7 @@ FUAPIDemoBarDelegate
     CGFloat height = (250/667.0)*SCREEN_HEIGHT;
     [self.contentContainerView addSubview:self.roomView];
     [self.roomView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.contentContainerView).offset(-120);
+        make.bottom.equalTo(self.contentContainerView).offset(-180);
         make.left.equalTo(self.contentContainerView).offset(8);
         make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH-kRoomChatViewCustomWidth, height));
     }];
@@ -302,10 +304,19 @@ FUAPIDemoBarDelegate
     
 //    CGFloat height = (250/667.0)*SCREEN_HEIGHT;
     [self.view addSubview:self.betRankingView];
+    [self.betRankingView updateBottomViewWithInfo:nil];
     [self.betRankingView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.view).mas_offset(-130);
+        make.left.right.equalTo(self.view);
+        make.height.mas_equalTo(120);
+    }];
+    
+    [self.view addSubview:self.primaryBetRankingView];
+    [self.primaryBetRankingView updateBottomViewWithInfo:nil];
+    [self.primaryBetRankingView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.view);
         make.left.right.equalTo(self.view);
-        make.height.mas_equalTo(130);
+        make.height.mas_equalTo(120);
     }];
 }
 
@@ -605,9 +616,18 @@ static bool frontCamera = YES;
 
 - (YTBetRankingView *)betRankingView{
     if (!_betRankingView) {
-        _betRankingView = [[YTBetRankingView alloc] init];
+        _betRankingView = (YTBetRankingView *)[[NSBundle mainBundle] loadNibNamed:@"YTBetRankingView" owner:self options:nil].lastObject;
+        _betRankingView.betRankingType = BetRankingSeniorType;
     }
     return _betRankingView;
+}
+
+- (YTBetRankingView *)primaryBetRankingView{
+    if (!_primaryBetRankingView) {
+        _primaryBetRankingView = (YTBetRankingView *)[[NSBundle mainBundle] loadNibNamed:@"YTBetRankingView" owner:self options:nil].lastObject;
+        _primaryBetRankingView.betRankingType = BetRankingPrimaryType;
+    }
+    return _primaryBetRankingView;
 }
 
 - (WYContributionListView *)contributionListView{
