@@ -69,7 +69,7 @@ static __strong id<ZegoVideoCaptureFactory> g_factory = NULL;
     config.videoEncodeResolution = CGSizeMake(videoSize.width,videoSize.height);
     config.videoCaptureResolution = config.videoEncodeResolution;
     config.fps = 15;
-    config.bitrate = 800000;
+    config.bitrate = 650000;
     //fps 15
     //bitrate 800000
     
