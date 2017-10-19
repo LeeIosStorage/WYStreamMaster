@@ -221,7 +221,7 @@ SRWebSocketDelegate
     [[NSRunLoop currentRunLoop]addTimer:heartBeat forMode:NSRunLoopCommonModes];
 }
 
-//取消心跳
+// 取消心跳
 - (void)destoryHeartBeat
 {
 //    dispatch_main_async_safe(^{
