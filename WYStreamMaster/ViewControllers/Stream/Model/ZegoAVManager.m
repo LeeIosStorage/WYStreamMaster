@@ -115,7 +115,9 @@ static __strong id<ZegoVideoCaptureFactory> g_factory = NULL;
         else
         {
             NSString *logString = [NSString stringWithFormat:NSLocalizedString(@"登录房间失败. error: %d", nil), errorCode];
-            WYLog(@"%@",logString);
+            WYLog(@"logStringlogString%@",logString);
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:WYNotificationWSDisConnect object:nil];
         }
     }];
 }

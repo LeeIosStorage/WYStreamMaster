@@ -37,6 +37,9 @@
     // 注册反序列化类
     [NIMCustomObject registerCustomDecoder:[YTCustomAttachmentDecoder new]];
     
+    BuglyConfig * config = [[BuglyConfig alloc] init];
+    // 设置自定义日志上报的级别，默认不上报自定义日志
+    config.reportLogLevel = BuglyLogLevelWarn;
     [Bugly startWithAppId:kBuglyAppID];
     
 //    [[WYSocketManager sharedInstance] initSocketURL:[NSURL URLWithString:@"wss://echo.websocket.org"]];

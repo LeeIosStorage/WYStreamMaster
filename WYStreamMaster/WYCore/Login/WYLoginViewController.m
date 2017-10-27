@@ -115,6 +115,7 @@
     [serverButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     [serverButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
     [serverButton addTarget:self action:@selector(changeServerAction) forControlEvents:UIControlEventTouchUpInside];
+    serverButton.hidden = YES;
     [self.view addSubview:serverButton];
     [serverButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.view).offset(-10);

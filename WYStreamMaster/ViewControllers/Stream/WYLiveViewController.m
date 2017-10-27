@@ -76,7 +76,7 @@ ZegoRoomDelegate
 
 @property (nonatomic, strong) UIButton *demoBtn ;
 @property (nonatomic, strong) FUAPIDemoBar *demoBar ;
-@property (nonatomic, assign) NSInteger pauseTime;
+@property (nonatomic, assign) NSInteger qualityNoGood;
 
 @property (nonatomic ,strong) NSTimer *pauseTimers;
 
@@ -124,12 +124,14 @@ ZegoRoomDelegate
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(serverNoticeFinishStream) name:WYNotificationWSConnect object:nil];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationWSDisConnect) name:WYNotificationWSDisConnect object:nil];
+
     
     [self setupSubView];
     
     [self prepareForCameraSetting];
     [self crateWebSocket];
-
+    [[ZegoHelper api] setRoomDelegate:self];
     //开始检测人脸礼物动效
 //    [[WYFaceRendererManager sharedInstance] stopTimer];
 //    [[WYFaceRendererManager sharedInstance] startTimer];
@@ -151,6 +153,31 @@ ZegoRoomDelegate
 
 #pragma mark -
 #pragma mark - Server
+- (void)anchorDetail{
+    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"anchor_detail"];
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
+    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchor_user_code"];
+    [paramsDic setObject:@"CNY" forKey:@"currency"];
+    
+    WEAKSELF
+    [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
+        NSLog(@"error:%@ data:%@",message,dataObject);
+        
+        if (requestType == WYRequestTypeSuccess) {
+            NSArray *dataArray = (NSArray *)dataObject;
+            NSDictionary *dic = dataArray[0];
+            NSString *anchorStatus = [NSString stringWithFormat:@"%@", dic[@"anchor_status"]];
+            if ([anchorStatus isEqualToString:@"0"]) {
+                [weakSelf roomDisConnect];
+            }
+        }else{
+        }
+        
+    } failure:^(id responseObject, NSError *error) {
+        [MBProgressHUD showAlertMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_server_request_errer_tip"] toView:weakSelf.view];
+    }];
+}
+
 - (void)notifiyLive{
     
     WYLog(@"notifiyLive Count = %d",(int)kLiveNotifyRetryCount);
@@ -172,6 +199,7 @@ ZegoRoomDelegate
 }
 
 - (void)closeLive{
+    [self stopTimer];
     // 关闭长连接
     [[WYSocketManager sharedInstance] SRWebSocketClose];
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"anchor_on_off"];
@@ -198,7 +226,6 @@ ZegoRoomDelegate
         [MBProgressHUD showAlertMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_server_request_errer_tip"] toView:weakSelf.view];
     }];
 }
-
 
 - (void)serverNoticeCustomAttachment:(NSNotification *)notification {
     if ([notification.object isKindOfClass:[WYServerNoticeAttachment class]]) {
@@ -231,7 +258,7 @@ ZegoRoomDelegate
 #pragma mark - Private Methods
 - (void)crateWebSocket
 {
-    NSString *webSocketString = [NSString stringWithFormat:@"ws://www.legend8888.com/chat_room/ws.do?userCode=%@&anchor_user_code=%@&game_type=%zd", [WYLoginUserManager userID], [WYLoginUserManager userID], [WYLoginUserManager liveGameType]];
+    NSString *webSocketString = [NSString stringWithFormat:@"ws://www.legend8888.com/chat_room/ws.do?userCode=%@&anchor_user_code=%@&game_type=%zd&device=1", [WYLoginUserManager userID], [WYLoginUserManager userID], [WYLoginUserManager liveGameType]];
     [[WYSocketManager sharedInstance] initSocketURL:[NSURL URLWithString:webSocketString]];
 }
 
@@ -489,6 +516,25 @@ ZegoRoomDelegate
 
 #pragma mark -
 #pragma mark - Button Clicked
+- (void)notificationWSDisConnect
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"直播错误，请重新开启", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alertView show];
+//    [self serverNoticeFinishStream];
+    [self.streamingSessionManager destroyStream];
+    [self.roomView.chatroomControl exitRoom];
+    //通知服务器停止直播了
+    [self closeLive];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)roomDisConnect
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"直播错误，请重新开启", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alertView show];
+    [self serverNoticeFinishStream];
+
+}
 - (IBAction)doBackAction:(id)sender{
     
     WEAKSELF
@@ -753,6 +799,13 @@ static bool frontCamera = YES;
     }
 }
 
+#pragma mark - ZegoRoomDelegate
+- (void)onDisconnect:(int)errorCode roomID:(NSString *)roomID
+{
+    [self prepareForCameraSetting];
+    NSLog(@"onDisconnectonDisconnectonDisconnect");
+}
+
 #pragma mark - ZegoLivePublisherDelegate
 
 - (void)onPublishStateUpdate:(int)stateCode streamID:(NSString *)streamID streamInfo:(NSDictionary *)info
@@ -760,12 +813,13 @@ static bool frontCamera = YES;
     WYLog(@"%s, stream: %@, state: %d", __func__, streamID, stateCode);
     if (stateCode == 0)
     {
+        [self.pauseTimers setFireDate:[NSDate date]];
         [MBProgressHUD showAlertMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_live_succeed_tip"] toView:nil];
+        NSLog(@"infoinfoinfo%@", info);
     }
     else
     {
-//        NSString *error = [NSString stringWithFormat:@"zegoLive error stateCode: %d",stateCode];
-//        NSAssert(stateCode == 0, error);
+        [self notificationWSDisConnect];
     }
 }
 
@@ -778,6 +832,7 @@ static bool frontCamera = YES;
 //    [self addStaticsInfo:YES stream:streamID fps:quality.fps kbs:quality.kbps];
     NSString *totalString = [NSString stringWithFormat:@"fps %.3f, kbs %.3f",quality.fps, quality.kbps];
     WYLog(@"~~~~~~~~~onPublishQualityUpdate: %@", totalString);
+    self.qualityNoGood++;
 }
 
 - (void)setReachabilityStatusChangeBlock:(nullable void (^)(AFNetworkReachabilityStatus status))block
@@ -787,12 +842,12 @@ static bool frontCamera = YES;
 
 - (void)ReachabilityDidChangeNotification:(NSNotificationCenter *)sender
 {
-    [self.pauseTimers setFireDate:[NSDate date]];
+//    [self.pauseTimers setFireDate:[NSDate date]];
 }
 
 - (NSTimer *)pauseTimers{
     if (!_pauseTimers) {
-        _pauseTimers =  [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(liveTimerRunning) userInfo:nil repeats:YES];
+        _pauseTimers =  [NSTimer scheduledTimerWithTimeInterval:300.0 target:self selector:@selector(anchorDetail) userInfo:nil repeats:YES];
         [[NSRunLoop currentRunLoop] addTimer:_pauseTimers forMode:NSRunLoopCommonModes];
     }
     return _pauseTimers;
@@ -806,16 +861,16 @@ static bool frontCamera = YES;
 }
 
 - (void)liveTimerRunning{
-    NSInteger status = [AFNetworkReachabilityManager sharedManager].networkReachabilityStatus;
-    if (status == AFNetworkReachabilityStatusNotReachable) {
-        self.pauseTime++;
-    } else {
-        if (self.pauseTime > 90) {
-            [self prepareForCameraSetting];
-        }
-        self.pauseTime = 0;
-        [self stopTimer];
-    }
+//    NSInteger status = [AFNetworkReachabilityManager sharedManager].networkReachabilityStatus;
+//    if (status == AFNetworkReachabilityStatusNotReachable) {
+//        self.pauseTime++;
+//    } else {
+//        if (self.pauseTime > 90) {
+//            [self prepareForCameraSetting];
+//        }
+//        self.pauseTime = 0;
+//        [self stopTimer];
+//    }
 }
 
 - (void)onAuxCallback:(void *)pData dataLen:(int *)pDataLen sampleRate:(int *)pSampleRate channelCount:(int *)pChannelCount

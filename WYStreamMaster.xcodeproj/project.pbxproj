@@ -66,15 +66,6 @@
 		442317801EC56A5A003AB4AE /* WYSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4423177E1EC56A5A003AB4AE /* WYSettingViewController.m */; };
 		442317811EC56A5A003AB4AE /* WYSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4423177F1EC56A5A003AB4AE /* WYSettingViewController.xib */; };
 		442563CE1F385DD70075467A /* zegoliveroom.version.txt in Resources */ = {isa = PBXBuildFile; fileRef = 442563BF1F385DD70075467A /* zegoliveroom.version.txt */; };
-		442563CF1F385DD70075467A /* ZegoImageFilter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442563C31F385DD70075467A /* ZegoImageFilter.framework */; };
-		442563D01F385DD70075467A /* ZegoImageFilter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442563C51F385DD70075467A /* ZegoImageFilter.framework */; };
-		442563D11F385DD70075467A /* ZegoImageFilter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442563C81F385DD70075467A /* ZegoImageFilter.framework */; };
-		442563D21F385DD70075467A /* ZegoImageFilter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442563CA1F385DD70075467A /* ZegoImageFilter.framework */; };
-		442563D31F385DD70075467A /* ZegoLiveRoom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442563CB1F385DD70075467A /* ZegoLiveRoom.framework */; };
-		442563D41F385F330075467A /* ZegoLiveRoom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442563CB1F385DD70075467A /* ZegoLiveRoom.framework */; };
-		442563D51F385F330075467A /* ZegoLiveRoom.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 442563CB1F385DD70075467A /* ZegoLiveRoom.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		442563D61F3860760075467A /* ZegoImageFilter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442563C51F385DD70075467A /* ZegoImageFilter.framework */; };
-		442563D71F3860760075467A /* ZegoImageFilter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 442563C51F385DD70075467A /* ZegoImageFilter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		442563DD1F39993C0075467A /* ZegoAVManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 442563DC1F39993C0075467A /* ZegoAVManager.m */; };
 		442563E01F3AE6240075467A /* video_capture_external_demo.m in Sources */ = {isa = PBXBuildFile; fileRef = 442563DF1F3AE6240075467A /* video_capture_external_demo.m */; };
 		442563EC1F42933B0075467A /* gr_xian_1_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 442563EE1F42933B0075467A /* gr_xian_1_icon@2x.png */; };
@@ -137,8 +128,11 @@
 		44F7361C1EC83C3A00BB68F9 /* NSDictionary+ObjectForKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F7361B1EC83C3A00BB68F9 /* NSDictionary+ObjectForKey.m */; };
 		44F8D9811E98CB37002EC952 /* WYServerNoticeAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F8D9801E98CB37002EC952 /* WYServerNoticeAttachment.m */; };
 		44F8D9841E9E30D2002EC952 /* WYDataMemoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F8D9831E9E30D2002EC952 /* WYDataMemoryManager.m */; };
-		782119031F5805F00073CBC2 /* ZegoLiveRoom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 782119001F5805F00073CBC2 /* ZegoLiveRoom.framework */; };
-		782119041F5805F00073CBC2 /* ZegoLiveRoom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 782119021F5805F00073CBC2 /* ZegoLiveRoom.framework */; };
+		783C0F491F99E91400C6D719 /* ZegoImageFilter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783C0F411F99E91400C6D719 /* ZegoImageFilter.framework */; };
+		783C0F4A1F99E91400C6D719 /* ZegoImageFilter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783C0F431F99E91400C6D719 /* ZegoImageFilter.framework */; };
+		783C0F4B1F99E91400C6D719 /* ZegoImageFilter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783C0F461F99E91400C6D719 /* ZegoImageFilter.framework */; };
+		783C0F4C1F99E91400C6D719 /* ZegoImageFilter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783C0F481F99E91400C6D719 /* ZegoImageFilter.framework */; };
+		783C0F571F99EADF00C6D719 /* ZegoImageFilter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 783C0F411F99E91400C6D719 /* ZegoImageFilter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		787ADB781F8B59F5005331C9 /* WYLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787ADB771F8B59F5005331C9 /* WYLoginViewController.m */; };
 		787ADB7C1F8B5A07005331C9 /* WYRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787ADB7A1F8B5A07005331C9 /* WYRegisterViewController.m */; };
 		787ADB7D1F8B5A07005331C9 /* WYRegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 787ADB7B1F8B5A07005331C9 /* WYRegisterViewController.xib */; };
@@ -159,6 +153,9 @@
 		789DAA331F5688200012075C /* yuguan.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 789DAA291F5688200012075C /* yuguan.bundle */; };
 		789DAA351F568C060012075C /* FUAPIDemoBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 789DAA341F568C060012075C /* FUAPIDemoBar.framework */; };
 		789DAA361F568FB80012075C /* FUAPIDemoBar.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 789DAA341F568C060012075C /* FUAPIDemoBar.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		78A92AE01FA2E459002D8C6C /* ZegoLiveRoom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A92ADD1FA2E459002D8C6C /* ZegoLiveRoom.framework */; };
+		78A92AE11FA2E459002D8C6C /* ZegoLiveRoom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A92ADF1FA2E459002D8C6C /* ZegoLiveRoom.framework */; };
+		78A92AE21FA2E475002D8C6C /* ZegoLiveRoom.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 78A92ADD1FA2E459002D8C6C /* ZegoLiveRoom.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C69795F58C80289B30CE5F15 /* libPods-WYStreamMaster.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D7A3645D8D449741FC609F4 /* libPods-WYStreamMaster.a */; };
 /* End PBXBuildFile section */
 
@@ -179,9 +176,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				78A92AE21FA2E475002D8C6C /* ZegoLiveRoom.framework in Embed Frameworks */,
+				783C0F571F99EADF00C6D719 /* ZegoImageFilter.framework in Embed Frameworks */,
 				789DAA361F568FB80012075C /* FUAPIDemoBar.framework in Embed Frameworks */,
-				442563D51F385F330075467A /* ZegoLiveRoom.framework in Embed Frameworks */,
-				442563D71F3860760075467A /* ZegoImageFilter.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -301,11 +298,6 @@
 		4423177E1EC56A5A003AB4AE /* WYSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYSettingViewController.m; sourceTree = "<group>"; };
 		4423177F1EC56A5A003AB4AE /* WYSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYSettingViewController.xib; sourceTree = "<group>"; };
 		442563BF1F385DD70075467A /* zegoliveroom.version.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = zegoliveroom.version.txt; sourceTree = "<group>"; };
-		442563C31F385DD70075467A /* ZegoImageFilter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoImageFilter.framework; sourceTree = "<group>"; };
-		442563C51F385DD70075467A /* ZegoImageFilter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoImageFilter.framework; sourceTree = "<group>"; };
-		442563C81F385DD70075467A /* ZegoImageFilter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoImageFilter.framework; sourceTree = "<group>"; };
-		442563CA1F385DD70075467A /* ZegoImageFilter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoImageFilter.framework; sourceTree = "<group>"; };
-		442563CB1F385DD70075467A /* ZegoLiveRoom.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoLiveRoom.framework; sourceTree = "<group>"; };
 		442563DB1F39993C0075467A /* ZegoAVManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoAVManager.h; sourceTree = "<group>"; };
 		442563DC1F39993C0075467A /* ZegoAVManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoAVManager.m; sourceTree = "<group>"; };
 		442563DE1F3AE6240075467A /* video_capture_external_demo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = video_capture_external_demo.h; sourceTree = "<group>"; };
@@ -451,8 +443,10 @@
 		44F8D9821E9E30D2002EC952 /* WYDataMemoryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYDataMemoryManager.h; sourceTree = "<group>"; };
 		44F8D9831E9E30D2002EC952 /* WYDataMemoryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYDataMemoryManager.m; sourceTree = "<group>"; };
 		544D39187087EFD6B76825B2 /* Pods-WYStreamMaster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WYStreamMaster.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WYStreamMaster/Pods-WYStreamMaster.debug.xcconfig"; sourceTree = "<group>"; };
-		782119001F5805F00073CBC2 /* ZegoLiveRoom.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoLiveRoom.framework; sourceTree = "<group>"; };
-		782119021F5805F00073CBC2 /* ZegoLiveRoom.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoLiveRoom.framework; sourceTree = "<group>"; };
+		783C0F411F99E91400C6D719 /* ZegoImageFilter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoImageFilter.framework; sourceTree = "<group>"; };
+		783C0F431F99E91400C6D719 /* ZegoImageFilter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoImageFilter.framework; sourceTree = "<group>"; };
+		783C0F461F99E91400C6D719 /* ZegoImageFilter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoImageFilter.framework; sourceTree = "<group>"; };
+		783C0F481F99E91400C6D719 /* ZegoImageFilter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoImageFilter.framework; sourceTree = "<group>"; };
 		787ADB761F8B59F5005331C9 /* WYLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WYLoginViewController.h; path = WYStreamMaster/WYCore/Login/WYLoginViewController.h; sourceTree = SOURCE_ROOT; };
 		787ADB771F8B59F5005331C9 /* WYLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WYLoginViewController.m; path = WYStreamMaster/WYCore/Login/WYLoginViewController.m; sourceTree = SOURCE_ROOT; };
 		787ADB791F8B5A07005331C9 /* WYRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WYRegisterViewController.h; path = WYStreamMaster/WYCore/Login/WYRegisterViewController.h; sourceTree = SOURCE_ROOT; };
@@ -480,6 +474,8 @@
 		789DAA281F5688200012075C /* yazui.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = yazui.bundle; sourceTree = "<group>"; };
 		789DAA291F5688200012075C /* yuguan.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = yuguan.bundle; sourceTree = "<group>"; };
 		789DAA341F568C060012075C /* FUAPIDemoBar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FUAPIDemoBar.framework; sourceTree = "<group>"; };
+		78A92ADD1FA2E459002D8C6C /* ZegoLiveRoom.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoLiveRoom.framework; sourceTree = "<group>"; };
+		78A92ADF1FA2E459002D8C6C /* ZegoLiveRoom.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoLiveRoom.framework; sourceTree = "<group>"; };
 		7D7A3645D8D449741FC609F4 /* libPods-WYStreamMaster.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WYStreamMaster.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4223266790A64B80390313C /* Pods-WYStreamMaster.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WYStreamMaster.release.xcconfig"; path = "Pods/Target Support Files/Pods-WYStreamMaster/Pods-WYStreamMaster.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -490,18 +486,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				789DAA351F568C060012075C /* FUAPIDemoBar.framework in Frameworks */,
-				442563D21F385DD70075467A /* ZegoImageFilter.framework in Frameworks */,
+				783C0F4C1F99E91400C6D719 /* ZegoImageFilter.framework in Frameworks */,
+				783C0F4B1F99E91400C6D719 /* ZegoImageFilter.framework in Frameworks */,
 				4408525B1ED927A200F92C7A /* Accelerate.framework in Frameworks */,
-				442563D11F385DD70075467A /* ZegoImageFilter.framework in Frameworks */,
-				442563D31F385DD70075467A /* ZegoLiveRoom.framework in Frameworks */,
+				783C0F4A1F99E91400C6D719 /* ZegoImageFilter.framework in Frameworks */,
 				C69795F58C80289B30CE5F15 /* libPods-WYStreamMaster.a in Frameworks */,
-				442563D41F385F330075467A /* ZegoLiveRoom.framework in Frameworks */,
+				78A92AE11FA2E459002D8C6C /* ZegoLiveRoom.framework in Frameworks */,
+				783C0F491F99E91400C6D719 /* ZegoImageFilter.framework in Frameworks */,
 				789DAA2A1F5688200012075C /* libnama.a in Frameworks */,
-				782119031F5805F00073CBC2 /* ZegoLiveRoom.framework in Frameworks */,
-				782119041F5805F00073CBC2 /* ZegoLiveRoom.framework in Frameworks */,
-				442563D01F385DD70075467A /* ZegoImageFilter.framework in Frameworks */,
-				442563CF1F385DD70075467A /* ZegoImageFilter.framework in Frameworks */,
-				442563D61F3860760075467A /* ZegoImageFilter.framework in Frameworks */,
+				78A92AE01FA2E459002D8C6C /* ZegoLiveRoom.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -884,71 +877,11 @@
 			isa = PBXGroup;
 			children = (
 				789DAA341F568C060012075C /* FUAPIDemoBar.framework */,
+				783C0F3E1F99E91400C6D719 /* libsZegoImageFilter */,
 				789DAA181F5688200012075C /* Faceunity */,
 				442563BF1F385DD70075467A /* zegoliveroom.version.txt */,
-				442563C01F385DD70075467A /* libsZegoImageFilter */,
-				442563CB1F385DD70075467A /* ZegoLiveRoom.framework */,
 			);
 			path = ZegoLibs;
-			sourceTree = "<group>";
-		};
-		442563C01F385DD70075467A /* libsZegoImageFilter */ = {
-			isa = PBXGroup;
-			children = (
-				442563C11F385DD70075467A /* Release */,
-				442563C61F385DD70075467A /* ReleaseStatic */,
-			);
-			path = libsZegoImageFilter;
-			sourceTree = "<group>";
-		};
-		442563C11F385DD70075467A /* Release */ = {
-			isa = PBXGroup;
-			children = (
-				442563C21F385DD70075467A /* Release-iphoneos */,
-				442563C41F385DD70075467A /* Release-iphoneosAndRelease-iphonesimulator */,
-			);
-			path = Release;
-			sourceTree = "<group>";
-		};
-		442563C21F385DD70075467A /* Release-iphoneos */ = {
-			isa = PBXGroup;
-			children = (
-				442563C31F385DD70075467A /* ZegoImageFilter.framework */,
-			);
-			path = "Release-iphoneos";
-			sourceTree = "<group>";
-		};
-		442563C41F385DD70075467A /* Release-iphoneosAndRelease-iphonesimulator */ = {
-			isa = PBXGroup;
-			children = (
-				442563C51F385DD70075467A /* ZegoImageFilter.framework */,
-			);
-			path = "Release-iphoneosAndRelease-iphonesimulator";
-			sourceTree = "<group>";
-		};
-		442563C61F385DD70075467A /* ReleaseStatic */ = {
-			isa = PBXGroup;
-			children = (
-				442563C71F385DD70075467A /* ReleaseStatic-iphoneos */,
-				442563C91F385DD70075467A /* ReleaseStatic-iphoneosAndRelease-iphonesimulator */,
-			);
-			path = ReleaseStatic;
-			sourceTree = "<group>";
-		};
-		442563C71F385DD70075467A /* ReleaseStatic-iphoneos */ = {
-			isa = PBXGroup;
-			children = (
-				442563C81F385DD70075467A /* ZegoImageFilter.framework */,
-			);
-			path = "ReleaseStatic-iphoneos";
-			sourceTree = "<group>";
-		};
-		442563C91F385DD70075467A /* ReleaseStatic-iphoneosAndRelease-iphonesimulator */ = {
-			isa = PBXGroup;
-			children = (
-				442563CA1F385DD70075467A /* ZegoImageFilter.framework */,
-			);
-			path = "ReleaseStatic-iphoneosAndRelease-iphonesimulator";
 			sourceTree = "<group>";
 		};
 		442563E91F4290950075467A /* Resources */ = {
@@ -1090,29 +1023,64 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		782118FE1F5805F00073CBC2 /* ZegoLiveRoom-all */ = {
+		783C0F3E1F99E91400C6D719 /* libsZegoImageFilter */ = {
 			isa = PBXGroup;
 			children = (
-				782118FF1F5805F00073CBC2 /* iphoneos */,
-				782119011F5805F00073CBC2 /* iphoneos_simulator */,
+				783C0F3F1F99E91400C6D719 /* Release */,
+				783C0F441F99E91400C6D719 /* ReleaseStatic */,
 			);
-			path = "ZegoLiveRoom-all";
+			name = libsZegoImageFilter;
+			path = Faceunity/libsZegoImageFilter;
 			sourceTree = "<group>";
 		};
-		782118FF1F5805F00073CBC2 /* iphoneos */ = {
+		783C0F3F1F99E91400C6D719 /* Release */ = {
 			isa = PBXGroup;
 			children = (
-				782119001F5805F00073CBC2 /* ZegoLiveRoom.framework */,
+				783C0F401F99E91400C6D719 /* Release-iphoneos */,
+				783C0F421F99E91400C6D719 /* Release-iphoneosAndRelease-iphonesimulator */,
 			);
-			path = iphoneos;
+			path = Release;
 			sourceTree = "<group>";
 		};
-		782119011F5805F00073CBC2 /* iphoneos_simulator */ = {
+		783C0F401F99E91400C6D719 /* Release-iphoneos */ = {
 			isa = PBXGroup;
 			children = (
-				782119021F5805F00073CBC2 /* ZegoLiveRoom.framework */,
+				783C0F411F99E91400C6D719 /* ZegoImageFilter.framework */,
 			);
-			path = iphoneos_simulator;
+			path = "Release-iphoneos";
+			sourceTree = "<group>";
+		};
+		783C0F421F99E91400C6D719 /* Release-iphoneosAndRelease-iphonesimulator */ = {
+			isa = PBXGroup;
+			children = (
+				783C0F431F99E91400C6D719 /* ZegoImageFilter.framework */,
+			);
+			path = "Release-iphoneosAndRelease-iphonesimulator";
+			sourceTree = "<group>";
+		};
+		783C0F441F99E91400C6D719 /* ReleaseStatic */ = {
+			isa = PBXGroup;
+			children = (
+				783C0F451F99E91400C6D719 /* ReleaseStatic-iphoneos */,
+				783C0F471F99E91400C6D719 /* ReleaseStatic-iphoneosAndRelease-iphonesimulator */,
+			);
+			path = ReleaseStatic;
+			sourceTree = "<group>";
+		};
+		783C0F451F99E91400C6D719 /* ReleaseStatic-iphoneos */ = {
+			isa = PBXGroup;
+			children = (
+				783C0F461F99E91400C6D719 /* ZegoImageFilter.framework */,
+			);
+			path = "ReleaseStatic-iphoneos";
+			sourceTree = "<group>";
+		};
+		783C0F471F99E91400C6D719 /* ReleaseStatic-iphoneosAndRelease-iphonesimulator */ = {
+			isa = PBXGroup;
+			children = (
+				783C0F481F99E91400C6D719 /* ZegoImageFilter.framework */,
+			);
+			path = "ReleaseStatic-iphoneosAndRelease-iphonesimulator";
 			sourceTree = "<group>";
 		};
 		789DAA111F56871F0012075C /* Face */ = {
@@ -1151,7 +1119,7 @@
 		789DAA181F5688200012075C /* Faceunity */ = {
 			isa = PBXGroup;
 			children = (
-				782118FE1F5805F00073CBC2 /* ZegoLiveRoom-all */,
+				78A92ADB1FA2E459002D8C6C /* ZegoLiveRoom */,
 				789DAA191F5688200012075C /* authpack.h */,
 				789DAA1A1F5688200012075C /* FaceUnity-SDK-iOS */,
 				789DAA231F5688200012075C /* items */,
@@ -1199,6 +1167,31 @@
 				789DAA291F5688200012075C /* yuguan.bundle */,
 			);
 			path = items;
+			sourceTree = "<group>";
+		};
+		78A92ADB1FA2E459002D8C6C /* ZegoLiveRoom */ = {
+			isa = PBXGroup;
+			children = (
+				78A92ADC1FA2E459002D8C6C /* iphoneos */,
+				78A92ADE1FA2E459002D8C6C /* iphoneos_simulator */,
+			);
+			path = ZegoLiveRoom;
+			sourceTree = "<group>";
+		};
+		78A92ADC1FA2E459002D8C6C /* iphoneos */ = {
+			isa = PBXGroup;
+			children = (
+				78A92ADD1FA2E459002D8C6C /* ZegoLiveRoom.framework */,
+			);
+			path = iphoneos;
+			sourceTree = "<group>";
+		};
+		78A92ADE1FA2E459002D8C6C /* iphoneos_simulator */ = {
+			isa = PBXGroup;
+			children = (
+				78A92ADF1FA2E459002D8C6C /* ZegoLiveRoom.framework */,
+			);
+			path = iphoneos_simulator;
 			sourceTree = "<group>";
 		};
 		78B82A251F78A43C00279366 /* controller */ = {
@@ -1277,7 +1270,7 @@
 				TargetAttributes = {
 					44203D0B1E6FE78800D59B5E = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = X6SBM2786Q;
+						DevelopmentTeam = VE4YA5JVRK;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -1881,7 +1874,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = X6SBM2786Q;
+				DEVELOPMENT_TEAM = VE4YA5JVRK;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1895,6 +1888,13 @@
 					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs",
 					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs/Faceunity/ZegoLiveRoom-all/iphoneos",
 					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs/Faceunity/ZegoLiveRoom-all/iphoneos_simulator",
+					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs/libsZegoImageFilter",
+					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs/Faceunity/libsZegoImageFilter/Release/Release-iphoneos",
+					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs/Faceunity/libsZegoImageFilter/Release/Release-iphoneosAndRelease-iphonesimulator",
+					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs/Faceunity/libsZegoImageFilter/ReleaseStatic/ReleaseStatic-iphoneos",
+					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs/Faceunity/libsZegoImageFilter/ReleaseStatic/ReleaseStatic-iphoneosAndRelease-iphonesimulator",
+					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs/Faceunity/ZegoLiveRoom/iphoneos",
+					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs/Faceunity/ZegoLiveRoom/iphoneos_simulator",
 				);
 				GCC_PREFIX_HEADER = WYStreamMaster/PrefixHeader.pch;
 				INFOPLIST_FILE = WYStreamMaster/Info.plist;
@@ -1920,7 +1920,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = X6SBM2786Q;
+				DEVELOPMENT_TEAM = VE4YA5JVRK;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1934,6 +1934,13 @@
 					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs",
 					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs/Faceunity/ZegoLiveRoom-all/iphoneos",
 					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs/Faceunity/ZegoLiveRoom-all/iphoneos_simulator",
+					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs/libsZegoImageFilter",
+					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs/Faceunity/libsZegoImageFilter/Release/Release-iphoneos",
+					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs/Faceunity/libsZegoImageFilter/Release/Release-iphoneosAndRelease-iphonesimulator",
+					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs/Faceunity/libsZegoImageFilter/ReleaseStatic/ReleaseStatic-iphoneos",
+					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs/Faceunity/libsZegoImageFilter/ReleaseStatic/ReleaseStatic-iphoneosAndRelease-iphonesimulator",
+					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs/Faceunity/ZegoLiveRoom/iphoneos",
+					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs/Faceunity/ZegoLiveRoom/iphoneos_simulator",
 				);
 				GCC_PREFIX_HEADER = WYStreamMaster/PrefixHeader.pch;
 				INFOPLIST_FILE = WYStreamMaster/Info.plist;

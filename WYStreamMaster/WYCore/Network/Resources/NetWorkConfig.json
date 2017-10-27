@@ -29,6 +29,12 @@
         "control" : "api",
         "action"  : "get_gift_record.do"
     },
+    "anchor_detail": {
+        "protocol": "http",
+        "version" : "anchor",
+        "control" : "api",
+        "action"  : "getAnchorDetail.do"
+    },
     "anchor_on_off": {
         "protocol": "http",
         "version" : "anchor",
