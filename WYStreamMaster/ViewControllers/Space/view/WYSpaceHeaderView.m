@@ -10,6 +10,7 @@
 
 @interface WYSpaceHeaderView ()
 
+@property (strong, nonatomic) IBOutlet UIImageView *headerImageView;
 
 
 @end
@@ -19,7 +20,8 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-
+    UITapGestureRecognizer *headerImageViewTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickHeaderImageView)];
+    [self.headerImageView addGestureRecognizer:headerImageViewTap];
 }
 
 - (void)updateHeaderViewWithData:(id)data
@@ -29,6 +31,9 @@
 
 #pragma mark
 #pragma mark - IBAction
-
+- (void)clickHeaderImageView
+{
+    
+}
 
 @end

@@ -43,6 +43,14 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //判断是否开启麦克风权限
+    if (![WYCommonUtils checkMicrophonePermissionStatus]) {
+        [WYCommonUtils requsetMicrophonePermission];
+    }
+    if (![WYCommonUtils userCaptureIsAuthorization]) {
+        [WYCommonUtils requsetCameraMediaPermission];
+    }
+
     // Do any additional setup after loading the view from its nib.
 }
 #pragma mark - event

@@ -24,6 +24,7 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"我的空间";
     [self setupView];
     // Do any additional setup after loading the view from its nib.
 }
