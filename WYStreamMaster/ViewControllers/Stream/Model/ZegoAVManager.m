@@ -82,10 +82,10 @@ static __strong id<ZegoVideoCaptureFactory> g_factory = NULL;
     [[ZegoHelper api] setFrontCam:YES];
 //    [[ZegoHelper api] enableRateControl:YES];//开启码率控制
     
-//    [[ZegoHelper api] enableCamera:NO];
-//    [[ZegoHelper api] enableCaptureMirror:YES];
-//    [[ZegoHelper api] enablePreviewMirror:NO];
-    
+    [[ZegoHelper api] enableCamera:YES];
+    [[ZegoHelper api] enableCaptureMirror:YES];
+    [[ZegoHelper api] enablePreviewMirror:NO];
+
     [[ZegoHelper api] setPreviewView:publishView];
     [[ZegoHelper api] setPreviewViewMode:ZegoVideoViewModeScaleAspectFill];
     [[ZegoHelper api] startPreview];

@@ -78,7 +78,7 @@ ZegoRoomDelegate
 @property (nonatomic, strong) FUAPIDemoBar *demoBar ;
 @property (nonatomic, assign) NSInteger qualityNoGood;
 
-@property (nonatomic ,strong) NSTimer *pauseTimers;
+@property (nonatomic, strong) NSTimer *pauseTimers;
 
 @end
 
@@ -617,7 +617,6 @@ static bool frontCamera = YES;
 }
 
 - (IBAction)contributionAction:(id)sender{
-//    [self.contributionListView show];
     [self.giftRecordView show];
 }
 
@@ -832,7 +831,15 @@ static bool frontCamera = YES;
 //    [self addStaticsInfo:YES stream:streamID fps:quality.fps kbs:quality.kbps];
     NSString *totalString = [NSString stringWithFormat:@"fps %.3f, kbs %.3f",quality.fps, quality.kbps];
     WYLog(@"~~~~~~~~~onPublishQualityUpdate: %@", totalString);
-    self.qualityNoGood++;
+    WYLog(@"~~~~~~~~~qualityNoGood: %d", quality.quality);
+    if (quality.quality == 3) {
+        self.qualityNoGood++;
+    } else {
+        self.qualityNoGood = 0;
+    }
+    if (self.qualityNoGood == 10) {
+        [MBProgressHUD showAlertMessage:@"您的网络不佳" toView:nil];
+    }
 }
 
 - (void)setReachabilityStatusChangeBlock:(nullable void (^)(AFNetworkReachabilityStatus status))block
