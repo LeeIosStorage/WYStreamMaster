@@ -805,6 +805,17 @@ static bool frontCamera = YES;
     NSLog(@"onDisconnectonDisconnectonDisconnect");
 }
 
+- (void)onKickOut:(int)reason roomID:(NSString *)roomID
+{
+    NSLog(@"onKickOutonKickOutonKickOut");
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"您的账号在其他地方登录", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alertView show];
+    //    [self serverNoticeFinishStream];
+    [self.streamingSessionManager destroyStream];
+    [self.roomView.chatroomControl exitRoom];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 #pragma mark - ZegoLivePublisherDelegate
 
 - (void)onPublishStateUpdate:(int)stateCode streamID:(NSString *)streamID streamInfo:(NSDictionary *)info
