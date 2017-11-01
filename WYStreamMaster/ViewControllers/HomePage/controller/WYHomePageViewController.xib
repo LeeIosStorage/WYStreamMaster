@@ -17,6 +17,7 @@
                 <outlet property="messageButton" destination="7P5-tq-WSp" id="1hG-XJ-ADM"/>
                 <outlet property="mySpaceButton" destination="0cp-6c-BxE" id="Gdh-2J-oWQ"/>
                 <outlet property="profitRecordButton" destination="amP-Rp-H4G" id="HzN-FD-aey"/>
+                <outlet property="stratLiveButton" destination="cWf-24-eoK" id="i4c-RT-At6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -265,7 +266,7 @@
                 <constraint firstAttribute="bottom" secondItem="Zyn-Ox-XkR" secondAttribute="bottom" id="WN5-b9-We7"/>
                 <constraint firstItem="Zyn-Ox-XkR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Y4z-2R-1Qf"/>
             </constraints>
-            <point key="canvasLocation" x="-372.5" y="106.5"/>
+            <point key="canvasLocation" x="-540" y="159"/>
         </view>
     </objects>
     <resources>

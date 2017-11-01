@@ -20,6 +20,7 @@
 @property (copy, nonatomic) NSString *gameCategory;
 @property (copy, nonatomic) NSString *gameCategoryId;
 @property (copy, nonatomic) NSString *roomType;
+@property (strong, nonatomic) IBOutlet UILabel *stratLiveButton;
 
 @property (strong, nonatomic) IBOutlet UIButton *messageButton;
 @property (strong, nonatomic) IBOutlet UIButton *profitRecordButton;
@@ -43,6 +44,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setupView];
     //判断是否开启麦克风权限
     if (![WYCommonUtils checkMicrophonePermissionStatus]) {
         [WYCommonUtils requsetMicrophonePermission];
@@ -52,6 +54,11 @@
     }
 
     // Do any additional setup after loading the view from its nib.
+}
+#pragma mark - setupView
+- (void)setupView
+{
+    WYLoginUserManager 
 }
 #pragma mark - event
 - (IBAction)clickMessageButton:(UIButton *)sender {
