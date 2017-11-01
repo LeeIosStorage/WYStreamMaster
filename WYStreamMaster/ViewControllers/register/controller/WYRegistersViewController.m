@@ -31,13 +31,16 @@
 - (void)setupView
 {
     [self.passwordField setTextColor:[UIColor whiteColor]];
-    [self.passwordField setText:@"请输入密码"];
+    [self.passwordField setPlaceholder:@"请输入密码"];
     
     [self.againPasswordField setTextColor:[UIColor whiteColor]];
-    [self.againPasswordField setText:@"请再次输入密码"];
+    [self.againPasswordField setPlaceholder:@"请再次输入密码"];
     
     [self.mailboxField setTextColor:[UIColor whiteColor]];
-    [self.mailboxField setText:@"请输入个人邮箱"];
+    [self.mailboxField setPlaceholder:@"请输入个人邮箱"];
+    
+    UITapGestureRecognizer *tapGestureView =  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureView)];
+    [self.view addGestureRecognizer:tapGestureView];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -47,6 +50,8 @@
 #pragma mark - network
 - (void)userRegisterRequest{
     NSString *accountText = [_nicknameField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString *passwordText = [_passwordField.text md5String];
+    NSString *re_passwordText = [_againPasswordField.text md5String];
     NSString *emailText = [_mailboxField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     //    NSString *agentText = [_agentTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
@@ -55,14 +60,16 @@
         return;
     }
     
-    [MBProgressHUD showMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_info_submit_ing"]];
     
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"apply_anchor"];
     
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
     
-    [paramsDic setObject:accountText forKey:@"nick_name"];
+    [paramsDic setObject:accountText forKey:@"user_name"];
+    [paramsDic setObject:passwordText forKey:@"password"];
+    [paramsDic setObject:re_passwordText forKey:@"re_password"];
     [paramsDic setObject:emailText forKey:@"email"];
+
 //    [paramsDic setObject:_avatarUrlStr forKey:@"head_icon"];
 //    [paramsDic setObject:_sugaoUrlStr forKey:@"low_pic"];
 //    [paramsDic setObject:_makeupUrlStr forKey:@"mid_pic"];
@@ -77,9 +84,10 @@
         [MBProgressHUD hideHUD];
         
         if (requestType == WYRequestTypeSuccess) {
-            [MBProgressHUD showSuccess:[WYCommonUtils acquireCurrentLocalizedText:@"wy_register_result_succeed_tip"] toView:weakSelf.view];
-            
-            [weakSelf performSelector:@selector(rightButtonClicked:) withObject:nil afterDelay:1.0];
+            [MBProgressHUD showSuccess:@"注册成功" toView:weakSelf.view];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [weakSelf dismissViewControllerAnimated:YES completion:nil];
+            });
         }else{
             
             [MBProgressHUD showError:message toView:weakSelf.view];
@@ -97,6 +105,14 @@
 }
 - (IBAction)clickRegisterButton:(UIButton *)sender {
     [self userRegisterRequest];
+}
+
+- (void)tapGestureView
+{
+    [self.nicknameField resignFirstResponder];
+    [self.passwordField resignFirstResponder];
+    [self.againPasswordField resignFirstResponder];
+    [self.mailboxField resignFirstResponder];
 }
 
 /*

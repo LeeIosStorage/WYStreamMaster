@@ -67,14 +67,20 @@
     },
     "apply_anchor": {
         "protocol": "http",
-        "version" : "anchor",
-        "control" : "api",
-        "action"  : "apply_anchor.do"
+        "version" : "user",
+        "control" : "api/anchor",
+        "action"  : "regist.do"
     },
     "queryCountry": {
         "protocol": "http",
         "version" : "anchor",
         "control" : "api",
         "action"  : "queryCountry.do"
+    },
+    "forgot_password": {
+        "protocol": "http",
+        "version" : "user",
+        "control" : "api/anchor",
+        "action"  : "retrieve.do"
     },
 }

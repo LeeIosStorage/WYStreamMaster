@@ -18,7 +18,8 @@
 @property (strong, nonatomic) NSString *icon;
 @property (strong, nonatomic) NSString *anchorTitle;
 @property (strong, nonatomic) NSString *anchorDescription;
-
+// 是否审核通过 0为未审核，1为审核通过，2为审核不通过
+@property (strong, nonatomic) NSString *audit_statu;
 // 手机号
 @property (strong, nonatomic) NSString *mobile;
 @property (strong, nonatomic) NSString *token;
