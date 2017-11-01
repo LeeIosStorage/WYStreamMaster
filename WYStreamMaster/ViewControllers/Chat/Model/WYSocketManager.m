@@ -212,13 +212,15 @@ SRWebSocketDelegate
 //    });
     
     [self destoryHeartBeat];
-    __weak typeof(self) weakSelf = self;
-    //心跳设置为20秒
-    heartBeat = [NSTimer scheduledTimerWithTimeInterval:20 repeats:YES block:^(NSTimer * _Nonnull timer) {
-        //和服务端约定好发送什么作为心跳标识，尽可能的减小心跳包大小
-        [weakSelf sendData:@"heart"];
-    }];
+   
+    heartBeat = [NSTimer scheduledTimerWithTimeInterval:20 target:self selector:@selector(sendDataHeart) userInfo:nil repeats:YES];
+
     [[NSRunLoop currentRunLoop]addTimer:heartBeat forMode:NSRunLoopCommonModes];
+}
+
+- (void)sendDataHeart
+{
+    [self sendData:@"heart"];
 }
 
 // 取消心跳
