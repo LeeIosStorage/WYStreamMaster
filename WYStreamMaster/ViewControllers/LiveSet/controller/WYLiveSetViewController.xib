@@ -11,6 +11,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WYLiveSetViewController">
             <connections>
+                <outlet property="headerImageView" destination="QMx-5I-rs5" id="WiO-6X-0y1"/>
+                <outlet property="liveCoverImageView" destination="aaF-1f-S0U" id="mTB-uz-tla"/>
+                <outlet property="submitButton" destination="OQd-mc-Z9v" id="pd8-hf-2bh"/>
                 <outlet property="tableview" destination="jkx-w2-qyZ" id="uM3-X6-fEq"/>
                 <outlet property="tableviewHeaderView" destination="SvN-F6-bWe" id="Xai-KY-4iH"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -162,6 +165,9 @@
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="submitButtonAction:" destination="-1" eventType="touchUpInside" id="lsi-r5-oik"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="0.92941176469999998" green="0.92941176469999998" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

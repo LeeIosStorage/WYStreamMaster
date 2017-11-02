@@ -17,7 +17,8 @@
                 <outlet property="messageButton" destination="7P5-tq-WSp" id="1hG-XJ-ADM"/>
                 <outlet property="mySpaceButton" destination="0cp-6c-BxE" id="Gdh-2J-oWQ"/>
                 <outlet property="profitRecordButton" destination="amP-Rp-H4G" id="HzN-FD-aey"/>
-                <outlet property="stratLiveButton" destination="cWf-24-eoK" id="i4c-RT-At6"/>
+                <outlet property="startLiveButton" destination="TTj-Do-SwY" id="mil-Qm-yi0"/>
+                <outlet property="startLiveLabel" destination="cWf-24-eoK" id="H3C-VW-lZp"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

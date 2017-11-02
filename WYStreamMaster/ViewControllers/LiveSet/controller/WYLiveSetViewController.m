@@ -11,6 +11,9 @@
 @interface WYLiveSetViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *tableview;
 @property (strong, nonatomic) IBOutlet UIView *tableviewHeaderView;
+@property (strong, nonatomic) IBOutlet UIButton *submitButton;
+@property (strong, nonatomic) IBOutlet UIImageView *liveCoverImageView;
+@property (strong, nonatomic) IBOutlet UIImageView *headerImageView;
 
 @end
 
@@ -40,6 +43,8 @@
     [self.tableview reloadData];
 //    [self.view insertSubview:self.tableview.tableHeaderView atIndex:0];
 
+}
+- (IBAction)submitButtonAction:(UIButton *)sender {
 }
 
 #pragma mark - UITableViewDataSource

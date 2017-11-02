@@ -14,13 +14,15 @@
 #import "WYSpaceViewController.h"
 #import "WYLiveViewController.h"
 #import "WYLoginUserManager.h"
+#import "WYLoginManager.h"
 @interface WYHomePageViewController ()
 @property (copy, nonatomic) NSString *roomNameTitle;
 @property (copy, nonatomic) NSString *roomNoticeTitle;
 @property (copy, nonatomic) NSString *gameCategory;
 @property (copy, nonatomic) NSString *gameCategoryId;
 @property (copy, nonatomic) NSString *roomType;
-@property (strong, nonatomic) IBOutlet UILabel *stratLiveButton;
+@property (strong, nonatomic) IBOutlet UILabel *startLiveLabel;
+@property (strong, nonatomic) IBOutlet UIButton *startLiveButton;
 
 @property (strong, nonatomic) IBOutlet UIButton *messageButton;
 @property (strong, nonatomic) IBOutlet UIButton *profitRecordButton;
@@ -58,7 +60,14 @@
 #pragma mark - setupView
 - (void)setupView
 {
-    WYLoginUserManager 
+    NSString *auditStatu = [WYLoginManager sharedManager].loginModel.audit_statu;
+    if ([auditStatu isEqualToString:@"0"]) {
+        self.startLiveLabel.text = @"未审核";
+    } else if ([auditStatu isEqualToString:@"1"]) {
+        self.startLiveLabel.text = @"开启直播";
+    } else if ([auditStatu isEqualToString:@"2"]) {
+        self.startLiveLabel.text = @"重新审核";
+    }
 }
 #pragma mark - event
 - (IBAction)clickMessageButton:(UIButton *)sender {
@@ -67,8 +76,14 @@
 }
 
 - (IBAction)clickStartLiveButton:(UIButton *)sender {
-    [self toCreateLiveRoom];
-
+    NSString *auditStatu = [WYLoginManager sharedManager].loginModel.audit_statu;
+    if ([auditStatu isEqualToString:@"1"]) {
+        [self toCreateLiveRoom];
+    } else if ([auditStatu isEqualToString:@"0"]) {
+        
+    } else if ([auditStatu isEqualToString:@"2"]) {
+        
+    }
 }
 - (IBAction)clickLiveSetButton:(UIButton *)sender {
     WYLiveSetViewController *liveSetVC = [[WYLiveSetViewController alloc] init];
