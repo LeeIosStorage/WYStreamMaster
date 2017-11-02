@@ -518,7 +518,7 @@ ZegoRoomDelegate
 #pragma mark - Button Clicked
 - (void)notificationWSDisConnect
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"直播错误，请重新开启", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"直播错误，请您退出重新登录", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alertView show];
 //    [self serverNoticeFinishStream];
     [self.streamingSessionManager destroyStream];
@@ -849,6 +849,7 @@ static bool frontCamera = YES;
         self.qualityNoGood = 0;
     }
     if (self.qualityNoGood == 10) {
+        self.qualityNoGood = 0;
         [MBProgressHUD showAlertMessage:@"您的网络不佳" toView:nil];
     }
 }

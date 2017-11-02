@@ -99,7 +99,7 @@ static __strong id<ZegoVideoCaptureFactory> g_factory = NULL;
     NSString *streamID = [NSString stringWithFormat:@"%@", [WYLoginUserManager anchorPushUrl]];
     NSString *liveTitle = [WYLoginUserManager nickname];
     
-    [[ZegoHelper api] loginRoom:roomID role:ZEGO_ANCHOR  withCompletionBlock:^(int errorCode, NSArray<ZegoStream *> *streamList) {
+    bool loginSuccess = [[ZegoHelper api] loginRoom:roomID role:ZEGO_ANCHOR  withCompletionBlock:^(int errorCode, NSArray<ZegoStream *> *streamList) {
         
         NSLog(@"%s, error: %d", __func__, errorCode);
         if (errorCode == 0)
@@ -120,6 +120,10 @@ static __strong id<ZegoVideoCaptureFactory> g_factory = NULL;
             [[NSNotificationCenter defaultCenter] postNotificationName:WYNotificationWSDisConnect object:nil];
         }
     }];
+    if (!loginSuccess) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:WYNotificationWSDisConnect object:nil];
+    }
+    NSLog(@"loginSuccessloginSuccess%d", loginSuccess);
 }
 
 + (void)setUsingExternalCapture
