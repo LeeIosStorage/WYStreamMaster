@@ -7,8 +7,22 @@
 //
 
 #import "WYLiveSetViewController.h"
+#import "WYCustomActionSheet.h"
+#import "UINavigationBar+Awesome.h"
+#import "WYImagePickerController.h"
+#import "UIImage+ProportionalFill.h"
+typedef NS_ENUM(NSInteger, LiveUploadImageType){
+    UploadImageTypeAvatar = 0,   //avatar
+    UploadImageTypeAnchorCover,
+};
 
-@interface WYLiveSetViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface WYLiveSetViewController ()
+<UITableViewDelegate,
+UITableViewDataSource,
+UINavigationControllerDelegate,
+UIImagePickerControllerDelegate>
+@property (nonatomic, assign) LiveUploadImageType uploadImageType;
+
 @property (strong, nonatomic) IBOutlet UITableView *tableview;
 @property (strong, nonatomic) IBOutlet UIView *tableviewHeaderView;
 @property (strong, nonatomic) IBOutlet UIButton *submitButton;
@@ -26,26 +40,120 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"直播设置";
-//    self.edgesForExtendedLayout = UIRectEdgeNone;
     [self setupView];
-    // Do any additional setup after loading the view from its nib.
 }
 #pragma mark - setup
 - (void)setupView
 {
-//    [self.tableviewHeaderView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(@0);
-//        make.bottom.equalTo(@64);
-//    }];
-//    self.tableview.tableHeaderView = self.tableviewHeaderView;
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
     [self.tableview reloadData];
-//    [self.view insertSubview:self.tableview.tableHeaderView atIndex:0];
+    self.headerImageView.userInteractionEnabled = YES;
+    self.liveCoverImageView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapGestureHeaderImageView =  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureHeaderImageView)];
+    [self.headerImageView addGestureRecognizer:tapGestureHeaderImageView];
+    
+    UITapGestureRecognizer *tapGestureCoverView =  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureLiveCoverView)];
+    [self.liveCoverImageView addGestureRecognizer:tapGestureCoverView];
+}
+#pragma mark - event
+- (void)tapGestureHeaderImageView
+{
+    self.uploadImageType = UploadImageTypeAvatar;
+    WEAKSELF
+    WYCustomActionSheet *actionSheet = [[WYCustomActionSheet alloc] initWithTitle:nil actionBlock:^(NSInteger buttonIndex) {
+        NSLog(@"%ld",(long)buttonIndex);
+        if (buttonIndex == 1) {
+            [weakSelf showImageBroswerWithSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+        } else if (buttonIndex == 0){
+            [weakSelf showImageBroswerWithSourceType:UIImagePickerControllerSourceTypeCamera];
+        }
+    } cancelButtonTitle:[WYCommonUtils acquireCurrentLocalizedText:@"wy_cancel"] destructiveButtonTitle:nil otherButtonTitles:@[[WYCommonUtils acquireCurrentLocalizedText:@"wy_take_photos"],[WYCommonUtils acquireCurrentLocalizedText:@"wy_photo_library"]]];
+    [actionSheet showInView:self.view];
+}
 
+- (void)tapGestureLiveCoverView
+{
+    self.uploadImageType = UploadImageTypeAnchorCover;
+    WEAKSELF
+    WYCustomActionSheet *actionSheet = [[WYCustomActionSheet alloc] initWithTitle:nil actionBlock:^(NSInteger buttonIndex) {
+        NSLog(@"%ld",(long)buttonIndex);
+        if (buttonIndex == 1) {
+            [weakSelf showImageBroswerWithSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+        } else if (buttonIndex == 0){
+            [weakSelf showImageBroswerWithSourceType:UIImagePickerControllerSourceTypeCamera];
+        }
+    } cancelButtonTitle:[WYCommonUtils acquireCurrentLocalizedText:@"wy_cancel"] destructiveButtonTitle:nil otherButtonTitles:@[[WYCommonUtils acquireCurrentLocalizedText:@"wy_take_photos"],[WYCommonUtils acquireCurrentLocalizedText:@"wy_photo_library"]]];
+    [actionSheet showInView:self.view];
+    
 }
 - (IBAction)submitButtonAction:(UIButton *)sender {
+    
 }
+
+- (void)showImageBroswerWithSourceType:(UIImagePickerControllerSourceType )sourceType
+{
+    WYImagePickerController *imagePickerController = [[WYImagePickerController alloc] init];
+    if (sourceType == UIImagePickerControllerSourceTypeCamera) {
+        if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            return;
+        }
+    }
+    imagePickerController.sourceType = sourceType;
+    [imagePickerController.navigationBar lt_setBackgroundImage:[UIImage imageNamed:@"wy_navbar_bg"]];
+    [imagePickerController.navigationBar setTranslucent:NO];
+    imagePickerController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,[WYStyleSheet defaultStyleSheet].navTitleFont,NSFontAttributeName,nil];
+    imagePickerController.delegate = self;
+    imagePickerController.navigationController.delegate = self;
+    [self presentViewController:imagePickerController animated:YES completion:nil];
+}
+
+#pragma mark -
+#pragma mark - UIImagePickerControllerDelegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(nullable NSDictionary<NSString *,id> *)editingInfo
+{
+    UIImage* imageAfterScale = image;
+    if (image.size.width != image.size.height) {
+        CGSize cropSize = image.size;
+        cropSize.height = MIN(image.size.width, image.size.height);
+        cropSize.width = MIN(image.size.width, image.size.height);
+        imageAfterScale = [image imageCroppedToFitSize:cropSize];
+    }
+    
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString  *,id> *)info {
+    
+    CGFloat compressionQuality = WY_IMAGE_COMPRESSION_QUALITY;
+    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    if (!image) {
+        image = [info objectForKey:UIImagePickerControllerOriginalImage];
+        compressionQuality = 0.1;
+    }
+    UIImage* imageAfterScale = image;
+    NSData *imageData = UIImageJPEGRepresentation(imageAfterScale, compressionQuality);
+    if (imageData.length > 400*1024) {
+        UIImage *newImage = [UIImage imageWithData:imageData];
+        imageAfterScale = newImage;
+        imageData = UIImageJPEGRepresentation(newImage, compressionQuality);
+    }
+    if (self.uploadImageType == UploadImageTypeAvatar) {
+        self.headerImageView.image = [UIImage imageWithData:imageData];
+    }else if (self.uploadImageType == UploadImageTypeAnchorCover){
+        self.liveCoverImageView.image = [UIImage imageWithData:imageData];
+    }
+    
+//    [self uploadWithImageData:imageData uploadType:self.uploadImageType];
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+}
+
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

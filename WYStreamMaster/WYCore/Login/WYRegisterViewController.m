@@ -279,7 +279,6 @@ UIImagePickerControllerDelegate
     self.agentTextField.text = nil;
     self.areaCode = nil;
     
-    
     self.accountContainerView.layer.cornerRadius = 3.0;
     self.accountContainerView.layer.masksToBounds = YES;
     
@@ -293,8 +292,6 @@ UIImagePickerControllerDelegate
     self.registerButton.layer.masksToBounds = YES;
     self.registerButton.canClicked = NO;
     [self.registerButton setTitle:[WYCommonUtils acquireCurrentLocalizedText:@"wy_register"] forState:UIControlStateNormal];
-    
-    
     [self refreshHeadViewShow];
 }
 

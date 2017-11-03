@@ -30,7 +30,6 @@
     kImageWidth > 75 ? 75 : kImageWidth;
     [self removeAllSubviews];
     for (int i = 0; i < [array count]; i ++) {
-        
         if (i == 3) {
             [self addSubview:self.viewAllButton];
             self.viewAllButton.frame = CGRectMake(kImageWidth * 3 + 27, kImageWidth - 20, 45, 16);
@@ -38,7 +37,6 @@
         } else {
             self.viewAllButton.hidden = YES;
         }
-        
         if (i > 2) {
             return;
         }
