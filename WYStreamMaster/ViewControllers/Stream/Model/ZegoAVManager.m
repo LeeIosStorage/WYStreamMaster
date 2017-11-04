@@ -33,7 +33,6 @@ static __strong id<ZegoVideoCaptureFactory> g_factory = NULL;
 //        [self setupVideoCaptureDevice];
 //        [self setupVideoFilter];
         
-        [ZegoLiveRoomApi setUserID:[WYLoginUserManager userID] userName:[WYLoginUserManager nickname]];//[WYLoginUserManager nickname]
         
 //        [ZegoHelper setUsingExternalCapture];
         
@@ -94,6 +93,8 @@ static __strong id<ZegoVideoCaptureFactory> g_factory = NULL;
 
 + (void)loginChatRoom
 {
+    [ZegoLiveRoomApi setUserID:[WYLoginUserManager userID] userName:[WYLoginUserManager nickname]];//[WYLoginUserManager nickname]
+
     NSString *roomID = [NSString stringWithFormat:@"roomId:%@", [WYLoginUserManager roomId]];
 //    unsigned long currentTime = (unsigned long)[[NSDate date] timeIntervalSince1970];
     NSString *streamID = [NSString stringWithFormat:@"%@", [WYLoginUserManager anchorPushUrl]];

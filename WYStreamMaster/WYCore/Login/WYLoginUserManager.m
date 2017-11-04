@@ -347,6 +347,7 @@ static NSString *const kLiveDuration = @"kLiveDuration";
     [WYLoginUserManager setAnchorPushUrl:loginModel.anchorPushUrl];
     [WYLoginUserManager setRoomNameTitle:loginModel.anchorTitle];
     [WYLoginUserManager setRoomNoticeTitle:loginModel.anchorDescription];
+    
 }
 
 + (void)liveUpdateUserDataWithAnchorModel:(WYAnchorDataModel *)anchorModel
