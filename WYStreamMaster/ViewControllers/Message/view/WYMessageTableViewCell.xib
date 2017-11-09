@@ -59,6 +59,10 @@
                     <constraint firstAttribute="bottomMargin" secondItem="KvA-5y-ZTg" secondAttribute="bottom" id="h8F-65-UkD"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="contentLabel" destination="mzg-WS-7RP" id="CaM-Be-MeY"/>
+                <outlet property="titleLabel" destination="lEM-39-Vxp" id="G2J-Dq-8Of"/>
+            </connections>
         </tableViewCell>
     </objects>
 </document>

@@ -6,17 +6,19 @@
 //  Copyright © 2017年 Leejun. All rights reserved.
 //
 
-#import "WYLiveSetViewController.h"
+#import "WYAnchorApplyViewController.h"
 #import "WYCustomActionSheet.h"
 #import "UINavigationBar+Awesome.h"
 #import "WYImagePickerController.h"
 #import "UIImage+ProportionalFill.h"
 typedef NS_ENUM(NSInteger, LiveUploadImageType){
     UploadImageTypeAvatar = 0,   //avatar
-    UploadImageTypeAnchorCover,
+    UploadImageTypeAnchorNormal,
+    UploadImageTypeAnchorMakeup,
+    UploadImageTypeAnchorArt,
 };
 
-@interface WYLiveSetViewController ()
+@interface WYAnchorApplyViewController ()
 <UITableViewDelegate,
 UITableViewDataSource,
 UINavigationControllerDelegate,
@@ -28,8 +30,7 @@ UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet UIView *tableviewHeaderView;
 // 提交按钮
 @property (strong, nonatomic) IBOutlet UIButton *submitButton;
-// 直播封面
-@property (strong, nonatomic) IBOutlet UIImageView *liveCoverImageView;
+
 // 头像
 @property (strong, nonatomic) IBOutlet UIImageView *headerImageView;
 // 所在地
@@ -38,10 +39,17 @@ UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet UITextField *roomNameField;
 // 昵称
 @property (strong, nonatomic) IBOutlet UITextField *nicknameField;
+@property (strong, nonatomic) IBOutlet UITextField *InvitationCodeField;
+// 素颜照
+@property (strong, nonatomic) IBOutlet UIImageView *normalImageView;
+// 艺术照
+@property (strong, nonatomic) IBOutlet UIImageView *artImageView;
+// 化妆照
+@property (strong, nonatomic) IBOutlet UIImageView *makeupImageView;
 
 @end
 
-@implementation WYLiveSetViewController
+@implementation WYAnchorApplyViewController
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -49,7 +57,7 @@ UITextFieldDelegate>
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"直播设置";
+    self.title = @"主播申请";
     [self setupView];
     [self getAreaRequest];
 }
@@ -60,14 +68,23 @@ UITextFieldDelegate>
     self.tableview.dataSource = self;
     [self.tableview reloadData];
     self.headerImageView.userInteractionEnabled = YES;
-    self.liveCoverImageView.userInteractionEnabled = YES;
+    self.makeupImageView.userInteractionEnabled = YES;
+    self.normalImageView.userInteractionEnabled = YES;
+    self.artImageView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tapGestureHeaderImageView =  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureHeaderImageView)];
     [self.headerImageView addGestureRecognizer:tapGestureHeaderImageView];
     
-    UITapGestureRecognizer *tapGestureCoverView =  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureLiveCoverView)];
-    [self.liveCoverImageView addGestureRecognizer:tapGestureCoverView];
-    self.agentTextField.delegate = self;
+    UITapGestureRecognizer *tapGestureNormalImageView =  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureNormalImageView)];
+    [self.normalImageView addGestureRecognizer:tapGestureNormalImageView];
+
     
+    UITapGestureRecognizer *tapGestureArtImageView =  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureArtImageView)];
+    [self.artImageView addGestureRecognizer:tapGestureArtImageView];
+    
+    UITapGestureRecognizer *tapGestureMakeImageView =  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureMakeImageView)];
+    [self.makeupImageView addGestureRecognizer:tapGestureMakeImageView];
+    
+    self.agentTextField.delegate = self;
     UITapGestureRecognizer *tapGestureView =  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureView)];
     [self.view addGestureRecognizer:tapGestureView];
 }
@@ -97,14 +114,17 @@ UITextFieldDelegate>
 
 - (void)liveSetRequest
 {
-    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"live_set"];
+    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"apply_anchor"];
     
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
     
-    [paramsDic setObject:@"1.jpg" forKey:@"head_icon"];
-    [paramsDic setObject:self.roomNameField.text forKey:@"room_name"];
-    [paramsDic setObject:@"2.jpg" forKey:@"anchor_show_H5"];
+    [paramsDic setObject:@"1.jpg" forKey:@"low_pic"];
     [paramsDic setObject:@"3.jpg" forKey:@"anchor_show_PC"];
+    [paramsDic setObject:@"3.jpg" forKey:@"head_icon"];
+    [paramsDic setObject:self.agentTextField.text forKey:@"anchor_country"];
+    [paramsDic setObject:@"15158898563@163.com" forKey:@"email"];
+    [paramsDic setObject:@"2.jpg" forKey:@"mid_pic"];
+    [paramsDic setObject:@"3.jpg" forKey:@"hig_pic"];
     [paramsDic setObject:[WYLoginUserManager userID] forKey:@"user_code"];
     [paramsDic setObject:self.nicknameField.text forKey:@"nick_name"];
 
@@ -122,7 +142,7 @@ UITextFieldDelegate>
         [MBProgressHUD hideHUD];
         
         if (requestType == WYRequestTypeSuccess) {
-            [MBProgressHUD showSuccess:@"设置成功" toView:weakSelf.view];
+            [MBProgressHUD showSuccess:@"申请成功，请等待审核" toView:weakSelf.view];
         }else{
             [MBProgressHUD showError:message toView:weakSelf.view];
         }
@@ -131,6 +151,8 @@ UITextFieldDelegate>
         [MBProgressHUD hideHUD];
         [MBProgressHUD showAlertMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_register_result_failure_tip"] toView:weakSelf.view];
     }];
+    
+
 }
 
 #pragma mark - event
@@ -150,11 +172,43 @@ UITextFieldDelegate>
     [actionSheet showInView:self.view];
 }
 
-- (void)tapGestureLiveCoverView
+- (void)tapGestureNormalImageView
+{
+    [self tapGestureView];
+    self.uploadImageType = UploadImageTypeAnchorNormal;
+    WEAKSELF
+    WYCustomActionSheet *actionSheet = [[WYCustomActionSheet alloc] initWithTitle:nil actionBlock:^(NSInteger buttonIndex) {
+        NSLog(@"%ld",(long)buttonIndex);
+        if (buttonIndex == 1) {
+            [weakSelf showImageBroswerWithSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+        } else if (buttonIndex == 0){
+            [weakSelf showImageBroswerWithSourceType:UIImagePickerControllerSourceTypeCamera];
+        }
+    } cancelButtonTitle:[WYCommonUtils acquireCurrentLocalizedText:@"wy_cancel"] destructiveButtonTitle:nil otherButtonTitles:@[[WYCommonUtils acquireCurrentLocalizedText:@"wy_take_photos"],[WYCommonUtils acquireCurrentLocalizedText:@"wy_photo_library"]]];
+    [actionSheet showInView:self.view];
+}
+
+- (void)tapGestureMakeImageView
+{
+    [self tapGestureView];
+    self.uploadImageType = UploadImageTypeAnchorMakeup;
+    WEAKSELF
+    WYCustomActionSheet *actionSheet = [[WYCustomActionSheet alloc] initWithTitle:nil actionBlock:^(NSInteger buttonIndex) {
+        NSLog(@"%ld",(long)buttonIndex);
+        if (buttonIndex == 1) {
+            [weakSelf showImageBroswerWithSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+        } else if (buttonIndex == 0){
+            [weakSelf showImageBroswerWithSourceType:UIImagePickerControllerSourceTypeCamera];
+        }
+    } cancelButtonTitle:[WYCommonUtils acquireCurrentLocalizedText:@"wy_cancel"] destructiveButtonTitle:nil otherButtonTitles:@[[WYCommonUtils acquireCurrentLocalizedText:@"wy_take_photos"],[WYCommonUtils acquireCurrentLocalizedText:@"wy_photo_library"]]];
+    [actionSheet showInView:self.view];
+}
+
+- (void)tapGestureArtImageView
 {
     [self tapGestureView];
     
-    self.uploadImageType = UploadImageTypeAnchorCover;
+    self.uploadImageType = UploadImageTypeAnchorArt;
     WEAKSELF
     WYCustomActionSheet *actionSheet = [[WYCustomActionSheet alloc] initWithTitle:nil actionBlock:^(NSInteger buttonIndex) {
         NSLog(@"%ld",(long)buttonIndex);
@@ -176,6 +230,7 @@ UITextFieldDelegate>
     [self.roomNameField resignFirstResponder];
     [self.nicknameField resignFirstResponder];
     [self.agentTextField resignFirstResponder];
+    [self.InvitationCodeField resignFirstResponder];
 }
 
 - (void)showImageBroswerWithSourceType:(UIImagePickerControllerSourceType )sourceType
@@ -255,11 +310,14 @@ UITextFieldDelegate>
     }
     if (self.uploadImageType == UploadImageTypeAvatar) {
         self.headerImageView.image = [UIImage imageWithData:imageData];
-    }else if (self.uploadImageType == UploadImageTypeAnchorCover){
-        self.liveCoverImageView.image = [UIImage imageWithData:imageData];
+    } else if (self.uploadImageType == UploadImageTypeAnchorNormal){
+        self.normalImageView.image = [UIImage imageWithData:imageData];
+    } else if (self.uploadImageType == UploadImageTypeAnchorMakeup){
+        self.makeupImageView.image = [UIImage imageWithData:imageData];
+    } else if (self.uploadImageType == UploadImageTypeAnchorArt){
+        self.artImageView.image = [UIImage imageWithData:imageData];
     }
     
-//    [self uploadWithImageData:imageData uploadType:self.uploadImageType];
     [picker dismissViewControllerAnimated:YES completion:nil];
     
 }
@@ -285,7 +343,7 @@ UITextFieldDelegate>
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 568;
+    return 620;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section

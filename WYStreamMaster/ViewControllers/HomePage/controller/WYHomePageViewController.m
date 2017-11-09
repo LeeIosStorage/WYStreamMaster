@@ -8,6 +8,7 @@
 
 #import "WYHomePageViewController.h"
 #import "WYLiveSetViewController.h"
+#import "WYAnchorApplyViewController.h"
 #import "WYHelpViewController.h"
 #import "WYMessageViewController.h"
 #import "WYIncomeRecordViewController.h"
@@ -21,13 +22,20 @@
 @property (copy, nonatomic) NSString *gameCategory;
 @property (copy, nonatomic) NSString *gameCategoryId;
 @property (copy, nonatomic) NSString *roomType;
+@property (strong, nonatomic) IBOutlet UILabel *nicknameLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *headerImageView;
+
 @property (strong, nonatomic) IBOutlet UILabel *startLiveLabel;
 @property (strong, nonatomic) IBOutlet UIButton *startLiveButton;
-
+// 我的消息
 @property (strong, nonatomic) IBOutlet UIButton *messageButton;
+// 收益记录按钮
 @property (strong, nonatomic) IBOutlet UIButton *profitRecordButton;
+// 帮助中心
 @property (strong, nonatomic) IBOutlet UIButton *helpCenterButton;
+// 直播设置
 @property (strong, nonatomic) IBOutlet UIButton *liveSetButton;
+// 我的空间
 @property (strong, nonatomic) IBOutlet UIButton *mySpaceButton;
 
 @end
@@ -67,7 +75,12 @@
         self.startLiveLabel.text = @"开启直播";
     } else if ([auditStatu isEqualToString:@"2"]) {
         self.startLiveLabel.text = @"重新审核";
+    } else {
+        self.startLiveLabel.text = @"未审核";
     }
+    NSURL *avatarUrl = [NSURL URLWithString:[WYLoginUserManager avatar]];
+    [WYCommonUtils setImageWithURL:avatarUrl setImageView:self.headerImageView placeholderImage:@"common_headImage"];
+    self.nicknameLabel.text = [WYLoginUserManager nickname];
 }
 #pragma mark - event
 - (IBAction)clickMessageButton:(UIButton *)sender {
@@ -83,6 +96,9 @@
         
     } else if ([auditStatu isEqualToString:@"2"]) {
         
+    } else {
+        WYAnchorApplyViewController *anchorApplyVC = [[WYAnchorApplyViewController alloc] init];
+        [self.navigationController pushViewController:anchorApplyVC animated:YES];
     }
 }
 - (IBAction)clickLiveSetButton:(UIButton *)sender {

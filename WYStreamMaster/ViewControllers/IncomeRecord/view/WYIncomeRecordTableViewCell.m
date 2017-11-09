@@ -7,6 +7,13 @@
 //
 
 #import "WYIncomeRecordTableViewCell.h"
+#import "WYContributionInformationModel.h"
+@interface WYIncomeRecordTableViewCell ()
+@property (strong, nonatomic) IBOutlet UIImageView *headerImageView;
+@property (strong, nonatomic) IBOutlet UILabel *nicknameLabel;
+
+@property (strong, nonatomic) IBOutlet UILabel *rankingLabel;
+@end
 
 @implementation WYIncomeRecordTableViewCell
 
@@ -19,6 +26,13 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)updateCellData:(WYContributionInformationModel *)contributionInformationModel
+{
+    [self.headerImageView setImageWithURL:[NSURL URLWithString:contributionInformationModel.head_icon] placeholder:[UIImage imageNamed:@"common_headImage"]];
+    self.nicknameLabel.text = contributionInformationModel.nickname;
+    self.rankingLabel.text = [NSString stringWithFormat:@"NO.%@", contributionInformationModel.gift_value];
 }
 
 @end

@@ -22,7 +22,7 @@ UINavigationControllerDelegate
 
 - (UIStatusBarStyle )preferredStatusBarStyle
 {
-    return UIStatusBarStyleLightContent;
+    return UIStatusBarStyleDefault;
 }
 
 - (void)viewDidLoad {

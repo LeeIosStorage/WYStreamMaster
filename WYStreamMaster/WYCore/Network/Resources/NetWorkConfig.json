@@ -83,4 +83,40 @@
         "control" : "api/anchor",
         "action"  : "retrieve.do"
     },
+    "live_set": {
+        "protocol": "http",
+        "version" : "user",
+        "control" : "api/anchor",
+        "action"  : "liveSet.do"
+    },
+    "get_messages": {
+        "protocol": "http",
+        "version" : "message",
+        "control" : "api",
+        "action"  : "get_user_messages.do"
+    },
+    "apply_anchor": {
+        "protocol": "http",
+        "version" : "anchor",
+        "control" : "api",
+        "action"  : "apply_anchor.do"
+    },
+    "giftRanking": {
+        "protocol": "http",
+        "version" : "gift",
+        "control" : "api/app",
+        "action"  : "gift_ranking.do"
+    },
+    "gift_income": {
+        "protocol": "http",
+        "version" : "gift",
+        "control" : "api/app",
+        "action"  : "giftIncome.do"
+    },
+    "last_month": {
+        "protocol": "http",
+        "version" : "gift",
+        "control" : "api/app",
+        "action"  : "lastMonth.do"
+    },
 }

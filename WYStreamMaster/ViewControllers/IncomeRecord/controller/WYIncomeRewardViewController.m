@@ -7,11 +7,20 @@
 //
 
 #import "WYIncomeRewardViewController.h"
-#import "WYIncomeRecordHeaderView.h"
-@interface WYIncomeRewardViewController () <UITableViewDataSource, UITableViewDelegate, WYIncomeRecordHeaderViewDelegate>
+#import "WYIncomeRewardHeaderView.h"
+#import "WYRewardModel.h"
+#import "WYIncomeRewardTableViewCell.h"
+static NSString *const kIncomeRewardTableViewCell = @"WYIncomeRewardTableViewCell";
+
+@interface WYIncomeRewardViewController () <UITableViewDataSource, UITableViewDelegate, WYIncomeRewardHeaderViewDelegate>
+
 @property (strong, nonatomic) IBOutlet UITableView *tableview;
-@property (strong, nonatomic) WYIncomeRecordHeaderView *headerView;
+@property (strong, nonatomic) WYIncomeRewardHeaderView *headerView;
 @property (nonatomic, strong) UIImageView *effectImgView;
+@property (strong, nonatomic) IBOutlet UILabel *DividedLabel;
+@property (strong, nonatomic) IBOutlet UILabel *dividedAmountLabel;
+@property (nonatomic, strong) WYRewardModel *rewardModel;
+@property (nonatomic, strong) NSMutableArray *dayArray;
 
 @end
 
@@ -21,7 +30,9 @@
     [super viewDidLoad];
     self.title = @"分成奖励";
     [self setupView];
-
+    [self setupData];
+    [self getMonthIncomeRecordData];
+    [self getIncomeRecordData:@"3"];
     // Do any additional setup after loading the view from its nib.
 }
 #pragma mark - setup
@@ -29,23 +40,22 @@
 {
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [rightButton setTitle:@"筛选" forState:UIControlStateNormal];    
-//    [self setRightButton:rightButton];
     [rightButton addTarget:self action:@selector(rightButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightBarButtonItem;
-    self.rightButton = rightButton;
+    [self setRightButton:rightButton];
 
-//    [self.homePageTable registerNib:[UINib nibWithNibName:kIncomeRecordTableViewCell bundle:nil] forCellReuseIdentifier:kIncomeRecordTableViewCell];
+    [self.tableview registerNib:[UINib nibWithNibName:kIncomeRewardTableViewCell bundle:nil] forCellReuseIdentifier:kIncomeRewardTableViewCell];
     
     [self.view addSubview:self.headerView];
     self.headerView.hidden = YES;
     [self.headerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.view);
         make.leading.right.trailing.equalTo(self.view);
-        make.height.mas_offset(110);
+        make.height.mas_offset(60);
     }];
     
-    UIImageView *effectImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 110, kScreenWidth, kScreenHeight - 110)];
+    UIImageView *effectImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 60, kScreenWidth, kScreenHeight - 60)];
     effectImgView.contentMode = UIViewContentModeScaleAspectFill;
     effectImgView.userInteractionEnabled = YES;
     effectImgView.backgroundColor = [UIColor blackColor];
@@ -59,6 +69,68 @@
     self.effectImgView = effectImgView;
     self.effectImgView.hidden = YES;
     
+}
+
+- (void)setupData
+{
+    self.rewardModel = [[WYRewardModel alloc] init];
+    self.dayArray = [NSMutableArray array];
+}
+
+#pragma mark -
+#pragma mark - Server
+- (void)getIncomeRecordData:(NSString *)type
+{
+    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"last_month"];
+    
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
+    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchor_user_code"];
+    [paramsDic setObject:self.currencyType forKey:@"currency"];
+    [paramsDic setObject:type forKey:@"type"];
+    
+    WS(weakSelf)
+    [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:[WYRewardModel class] success:^(WYRequestType requestType, NSString *message, id dataObject) {
+        NSLog(@"error:%@ data:%@",message,dataObject);
+        [MBProgressHUD hideHUD];
+        if (requestType == WYRequestTypeSuccess) {
+            WYRewardModel *rewardModel = (WYRewardModel *)dataObject;
+            [weakSelf.dayArray addObjectsFromArray:rewardModel.gift_number_value];
+            [weakSelf.tableview reloadData];
+        }else{
+            [MBProgressHUD showError:message toView:weakSelf.view];
+        }
+        
+    } failure:^(id responseObject, NSError *error) {
+        [MBProgressHUD hideHUD];
+        [MBProgressHUD showAlertMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_register_result_failure_tip"] toView:weakSelf.view];
+    }];
+}
+
+- (void)getMonthIncomeRecordData
+{
+    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"last_month"];
+    
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
+    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchor_user_code"];
+    [paramsDic setObject:self.currencyType forKey:@"currency"];
+    [paramsDic setObject:@"3" forKey:@"type"];
+    
+    WS(weakSelf)
+    [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:[WYRewardModel class] success:^(WYRequestType requestType, NSString *message, id dataObject) {
+        NSLog(@"error:%@ data:%@",message,dataObject);
+        [MBProgressHUD hideHUD];
+        if (requestType == WYRequestTypeSuccess) {
+            WYRewardModel *rewardModel = (WYRewardModel *)dataObject;
+            weakSelf.rewardModel = rewardModel;
+            [weakSelf updateRewardView];
+        }else{
+            [MBProgressHUD showError:message toView:weakSelf.view];
+        }
+        
+    } failure:^(id responseObject, NSError *error) {
+        [MBProgressHUD hideHUD];
+        [MBProgressHUD showAlertMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_register_result_failure_tip"] toView:weakSelf.view];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -88,46 +160,47 @@
 
 - (NSInteger )tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.dayArray.count;
 }
 
 - (CGFloat )tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 90.f;
+    return 40.f;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"WYIncomeRecordTableViewCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"WYIncomeRewardTableViewCell";
+    WYIncomeRewardTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[WYIncomeRewardTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+    NSDictionary *dict = self.dayArray[indexPath.row];
+    [cell updateCellData:dict];
     return cell;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    UIView *itemBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 35.f)];
-    itemBgView.backgroundColor = [UIColor whiteColor];
-//    if (!self.itemView) {
-//        self.itemView = [[YTItemView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 30.f)  Items:self.itemArray];
-//        self.itemView.backgroundColor = [UIColor whiteColor];
-//        WEAKSELF
-//        self.itemView.itemSeletedBlock = ^(NSInteger item){
-//            weakSelf.cellStyle = item;
-//            [weakSelf.homePageTable reloadData];
-//        };
-//    }
-//    
-//    [itemBgView addSubview:_itemView];
-    
-    return itemBgView;
-}
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    UIView *itemBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 100.0f)];
+//    UILabel *rewardLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, kScreenWidth, 20)];
+//    rewardLabel.text = @"近一个月分成奖励";
+//    rewardLabel.font = [UIFont systemFontOfSize:12.0];
+//    rewardLabel.textColor = [UIColor colorWithHexString:@"999999"];
+//    [rewardLabel setTextAlignment:NSTextAlignmentCenter];
+//    UILabel *rewardAmountLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 50, kScreenWidth, 30)];
+//    rewardAmountLabel.text = @"1298";
+//    rewardAmountLabel.font = [UIFont systemFontOfSize:36.0];
+//    rewardAmountLabel.textColor = [UIColor colorWithHexString:@"FF5A00"];
+//    [rewardAmountLabel setTextAlignment:NSTextAlignmentCenter];
+//    [itemBgView addSubview:rewardLabel];
+//    [itemBgView addSubview:rewardAmountLabel];
+//    return itemBgView;
+//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 100.f;
+    return 0.1f;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -136,20 +209,39 @@
 }
 
 #pragma mark - Getters
-- (WYIncomeRecordHeaderView *)headerView
+- (WYIncomeRewardHeaderView *)headerView
 {
     if (!_headerView) {
-        _headerView = (WYIncomeRecordHeaderView *)[[NSBundle mainBundle] loadNibNamed:@"WYIncomeRecordHeaderView" owner:self options:nil].lastObject;
+        _headerView = (WYIncomeRewardHeaderView *)[[NSBundle mainBundle] loadNibNamed:@"WYIncomeRewardHeaderView" owner:self options:nil].lastObject;
         _headerView.delegate = self;
         
     }
     return _headerView;
 }
 
+- (void)updateRewardView
+{
+    self.DividedLabel.text = [NSString stringWithFormat:@"近一个月分成奖励(%@)", self.currencyType];
+    NSString *monthValue = [NSString stringWithFormat:@"%@", self.rewardModel.month[@"month_value"]];
+    if ([monthValue length] > 0 && ![monthValue isEqualToString:@"<null>"]) {
+        self.dividedAmountLabel.text = monthValue;
+    } else {
+        self.dividedAmountLabel.text = @"0";
+    }
+}
+
 #pragma mark - WYIncomeRecordHeaderViewDelegate
 - (void)clickCurrencyButtonDelegate:(NSString *)currencyString
 {
-//    [self.rightButton setTitle:currencyString forState:UIControlStateNormal];
+    if ([currencyString isEqualToString:@"本周"]) {
+        [self getIncomeRecordData:@"1"];
+    } else if ([currencyString isEqualToString:@"本月"]) {
+        [self getIncomeRecordData:@"2"];
+    } else if ([currencyString isEqualToString:@"近一月"]) {
+        [self getIncomeRecordData:@"3"];
+    } else if ([currencyString isEqualToString:@"近三月"]) {
+        [self getIncomeRecordData:@"4"];
+    }
 }
 /*
 #pragma mark - Navigation

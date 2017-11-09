@@ -17,12 +17,13 @@
 #import "WYIncomeRecordTableViewCell.h"
 #import "WYIncomeRecordHeaderView.h"
 #import "WYIncomeRewardViewController.h"
-typedef NS_ENUM(NSInteger, HomePageCellStyle) {
-    HomePageCellStyleMessage = 0,
-    HomePageCellStyleFans,
-    HomePageCellStyleContribution,
-    HomePageCellStyleRoomManager,
-    HomePageCellStyleMemberMute,
+#import "WYTodayProfitModel.h"
+#import "WYContributionListModel.h"
+#import "WYContributionInformationModel.h"
+typedef NS_ENUM(NSInteger, ContributionCellStyle) {
+    ContributionCellStyleWeek = 0,
+    ContributionCellStyleMonth,
+    ContributionCellStyleTotal,
 };
 
 static NSString *const kIncomeRecordTableViewCell = @"WYIncomeRecordTableViewCell";
@@ -30,11 +31,10 @@ static NSString *const kIncomeRecordTableViewCell = @"WYIncomeRecordTableViewCel
 @interface WYIncomeRecordViewController () <UITableViewDataSource, UITableViewDelegate, WYIncomeRecordHeaderViewDelegate>
 @property (strong, nonatomic) UIScrollView          *headerScroll;
 @property (strong, nonatomic) NSArray               *itemArray;
-@property (assign, nonatomic) HomePageCellStyle     cellStyle;
+@property (assign, nonatomic) ContributionCellStyle cellStyle;
 @property (copy, nonatomic) NSString                *checkUserId;
 @property (assign, nonatomic) BOOL                  isAnchor;
 @property (strong, nonatomic) YTItemView            *itemView;
-
 @property (strong, nonatomic) UIButton              *addManagerButton;
 @property (strong, nonatomic) WYCustomAlertView     *alerView;
 
@@ -43,34 +43,34 @@ static NSString *const kIncomeRecordTableViewCell = @"WYIncomeRecordTableViewCel
 @property (assign, nonatomic) BOOL                  commentCanLoadMore;
 @property (assign, nonatomic) int                   totalCommentNum;
 @property (strong, nonatomic) NSMutableArray        *commentLists;
+// 选择收益货币VIEW
 @property (strong, nonatomic) WYIncomeRecordHeaderView *headerView;
 @property (nonatomic, strong) UIImageView *effectImgView;
 ///空view
 @property (nonatomic, strong) UIView *emptyNoticeView;
-
 @property (strong, nonatomic) IBOutlet UIImageView *incomeHeaderView;
+@property (nonatomic, strong) WYTodayProfitModel *todayProfitModel;
+// 分成系数
+@property (strong, nonatomic) IBOutlet UILabel *dividedLabel;
+// 分成奖励
+@property (strong, nonatomic) IBOutlet UILabel *rewardLabel;
+// 礼物数量
+@property (strong, nonatomic) IBOutlet UILabel *giftNumberLabel;
+// 礼物价值
+@property (strong, nonatomic) IBOutlet UILabel *giftValueLabel;
+// 分成标题
+@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+// 今日收益
+@property (strong, nonatomic) IBOutlet UILabel *todayProfitLabel;
+
+@property (strong, nonatomic) NSMutableArray *weekArray;
+@property (strong, nonatomic) NSMutableArray *monthArray;
+@property (strong, nonatomic) NSMutableArray *totalArray;
+
 
 @end
 
 @implementation WYIncomeRecordViewController
-
-- (instancetype)initWithCheckUserId:(NSString *)checkUserId isAnchor:(BOOL )isAnchor
-{
-    if (self = [super init]) {
-        self.isAnchor = isAnchor;
-        self.checkUserId = checkUserId;
-        if (isAnchor) {
-            self.cellStyle = HomePageCellStyleMessage;
-            self.itemArray = @[@"动态",@"粉丝",@"贡献榜"];
-
-            
-        } else {
-            self.cellStyle = HomePageCellStyleFans;
-            self.itemArray = @[@"粉丝"];
-        }
-    }
-    return self;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -79,6 +79,8 @@ static NSString *const kIncomeRecordTableViewCell = @"WYIncomeRecordTableViewCel
     self.view.backgroundColor = [WYStyleSheet defaultStyleSheet].themeBackgroundColor;
     [self initData];
     [self initSubviews];
+    [self getIncomeRecordData];
+    [self getTodayIncomeData];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -96,7 +98,9 @@ static NSString *const kIncomeRecordTableViewCell = @"WYIncomeRecordTableViewCel
 - (void)initData
 {
     self.commentLists = [NSMutableArray arrayWithCapacity:0];
-//    [self getHomePageData];
+    self.weekArray = [NSMutableArray arrayWithCapacity:0];
+    self.monthArray = [NSMutableArray arrayWithCapacity:0];
+    self.totalArray = [NSMutableArray arrayWithCapacity:0];
 }
 
 - (void)reloadUI
@@ -176,11 +180,69 @@ static NSString *const kIncomeRecordTableViewCell = @"WYIncomeRecordTableViewCel
 
 - (void)showMore
 {
+    
 }
 
 - (void)showNoticeEditeController
 {
     
+}
+
+#pragma mark -
+#pragma mark - Server
+- (void)getIncomeRecordData
+{
+    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"giftRanking"];
+    
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
+    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchor_user_code"];
+    [paramsDic setObject:self.rightButton.titleLabel.text forKey:@"currency"];
+    
+    WS(weakSelf)
+    [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:[WYContributionListModel class] success:^(WYRequestType requestType, NSString *message, id dataObject) {
+        NSLog(@"error:%@ data:%@",message,dataObject);
+        [MBProgressHUD hideHUD];
+        if (requestType == WYRequestTypeSuccess) {
+            WYContributionListModel *contributionListModel = (WYContributionListModel *)dataObject;
+            NSArray *weekArr = [NSArray modelArrayWithClass:[WYContributionInformationModel class] json:contributionListModel.week];
+            [weakSelf.weekArray addObjectsFromArray:weekArr];
+            NSArray *monthArr = [NSArray modelArrayWithClass:[WYContributionInformationModel class] json:contributionListModel.month];
+            [weakSelf.monthArray addObjectsFromArray:monthArr];
+            NSArray *totalArr = [NSArray modelArrayWithClass:[WYContributionInformationModel class] json:contributionListModel.total];
+            [weakSelf.totalArray addObjectsFromArray:totalArr];
+        }else{
+            [MBProgressHUD showError:message toView:weakSelf.view];
+        }
+        
+    } failure:^(id responseObject, NSError *error) {
+        [MBProgressHUD hideHUD];
+        [MBProgressHUD showAlertMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_register_result_failure_tip"] toView:weakSelf.view];
+    }];
+}
+
+- (void)getTodayIncomeData
+{
+    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"gift_income"];
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
+    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchor_user_code"];
+    [paramsDic setObject:self.rightButton.titleLabel.text forKey:@"currency"];
+    
+    WS(weakSelf)
+    [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:[WYTodayProfitModel class] success:^(WYRequestType requestType, NSString *message, id dataObject) {
+        NSLog(@"error:%@ data:%@",message,dataObject);
+        [MBProgressHUD hideHUD];
+        
+        if (requestType == WYRequestTypeSuccess) {
+            weakSelf.todayProfitModel = (WYTodayProfitModel *)dataObject;
+            [weakSelf updateHeaderView:weakSelf.todayProfitModel];
+        }else{
+            [MBProgressHUD showError:message toView:weakSelf.view];
+        }
+        
+    } failure:^(id responseObject, NSError *error) {
+        [MBProgressHUD hideHUD];
+        [MBProgressHUD showAlertMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_register_result_failure_tip"] toView:weakSelf.view];
+    }];
 }
 
 #pragma mark - emptyNoticeView
@@ -205,7 +267,7 @@ static NSString *const kIncomeRecordTableViewCell = @"WYIncomeRecordTableViewCel
     if (listArray.count > 0) {
         self.homePageTable.tableFooterView = nil;
         self.emptyNoticeView.hidden = YES;
-    }else {
+    } else {
         self.homePageTable.tableFooterView = self.emptyNoticeView;
         self.emptyNoticeView.hidden = NO;
     }
@@ -219,23 +281,17 @@ static NSString *const kIncomeRecordTableViewCell = @"WYIncomeRecordTableViewCel
 
 - (NSInteger )tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (self.cellStyle == HomePageCellStyleRoomManager) {
-        return 10;
-//        return self.homePageModel.managers.count;
-    } else if (self.cellStyle == HomePageCellStyleContribution) {
-        return 10;
-//        return self.homePageModel.contributionRanks.count;
-    } else if (self.cellStyle == HomePageCellStyleFans) {
-        return 10;
-//        return self.homePageModel.fansModel.fansList.count;
-    } else if (self.cellStyle == HomePageCellStyleMessage) {
-        return 10;
-//        return  self.commentLists.count;
+    if (self.cellStyle == ContributionCellStyleWeek) {
+        return self.weekArray.count;
+    } else if (self.cellStyle == ContributionCellStyleMonth) {
+        return self.monthArray.count;
+    } else if (self.cellStyle == ContributionCellStyleTotal) {
+        return self.totalArray.count;
     }
-    return 10;
+    return 0;
 }
 
-- (CGFloat )tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 90.f;
 }
@@ -243,10 +299,19 @@ static NSString *const kIncomeRecordTableViewCell = @"WYIncomeRecordTableViewCel
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"WYIncomeRecordTableViewCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    WYIncomeRecordTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[WYIncomeRecordTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+    WYContributionInformationModel *model;
+    if (self.cellStyle == ContributionCellStyleWeek) {
+        model = self.weekArray[indexPath.row];
+    } else if (self.cellStyle == ContributionCellStyleMonth) {
+        model = self.monthArray[indexPath.row];
+    } else if (self.cellStyle == ContributionCellStyleTotal) {
+        model = self.totalArray[indexPath.row];
+    }
+    [cell updateCellData:model];
     return cell;
 }
 
@@ -328,6 +393,7 @@ static NSString *const kIncomeRecordTableViewCell = @"WYIncomeRecordTableViewCel
 - (void)tapGestureIncomeHeaderView:(UITapGestureRecognizer *)sender
 {
     WYIncomeRewardViewController *incomeRewardVC = [[WYIncomeRewardViewController alloc] init];
+    incomeRewardVC.currencyType = self.rightButton.titleLabel.text;
     [self.navigationController pushViewController:incomeRewardVC animated:YES];
 }
 
@@ -392,34 +458,26 @@ static NSString *const kIncomeRecordTableViewCell = @"WYIncomeRecordTableViewCel
 #pragma mark
 #pragma mark - Setter
 
-- (void)setCellStyle:(HomePageCellStyle)cellStyle
+- (void)setCellStyle:(ContributionCellStyle)cellStyle
 {
     WEAKSELF
-    
     [self.homePageTable mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(weakSelf.view).offset(200);
         make.leading.bottom.trailing.equalTo(weakSelf.view);
     }];
     
     switch (cellStyle) {
-        case HomePageCellStyleMessage:
+        case ContributionCellStyleWeek:
         {
             
         }
             break;
-        case HomePageCellStyleFans:
+        case ContributionCellStyleMonth:
         {
-            self.addManagerButton.hidden = YES;
             
         }
             break;
-        case HomePageCellStyleContribution:
-        {
-            self.addManagerButton.hidden = YES;
-            
-        }
-            break;
-        case HomePageCellStyleRoomManager:
+        case ContributionCellStyleTotal:
         {
             
         }
@@ -428,6 +486,7 @@ static NSString *const kIncomeRecordTableViewCell = @"WYIncomeRecordTableViewCel
             break;
     }
     _cellStyle = cellStyle;
+    [self.homePageTable reloadData];
 }
 
 #pragma mark
@@ -478,10 +537,26 @@ static NSString *const kIncomeRecordTableViewCell = @"WYIncomeRecordTableViewCel
     return _headerView;
 }
 
+- (void)updateHeaderView:(WYTodayProfitModel *)todayProfitModel
+{
+    NSString *anchorValue = todayProfitModel.gift_number_value[@"anchor_get_value"];
+    if ([anchorValue length] == 0) {
+         anchorValue = @"0";
+    }
+    self.titleLabel.text = [NSString stringWithFormat:@"今日%@收益", self.rightButton.titleLabel.text];
+    self.dividedLabel.text = [NSString stringWithFormat:@"分成系数%@%%", todayProfitModel.anchor[@"cut_ratio"]];
+    self.todayProfitLabel.text = [NSString stringWithFormat:@"%@", anchorValue];
+    self.rewardLabel.text = [NSString stringWithFormat:@"%@", anchorValue];
+    self.giftNumberLabel.text = [NSString stringWithFormat:@"%@", todayProfitModel.gift_number_value[@"gift_number"]];
+    self.giftValueLabel.text = [NSString stringWithFormat:@"%@", todayProfitModel.gift_number_value[@"anchor_channel_get_value"]];
+
+}
+
 #pragma mark - WYIncomeRecordHeaderViewDelegate
 - (void)clickCurrencyButtonDelegate:(NSString *)currencyString
 {
     [self.rightButton setTitle:currencyString forState:UIControlStateNormal];
+    [self getTodayIncomeData];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

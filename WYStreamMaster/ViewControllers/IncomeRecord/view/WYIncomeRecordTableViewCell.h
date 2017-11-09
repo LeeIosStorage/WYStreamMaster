@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class WYContributionInformationModel;
 @interface WYIncomeRecordTableViewCell : UITableViewCell
-
+- (void)updateCellData:(WYContributionInformationModel *)contributionInformationModel;
 @end

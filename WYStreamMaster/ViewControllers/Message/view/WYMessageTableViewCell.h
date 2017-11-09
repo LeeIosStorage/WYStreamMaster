@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class WYMessageModel;
 @interface WYMessageTableViewCell : UITableViewCell
-
+- (void)updateMessageCellData:(WYMessageModel *)messageModel;
 @end

@@ -12,10 +12,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WYHomePageViewController">
             <connections>
+                <outlet property="headerImageView" destination="HIi-xu-nJ1" id="HY6-L9-7WI"/>
                 <outlet property="helpCenterButton" destination="CWx-GK-73J" id="4ZS-Qt-Rw7"/>
                 <outlet property="liveSetButton" destination="Uu2-Hu-Zk3" id="J2Z-oj-noD"/>
                 <outlet property="messageButton" destination="7P5-tq-WSp" id="1hG-XJ-ADM"/>
                 <outlet property="mySpaceButton" destination="0cp-6c-BxE" id="Gdh-2J-oWQ"/>
+                <outlet property="nicknameLabel" destination="60V-hJ-Ue4" id="9El-PO-nPe"/>
                 <outlet property="profitRecordButton" destination="amP-Rp-H4G" id="HzN-FD-aey"/>
                 <outlet property="startLiveButton" destination="TTj-Do-SwY" id="mil-Qm-yi0"/>
                 <outlet property="startLiveLabel" destination="cWf-24-eoK" id="H3C-VW-lZp"/>
@@ -267,7 +269,7 @@
                 <constraint firstAttribute="bottom" secondItem="Zyn-Ox-XkR" secondAttribute="bottom" id="WN5-b9-We7"/>
                 <constraint firstItem="Zyn-Ox-XkR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Y4z-2R-1Qf"/>
             </constraints>
-            <point key="canvasLocation" x="-540" y="159"/>
+            <point key="canvasLocation" x="-671" y="87"/>
         </view>
     </objects>
     <resources>

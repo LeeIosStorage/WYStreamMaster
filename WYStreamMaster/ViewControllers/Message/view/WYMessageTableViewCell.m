@@ -7,14 +7,23 @@
 //
 
 #import "WYMessageTableViewCell.h"
+#import "WYMessageModel.h"
+@interface WYMessageTableViewCell ()
 
+@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+@property (strong, nonatomic) IBOutlet UILabel *contentLabel;
+@end
 @implementation WYMessageTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
 }
-
+- (void)updateMessageCellData:(WYMessageModel *)messageModel
+{
+    self.titleLabel.text = messageModel.title;
+    self.contentLabel.text = messageModel.content;
+}
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

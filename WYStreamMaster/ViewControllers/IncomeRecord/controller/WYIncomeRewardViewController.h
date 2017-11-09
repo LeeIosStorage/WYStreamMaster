@@ -9,5 +9,6 @@
 #import "WYSuperViewController.h"
 
 @interface WYIncomeRewardViewController : WYSuperViewController
+@property (strong, nonatomic) NSString *currencyType;
 
 @end
