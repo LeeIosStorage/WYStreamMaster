@@ -9,7 +9,7 @@
 #import "WYLoginManager.h"
 #import "WYNavigationController.h"
 #import "WYLiveViewController.h"
-
+#import "WYLiveViewController1.h"
 @interface WYLoginManager ()
 
 @property (copy, nonatomic) WYLoginSuccessBlock         loginSuccessBlock;
@@ -169,8 +169,8 @@
 - (void)toReEnterRoom
 {
     WYSuperViewController *sourceViewController = [WYCommonUtils getCurrentVC];
-    if ([sourceViewController isKindOfClass:[WYLiveViewController class]]) {
-        WYLiveViewController *liveRoomVC = (WYLiveViewController *)sourceViewController;
+    if ([sourceViewController isKindOfClass:[WYLiveViewController1 class]]) {
+        WYLiveViewController1 *liveRoomVC = (WYLiveViewController1 *)sourceViewController;
         //先退出原游客登录的直播间，改变NIMMember信息 -- bugly #448,此处调用liveroomvc有风险
         [liveRoomVC.roomView.chatroomControl exitRoom];
         [liveRoomVC.roomView.chatroomControl reEnterRoom];

@@ -25,7 +25,7 @@
 #import "WYLiveViewController.h"
 #import "WYGiftAnimationManager.h"
 #import "WYFaceRendererManager.h"
-
+#import "WYLiveViewController1.h"
 #define ChatData_MaxCount 100
 
 @interface YTRoomView ()<UITableViewDelegate,UITableViewDataSource,YTChatControlDelegate,CellDelegate>
@@ -44,7 +44,7 @@
 
 @property (strong, nonatomic) WYGiftAnimationManager *giftAnimationManager;
 
-@property (weak, nonatomic) WYLiveViewController  *liveRoomVC;
+@property (weak, nonatomic) WYLiveViewController1  *liveRoomVC;
 
 @end
 
@@ -466,11 +466,11 @@
     
 }
 
-- (WYLiveViewController *)getLiveRoomViewController
+- (WYLiveViewController1 *)getLiveRoomViewController
 {
     id responder = [[self.superview superview] nextResponder];
-    if ([responder isKindOfClass:[WYLiveViewController class]]) {
-        WYLiveViewController *liveRoomVC = (WYLiveViewController *)responder;
+    if ([responder isKindOfClass:[WYLiveViewController1 class]]) {
+        WYLiveViewController1 *liveRoomVC = (WYLiveViewController1 *)responder;
         return liveRoomVC;
     }
     return nil;
@@ -616,7 +616,7 @@
     return _giftAnimationManager;
 }
 
-- (WYLiveViewController *)liveRoomVC
+- (WYLiveViewController1 *)liveRoomVC
 {
     if (!_liveRoomVC) {
         _liveRoomVC = [self getLiveRoomViewController];

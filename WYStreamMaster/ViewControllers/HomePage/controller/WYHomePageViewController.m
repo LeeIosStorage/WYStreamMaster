@@ -16,6 +16,7 @@
 #import "WYLiveViewController.h"
 #import "WYLoginUserManager.h"
 #import "WYLoginManager.h"
+#import "WYLiveViewController1.h"
 @interface WYHomePageViewController ()
 @property (copy, nonatomic) NSString *roomNameTitle;
 @property (copy, nonatomic) NSString *roomNoticeTitle;
@@ -160,7 +161,7 @@
             }
             [WYLoginUserManager setLiveGameType:gameType];
             
-            WYLiveViewController *liveVc = [[WYLiveViewController alloc] init];
+            WYLiveViewController1 *liveVc = [[WYLiveViewController1 alloc] init];
             liveVc.isShowFaceUnity = YES;
             liveVc.streamURL = [WYLoginUserManager anchorPushUrl];
             [self.navigationController pushViewController:liveVc animated:YES];

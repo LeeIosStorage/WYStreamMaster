@@ -17,7 +17,7 @@
 #import "WYDataMemoryManager.h"
 #import <PgyUpdate/PgyUpdateManager.h>
 #import "WYSettingViewController.h"
-
+#import "WYLiveViewController1.h"
 @interface MainTabViewController ()
 <
 UITableViewDelegate,
@@ -154,7 +154,7 @@ UITextFieldDelegate
             }
             [WYLoginUserManager setLiveGameType:gameType];
             
-            WYLiveViewController *liveVc = [[WYLiveViewController alloc] init];
+            WYLiveViewController1 *liveVc = [[WYLiveViewController1 alloc] init];
             liveVc.isShowFaceUnity = YES;
             liveVc.streamURL = [WYLoginUserManager anchorPushUrl];
             [self.navigationController pushViewController:liveVc animated:YES];
