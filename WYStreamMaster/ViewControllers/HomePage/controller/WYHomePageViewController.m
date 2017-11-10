@@ -93,12 +93,12 @@
     if ([auditStatu isEqualToString:@"1"]) {
         [self toCreateLiveRoom];
     } else if ([auditStatu isEqualToString:@"0"]) {
-        
+        WYAnchorApplyViewController *anchorApplyVC = [[WYAnchorApplyViewController alloc] init];
+        [self.navigationController pushViewController:anchorApplyVC animated:YES];
     } else if ([auditStatu isEqualToString:@"2"]) {
         
     } else {
-        WYAnchorApplyViewController *anchorApplyVC = [[WYAnchorApplyViewController alloc] init];
-        [self.navigationController pushViewController:anchorApplyVC animated:YES];
+        [self toCreateLiveRoom];
     }
 }
 - (IBAction)clickLiveSetButton:(UIButton *)sender {
