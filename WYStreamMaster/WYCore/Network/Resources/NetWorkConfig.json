@@ -119,4 +119,10 @@
         "control" : "api/app",
         "action"  : "lastMonth.do"
     },
+    "user_blogs": {
+        "protocol": "http",
+        "version" : "blog",
+        "control" : "api",
+        "action"  : "get_user_blogs.do"
+    },
 }

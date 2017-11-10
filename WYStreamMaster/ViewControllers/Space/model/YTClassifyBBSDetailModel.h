@@ -16,20 +16,13 @@ typedef NS_ENUM(NSUInteger, YTBBSType) {
 
 @interface YTClassifyBBSDetailModel : WYBaseModel
 
-@property (copy, nonatomic) NSString *commentNumber;
 @property (copy, nonatomic) NSString *content;
-@property (copy, nonatomic) NSString *createDate;
-@property (copy, nonatomic) NSString *gameName;
-@property (copy, nonatomic) NSString *icon;
-@property (copy, nonatomic) NSString *postsID;
-@property (copy, nonatomic) NSString *imgs;
-@property (copy, nonatomic) NSString *nickName;
-@property (copy, nonatomic) NSString *praiseNumber;
-@property (copy, nonatomic) NSString *title;
-@property (copy, nonatomic) NSString *userID;
-@property (copy, nonatomic) NSString *videoImage;
-@property (copy, nonatomic) NSString *videoID;
-@property (copy, nonatomic) NSString *share_url;
+@property (copy, nonatomic) NSMutableArray *images;
+@property (copy, nonatomic) NSArray *videos;
+@property (copy, nonatomic) NSString *upvote;
+@property (copy, nonatomic) NSString *comment;
+@property (copy, nonatomic) NSString *create_date;
+@property (copy, nonatomic) NSString *upvote_id;
 
 @property (assign, nonatomic) BOOL isCertificate;
 @property (assign, nonatomic) BOOL isAttention;
@@ -37,10 +30,5 @@ typedef NS_ENUM(NSUInteger, YTBBSType) {
 @property (assign, nonatomic) BOOL isFemale;
 
 @property (assign, nonatomic) YTBBSType bbsType;
-
-@property (strong, nonatomic) NSURL *avatarImageURL;
-@property (strong, nonatomic) NSURL *coverImageURL;
-
-@property (strong, nonatomic) NSMutableArray *imagesArray;
 
 @end

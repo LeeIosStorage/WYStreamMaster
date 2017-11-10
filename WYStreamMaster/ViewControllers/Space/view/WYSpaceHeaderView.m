@@ -26,8 +26,8 @@
 
 - (void)updateHeaderViewWithData:(id)data
 {
-   
-}
+    NSURL *avatarUrl = [NSURL URLWithString:[WYLoginUserManager avatar]];
+    [WYCommonUtils setImageWithURL:avatarUrl setImageView:self.headerImageView placeholderImage:@"common_headImage"];}
 
 #pragma mark
 #pragma mark - IBAction

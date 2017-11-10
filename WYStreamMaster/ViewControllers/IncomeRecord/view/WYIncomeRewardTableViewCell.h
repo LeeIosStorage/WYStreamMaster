@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface WYIncomeRewardTableViewCell : UITableViewCell
-- (void)updateCellData:(NSDictionary *)giftValue;
+- (void)updateCellData:(NSDictionary *)giftValue row:(NSInteger)row;
 @end

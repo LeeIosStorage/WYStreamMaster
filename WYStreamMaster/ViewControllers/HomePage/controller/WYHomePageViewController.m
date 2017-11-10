@@ -76,7 +76,7 @@
     } else if ([auditStatu isEqualToString:@"2"]) {
         self.startLiveLabel.text = @"重新审核";
     } else {
-        self.startLiveLabel.text = @"未审核";
+        self.startLiveLabel.text = @"开启直播";
     }
     NSURL *avatarUrl = [NSURL URLWithString:[WYLoginUserManager avatar]];
     [WYCommonUtils setImageWithURL:avatarUrl setImageView:self.headerImageView placeholderImage:@"common_headImage"];

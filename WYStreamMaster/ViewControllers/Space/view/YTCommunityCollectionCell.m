@@ -88,15 +88,15 @@
 {
     if (model) {
         _bbsInfo = model;
-        [self.avatarImageView setImageWithURL:model.avatarImageURL placeholder:[UIImage imageNamed:@"common_headImage"]];
-        [self.videoCoverImageView setImageWithURL:model.coverImageURL placeholder:[UIImage imageNamed:@"common_headImage"]];
-        self.nickNameLabel.text = @"爱打lol的妹子";
-//        self.identiImageView.hidden = !model.isCertificate;
-        self.genderImageView.image = [UIImage imageNamed:model.isFemale ? @"home_female_label" : @"home_male_label"];
+        NSURL *avatarUrl = [NSURL URLWithString:[WYLoginUserManager avatar]];
 
-//        self.titleLabel.text = @"爱打lol的妹子";
-        self.contentLabel.text = @"今天天气真心不错，相当的好，我们大家一起出去玩吧";
-        self.creatDateLabel.text = @"2017.10.11";
+        [self.avatarImageView setImageWithURL:avatarUrl placeholder:[UIImage imageNamed:@"common_headImage"]];
+        [self.videoCoverImageView setImageWithURL:avatarUrl placeholder:[UIImage imageNamed:@"common_headImage"]];
+        self.nickNameLabel.text = [WYLoginUserManager nickname];
+
+        self.contentLabel.text = model.content;
+        self.creatDateLabel.text = model.create_date;
+//        self.nickNameLabel.text = @"爱打lol的妹子";
         if (model.bbsType == YTBBSTypeText) {
             
         } else if (model.bbsType == YTBBSTypeGraphic) {
@@ -105,35 +105,26 @@
             self.videoCoverImageView.hidden = NO;
         }
         
-        NSAttributedString *buttonString = [[NSAttributedString alloc] initWithString:model.gameName attributes: @{NSFontAttributeName:[UIFont systemFontOfSize:9], NSForegroundColorAttributeName:[UIColor colorWithHexString:@"00A3FF"]}];
-        [_gameCategoryButton setAttributedTitle:buttonString forState:UIControlStateNormal];
-        [_gameCategoryButton setTitleEdgeInsets:UIEdgeInsetsMake(1, 5, 1, 5)];
-        CGFloat gameWidth = [model.gameName widthForFont:[UIFont systemFontOfSize:10]] + 10;
-        [self.gameCategoryButton mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(gameWidth);
-        }];
-        
-        [self.imagesview updateImageViewWithArray:model.imagesArray];
+        [self.imagesview updateImageViewWithArray:model.images];
         [self.bottomView updateBottomViewWithInfo:model];
     }
 }
 
 ///添加subviews
 - (void)setupSubViews {
-    WEAKSELF
     self.backgroundColor = [UIColor whiteColor];
     // 头像
     [self addSubview:self.avatarImageView];
     [self.avatarImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).offset(12);
-        make.top.equalTo(self.mas_top).offset(10);
+        make.top.equalTo(self.mas_top).offset(5);
         make.width.height.mas_equalTo(kCommunityAvatarWidth);
     }];
     
     // 昵称
     [self addSubview:self.nickNameLabel];
     [self.nickNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.avatarImageView.mas_top).offset(-2);
+        make.top.equalTo(self.avatarImageView.mas_top).offset(5);
         make.left.equalTo(self.avatarImageView.mas_right).offset(10);
     }];
     
@@ -158,9 +149,9 @@
     // 创建日期
     [self addSubview:self.creatDateLabel];
     [self.creatDateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.avatarImageView.mas_bottom).offset(2);
-        make.left.equalTo(self.nickNameLabel.mas_left);
-        make.right.greaterThanOrEqualTo(self.mas_left).offset(-10).with.priority(10);
+        make.top.equalTo(self.mas_top).offset(15);
+        make.left.equalTo(self.nickNameLabel.mas_right);
+        make.right.equalTo(self.mas_right).offset(-10);
     }];
     
     // 标题
@@ -221,11 +212,7 @@
 
 - (void)pushToPersionalVC
 {
-    if (self.bbsInfo.userID) {
-        WYSuperViewController *vc = [WYCommonUtils getCurrentVC];
-        
-        
-    }
+    
 }
 
 #pragma mark
@@ -293,7 +280,7 @@
         _nickNameLabel.numberOfLines = 1;
         _nickNameLabel.font = [UIFont systemFontOfSize:13];
 //        _nickNameLabel.text = @"一人我饮酒醉，醉把家人成双对";
-        _nickNameLabel.textColor = [UIColor colorWithHexString:@"333333"];
+        _nickNameLabel.textColor = [UIColor colorWithHexString:@"666666"];
         _nickNameLabel.userInteractionEnabled = YES;
         WEAKSELF
         UITapGestureRecognizer *tapNickname = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {

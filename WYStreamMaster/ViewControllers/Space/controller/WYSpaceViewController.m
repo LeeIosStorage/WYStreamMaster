@@ -11,32 +11,50 @@
 #import <MJRefresh.h>
 #import "YTCommunityCollectionCell.h"
 #import "YTClassifyBBSDetailModel.h"
+#import "WYCustomActionSheet.h"
+#import "WYImagePickerController.h"
+#import "UIImage+ProportionalFill.h"
+#import "UINavigationBar+Awesome.h"
+
 #define kClassifyHeaderHeight (kScreenWidth * 210 / 375 + 44)
 static NSString *const kCommunityCollectionCell = @"YTCommunityCollectionCell";
 static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
 
-@interface WYSpaceViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface WYSpaceViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (strong, nonatomic) WYSpaceHeaderView *headerView;
 
 @end
 
 @implementation WYSpaceViewController
+//- (void)viewWillAppear:(BOOL)animated
+//{
+//    [super viewWillAppear:animated];
+//    [self.navigationController setNavigationBarHidden:YES];
+//}
+//
+//- (void)viewWillDisappear:(BOOL)animated
+//{
+//    [super viewWillDisappear:animated];
+//    [self.navigationController setNavigationBarHidden:NO];
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"我的空间";
+    self.title = @"个人空间";
     [self setupView];
-    // Do any additional setup after loading the view from its nib.
+    [self getSpaceRequest];
 }
+
 #pragma mark - setup
 - (void)setupView
 {
-//    [self.view addSubview:self.headerView];
-//    [self.headerView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.right.equalTo(self.view);
-//        make.top.equalTo(self.view);
-//        make.height.mas_offset(175);
-//    }];
+    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [rightButton setImage:[UIImage imageNamed:@"add_space"] forState:UIControlStateNormal];
+    [rightButton addTarget:self action:@selector(rightButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+    self.navigationItem.rightBarButtonItem = rightBarButtonItem;
+    [self setRightButton:rightButton];
+
     
     self.collectionView.backgroundColor = [WYStyleSheet currentStyleSheet].themeBackgroundColor;
     
@@ -45,48 +63,139 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
 
     YTClassifyBBSDetailModel *model = [[YTClassifyBBSDetailModel alloc] init];
     model.content = @"橙卡，橙卡，橙卡";
-    model.createDate = @"2017-09-19 08:51:34";
-    model.gameName = @"炉石传说";
-    model.imgs = @"uploadfile/9048c6d1-b9d6-4a6b-8371-d670e83737bb.jpg,uploadfile/9048c6d1-b9d6-4a6b-8371-d670e83737bb.jpg,uploadfile/9048c6d1-b9d6-4a6b-8371-d670e83737bb.jpg,uploadfile/9048c6d1-b9d6-4a6b-8371-d670e83737bb.jpg";
-    model.postsID = @"1802";
-    [self.dataSource addObject:model];
-    [self.dataSource addObject:model];
-    [self.dataSource addObject:model];
-    [self.dataSource addObject:model];
+    model.create_date = @"2017-09-19 08:51:34";
+    model.images = [NSMutableArray arrayWithObjects:@"update", @"update", @"update", @"update", @"update", nil];
+    model.comment = @"100";
+    model.upvote = @"100";
+//    [self.dataSource addObject:model];
+//    [self.dataSource addObject:model];
+//    [self.dataSource addObject:model];
+//    [self.dataSource addObject:model];
 
     WEAKSELF
-//    [self addRefreshHeaderWithBlock:^{
-//        weakSelf.startIndexPage = 1;
-//        
-////        [weakSelf requestClassifyBBSListWithGameId:weakSelf.gameID page:weakSelf.startIndexPage pageSize:DATA_LOAD_PAGESIZE_COUNT result:^(YTClassifyBBSListModel *model) {
-////            if (model) {
-////                [weakSelf handleBBSListData:model];
-////            }
-////        }];
-//    }];
-    
-//    [self addRefreshFooterWithBlock:^{
-////        [weakSelf requestClassifyBBSListWithGameId:weakSelf.gameID page:weakSelf.startIndexPage pageSize:DATA_LOAD_PAGESIZE_COUNT result:^(YTClassifyBBSListModel *model) {
-////            if (model) {
-////                [weakSelf handleBBSListData:model];
-////            }
-////        }];
-//    }];
-    
     [self.view addSubview:self.collectionView];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.width.bottom.equalTo(weakSelf.view);
     }];
 }
 
+#pragma mark -
+#pragma mark - Server
+- (void)getSpaceRequest{
+    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"user_blogs"];
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
+    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"user_code"];
+    [paramsDic setObject:@"1" forKey:@"cur_page"];
+    [paramsDic setObject:@"20" forKey:@"page_size"];
+    WS(weakSelf)
+    [self.networkManager GET:requestUrl needCache:NO parameters:nil responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
+        NSLog(@"error:%@ data:%@",message,dataObject);
+        if (requestType == WYRequestTypeSuccess) {
+            NSArray *dataArr = [NSArray modelArrayWithClass:[YTClassifyBBSDetailModel class] json:dataObject[@"list"]];
+            [weakSelf.dataSource addObjectsFromArray:dataArr];
+            
+            [weakSelf.collectionView reloadData];
+        } else {
+            
+        }
+        
+    } failure:^(id responseObject, NSError *error) {
+       
+    }];
+}
+
+#pragma mark - event
+#pragma mark - Action
+- (void)rightButtonClicked:(id)sender
+{
+//    UIButton *rightButton = (UIButton *)sender;
+    WEAKSELF
+    WYCustomActionSheet *actionSheet = [[WYCustomActionSheet alloc] initWithTitle:nil actionBlock:^(NSInteger buttonIndex) {
+        NSLog(@"%ld",(long)buttonIndex);
+        if (buttonIndex == 1) {
+            [weakSelf showImageBroswerWithSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+        } else if (buttonIndex == 0){
+            [weakSelf showImageBroswerWithSourceType:UIImagePickerControllerSourceTypeCamera];
+        }
+    } cancelButtonTitle:[WYCommonUtils acquireCurrentLocalizedText:@"wy_cancel"] destructiveButtonTitle:nil otherButtonTitles:@[[WYCommonUtils acquireCurrentLocalizedText:@"wy_take_photos"],[WYCommonUtils acquireCurrentLocalizedText:@"wy_photo_library"]]];
+    [actionSheet showInView:self.view];
+
+}
+
+- (void)showImageBroswerWithSourceType:(UIImagePickerControllerSourceType )sourceType
+{
+    WYImagePickerController *imagePickerController = [[WYImagePickerController alloc] init];
+    if (sourceType == UIImagePickerControllerSourceTypeCamera) {
+        if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            return;
+        }
+    }
+    imagePickerController.sourceType = sourceType;
+    [imagePickerController.navigationBar lt_setBackgroundImage:[UIImage imageNamed:@"wy_navbar_bg"]];
+    [imagePickerController.navigationBar setTranslucent:NO];
+    imagePickerController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,[WYStyleSheet defaultStyleSheet].navTitleFont,NSFontAttributeName,nil];
+    imagePickerController.delegate = self;
+    imagePickerController.navigationController.delegate = self;
+    [self presentViewController:imagePickerController animated:YES completion:nil];
+}
+
+#pragma mark -
+#pragma mark - UIImagePickerControllerDelegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(nullable NSDictionary<NSString *,id> *)editingInfo
+{
+    UIImage* imageAfterScale = image;
+    if (image.size.width != image.size.height) {
+        CGSize cropSize = image.size;
+        cropSize.height = MIN(image.size.width, image.size.height);
+        cropSize.width = MIN(image.size.width, image.size.height);
+        imageAfterScale = [image imageCroppedToFitSize:cropSize];
+    }
+    
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString  *,id> *)info {
+    
+    CGFloat compressionQuality = WY_IMAGE_COMPRESSION_QUALITY;
+    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    if (!image) {
+        image = [info objectForKey:UIImagePickerControllerOriginalImage];
+        compressionQuality = 0.1;
+    }
+    UIImage* imageAfterScale = image;
+    NSData *imageData = UIImageJPEGRepresentation(imageAfterScale, compressionQuality);
+    if (imageData.length > 400*1024) {
+        UIImage *newImage = [UIImage imageWithData:imageData];
+        imageAfterScale = newImage;
+        imageData = UIImageJPEGRepresentation(newImage, compressionQuality);
+    }
+    
+    //    [self uploadWithImageData:imageData uploadType:self.uploadImageType];
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+}
+
 #pragma - mark UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    YTClassifyBBSDetailModel *model = (YTClassifyBBSDetailModel *)self.dataSource[indexPath.row];
-    model.bbsType = YTBBSTypeGraphic;
+    YTClassifyBBSDetailModel *model;
+    if (self.dataSource.count > 0) {
+       model = (YTClassifyBBSDetailModel *)self.dataSource[indexPath.row];
+        if ([model.images count] > 0) {
+            model.bbsType = YTBBSTypeGraphic;
+        } else if ([model.videos count] != 0) {
+            model.bbsType = YTBBSTypeVideo;
+        } else {
+            model.bbsType = YTBBSTypeText;
+        }
+    }
     CGFloat itemHeight = [YTCommunityCollectionCell heightWithEntity:model];
     return CGSizeMake(kScreenWidth - 12*2, itemHeight);
-//    return CGSizeMake(kScreenWidth - 12*2, 40);
 
 }
 
@@ -101,6 +210,7 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
                                  atIndexPath:(NSIndexPath *)indexPath {
     self.headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kSpaceHeaderView forIndexPath:indexPath];
     self.headerView.backgroundColor = [UIColor whiteColor];
+    [self.headerView updateHeaderViewWithData:nil];
     return self.headerView;
 }
 
@@ -118,8 +228,11 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    
-    return [self.dataSource count];
+    if ([self.dataSource count] == 0) {
+        return 1;
+    } else {
+        return [self.dataSource count];
+    }
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {

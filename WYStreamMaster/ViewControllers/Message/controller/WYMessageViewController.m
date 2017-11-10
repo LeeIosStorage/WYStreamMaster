@@ -44,7 +44,6 @@
 - (void)getMessageRequest{
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"get_messages"];
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
-    
     [paramsDic setObject:[WYLoginUserManager userID] forKey:@"user_code"];
     WS(weakSelf)
     [self.networkManager GET:requestUrl needCache:NO parameters:nil responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {

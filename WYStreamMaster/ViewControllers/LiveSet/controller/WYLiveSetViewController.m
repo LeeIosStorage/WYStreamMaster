@@ -74,7 +74,6 @@ UITextFieldDelegate>
 #pragma mark -
 #pragma mark - Server
 - (void)getAreaRequest{
-    
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"queryCountry"];
     WS(weakSelf)
     [self.networkManager GET:requestUrl needCache:NO parameters:nil responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
@@ -100,27 +99,17 @@ UITextFieldDelegate>
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"live_set"];
     
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
-    
     [paramsDic setObject:@"1.jpg" forKey:@"head_icon"];
     [paramsDic setObject:self.roomNameField.text forKey:@"room_name"];
     [paramsDic setObject:@"2.jpg" forKey:@"anchor_show_H5"];
     [paramsDic setObject:@"3.jpg" forKey:@"anchor_show_PC"];
     [paramsDic setObject:[WYLoginUserManager userID] forKey:@"user_code"];
     [paramsDic setObject:self.nicknameField.text forKey:@"nick_name"];
-
-    //    [paramsDic setObject:_avatarUrlStr forKey:@"head_icon"];
-    //    [paramsDic setObject:_sugaoUrlStr forKey:@"low_pic"];
-    //    [paramsDic setObject:_makeupUrlStr forKey:@"mid_pic"];
-    //    [paramsDic setObject:_artsUrlStr forKey:@"hig_pic"];
-    //    if (self.areaCode.length > 0) {
-    //        [paramsDic setObject:self.areaCode forKey:@"anchor_country"];//channel_code
-    //    }
     
     WS(weakSelf)
     [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
         NSLog(@"error:%@ data:%@",message,dataObject);
         [MBProgressHUD hideHUD];
-        
         if (requestType == WYRequestTypeSuccess) {
             [MBProgressHUD showSuccess:@"设置成功" toView:weakSelf.view];
         }else{

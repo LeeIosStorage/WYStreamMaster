@@ -147,6 +147,10 @@
 		7854B9AB1FB405B100A7F85E /* WYIncomeRewardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7854B9A91FB405B100A7F85E /* WYIncomeRewardTableViewCell.xib */; };
 		7854B9AF1FB42B2600A7F85E /* WYIncomeRewardHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7854B9AD1FB42B2600A7F85E /* WYIncomeRewardHeaderView.m */; };
 		7854B9B01FB42B2600A7F85E /* WYIncomeRewardHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7854B9AE1FB42B2600A7F85E /* WYIncomeRewardHeaderView.xib */; };
+		7854B9D91FB4699600A7F85E /* WYHelpDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7854B9D71FB4699600A7F85E /* WYHelpDetailViewController.m */; };
+		7854B9DA1FB4699600A7F85E /* WYHelpDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7854B9D81FB4699600A7F85E /* WYHelpDetailViewController.xib */; };
+		7854B9E41FB5493D00A7F85E /* WYSpaceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7854B9E21FB5493D00A7F85E /* WYSpaceDetailViewController.m */; };
+		7854B9E51FB5493D00A7F85E /* WYSpaceDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7854B9E31FB5493D00A7F85E /* WYSpaceDetailViewController.xib */; };
 		787ADB6F1F8B509B005331C9 /* YTClassifyCommunityImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 787ADB6D1F8B509B005331C9 /* YTClassifyCommunityImageView.m */; };
 		787ADB701F8B509B005331C9 /* YTClassifyCommunityImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 787ADB6E1F8B509B005331C9 /* YTClassifyCommunityImageView.xib */; };
 		787ADB741F8B50AB005331C9 /* YTClassifyBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 787ADB721F8B50AB005331C9 /* YTClassifyBottomView.m */; };
@@ -515,6 +519,12 @@
 		7854B9AC1FB42B2600A7F85E /* WYIncomeRewardHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYIncomeRewardHeaderView.h; sourceTree = "<group>"; };
 		7854B9AD1FB42B2600A7F85E /* WYIncomeRewardHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYIncomeRewardHeaderView.m; sourceTree = "<group>"; };
 		7854B9AE1FB42B2600A7F85E /* WYIncomeRewardHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYIncomeRewardHeaderView.xib; sourceTree = "<group>"; };
+		7854B9D61FB4699600A7F85E /* WYHelpDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYHelpDetailViewController.h; sourceTree = "<group>"; };
+		7854B9D71FB4699600A7F85E /* WYHelpDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYHelpDetailViewController.m; sourceTree = "<group>"; };
+		7854B9D81FB4699600A7F85E /* WYHelpDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYHelpDetailViewController.xib; sourceTree = "<group>"; };
+		7854B9E11FB5493D00A7F85E /* WYSpaceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYSpaceDetailViewController.h; sourceTree = "<group>"; };
+		7854B9E21FB5493D00A7F85E /* WYSpaceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYSpaceDetailViewController.m; sourceTree = "<group>"; };
+		7854B9E31FB5493D00A7F85E /* WYSpaceDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYSpaceDetailViewController.xib; sourceTree = "<group>"; };
 		787ADB6C1F8B509B005331C9 /* YTClassifyCommunityImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTClassifyCommunityImageView.h; sourceTree = "<group>"; };
 		787ADB6D1F8B509B005331C9 /* YTClassifyCommunityImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTClassifyCommunityImageView.m; sourceTree = "<group>"; };
 		787ADB6E1F8B509B005331C9 /* YTClassifyCommunityImageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YTClassifyCommunityImageView.xib; sourceTree = "<group>"; };
@@ -1444,6 +1454,9 @@
 				78B82A4F1F7A2EF100279366 /* WYHelpViewController.h */,
 				78B82A501F7A2EF100279366 /* WYHelpViewController.m */,
 				78B82A511F7A2EF100279366 /* WYHelpViewController.xib */,
+				7854B9D61FB4699600A7F85E /* WYHelpDetailViewController.h */,
+				7854B9D71FB4699600A7F85E /* WYHelpDetailViewController.m */,
+				7854B9D81FB4699600A7F85E /* WYHelpDetailViewController.xib */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -1660,6 +1673,9 @@
 				78D1D33F1F7E20F5007261E4 /* WYSpaceViewController.h */,
 				78D1D3401F7E20F5007261E4 /* WYSpaceViewController.m */,
 				78D1D3411F7E20F5007261E4 /* WYSpaceViewController.xib */,
+				7854B9E11FB5493D00A7F85E /* WYSpaceDetailViewController.h */,
+				7854B9E21FB5493D00A7F85E /* WYSpaceDetailViewController.m */,
+				7854B9E31FB5493D00A7F85E /* WYSpaceDetailViewController.xib */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -1795,6 +1811,7 @@
 				787ADB8E1F8F45F1005331C9 /* WYIncomeRecordHeaderView.xib in Resources */,
 				787ADB701F8B509B005331C9 /* YTClassifyCommunityImageView.xib in Resources */,
 				78D1D3151F7B49BE007261E4 /* WYHomePageViewController.xib in Resources */,
+				7854B9E51FB5493D00A7F85E /* WYSpaceDetailViewController.xib in Resources */,
 				442563FD1F429B030075467A /* gr_xian_3_icon@2x.png in Resources */,
 				4425642A1F42AA830075467A /* wy_gameresult_lose_1@2x.png in Resources */,
 				78B82A2F1F78DB1B00279366 /* WYRegistersViewController.xib in Resources */,
@@ -1803,6 +1820,7 @@
 				789DAA2C1F5688200012075C /* face_beautification.bundle in Resources */,
 				4425642D1F42AA830075467A /* wy_gameresult_win_1@2x.png in Resources */,
 				442564211F42AA830075467A /* gr_hu_icon@2x.png in Resources */,
+				7854B9DA1FB4699600A7F85E /* WYHelpDetailViewController.xib in Resources */,
 				789DAA301F5688200012075C /* mask_matianyu.bundle in Resources */,
 				789DAA2D1F5688200012075C /* v3.bundle in Resources */,
 				44203D991E714BD600D59B5E /* WYImageCodeView.xib in Resources */,
@@ -2029,11 +2047,13 @@
 				78D1D3021F7A5087007261E4 /* WYHelpCell.m in Sources */,
 				44D2F7E51E7FC30500122866 /* YTChatModel.m in Sources */,
 				441C23FD1E83FDA20020557C /* LiveGiftShowModel.m in Sources */,
+				7854B9E41FB5493D00A7F85E /* WYSpaceDetailViewController.m in Sources */,
 				78D1D31D1F7B933F007261E4 /* WYLiveSetViewController.m in Sources */,
 				44203D971E714BD600D59B5E /* WYCustomAlertView.m in Sources */,
 				441C23FC1E83FDA20020557C /* LiveGiftShow.m in Sources */,
 				78D1D3391F7CEF0A007261E4 /* WYIncomeRecordTableViewCell.m in Sources */,
 				444DA6511E8A716E00C45DE5 /* WYChatUserNormalView.m in Sources */,
+				7854B9D91FB4699600A7F85E /* WYHelpDetailViewController.m in Sources */,
 				44203D8C1E714BD600D59B5E /* WYLoginModel.m in Sources */,
 				44203D9F1E714BD600D59B5E /* MBProgressHUD+WYTools.m in Sources */,
 				44203DAF1E715A9100D59B5E /* WYAPIGenerate.m in Sources */,

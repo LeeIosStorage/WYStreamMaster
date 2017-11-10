@@ -21,8 +21,13 @@
 }
 
 
-- (void)updateCellData:(NSDictionary *)giftValue
+- (void)updateCellData:(NSDictionary *)giftValue row:(NSInteger)row
 {
+    if (row != 0) {
+        self.timeLabel.backgroundColor = [UIColor colorWithHexString:@"cccccc"];
+    } else {
+        self.timeLabel.backgroundColor = [UIColor colorWithHexString:@"ffcc00"];
+    }
     self.rewardAmountLabel.text = giftValue[@"anchor_get_value"];
     self.timeLabel.text = giftValue[@"gift_time"];
 

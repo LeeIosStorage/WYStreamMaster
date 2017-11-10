@@ -44,16 +44,16 @@
 {
     if ([data isKindOfClass:[YTClassifyBBSDetailModel class]]) {
         self.bbsDetail = (YTClassifyBBSDetailModel *)data;
-        if ([self.bbsDetail.commentNumber integerValue] > 0) {
-            [self.bottomCommentButton setTitle:[NSString stringWithFormat:@"%@", self.bbsDetail.commentNumber] forState:UIControlStateNormal];
+        if ([self.bbsDetail.comment integerValue] > 0) {
+            [self.bottomCommentButton setTitle:[NSString stringWithFormat:@"%@", self.bbsDetail.comment] forState:UIControlStateNormal];
             [self.bottomCommentButton setImageEdgeInsets:UIEdgeInsetsMake(0, -5, 0, 0)];
         }else {
             [self.bottomCommentButton setTitle:nil forState:UIControlStateNormal];
             [self.bottomCommentButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
         }
         
-        if ([self.bbsDetail.praiseNumber integerValue]> 0) {
-            [self.bottomLikeButton setTitle:[NSString stringWithFormat:@"%@", self.bbsDetail.praiseNumber] forState:UIControlStateNormal];
+        if ([self.bbsDetail.upvote integerValue]> 0) {
+            [self.bottomLikeButton setTitle:[NSString stringWithFormat:@"%@", self.bbsDetail.upvote] forState:UIControlStateNormal];
             [self.bottomLikeButton setImageEdgeInsets:UIEdgeInsetsMake(0, -5, 0, 0)];
         } else {
             [self.bottomLikeButton setTitle:nil forState:UIControlStateNormal];
@@ -61,8 +61,8 @@
         }
         
         self.bottomLikeButton.selected = self.bbsDetail.isPraise;
-        [self.bottomCommentButton setTitle:@"892" forState:UIControlStateNormal];
-        [self.bottomLikeButton setTitle:@"7277" forState:UIControlStateNormal];
+//        [self.bottomCommentButton setTitle:@"892" forState:UIControlStateNormal];
+//        [self.bottomLikeButton setTitle:@"7277" forState:UIControlStateNormal];
     }
 }
 

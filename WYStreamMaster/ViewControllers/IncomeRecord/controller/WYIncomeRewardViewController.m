@@ -176,7 +176,7 @@ static NSString *const kIncomeRewardTableViewCell = @"WYIncomeRewardTableViewCel
         cell = [[WYIncomeRewardTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     NSDictionary *dict = self.dayArray[indexPath.row];
-    [cell updateCellData:dict];
+    [cell updateCellData:dict row:indexPath.row];
     return cell;
 }
 

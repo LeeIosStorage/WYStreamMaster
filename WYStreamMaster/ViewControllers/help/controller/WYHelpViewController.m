@@ -62,23 +62,23 @@
     self.helpDataArray = [NSMutableArray array];
     [self.helpDataArray addObjectsFromArray:@[@[
                                               @{},
-                                              @{@"title":@"如何成为传奇娱乐主播?"},
+                                              @{@"title":@"直播出现卡顿"},
                                               @{},
-                                              @{@"title":@"直播出现卡顿?"},
+                                              @{@"title":@"直播管理条例"},
                                               @{},
-                                              @{@"title":@"直播间管理条例?"},
+                                              @{@"title":@"直播手机推荐"},
                                               @{},
-                                              @{@"title":@"解封流程?"},
+                                              @{@"title":@"H5我要开播"},
                                               ]]];
     
-    [self.helpDataArray addObjectsFromArray:@[@[
-                                              @{},
-                                              @{@"title":@"直播界面介绍"},
-                                              @{},
-                                              @{@"title":@"消息中心介绍"},
-                                              @{},
-                                              @{@"title":@"信息更换流程"},
-                                              ]]];
+//    [self.helpDataArray addObjectsFromArray:@[@[
+//                                              @{},
+//                                              @{@"title":@"直播界面介绍"},
+//                                              @{},
+//                                              @{@"title":@"消息中心介绍"},
+//                                              @{},
+//                                              @{@"title":@"信息更换流程"},
+//                                              ]]];
 
 }
 
@@ -147,15 +147,13 @@
 {
     NSDictionary *dic = self.helpDataArray[indexPath.section][indexPath.row];
     NSString *titleString = dic[@"title"];
-    if ([titleString isEqualToString:@"意见反馈"]) {
+    if ([titleString isEqualToString:@"直播出现卡顿"]) {
        
-    } else if ([titleString isEqualToString:@"设置"]) {
+    } else if ([titleString isEqualToString:@"直播管理条例"]) {
         
-    } else if ([titleString isEqualToString:@"我的糖果"]) {
+    } else if ([titleString isEqualToString:@"直播手机推荐"]) {
         
-    } else if ([titleString isEqualToString:@"我的等级"]) {
-        
-    } else if ([titleString isEqualToString:@"邀请好友"]) {
+    } else if ([titleString isEqualToString:@"H5我要开播"]) {
         
     }
 }
