@@ -125,4 +125,11 @@
         "control" : "api",
         "action"  : "get_user_blogs.do"
     },
+    
+    "upload_image": {
+        "protocol": "http",
+        "version" : "event-platform-admin",
+        "control" : "file",
+        "action"  : "save"
+    },
 }

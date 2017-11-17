@@ -77,7 +77,7 @@
     } else if ([auditStatu isEqualToString:@"2"]) {
         self.startLiveLabel.text = @"重新审核";
     } else {
-        self.startLiveLabel.text = @"开启直播";
+        self.startLiveLabel.text = @"未审核";
     }
     NSURL *avatarUrl = [NSURL URLWithString:[WYLoginUserManager avatar]];
     [WYCommonUtils setImageWithURL:avatarUrl setImageView:self.headerImageView placeholderImage:@"common_headImage"];
@@ -99,7 +99,9 @@
     } else if ([auditStatu isEqualToString:@"2"]) {
         
     } else {
-        [self toCreateLiveRoom];
+//        [self toCreateLiveRoom];
+        WYAnchorApplyViewController *anchorApplyVC = [[WYAnchorApplyViewController alloc] init];
+        [self.navigationController pushViewController:anchorApplyVC animated:YES];
     }
 }
 - (IBAction)clickLiveSetButton:(UIButton *)sender {

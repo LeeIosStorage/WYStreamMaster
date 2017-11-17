@@ -67,7 +67,7 @@ static NSString *const kIncomeRecordTableViewCell = @"WYIncomeRecordTableViewCel
 @property (strong, nonatomic) NSMutableArray *monthArray;
 @property (strong, nonatomic) NSMutableArray *totalArray;
 
-
+@property (assign, nonatomic) int  publishNextCursor;
 @end
 
 @implementation WYIncomeRecordViewController
@@ -81,6 +81,9 @@ static NSString *const kIncomeRecordTableViewCell = @"WYIncomeRecordTableViewCel
     [self initSubviews];
     [self getIncomeRecordData];
     [self getTodayIncomeData];
+    [self addLiveHallRefreshHeader];
+    [self addLiveHallRefreshFooter];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -166,6 +169,37 @@ static NSString *const kIncomeRecordTableViewCell = @"WYIncomeRecordTableViewCel
     
 }
 
+#pragma mark - Refresh
+- (void)addLiveHallRefreshHeader
+{
+    self.homePageTable.mj_header = [WYRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestMessageInfo)];
+}
+    
+- (void)requestMessageInfo{
+    if ([self.homePageTable.mj_header isRefreshing]) {
+        self.publishNextCursor = 1;
+        if (self.cellStyle == ContributionCellStyleWeek) {
+            self.weekArray = [NSMutableArray array];
+        } else if (self.cellStyle == ContributionCellStyleMonth) {
+            self.monthArray = [NSMutableArray array];
+        } else if (self.cellStyle == ContributionCellStyleTotal) {
+            self.totalArray = [NSMutableArray array];
+        }
+        [self getIncomeRecordData];
+    }
+}
+    
+- (void)addLiveHallRefreshFooter{
+    self.homePageTable.mj_footer = [WYRefreshFooter footerWithRefreshingTarget:self refreshingAction:@selector(requestMessageInfoFoot)];
+}
+    
+- (void)requestMessageInfoFoot{
+    if ([self.homePageTable.mj_footer isRefreshing]) {
+        self.publishNextCursor ++;
+        [self getIncomeRecordData];
+    }
+}
+    
 - (void)initHeaderImageView
 {
     
@@ -202,6 +236,8 @@ static NSString *const kIncomeRecordTableViewCell = @"WYIncomeRecordTableViewCel
     [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:[WYContributionListModel class] success:^(WYRequestType requestType, NSString *message, id dataObject) {
         NSLog(@"error:%@ data:%@",message,dataObject);
         [MBProgressHUD hideHUD];
+        [weakSelf.homePageTable.mj_footer endRefreshing];
+        [weakSelf.homePageTable.mj_header endRefreshing];
         if (requestType == WYRequestTypeSuccess) {
             WYContributionListModel *contributionListModel = (WYContributionListModel *)dataObject;
             NSArray *weekArr = [NSArray modelArrayWithClass:[WYContributionInformationModel class] json:contributionListModel.week];
@@ -210,11 +246,19 @@ static NSString *const kIncomeRecordTableViewCell = @"WYIncomeRecordTableViewCel
             [weakSelf.monthArray addObjectsFromArray:monthArr];
             NSArray *totalArr = [NSArray modelArrayWithClass:[WYContributionInformationModel class] json:contributionListModel.total];
             [weakSelf.totalArray addObjectsFromArray:totalArr];
+            
+            if (weekArr.count < 10 && monthArr.count < 10 && totalArr.count < 10) {
+                [weakSelf.homePageTable.mj_footer setHidden:YES];
+            }else{
+                [weakSelf.homePageTable.mj_footer setHidden:NO];
+            }
         }else{
             [MBProgressHUD showError:message toView:weakSelf.view];
         }
         
     } failure:^(id responseObject, NSError *error) {
+        [weakSelf.homePageTable.mj_footer endRefreshing];
+        [weakSelf.homePageTable.mj_header endRefreshing];
         [MBProgressHUD hideHUD];
         [MBProgressHUD showAlertMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_register_result_failure_tip"] toView:weakSelf.view];
     }];

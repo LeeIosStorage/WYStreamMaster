@@ -11,9 +11,10 @@ pod 'SDWebImage', '~> 3.8.0'
 pod 'PLMediaStreamingKit', '~> 2.1.5'
 pod 'MBProgressHUD'
 pod 'BlocksKit', '~> 2.2.5'
-pod 'NIMSDK'
+pod 'NIMSDK', '4.1.0'
 pod 'SocketRocket'
 pod 'GMGridView'
+pod 'CRToast'
 
 #腾讯bug统计SDK
 pod 'Bugly'

@@ -24,6 +24,20 @@ UITableViewDataSource,
 UINavigationControllerDelegate,
 UIImagePickerControllerDelegate,
 UITextFieldDelegate>
+{
+    UIImage *_avatarImage;
+    NSString *_avatarUrlStr;
+    
+    UIImage *_normalImage;
+    NSString *_normalImageStr;
+    
+    UIImage *_artImage;
+    NSString *_artImageStr;
+    
+    UIImage *_makeupImage;
+    NSString *_makeupImageStr;
+    
+}
 @property (nonatomic, assign) LiveUploadImageType uploadImageType;
 @property (nonatomic, strong) NSMutableArray *areaListArray;
 @property (strong, nonatomic) IBOutlet UITableView *tableview;
@@ -117,14 +131,28 @@ UITextFieldDelegate>
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"apply_anchor"];
     
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
-    
-    [paramsDic setObject:@"1.jpg" forKey:@"low_pic"];
-    [paramsDic setObject:@"3.jpg" forKey:@"anchor_show_PC"];
-    [paramsDic setObject:@"3.jpg" forKey:@"head_icon"];
+    if ([_avatarUrlStr length] > 0) {
+        [paramsDic setObject:_avatarUrlStr forKey:@"head_icon"];
+    } else {
+        [paramsDic setObject:@"1.jpg" forKey:@"head_icon"];
+    }
+    if ([_normalImageStr length] > 0) {
+        [paramsDic setObject:_normalImageStr forKey:@"anchor_show_PC"];
+    } else {
+        [paramsDic setObject:@"1.jpg" forKey:@"anchor_show_PC"];
+    }
+    if ([_makeupImageStr length] > 0) {
+        [paramsDic setObject:_makeupImageStr forKey:@"mid_pic"];
+    } else {
+        [paramsDic setObject:@"1.jpg" forKey:@"mid_pic"];
+    }
+    if ([_artImageStr length] > 0) {
+        [paramsDic setObject:_artImageStr forKey:@"hig_pic"];
+    } else {
+        [paramsDic setObject:@"1.jpg" forKey:@"hig_pic"];
+    }
     [paramsDic setObject:self.agentTextField.text forKey:@"anchor_country"];
     [paramsDic setObject:@"15158898563@163.com" forKey:@"email"];
-    [paramsDic setObject:@"2.jpg" forKey:@"mid_pic"];
-    [paramsDic setObject:@"3.jpg" forKey:@"hig_pic"];
     [paramsDic setObject:[WYLoginUserManager userID] forKey:@"user_code"];
     [paramsDic setObject:self.nicknameField.text forKey:@"nick_name"];
 
@@ -142,7 +170,9 @@ UITextFieldDelegate>
         [MBProgressHUD hideHUD];
         
         if (requestType == WYRequestTypeSuccess) {
-            [MBProgressHUD showSuccess:@"申请成功，请等待审核" toView:weakSelf.view];
+//            [YTToast showSuccess:@"申请成功，请等待审核"];
+
+//            [MBProgressHUD showSuccess:@"申请成功，请等待审核" toView:weakSelf.view];
         }else{
             [MBProgressHUD showError:message toView:weakSelf.view];
         }
@@ -151,8 +181,48 @@ UITextFieldDelegate>
         [MBProgressHUD hideHUD];
         [MBProgressHUD showAlertMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_register_result_failure_tip"] toView:weakSelf.view];
     }];
-    
+}
 
+- (void)uploadWithImageData:(NSData *)imageData uploadType:(LiveUploadImageType)uploadType
+{
+    [MBProgressHUD showMessage:@"正在上传..."];
+    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"upload_image"];
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
+    //    [paramsDic setObject:imageData forKey:@"pic"];
+    WS(weakSelf);
+    [self.networkManager POST:requestUrl formFileName:@"pic" fileName:@"img.jpg" fileData:imageData mimeType:@"image/jpeg" parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
+        
+        [MBProgressHUD hideHUD];
+        if (requestType == WYRequestTypeSuccess) {
+            
+            NSString *urlStr = nil;
+            if ([dataObject isKindOfClass:[NSArray class]]) {
+                NSArray *array = dataObject;
+                if (array.count > 0) {
+                    id pathObject = [array objectAtIndex:0];
+                    if ([pathObject isKindOfClass:[NSDictionary class]]) {
+                        urlStr = [pathObject objectForKey:@"path"];
+                    }
+                }
+            }else if ([dataObject isKindOfClass:[NSString class]]){
+                urlStr = dataObject;
+            }
+            
+            if (uploadType == UploadImageTypeAvatar) {
+                _avatarUrlStr = urlStr;
+            } else if (uploadType == UploadImageTypeAnchorNormal){
+                _normalImageStr = urlStr;
+            } else if (uploadType == UploadImageTypeAnchorMakeup){
+                _makeupImageStr = urlStr;
+            } else if (uploadType == UploadImageTypeAnchorArt){
+                _artImageStr = urlStr;
+            }
+            
+        }
+        
+    } failure:^(id responseObject, NSError *error) {
+        [MBProgressHUD showError:[WYCommonUtils acquireCurrentLocalizedText:@"wy_photo_upload_errer_tip"]];
+    }];
 }
 
 #pragma mark - event
@@ -317,7 +387,7 @@ UITextFieldDelegate>
     } else if (self.uploadImageType == UploadImageTypeAnchorArt){
         self.artImageView.image = [UIImage imageWithData:imageData];
     }
-    
+    [self uploadWithImageData:imageData uploadType:self.uploadImageType];
     [picker dismissViewControllerAnimated:YES completion:nil];
     
 }
@@ -325,7 +395,6 @@ UITextFieldDelegate>
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
-
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

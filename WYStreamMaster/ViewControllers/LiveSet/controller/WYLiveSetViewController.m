@@ -22,6 +22,13 @@ UITableViewDataSource,
 UINavigationControllerDelegate,
 UIImagePickerControllerDelegate,
 UITextFieldDelegate>
+{
+    UIImage *_avatarImage;
+    NSString *_avatarUrlStr;
+    
+    UIImage *_anchorCoverImage;
+    NSString *_anchorCoverStr;
+}
 @property (nonatomic, assign) LiveUploadImageType uploadImageType;
 @property (nonatomic, strong) NSMutableArray *areaListArray;
 @property (strong, nonatomic) IBOutlet UITableView *tableview;
@@ -94,15 +101,60 @@ UITextFieldDelegate>
     }];
 }
 
+- (void)uploadWithImageData:(NSData *)imageData uploadType:(LiveUploadImageType)uploadType
+{
+    [MBProgressHUD showMessage:@"正在上传..."];
+    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"upload_image"];
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
+    //    [paramsDic setObject:imageData forKey:@"pic"];
+    [self.networkManager POST:requestUrl formFileName:@"pic" fileName:@"img.jpg" fileData:imageData mimeType:@"image/jpeg" parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
+        
+        [MBProgressHUD hideHUD];
+        if (requestType == WYRequestTypeSuccess) {
+            
+            NSString *urlStr = nil;
+            if ([dataObject isKindOfClass:[NSArray class]]) {
+                NSArray *array = dataObject;
+                if (array.count > 0) {
+                    id pathObject = [array objectAtIndex:0];
+                    if ([pathObject isKindOfClass:[NSDictionary class]]) {
+                        urlStr = [pathObject objectForKey:@"path"];
+                    }
+                }
+            }else if ([dataObject isKindOfClass:[NSString class]]){
+                urlStr = dataObject;
+            }
+            
+            if (uploadType == UploadImageTypeAvatar) {
+                _avatarUrlStr = urlStr;
+            }else if (uploadType == UploadImageTypeAnchorCover){
+                _anchorCoverStr = urlStr;
+            }
+        }
+        
+    } failure:^(id responseObject, NSError *error) {
+        [MBProgressHUD showError:[WYCommonUtils acquireCurrentLocalizedText:@"wy_photo_upload_errer_tip"]];
+    }];
+}
+
+
 - (void)liveSetRequest
 {
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"live_set"];
-    
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
-    [paramsDic setObject:@"1.jpg" forKey:@"head_icon"];
+    if ([_avatarUrlStr length] > 0) {
+        [paramsDic setObject:_avatarUrlStr forKey:@"head_icon"];
+    } else {
+        [paramsDic setObject:@"1.jpg" forKey:@"head_icon"];
+    }
+    if ([_anchorCoverStr length] > 0) {
+        [paramsDic setObject:_anchorCoverStr forKey:@"anchor_show_H5"];
+        [paramsDic setObject:_anchorCoverStr forKey:@"anchor_show_PC"];
+    } else {
+        [paramsDic setObject:@"2.jpg" forKey:@"anchor_show_H5"];
+        [paramsDic setObject:@"3.jpg" forKey:@"anchor_show_PC"];
+    }
     [paramsDic setObject:self.roomNameField.text forKey:@"room_name"];
-    [paramsDic setObject:@"2.jpg" forKey:@"anchor_show_H5"];
-    [paramsDic setObject:@"3.jpg" forKey:@"anchor_show_PC"];
     [paramsDic setObject:[WYLoginUserManager userID] forKey:@"user_code"];
     [paramsDic setObject:self.nicknameField.text forKey:@"nick_name"];
     
@@ -111,7 +163,9 @@ UITextFieldDelegate>
         NSLog(@"error:%@ data:%@",message,dataObject);
         [MBProgressHUD hideHUD];
         if (requestType == WYRequestTypeSuccess) {
-            [MBProgressHUD showSuccess:@"设置成功" toView:weakSelf.view];
+//            [YTToast showSuccess:@"设置成功"];
+
+//            [MBProgressHUD showSuccess:@"设置成功" toView:weakSelf.view];
         }else{
             [MBProgressHUD showError:message toView:weakSelf.view];
         }
@@ -243,12 +297,20 @@ UITextFieldDelegate>
         imageData = UIImageJPEGRepresentation(newImage, compressionQuality);
     }
     if (self.uploadImageType == UploadImageTypeAvatar) {
+        _avatarImage = imageAfterScale;
         self.headerImageView.image = [UIImage imageWithData:imageData];
     }else if (self.uploadImageType == UploadImageTypeAnchorCover){
+        _anchorCoverImage = imageAfterScale;
+        self.liveCoverImageView.image = [UIImage imageWithData:imageData];
+    } else if (self.uploadImageType == UploadImageTypeAnchorCover){
+        _anchorCoverImage = imageAfterScale;
+        self.liveCoverImageView.image = [UIImage imageWithData:imageData];
+    } else if (self.uploadImageType == UploadImageTypeAnchorCover){
+        _anchorCoverImage = imageAfterScale;
         self.liveCoverImageView.image = [UIImage imageWithData:imageData];
     }
     
-//    [self uploadWithImageData:imageData uploadType:self.uploadImageType];
+    [self uploadWithImageData:imageData uploadType:self.uploadImageType];
     [picker dismissViewControllerAnimated:YES completion:nil];
     
 }

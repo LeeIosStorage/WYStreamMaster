@@ -41,7 +41,8 @@
         [MBProgressHUD hideHUD];
         
         if (requestType == WYRequestTypeSuccess) {
-            [MBProgressHUD showSuccess:@"申请成功" toView:weakSelf.view];
+//            [YTToast showSuccess:@"申请成功"];
+//            [MBProgressHUD showSuccess:@"申请成功" toView:weakSelf.view];
         }else{
             [MBProgressHUD showError:message toView:weakSelf.view];
         }

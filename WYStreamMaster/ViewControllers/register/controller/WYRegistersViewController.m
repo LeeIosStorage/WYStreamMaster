@@ -84,18 +84,22 @@
         [MBProgressHUD hideHUD];
         
         if (requestType == WYRequestTypeSuccess) {
-            [MBProgressHUD showSuccess:@"注册成功" toView:weakSelf.view];
+//            [MBProgressHUD showSuccess:@"注册成功" toView:weakSelf.view];
+//            [YTToast showSuccess:@"注册成功"];
+
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [weakSelf dismissViewControllerAnimated:YES completion:nil];
             });
         }else{
-            
-            [MBProgressHUD showError:message toView:weakSelf.view];
+//            [YTToast showError:message];
+//            [MBProgressHUD showError:message toView:weakSelf.view];
         }
         
     } failure:^(id responseObject, NSError *error) {
         [MBProgressHUD hideHUD];
-        [MBProgressHUD showAlertMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_register_result_failure_tip"] toView:weakSelf.view];
+//        [MBProgressHUD showAlertMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_register_result_failure_tip"] toView:weakSelf.view];
+//        [YTToast showError:[WYCommonUtils acquireCurrentLocalizedText:@"wy_register_result_failure_tip"]];
+
     }];
     
 }
