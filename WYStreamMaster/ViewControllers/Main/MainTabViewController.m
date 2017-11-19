@@ -58,7 +58,7 @@ UITextFieldDelegate
 @property (nonatomic, weak) IBOutlet UILabel *startLiveTipLabel;
 
 @property (nonatomic, strong) WYGiftRecordView *giftRecordView;
-
+@property (nonatomic, assign) BOOL againLive;
 @end
 
 @implementation MainTabViewController
@@ -84,7 +84,7 @@ UITextFieldDelegate
     if (![WYCommonUtils userCaptureIsAuthorization]) {
         [WYCommonUtils requsetCameraMediaPermission];
     }
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(againStartLive) name:WYNotificationAgainStartLive object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -120,9 +120,10 @@ UITextFieldDelegate
 }
 
 - (void)anchorOnLineRequest{
-    
-    [MBProgressHUD showMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_live_prepare_ing"]];
-    
+    if (!self.againLive) {
+        [MBProgressHUD showMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_live_prepare_ing"]];
+    }
+
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"anchor_on_off"];
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
     [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchor_user_code"];
@@ -161,8 +162,9 @@ UITextFieldDelegate
             WYLiveViewController *liveVc = [[WYLiveViewController alloc] init];
             liveVc.isShowFaceUnity = YES;
             liveVc.streamURL = [WYLoginUserManager anchorPushUrl];
-            [self.navigationController pushViewController:liveVc animated:YES];
-            
+            if (!weakSelf.againLive) {
+                [self.navigationController pushViewController:liveVc animated:YES];
+            }
         }else{
             [MBProgressHUD showError:message toView:weakSelf.view];
         }
@@ -384,10 +386,17 @@ UITextFieldDelegate
 #pragma mark -
 #pragma mark - Button Clicked
 - (void)startLiveAction:(id)sender{
+    self.againLive = NO;
     // 直播前先更新数据
     [self userLoginRequest];
 //    [self gestureRecognizer:nil];
 //    [self toCreateLiveRoom];
+}
+
+- (void)againStartLive
+{
+    self.againLive = YES;
+    [self userLoginRequest];
 }
 
 - (IBAction)giftListAction:(id)sender{

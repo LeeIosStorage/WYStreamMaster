@@ -133,6 +133,9 @@
 		783C0F4B1F99E91400C6D719 /* ZegoImageFilter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783C0F461F99E91400C6D719 /* ZegoImageFilter.framework */; };
 		783C0F4C1F99E91400C6D719 /* ZegoImageFilter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783C0F481F99E91400C6D719 /* ZegoImageFilter.framework */; };
 		783C0F571F99EADF00C6D719 /* ZegoImageFilter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 783C0F411F99E91400C6D719 /* ZegoImageFilter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		78526D631FBEDC72008D799C /* ZegoLiveRoom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78526D601FBEDC72008D799C /* ZegoLiveRoom.framework */; };
+		78526D641FBEDC72008D799C /* ZegoLiveRoom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78526D621FBEDC72008D799C /* ZegoLiveRoom.framework */; };
+		78526D651FBEDC90008D799C /* ZegoLiveRoom.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 78526D601FBEDC72008D799C /* ZegoLiveRoom.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		787ADB781F8B59F5005331C9 /* WYLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787ADB771F8B59F5005331C9 /* WYLoginViewController.m */; };
 		787ADB7C1F8B5A07005331C9 /* WYRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787ADB7A1F8B5A07005331C9 /* WYRegisterViewController.m */; };
 		787ADB7D1F8B5A07005331C9 /* WYRegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 787ADB7B1F8B5A07005331C9 /* WYRegisterViewController.xib */; };
@@ -153,9 +156,6 @@
 		789DAA331F5688200012075C /* yuguan.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 789DAA291F5688200012075C /* yuguan.bundle */; };
 		789DAA351F568C060012075C /* FUAPIDemoBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 789DAA341F568C060012075C /* FUAPIDemoBar.framework */; };
 		789DAA361F568FB80012075C /* FUAPIDemoBar.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 789DAA341F568C060012075C /* FUAPIDemoBar.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		78A92AE01FA2E459002D8C6C /* ZegoLiveRoom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A92ADD1FA2E459002D8C6C /* ZegoLiveRoom.framework */; };
-		78A92AE11FA2E459002D8C6C /* ZegoLiveRoom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A92ADF1FA2E459002D8C6C /* ZegoLiveRoom.framework */; };
-		78A92AE21FA2E475002D8C6C /* ZegoLiveRoom.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 78A92ADD1FA2E459002D8C6C /* ZegoLiveRoom.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C69795F58C80289B30CE5F15 /* libPods-WYStreamMaster.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D7A3645D8D449741FC609F4 /* libPods-WYStreamMaster.a */; };
 /* End PBXBuildFile section */
 
@@ -176,7 +176,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				78A92AE21FA2E475002D8C6C /* ZegoLiveRoom.framework in Embed Frameworks */,
+				78526D651FBEDC90008D799C /* ZegoLiveRoom.framework in Embed Frameworks */,
 				783C0F571F99EADF00C6D719 /* ZegoImageFilter.framework in Embed Frameworks */,
 				789DAA361F568FB80012075C /* FUAPIDemoBar.framework in Embed Frameworks */,
 			);
@@ -447,6 +447,8 @@
 		783C0F431F99E91400C6D719 /* ZegoImageFilter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoImageFilter.framework; sourceTree = "<group>"; };
 		783C0F461F99E91400C6D719 /* ZegoImageFilter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoImageFilter.framework; sourceTree = "<group>"; };
 		783C0F481F99E91400C6D719 /* ZegoImageFilter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoImageFilter.framework; sourceTree = "<group>"; };
+		78526D601FBEDC72008D799C /* ZegoLiveRoom.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoLiveRoom.framework; sourceTree = "<group>"; };
+		78526D621FBEDC72008D799C /* ZegoLiveRoom.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoLiveRoom.framework; sourceTree = "<group>"; };
 		787ADB761F8B59F5005331C9 /* WYLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WYLoginViewController.h; path = WYStreamMaster/WYCore/Login/WYLoginViewController.h; sourceTree = SOURCE_ROOT; };
 		787ADB771F8B59F5005331C9 /* WYLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WYLoginViewController.m; path = WYStreamMaster/WYCore/Login/WYLoginViewController.m; sourceTree = SOURCE_ROOT; };
 		787ADB791F8B5A07005331C9 /* WYRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WYRegisterViewController.h; path = WYStreamMaster/WYCore/Login/WYRegisterViewController.h; sourceTree = SOURCE_ROOT; };
@@ -474,8 +476,6 @@
 		789DAA281F5688200012075C /* yazui.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = yazui.bundle; sourceTree = "<group>"; };
 		789DAA291F5688200012075C /* yuguan.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = yuguan.bundle; sourceTree = "<group>"; };
 		789DAA341F568C060012075C /* FUAPIDemoBar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FUAPIDemoBar.framework; sourceTree = "<group>"; };
-		78A92ADD1FA2E459002D8C6C /* ZegoLiveRoom.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoLiveRoom.framework; sourceTree = "<group>"; };
-		78A92ADF1FA2E459002D8C6C /* ZegoLiveRoom.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoLiveRoom.framework; sourceTree = "<group>"; };
 		7D7A3645D8D449741FC609F4 /* libPods-WYStreamMaster.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WYStreamMaster.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4223266790A64B80390313C /* Pods-WYStreamMaster.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WYStreamMaster.release.xcconfig"; path = "Pods/Target Support Files/Pods-WYStreamMaster/Pods-WYStreamMaster.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -491,10 +491,10 @@
 				4408525B1ED927A200F92C7A /* Accelerate.framework in Frameworks */,
 				783C0F4A1F99E91400C6D719 /* ZegoImageFilter.framework in Frameworks */,
 				C69795F58C80289B30CE5F15 /* libPods-WYStreamMaster.a in Frameworks */,
-				78A92AE11FA2E459002D8C6C /* ZegoLiveRoom.framework in Frameworks */,
+				78526D641FBEDC72008D799C /* ZegoLiveRoom.framework in Frameworks */,
 				783C0F491F99E91400C6D719 /* ZegoImageFilter.framework in Frameworks */,
 				789DAA2A1F5688200012075C /* libnama.a in Frameworks */,
-				78A92AE01FA2E459002D8C6C /* ZegoLiveRoom.framework in Frameworks */,
+				78526D631FBEDC72008D799C /* ZegoLiveRoom.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1083,6 +1083,31 @@
 			path = "ReleaseStatic-iphoneosAndRelease-iphonesimulator";
 			sourceTree = "<group>";
 		};
+		78526D5E1FBEDC72008D799C /* release */ = {
+			isa = PBXGroup;
+			children = (
+				78526D5F1FBEDC72008D799C /* iphoneos */,
+				78526D611FBEDC72008D799C /* iphoneos_simulator */,
+			);
+			path = release;
+			sourceTree = "<group>";
+		};
+		78526D5F1FBEDC72008D799C /* iphoneos */ = {
+			isa = PBXGroup;
+			children = (
+				78526D601FBEDC72008D799C /* ZegoLiveRoom.framework */,
+			);
+			path = iphoneos;
+			sourceTree = "<group>";
+		};
+		78526D611FBEDC72008D799C /* iphoneos_simulator */ = {
+			isa = PBXGroup;
+			children = (
+				78526D621FBEDC72008D799C /* ZegoLiveRoom.framework */,
+			);
+			path = iphoneos_simulator;
+			sourceTree = "<group>";
+		};
 		789DAA111F56871F0012075C /* Face */ = {
 			isa = PBXGroup;
 			children = (
@@ -1119,7 +1144,7 @@
 		789DAA181F5688200012075C /* Faceunity */ = {
 			isa = PBXGroup;
 			children = (
-				78A92ADB1FA2E459002D8C6C /* ZegoLiveRoom */,
+				78526D5E1FBEDC72008D799C /* release */,
 				789DAA191F5688200012075C /* authpack.h */,
 				789DAA1A1F5688200012075C /* FaceUnity-SDK-iOS */,
 				789DAA231F5688200012075C /* items */,
@@ -1167,31 +1192,6 @@
 				789DAA291F5688200012075C /* yuguan.bundle */,
 			);
 			path = items;
-			sourceTree = "<group>";
-		};
-		78A92ADB1FA2E459002D8C6C /* ZegoLiveRoom */ = {
-			isa = PBXGroup;
-			children = (
-				78A92ADC1FA2E459002D8C6C /* iphoneos */,
-				78A92ADE1FA2E459002D8C6C /* iphoneos_simulator */,
-			);
-			path = ZegoLiveRoom;
-			sourceTree = "<group>";
-		};
-		78A92ADC1FA2E459002D8C6C /* iphoneos */ = {
-			isa = PBXGroup;
-			children = (
-				78A92ADD1FA2E459002D8C6C /* ZegoLiveRoom.framework */,
-			);
-			path = iphoneos;
-			sourceTree = "<group>";
-		};
-		78A92ADE1FA2E459002D8C6C /* iphoneos_simulator */ = {
-			isa = PBXGroup;
-			children = (
-				78A92ADF1FA2E459002D8C6C /* ZegoLiveRoom.framework */,
-			);
-			path = iphoneos_simulator;
 			sourceTree = "<group>";
 		};
 		78B82A251F78A43C00279366 /* controller */ = {
@@ -1895,6 +1895,8 @@
 					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs/Faceunity/libsZegoImageFilter/ReleaseStatic/ReleaseStatic-iphoneosAndRelease-iphonesimulator",
 					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs/Faceunity/ZegoLiveRoom/iphoneos",
 					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs/Faceunity/ZegoLiveRoom/iphoneos_simulator",
+					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs/Faceunity/release/iphoneos",
+					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs/Faceunity/release/iphoneos_simulator",
 				);
 				GCC_PREFIX_HEADER = WYStreamMaster/PrefixHeader.pch;
 				INFOPLIST_FILE = WYStreamMaster/Info.plist;
@@ -1941,6 +1943,8 @@
 					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs/Faceunity/libsZegoImageFilter/ReleaseStatic/ReleaseStatic-iphoneosAndRelease-iphonesimulator",
 					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs/Faceunity/ZegoLiveRoom/iphoneos",
 					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs/Faceunity/ZegoLiveRoom/iphoneos_simulator",
+					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs/Faceunity/release/iphoneos",
+					"$(PROJECT_DIR)/WYStreamMaster/External/ZegoLibs/Faceunity/release/iphoneos_simulator",
 				);
 				GCC_PREFIX_HEADER = WYStreamMaster/PrefixHeader.pch;
 				INFOPLIST_FILE = WYStreamMaster/Info.plist;

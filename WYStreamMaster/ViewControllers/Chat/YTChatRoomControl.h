@@ -17,7 +17,6 @@
 
 @optional
 - (void)addMessageInRowWithMesssage:(NIMMessage *)message;
-
 - (void)receiveMessageWith:(YTChatModel *)chatModel;
 
 @end

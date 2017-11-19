@@ -25,6 +25,7 @@
 #import "FUManager.h"
 #import "AFNetworkReachabilityManager.h"
 #import "WYSocketManager.h"
+#import "YTChatModel.h"
 // 直播通知重试次数
 static NSInteger kLiveNotifyRetryCount = 0;
 static NSInteger kLiveNotifyRetryMaxCount = 3;
@@ -154,6 +155,11 @@ ZegoRoomDelegate
 #pragma mark -
 #pragma mark - Server
 - (void)anchorDetail{
+    if (![[[NIMSDK sharedSDK] loginManager] isLogined]) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.001 * NSEC_PER_SEC), dispatch_get_main_queue(), ^(void){
+            [MBProgressHUD showError:@"系统消息：您的账号在别处登录，您已经被踢出直播间，无法收到聊天及礼物消息，需要杀掉进程重新登录"];
+        });
+    }
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"anchor_detail"];
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
     [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchor_user_code"];
@@ -167,8 +173,10 @@ ZegoRoomDelegate
             NSArray *dataArray = (NSArray *)dataObject;
             NSDictionary *dic = dataArray[0];
             NSString *anchorStatus = [NSString stringWithFormat:@"%@", dic[@"anchor_status"]];
+
             if ([anchorStatus isEqualToString:@"0"]) {
-                [weakSelf roomDisConnect];
+                [[NSNotificationCenter defaultCenter] postNotificationName:WYNotificationAgainStartLive object:nil];
+//                [weakSelf roomDisConnect];
             }
         }else{
         }

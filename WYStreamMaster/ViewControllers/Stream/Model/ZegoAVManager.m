@@ -73,7 +73,7 @@ static __strong id<ZegoVideoCaptureFactory> g_factory = NULL;
     //bitrate 800000
     
     [[ZegoHelper api] setAVConfig:config];
-    [[ZegoHelper api] enableBeautifying:ZEGO_BEAUTIFY_POLISH | ZEGO_BEAUTIFY_WHITEN | ZEGO_BEAUTIFY_SKINWHITEN];
+    [[ZegoHelper api] enableBeautifying:ZEGO_BEAUTIFY_POLISH | ZEGO_BEAUTIFY_WHITEN];
     [[ZegoHelper api] setPolishStep:2.0];
     [[ZegoHelper api] setPolishFactor:4.0];
     [[ZegoHelper api] setWhitenFactor:0.5];

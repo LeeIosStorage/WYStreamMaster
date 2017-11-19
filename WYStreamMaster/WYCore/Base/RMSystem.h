@@ -83,4 +83,7 @@ static NSString* IMG_URL = @"http://img.wangyuhudong.com";
 
 #define WYNotificationWSDisConnect   @"WYNotificationWSDisConnect"
 
+#define WYNotificationAgainStartLive   @"WYNotificationAgainStartLive"
+
+
 #endif /* RMSystem_h */
