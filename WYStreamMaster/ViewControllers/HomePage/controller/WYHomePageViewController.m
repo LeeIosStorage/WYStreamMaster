@@ -39,6 +39,7 @@
 // 我的空间
 @property (strong, nonatomic) IBOutlet UIButton *mySpaceButton;
 
+@property (strong, nonatomic) IBOutlet UILabel *remarksLabel;
 @end
 
 @implementation WYHomePageViewController
@@ -72,6 +73,7 @@
     NSString *auditStatu = [WYLoginManager sharedManager].loginModel.audit_statu;
     if ([auditStatu isEqualToString:@"0"]) {
         self.startLiveLabel.text = @"未审核";
+        self.remarksLabel.text = 
     } else if ([auditStatu isEqualToString:@"1"]) {
         self.startLiveLabel.text = @"开启直播";
     } else if ([auditStatu isEqualToString:@"2"]) {
@@ -82,6 +84,8 @@
     NSURL *avatarUrl = [NSURL URLWithString:[WYLoginUserManager avatar]];
     [WYCommonUtils setImageWithURL:avatarUrl setImageView:self.headerImageView placeholderImage:@"common_headImage"];
     self.nicknameLabel.text = [WYLoginUserManager nickname];
+    self.mySpaceButton.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 15);
+    self.mySpaceButton.imageEdgeInsets = UIEdgeInsetsMake(0, 60, 0, 0);
 }
 #pragma mark - event
 - (IBAction)clickMessageButton:(UIButton *)sender {

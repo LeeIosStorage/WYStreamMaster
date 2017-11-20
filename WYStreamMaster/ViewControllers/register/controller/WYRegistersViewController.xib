@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WYRegistersViewController">
             <connections>
                 <outlet property="againPasswordField" destination="rKL-FQ-0qx" id="CgT-4S-y1o"/>
+                <outlet property="backLoginButton" destination="O6H-YA-R94" id="1Ip-ux-hII"/>
                 <outlet property="mailboxField" destination="TZ6-ey-SOX" id="EBw-mS-fZo"/>
                 <outlet property="nicknameField" destination="bfB-Lk-3AZ" id="eVM-Lq-CaA"/>
                 <outlet property="passwordField" destination="pWl-a2-dQ4" id="YuM-aS-Huz"/>
@@ -238,6 +239,7 @@
                 <constraint firstItem="RJA-68-5Wz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="xN9-Mr-SuA"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-274" y="247"/>
         </view>
     </objects>
     <resources>

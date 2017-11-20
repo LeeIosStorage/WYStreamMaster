@@ -72,6 +72,7 @@
 
 @property (nonatomic, weak) IBOutlet UIButton       *cancelButton;
 @property (strong, nonatomic) NSMutableArray        *thirdLoginArray;
+@property (strong, nonatomic) IBOutlet UIButton *goRegisterButton;
 
 
 
@@ -198,6 +199,7 @@
     self.loginButton.canClicked = NO;
     
     self.loginAccountTextField.text = [WYLoginUserManager account];
+    self.loginAccountTextField.delegate = self;
     if ([[WYLoginUserManager rememberPassword] isEqualToString:@"1"]) {
         self.loginPasswordTextField.text = [WYLoginUserManager password];
     }
@@ -205,6 +207,11 @@
     
     self.rememberPasswordButton.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
     self.rememberPasswordButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 5);
+    
+    NSMutableAttributedString *goRegisterAttributedString = [[NSMutableAttributedString alloc] initWithString:self.goRegisterButton.titleLabel.text];
+    [goRegisterAttributedString addAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} range:NSMakeRange(8, 2)];
+
+    self.goRegisterButton.titleLabel.attributedText = goRegisterAttributedString;
 }
 
 - (void)initViewUI {
@@ -774,12 +781,8 @@
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
-//    if (textField == self.loginAccountTextField) {
-//        self.accountError.hidden = YES;
-//    }
-//    if (textField == self.loginPasswordTextField) {
-//        self.passwordError.hidden = YES;
-//    }
+   
+   
     return YES;
 }
 
@@ -802,10 +805,14 @@
     NSString *newString = [oldString stringByReplacingCharactersInRange:range withString:string];
     
     if (textField == self.loginAccountTextField) {
-        if (newString.length > 30 && self.loginPasswordTextField.text.length >= 6) {
+        if (newString.length > 10 && self.loginPasswordTextField.text.length >= 6) {
             self.loginButton.canClicked = YES;
         } else {
             self.loginButton.canClicked = NO;
+        }
+        NSString *fieldText = self.loginAccountTextField.text;
+        if ([fieldText length] >= 10) {
+            return NO;
         }
     }
     if (textField == self.loginPasswordTextField) {

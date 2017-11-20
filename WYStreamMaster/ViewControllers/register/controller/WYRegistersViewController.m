@@ -9,12 +9,13 @@
 #import "WYRegistersViewController.h"
 #import "NSString+Value.h"
 
-@interface WYRegistersViewController ()
+@interface WYRegistersViewController () <UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet UITextField *nicknameField;
 @property (strong, nonatomic) IBOutlet UITextField *passwordField;
 @property (strong, nonatomic) IBOutlet UITextField *againPasswordField;
 @property (strong, nonatomic) IBOutlet UITextField *mailboxField;
 @property (strong, nonatomic) IBOutlet UIButton *registerButton;
+@property (strong, nonatomic) IBOutlet UIButton *backLoginButton;
 
 @end
 
@@ -38,9 +39,14 @@
     
     [self.mailboxField setTextColor:[UIColor whiteColor]];
     [self.mailboxField setPlaceholder:@"请输入个人邮箱"];
-    
+    self.nicknameField.delegate = self;
     UITapGestureRecognizer *tapGestureView =  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureView)];
     [self.view addGestureRecognizer:tapGestureView];
+    
+    NSMutableAttributedString *backLoginAttributedString = [[NSMutableAttributedString alloc] initWithString:self.backLoginButton.titleLabel.text];
+    [backLoginAttributedString addAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} range:NSMakeRange(8, 2)];
+    
+    self.backLoginButton.titleLabel.attributedText = backLoginAttributedString;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -117,6 +123,17 @@
     [self.passwordField resignFirstResponder];
     [self.againPasswordField resignFirstResponder];
     [self.mailboxField resignFirstResponder];
+}
+#pragma mark - UITextFieldDelegate
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if (textField == self.nicknameField) {
+        NSString *fieldText = self.nicknameField.text;
+        if ([fieldText length] >= 10) {
+            return NO;
+        }
+    }
+    return YES;
 }
 
 /*

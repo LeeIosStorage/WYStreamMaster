@@ -8,9 +8,10 @@
 
 #import "WYForgotPasswordViewController.h"
 
-@interface WYForgotPasswordViewController ()
+@interface WYForgotPasswordViewController () <UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet UITextField *nicknameField;
 @property (strong, nonatomic) IBOutlet UITextField *mailboxField;
+@property (strong, nonatomic) IBOutlet UIButton *backLoginButton;
 
 @end
 
@@ -21,6 +22,12 @@
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     UITapGestureRecognizer *tapGestureView =  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureView)];
     [self.view addGestureRecognizer:tapGestureView];
+    self.nicknameField.delegate = self;
+    
+    NSMutableAttributedString *backLoginAttributedString = [[NSMutableAttributedString alloc] initWithString:self.backLoginButton.titleLabel.text];
+    [backLoginAttributedString addAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} range:NSMakeRange(10, 2)];
+    
+    self.backLoginButton.titleLabel.attributedText = backLoginAttributedString;
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -34,7 +41,6 @@
     [paramsDic setObject:self.mailboxField.text forKey:@"email"];
     [paramsDic setObject:self.nicknameField.text forKey:@"user_name"];
     
-    
     WS(weakSelf)
     [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
         NSLog(@"error:%@ data:%@",message,dataObject);
@@ -46,7 +52,6 @@
         }else{
             [MBProgressHUD showError:message toView:weakSelf.view];
         }
-        
     } failure:^(id responseObject, NSError *error) {
         [MBProgressHUD hideHUD];
         [MBProgressHUD showAlertMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_server_request_errer_tip"] toView:weakSelf.view];
@@ -57,6 +62,18 @@
 {
     [self.nicknameField resignFirstResponder];
     [self.mailboxField resignFirstResponder];
+}
+
+#pragma mark - UITextFieldDelegate
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if (textField == self.nicknameField) {
+        NSString *fieldText = self.nicknameField.text;
+        if ([fieldText length] >= 10) {
+            return NO;
+        }
+    }
+    return YES;
 }
 
 

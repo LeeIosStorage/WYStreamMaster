@@ -14,6 +14,7 @@
 @property (strong, nonatomic) NSString *nickname;
 @property (strong, nonatomic) NSString *chatRoomId;//聊天室ID
 @property (strong, nonatomic) NSString *roomNumber;
+@property (strong, nonatomic) NSString *room_name;
 @property (strong, nonatomic) NSString *anchorPushUrl;
 @property (strong, nonatomic) NSString *icon;
 @property (strong, nonatomic) NSString *anchorTitle;

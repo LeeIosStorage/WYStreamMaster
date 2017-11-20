@@ -19,6 +19,7 @@
                 <outlet property="mySpaceButton" destination="0cp-6c-BxE" id="Gdh-2J-oWQ"/>
                 <outlet property="nicknameLabel" destination="60V-hJ-Ue4" id="9El-PO-nPe"/>
                 <outlet property="profitRecordButton" destination="amP-Rp-H4G" id="HzN-FD-aey"/>
+                <outlet property="remarksLabel" destination="JKs-2q-GlM" id="8KG-A7-m3f"/>
                 <outlet property="startLiveButton" destination="TTj-Do-SwY" id="mil-Qm-yi0"/>
                 <outlet property="startLiveLabel" destination="cWf-24-eoK" id="H3C-VW-lZp"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -57,7 +58,7 @@
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0cp-6c-BxE">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0cp-6c-BxE">
                             <rect key="frame" x="150" y="171" width="75" height="25"/>
                             <color key="backgroundColor" red="1" green="0.90196078431372551" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
@@ -65,7 +66,7 @@
                                 <constraint firstAttribute="width" constant="75" id="XRv-Fw-KZm"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <state key="normal" title="我的空间">
+                            <state key="normal" title="我的空间" image="my_spece_icon">
                                 <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <userDefinedRuntimeAttributes>
@@ -278,6 +279,7 @@
         <image name="home_head_image" width="375" height="270"/>
         <image name="live_set" width="25" height="25"/>
         <image name="message" width="24" height="24"/>
+        <image name="my_spece_icon" width="7" height="11"/>
         <image name="profit_record" width="32" height="33"/>
     </resources>
 </document>

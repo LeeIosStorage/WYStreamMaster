@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="accountContainerView" destination="d1o-v3-gab" id="c9g-vX-XFE"/>
                 <outlet property="accountError" destination="9LJ-Gh-23q" id="kTc-Fm-DrZ"/>
+                <outlet property="goRegisterButton" destination="RUE-zi-8sL" id="6VV-GD-KzQ"/>
                 <outlet property="loginAccountTextField" destination="4kg-lc-pfc" id="zei-Xp-c3W"/>
                 <outlet property="loginButton" destination="yoB-0a-sys" id="Hc0-dZ-O3T"/>
                 <outlet property="loginPasswordTextField" destination="d0H-73-0Zd" id="V97-xq-Kmh"/>
