@@ -8,6 +8,7 @@
 
 #import "WYHelpViewController.h"
 #import "WYHelpCell.h"
+#import "WYHelpDetailViewController.h"
 @interface WYHelpViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *tableview;
 @property (nonatomic, strong) NSMutableArray *helpDataArray;
@@ -148,13 +149,17 @@
     NSDictionary *dic = self.helpDataArray[indexPath.section][indexPath.row];
     NSString *titleString = dic[@"title"];
     if ([titleString isEqualToString:@"直播出现卡顿"]) {
-       
+        WYHelpDetailViewController *helpDetailVC = [[WYHelpDetailViewController alloc] initHelpDetailViewController:@"live_problem1" imageHeight:SCREEN_HEIGHT];
+        [self.navigationController pushViewController:helpDetailVC animated:YES];
     } else if ([titleString isEqualToString:@"直播管理条例"]) {
-        
+        WYHelpDetailViewController *helpDetailVC = [[WYHelpDetailViewController alloc] initHelpDetailViewController:@"live_problem2" imageHeight:1100];
+        [self.navigationController pushViewController:helpDetailVC animated:YES];
     } else if ([titleString isEqualToString:@"直播手机推荐"]) {
-        
+        WYHelpDetailViewController *helpDetailVC = [[WYHelpDetailViewController alloc] initHelpDetailViewController:@"live_problem3" imageHeight:SCREEN_HEIGHT];
+        [self.navigationController pushViewController:helpDetailVC animated:YES];
     } else if ([titleString isEqualToString:@"H5我要开播"]) {
-        
+        WYHelpDetailViewController *helpDetailVC = [[WYHelpDetailViewController alloc] initHelpDetailViewController:@"live_problem4" imageHeight:1010];
+        [self.navigationController pushViewController:helpDetailVC animated:YES];
     }
 }
 

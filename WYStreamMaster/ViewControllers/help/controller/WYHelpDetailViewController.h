@@ -9,5 +9,5 @@
 #import "WYSuperViewController.h"
 
 @interface WYHelpDetailViewController : WYSuperViewController
-
+- (instancetype)initHelpDetailViewController:(NSString *)imageName imageHeight:(NSInteger)imageHeight;
 @end

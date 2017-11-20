@@ -7,16 +7,26 @@
 //
 
 #import "WYHelpDetailViewController.h"
-
+#import "WYHelpDetailCell.h"
 @interface WYHelpDetailViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-
+@property (nonatomic, copy) NSString *imageName;
+@property (nonatomic, assign) NSInteger imageHeight;
 @end
 
 @implementation WYHelpDetailViewController
-
+- (instancetype)initHelpDetailViewController:(NSString *)imageName imageHeight:(NSInteger)imageHeight
+{
+    if (self = [super init]) {
+        self.imageName = imageName;
+        self.imageHeight = imageHeight;
+    }
+    return self;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.tableView registerNib:[UINib nibWithNibName:@"WYHelpDetailCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -30,25 +40,26 @@
     return 1;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return SCREEN_HEIGHT;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+//    return SCREEN_HEIGHT;
+//}
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return nil;
+    static NSString *cellIndentifier = @"cell";
+    WYHelpDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];
+    cell.imageView.image = [UIImage imageNamed:self.imageName];
+    cell.contentView.backgroundColor = [UIColor whiteColor];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return cell;
+
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row % 2 != 0) {
-        return 40.f;
-    } else {
-        return 1;
-    }
-    return 0.f;
+    return self.imageHeight;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section

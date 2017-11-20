@@ -142,6 +142,8 @@
 		7826BD2A1FB0406200EACB75 /* WYMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7826BD291FB0406200EACB75 /* WYMessageModel.m */; };
 		7826BD331FB057F100EACB75 /* WYAnchorApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7826BD311FB057F100EACB75 /* WYAnchorApplyViewController.m */; };
 		7826BD341FB057F100EACB75 /* WYAnchorApplyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7826BD321FB057F100EACB75 /* WYAnchorApplyViewController.xib */; };
+		78526D691FC28491008D799C /* WYHelpDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78526D671FC28491008D799C /* WYHelpDetailCell.m */; };
+		78526D6A1FC28491008D799C /* WYHelpDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78526D681FC28491008D799C /* WYHelpDetailCell.xib */; };
 		7854B9A61FB3F9F900A7F85E /* WYRewardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7854B9A51FB3F9F900A7F85E /* WYRewardModel.m */; };
 		7854B9AA1FB405B100A7F85E /* WYIncomeRewardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7854B9A81FB405B100A7F85E /* WYIncomeRewardTableViewCell.m */; };
 		7854B9AB1FB405B100A7F85E /* WYIncomeRewardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7854B9A91FB405B100A7F85E /* WYIncomeRewardTableViewCell.xib */; };
@@ -513,6 +515,9 @@
 		7826BD301FB057F100EACB75 /* WYAnchorApplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYAnchorApplyViewController.h; sourceTree = "<group>"; };
 		7826BD311FB057F100EACB75 /* WYAnchorApplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYAnchorApplyViewController.m; sourceTree = "<group>"; };
 		7826BD321FB057F100EACB75 /* WYAnchorApplyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYAnchorApplyViewController.xib; sourceTree = "<group>"; };
+		78526D661FC28491008D799C /* WYHelpDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYHelpDetailCell.h; sourceTree = "<group>"; };
+		78526D671FC28491008D799C /* WYHelpDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYHelpDetailCell.m; sourceTree = "<group>"; };
+		78526D681FC28491008D799C /* WYHelpDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYHelpDetailCell.xib; sourceTree = "<group>"; };
 		7854B9A41FB3F9F900A7F85E /* WYRewardModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYRewardModel.h; sourceTree = "<group>"; };
 		7854B9A51FB3F9F900A7F85E /* WYRewardModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYRewardModel.m; sourceTree = "<group>"; };
 		7854B9A71FB405B100A7F85E /* WYIncomeRewardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYIncomeRewardTableViewCell.h; sourceTree = "<group>"; };
@@ -1482,6 +1487,9 @@
 				78D1D2FF1F7A5087007261E4 /* WYHelpCell.h */,
 				78D1D3001F7A5087007261E4 /* WYHelpCell.m */,
 				78D1D3011F7A5087007261E4 /* WYHelpCell.xib */,
+				78526D661FC28491008D799C /* WYHelpDetailCell.h */,
+				78526D671FC28491008D799C /* WYHelpDetailCell.m */,
+				78526D681FC28491008D799C /* WYHelpDetailCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1883,6 +1891,7 @@
 				7826BD341FB057F100EACB75 /* WYAnchorApplyViewController.xib in Resources */,
 				787ADB751F8B50AB005331C9 /* YTClassifyBottomView.xib in Resources */,
 				7854B9AB1FB405B100A7F85E /* WYIncomeRewardTableViewCell.xib in Resources */,
+				78526D6A1FC28491008D799C /* WYHelpDetailCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2061,6 +2070,7 @@
 				78D1D31D1F7B933F007261E4 /* WYLiveSetViewController.m in Sources */,
 				44203D971E714BD600D59B5E /* WYCustomAlertView.m in Sources */,
 				441C23FC1E83FDA20020557C /* LiveGiftShow.m in Sources */,
+				78526D691FC28491008D799C /* WYHelpDetailCell.m in Sources */,
 				78D1D3391F7CEF0A007261E4 /* WYIncomeRecordTableViewCell.m in Sources */,
 				444DA6511E8A716E00C45DE5 /* WYChatUserNormalView.m in Sources */,
 				7854B9D91FB4699600A7F85E /* WYHelpDetailViewController.m in Sources */,

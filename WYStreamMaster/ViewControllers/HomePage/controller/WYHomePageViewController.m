@@ -73,13 +73,16 @@
     NSString *auditStatu = [WYLoginManager sharedManager].loginModel.audit_statu;
     if ([auditStatu isEqualToString:@"0"]) {
         self.startLiveLabel.text = @"未审核";
-        self.remarksLabel.text = 
+        self.remarksLabel.text = @"您未提交主播申请";
     } else if ([auditStatu isEqualToString:@"1"]) {
         self.startLiveLabel.text = @"开启直播";
+        self.remarksLabel.text = @"粉丝们都等不及了赶快开启直播吧";
     } else if ([auditStatu isEqualToString:@"2"]) {
         self.startLiveLabel.text = @"重新审核";
+        self.remarksLabel.text = @"十分抱歉!您的申请没有通过。请完善信息后重新申请!";
     } else {
         self.startLiveLabel.text = @"未审核";
+        self.remarksLabel.text = @"您未提交主播申请";
     }
     NSURL *avatarUrl = [NSURL URLWithString:[WYLoginUserManager avatar]];
     [WYCommonUtils setImageWithURL:avatarUrl setImageView:self.headerImageView placeholderImage:@"common_headImage"];
