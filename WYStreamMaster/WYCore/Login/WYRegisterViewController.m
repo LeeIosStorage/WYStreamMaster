@@ -157,11 +157,12 @@ UIImagePickerControllerDelegate
 //    NSString *agentText = [_agentTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
     if (![emailText isValidateEmail]) {
-        [MBProgressHUD showError:[WYCommonUtils acquireCurrentLocalizedText:@"wy_validate_email_tip"]];
+        [MBProgressHUD showError:[WYCommonUtils acquireCurrentLocalizedText:@"wy_validate_email_tip"] toView:self.view];
         return;
     }
     if (!self.areaCode) {
-        [MBProgressHUD showError:[WYCommonUtils acquireCurrentLocalizedText:@"wy_register_agent_placeholder"]];
+        [MBProgressHUD showError:[WYCommonUtils acquireCurrentLocalizedText:@"wy_register_agent_placeholder"] toView:self.view];
+
         return;
     }
     
@@ -240,7 +241,8 @@ UIImagePickerControllerDelegate
         }
         
     } failure:^(id responseObject, NSError *error) {
-        [MBProgressHUD showError:[WYCommonUtils acquireCurrentLocalizedText:@"wy_photo_upload_errer_tip"]];
+        [MBProgressHUD showError:[WYCommonUtils acquireCurrentLocalizedText:@"wy_photo_upload_errer_tip"] toView:self.view];
+
     }];
 }
 
