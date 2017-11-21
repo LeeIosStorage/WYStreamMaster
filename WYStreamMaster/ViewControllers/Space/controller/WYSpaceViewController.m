@@ -15,7 +15,7 @@
 #import "WYImagePickerController.h"
 #import "UIImage+ProportionalFill.h"
 #import "UINavigationBar+Awesome.h"
-
+#import "WYSpaceDetailViewController.h"
 #define kClassifyHeaderHeight (kScreenWidth * 210 / 375 + 44)
 static NSString *const kCommunityCollectionCell = @"YTCommunityCollectionCell";
 static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
@@ -67,8 +67,8 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
     model.images = [NSMutableArray arrayWithObjects:@"update", @"update", @"update", @"update", @"update", nil];
     model.comment = @"100";
     model.upvote = @"100";
-//    [self.dataSource addObject:model];
-//    [self.dataSource addObject:model];
+    [self.dataSource addObject:model];
+    [self.dataSource addObject:model];
 //    [self.dataSource addObject:model];
 //    [self.dataSource addObject:model];
 
@@ -257,6 +257,8 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     YTClassifyBBSDetailModel *model = (YTClassifyBBSDetailModel *)self.dataSource[indexPath.row];
+    WYSpaceDetailViewController *spaceDetailVC = [[WYSpaceDetailViewController alloc] init];
+    [self.navigationController pushViewController:spaceDetailVC animated:YES];
 //    if (model.bbsType == YTBBSTypeVideo) {
 //        WYNewVideoDetailViewController *vc = [[WYNewVideoDetailViewController alloc] init];
 //        vc.videoId = model.videoID;
@@ -268,7 +270,6 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
 //        vc.hidesBottomBarWhenPushed = YES;
 //        [self.navigationController pushViewController:vc animated:YES];
 //    }
-    
 }
 
 
