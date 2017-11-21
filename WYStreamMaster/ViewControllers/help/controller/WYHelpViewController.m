@@ -70,6 +70,8 @@
                                               @{@"title":@"直播手机推荐"},
                                               @{},
                                               @{@"title":@"H5我要开播"},
+                                              @{},
+                                              @{@"title":@"直播界面介绍"},
                                               ]]];
     
 //    [self.helpDataArray addObjectsFromArray:@[@[
@@ -95,7 +97,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 30;
+    return 45;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -159,6 +161,9 @@
         [self.navigationController pushViewController:helpDetailVC animated:YES];
     } else if ([titleString isEqualToString:@"H5我要开播"]) {
         WYHelpDetailViewController *helpDetailVC = [[WYHelpDetailViewController alloc] initHelpDetailViewController:@"live_problem4" imageHeight:1010];
+        [self.navigationController pushViewController:helpDetailVC animated:YES];
+    } else if ([titleString isEqualToString:@"直播界面介绍"]) {
+        WYHelpDetailViewController *helpDetailVC = [[WYHelpDetailViewController alloc] initHelpDetailViewController:@"live_problem5" imageHeight:SCREEN_HEIGHT];
         [self.navigationController pushViewController:helpDetailVC animated:YES];
     }
 }

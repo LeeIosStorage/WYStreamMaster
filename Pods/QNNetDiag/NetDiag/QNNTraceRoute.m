@@ -16,6 +16,7 @@
 #import <netinet/tcp.h>
 
 #import "QNNTraceRoute.h"
+#include <sys/time.h>
 
 @interface QNNTraceRouteRecord : NSObject
 @property (readonly) NSInteger hop;
