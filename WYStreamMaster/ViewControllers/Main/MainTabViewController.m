@@ -141,7 +141,6 @@ UITextFieldDelegate
     if ([self.roomType integerValue] == 1) {
         [paramsDic setObject:self.vipRoomPasswordTextField.text forKey:@"password"];
     }
-    
     //测试
 //    [paramsDic setObject:[NSNumber numberWithInt:LiveGameTypeSlots] forKey:@"game_type"];
     
@@ -160,7 +159,6 @@ UITextFieldDelegate
             [WYLoginUserManager setLiveGameType:gameType];
             
             WYLiveViewController *liveVc = [[WYLiveViewController alloc] init];
-            liveVc.isShowFaceUnity = YES;
             liveVc.streamURL = [WYLoginUserManager anchorPushUrl];
             if (!weakSelf.againLive) {
                 [self.navigationController pushViewController:liveVc animated:YES];

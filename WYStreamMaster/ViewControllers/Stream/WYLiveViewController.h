@@ -16,6 +16,6 @@
 @property (nonatomic, strong) NSString *streamURL;
 
 
-@property (nonatomic, assign)BOOL isShowFaceUnity ;
+//@property (nonatomic, assign)BOOL isNewSocket;
 
 @end

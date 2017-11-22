@@ -84,7 +84,13 @@ ZegoRoomDelegate
 @end
 
 @implementation WYLiveViewController
-
+- (instancetype)init
+{
+    if (self = [super init]) {
+        [self crateWebSocket];
+    }
+    return self;
+}
 - (void)dealloc{
     WYLog(@"%@ dealloc !!!",NSStringFromClass([self class]));
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -126,12 +132,10 @@ ZegoRoomDelegate
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(serverNoticeFinishStream) name:WYNotificationWSConnect object:nil];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationWSDisConnect) name:WYNotificationWSDisConnect object:nil];
-
-    
     [self setupSubView];
     
     [self prepareForCameraSetting];
-    [self crateWebSocket];
+//    [self crateWebSocket];
     [[ZegoHelper api] setRoomDelegate:self];
     //开始检测人脸礼物动效
 //    [[WYFaceRendererManager sharedInstance] stopTimer];
@@ -159,6 +163,8 @@ ZegoRoomDelegate
         [MBProgressHUD showError:@"系统消息：您的账号在别处登录，您已经被踢出直播间，无法收到聊天及礼物消息，需要杀掉进程重新登录" toView:self.view];
 
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:WYNotificationAgainStartLive object:nil];
+
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"anchor_detail"];
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
     [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchor_user_code"];
@@ -525,9 +531,21 @@ ZegoRoomDelegate
 #pragma mark - Button Clicked
 - (void)notificationWSDisConnect
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"直播错误，请您退出重新登录", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"登录直播房间失败，请杀掉进程重试", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alertView show];
 //    [self serverNoticeFinishStream];
+    [self.streamingSessionManager destroyStream];
+    [self.roomView.chatroomControl exitRoom];
+    //通知服务器停止直播了
+    [self closeLive];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)onPublishStateUpdatefailureError
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"推流失败，请重新开启直播", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alertView show];
+    //    [self serverNoticeFinishStream];
     [self.streamingSessionManager destroyStream];
     [self.roomView.chatroomControl exitRoom];
     //通知服务器停止直播了
@@ -543,7 +561,14 @@ ZegoRoomDelegate
 
 }
 - (IBAction)doBackAction:(id)sender{
-    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *filePath= [documentsDirectory stringByAppendingPathComponent:@"newFile.txt"];
+    NSFileManager *fileManager = [[NSFileManager alloc]init];
+    NSString *fileContent = @"Hello~~~~~~!";
+    NSData *fileData = [fileContent dataUsingEncoding:NSUTF8StringEncoding];
+    [fileManager createFileAtPath:filePath contents:fileData attributes:nil];
+
     WEAKSELF
     UIAlertView *alertView = [UIAlertView bk_showAlertViewWithTitle:[WYCommonUtils acquireCurrentLocalizedText:@"确定要停止直播吗？"] message:nil cancelButtonTitle:[WYCommonUtils acquireCurrentLocalizedText:@"再想想"] otherButtonTitles:@[[WYCommonUtils acquireCurrentLocalizedText:@"wy_affirm"]] handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
         if (buttonIndex == 1) {
@@ -836,7 +861,7 @@ static bool frontCamera = YES;
     }
     else
     {
-        [self notificationWSDisConnect];
+        [self onPublishStateUpdatefailureError];
     }
 }
 

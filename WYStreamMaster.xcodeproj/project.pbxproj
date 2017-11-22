@@ -128,6 +128,8 @@
 		44F7361C1EC83C3A00BB68F9 /* NSDictionary+ObjectForKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F7361B1EC83C3A00BB68F9 /* NSDictionary+ObjectForKey.m */; };
 		44F8D9811E98CB37002EC952 /* WYServerNoticeAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F8D9801E98CB37002EC952 /* WYServerNoticeAttachment.m */; };
 		44F8D9841E9E30D2002EC952 /* WYDataMemoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F8D9831E9E30D2002EC952 /* WYDataMemoryManager.m */; };
+		7826C5351FC4294900D02211 /* ZYZCMCCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7826C5311FC4294900D02211 /* ZYZCMCCacheManager.m */; };
+		7826C5361FC4294900D02211 /* ZYZCMCDownloadFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7826C5331FC4294900D02211 /* ZYZCMCDownloadFileManager.m */; };
 		783C0F491F99E91400C6D719 /* ZegoImageFilter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783C0F411F99E91400C6D719 /* ZegoImageFilter.framework */; };
 		783C0F4A1F99E91400C6D719 /* ZegoImageFilter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783C0F431F99E91400C6D719 /* ZegoImageFilter.framework */; };
 		783C0F4B1F99E91400C6D719 /* ZegoImageFilter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783C0F461F99E91400C6D719 /* ZegoImageFilter.framework */; };
@@ -443,6 +445,10 @@
 		44F8D9821E9E30D2002EC952 /* WYDataMemoryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYDataMemoryManager.h; sourceTree = "<group>"; };
 		44F8D9831E9E30D2002EC952 /* WYDataMemoryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYDataMemoryManager.m; sourceTree = "<group>"; };
 		544D39187087EFD6B76825B2 /* Pods-WYStreamMaster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WYStreamMaster.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WYStreamMaster/Pods-WYStreamMaster.debug.xcconfig"; sourceTree = "<group>"; };
+		7826C5301FC4294900D02211 /* ZYZCMCCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYZCMCCacheManager.h; sourceTree = "<group>"; };
+		7826C5311FC4294900D02211 /* ZYZCMCCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYZCMCCacheManager.m; sourceTree = "<group>"; };
+		7826C5321FC4294900D02211 /* ZYZCMCDownloadFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYZCMCDownloadFileManager.h; sourceTree = "<group>"; };
+		7826C5331FC4294900D02211 /* ZYZCMCDownloadFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYZCMCDownloadFileManager.m; sourceTree = "<group>"; };
 		783C0F411F99E91400C6D719 /* ZegoImageFilter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoImageFilter.framework; sourceTree = "<group>"; };
 		783C0F431F99E91400C6D719 /* ZegoImageFilter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoImageFilter.framework; sourceTree = "<group>"; };
 		783C0F461F99E91400C6D719 /* ZegoImageFilter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoImageFilter.framework; sourceTree = "<group>"; };
@@ -692,6 +698,7 @@
 		44203D661E714BD600D59B5E /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				7826C52D1FC4294900D02211 /* IOSCommonModule */,
 				44D2F7CB1E7FA25900122866 /* ActionSheet */,
 				44203D671E714BD600D59B5E /* AlertView */,
 				44203D6A1E714BD600D59B5E /* WYImageCodeView */,
@@ -1021,6 +1028,17 @@
 				7D7A3645D8D449741FC609F4 /* libPods-WYStreamMaster.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7826C52D1FC4294900D02211 /* IOSCommonModule */ = {
+			isa = PBXGroup;
+			children = (
+				7826C5301FC4294900D02211 /* ZYZCMCCacheManager.h */,
+				7826C5311FC4294900D02211 /* ZYZCMCCacheManager.m */,
+				7826C5321FC4294900D02211 /* ZYZCMCDownloadFileManager.h */,
+				7826C5331FC4294900D02211 /* ZYZCMCDownloadFileManager.m */,
+			);
+			path = IOSCommonModule;
 			sourceTree = "<group>";
 		};
 		783C0F3E1F99E91400C6D719 /* libsZegoImageFilter */ = {
@@ -1429,6 +1447,7 @@
 				444AA5871EBB126900A80FB9 /* UIImage+ProportionalFill.m in Sources */,
 				44203DA11E714BD600D59B5E /* RMPushUtils.m in Sources */,
 				44203DB71E7246D900D59B5E /* MainTabViewController.m in Sources */,
+				7826C5351FC4294900D02211 /* ZYZCMCCacheManager.m in Sources */,
 				44D2F7E81E7FC30500122866 /* YTRoomView.m in Sources */,
 				44203D881E714BD600D59B5E /* WYSuperViewController.m in Sources */,
 				44D2F7D11E7FA8F300122866 /* WYAnchorInfoView.m in Sources */,
@@ -1492,6 +1511,7 @@
 				44203D9C1E714BD600D59B5E /* WYShareActionSheet.m in Sources */,
 				44203D941E714BD600D59B5E /* YTLoginRegistPublic.m in Sources */,
 				444DA64E1E8A6B6D00C45DE5 /* WYRoomManagerModel.m in Sources */,
+				7826C5361FC4294900D02211 /* ZYZCMCDownloadFileManager.m in Sources */,
 				44203D9A1E714BD600D59B5E /* WYRefreshFooter.m in Sources */,
 				441C24021E83FDA20020557C /* ZYGiftListModel.m in Sources */,
 				44203D111E6FE78800D59B5E /* main.m in Sources */,
