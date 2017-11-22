@@ -181,6 +181,7 @@ SRWebSocketDelegate
     [self SRWebSocketClose];
     //超过一分钟就不再重连 所以只会重连5次 2^5 = 64
     if (reConnectTime > 64) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:WYNotificationReConnectFailed object:nil];
         return;
     }
     

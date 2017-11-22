@@ -130,6 +130,7 @@ ZegoRoomDelegate
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ReachabilityDidChangeNotification:) name:AFNetworkingReachabilityDidChangeNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(serverNoticeFinishStream) name:WYNotificationWSConnect object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(socketReConnectFailed) name:WYNotificationReConnectFailed object:nil];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationWSDisConnect) name:WYNotificationWSDisConnect object:nil];
     [self setupSubView];
@@ -160,10 +161,10 @@ ZegoRoomDelegate
 #pragma mark - Server
 - (void)anchorDetail{
     if (![[[NIMSDK sharedSDK] loginManager] isLogined]) {
+        [self uploadFileSaveLog:@"NIM NoLogined"];
         [MBProgressHUD showError:@"系统消息：您的账号在别处登录，您已经被踢出直播间，无法收到聊天及礼物消息，需要杀掉进程重新登录" toView:self.view];
-
     }
-    [[NSNotificationCenter defaultCenter] postNotificationName:WYNotificationAgainStartLive object:nil];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:WYNotificationAgainStartLive object:nil];
 
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"anchor_detail"];
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
@@ -267,12 +268,48 @@ ZegoRoomDelegate
     }
 }
 
+// 上传日志
+- (void)uploadFileSaveLog:(NSString *)fileLog
+{
+    NSString *currentTimes = [[self class] getCurrentTimes];
+    NSString *fileContent = [NSString stringWithFormat:@"%@%@", fileLog,currentTimes];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *filePath= [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.txt", fileContent]];
+    NSFileManager *fileManager = [[NSFileManager alloc]init];
+    NSData *fileData = [fileContent dataUsingEncoding:NSUTF8StringEncoding];
+    [fileManager createFileAtPath:filePath contents:fileData attributes:nil];
+//    NSString *requestUrl = @"http://172.16.2.183:8090/event-platform-admin/file/saveLog";
+    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"uploadfile"];
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
+    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchorId"];
+//    [paramsDic setObject:filePath forKey:@"iconFile"];
+//    [self.networkManager POST:requestUrl needCache:YES parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
+//        if (requestType == WYRequestTypeSuccess) {
+//            NSLog(@"");
+//        } else {
+//            NSLog(@"");
+//        }
+//    } failure:^(id responseObject, NSError *error) {
+//        [MBProgressHUD showError:[WYCommonUtils acquireCurrentLocalizedText:@"wy_photo_upload_errer_tip"] toView:self.view];
+//    }];
+    [self.networkManager POST:requestUrl formFileName:@"file" fileName:filePath fileData:fileData mimeType:@"txt" parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
+        if (requestType == WYRequestTypeSuccess) {
+            NSLog(@"");
+        } else {
+            NSLog(@"");
+        }
+    } failure:^(id responseObject, NSError *error) {
+    }];
+}
+
 #pragma mark -
 #pragma mark - Private Methods
 - (void)crateWebSocket
 {
     NSString *webSocketString = [NSString stringWithFormat:@"ws://www.legend8888.com/chat_room/ws.do?userCode=%@&anchor_user_code=%@&game_type=%zd&device=1", [WYLoginUserManager userID], [WYLoginUserManager userID], [WYLoginUserManager liveGameType]];
     [[WYSocketManager sharedInstance] initSocketURL:[NSURL URLWithString:webSocketString]];
+    [self uploadFileSaveLog:@"createWebSocket"];
 }
 
 - (void)setupSubView{
@@ -541,6 +578,13 @@ ZegoRoomDelegate
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)socketReConnectFailed
+{
+    [self serverNoticeFinishStream];
+    [[NSNotificationCenter defaultCenter] postNotificationName:WYNotificationAgainStartLive object:nil];
+    [self uploadFileSaveLog:@"socketConnectFailed"];
+}
+
 - (void)onPublishStateUpdatefailureError
 {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"推流失败，请重新开启直播", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -561,14 +605,7 @@ ZegoRoomDelegate
 
 }
 - (IBAction)doBackAction:(id)sender{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *filePath= [documentsDirectory stringByAppendingPathComponent:@"newFile.txt"];
-    NSFileManager *fileManager = [[NSFileManager alloc]init];
-    NSString *fileContent = @"Hello~~~~~~!";
-    NSData *fileData = [fileContent dataUsingEncoding:NSUTF8StringEncoding];
-    [fileManager createFileAtPath:filePath contents:fileData attributes:nil];
-
+    [self uploadFileSaveLog:@"clickCloseButton"];
     WEAKSELF
     UIAlertView *alertView = [UIAlertView bk_showAlertViewWithTitle:[WYCommonUtils acquireCurrentLocalizedText:@"确定要停止直播吗？"] message:nil cancelButtonTitle:[WYCommonUtils acquireCurrentLocalizedText:@"再想想"] otherButtonTitles:@[[WYCommonUtils acquireCurrentLocalizedText:@"wy_affirm"]] handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
         if (buttonIndex == 1) {
@@ -792,6 +829,18 @@ static bool frontCamera = YES;
     [FUManager shareManager].enlargingLevel = _demoBar.enlargingLevel;
 }
 
++(NSString*)getCurrentTimes{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    // ----------设置你想要的格式,hh与HH的区别:分别表示12小时制,24小时制
+    [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
+    //现在时间,你可以输出来看下是什么格式
+    NSDate *datenow = [NSDate date];
+    //----------将nsdate按formatter格式转成nsstring
+    NSString *currentTimeString = [formatter stringFromDate:datenow];
+    NSLog(@"currentTimeString =  %@",currentTimeString);
+    return currentTimeString;
+}
+
 #pragma mark -
 #pragma mark - WYAnchorInfoViewDelegate
 - (void)anchorInfoViewAvatarClicked{
@@ -834,6 +883,7 @@ static bool frontCamera = YES;
 - (void)onDisconnect:(int)errorCode roomID:(NSString *)roomID
 {
     [self prepareForCameraSetting];
+    [self uploadFileSaveLog:@"onDisconnect"];
     NSLog(@"onDisconnectonDisconnectonDisconnect");
 }
 
@@ -882,7 +932,8 @@ static bool frontCamera = YES;
     }
     if (self.qualityNoGood == 10) {
         self.qualityNoGood = 0;
-        [MBProgressHUD showAlertMessage:@"您的网络不佳" toView:nil];
+        [MBProgressHUD showAlertMessage:@"您的网络不佳" toView:self.view];
+        [self uploadFileSaveLog:@"qualityNoGood"];
     }
 }
 
