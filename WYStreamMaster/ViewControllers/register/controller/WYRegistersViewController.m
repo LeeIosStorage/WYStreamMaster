@@ -90,7 +90,7 @@
         [MBProgressHUD hideHUD];
         
         if (requestType == WYRequestTypeSuccess) {
-//            [MBProgressHUD showSuccess:@"注册成功" toView:weakSelf.view];
+            [MBProgressHUD showSuccess:@"注册成功" toView:weakSelf.view];
 //            [YTToast showSuccess:@"注册成功"];
 
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
