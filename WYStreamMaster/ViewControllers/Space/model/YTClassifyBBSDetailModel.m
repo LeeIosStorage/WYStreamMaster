@@ -9,6 +9,11 @@
 #import "YTClassifyBBSDetailModel.h"
 
 @implementation YTClassifyBBSDetailModel
-
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{
+             @"identity":@"id",
+             @"praiseNumber":@"upvote"
+             };
+}
 
 @end

@@ -8,14 +8,11 @@
 
 #import "YTClassifyBottomView.h"
 #import "YTClassifyBBSDetailModel.h"
-
 //#import "WYNewVideoDetailViewController.h"
-
 #import "WYShareActionSheet.h"
-
 #import "WYNetWorkManager.h"
 #import "WYLoginManager.h"
-
+#import "WYSpaceDetailViewController.h"
 @interface YTClassifyBottomView ()
 
 @property (strong, nonatomic) YTClassifyBBSDetailModel *bbsDetail;
@@ -47,13 +44,13 @@
         if ([self.bbsDetail.comment integerValue] > 0) {
             [self.bottomCommentButton setTitle:[NSString stringWithFormat:@"%@", self.bbsDetail.comment] forState:UIControlStateNormal];
             [self.bottomCommentButton setImageEdgeInsets:UIEdgeInsetsMake(0, -5, 0, 0)];
-        }else {
+        } else {
             [self.bottomCommentButton setTitle:nil forState:UIControlStateNormal];
             [self.bottomCommentButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
         }
         
-        if ([self.bbsDetail.upvote integerValue]> 0) {
-            [self.bottomLikeButton setTitle:[NSString stringWithFormat:@"%@", self.bbsDetail.upvote] forState:UIControlStateNormal];
+        if ([self.bbsDetail.praiseNumber integerValue] > 0) {
+            [self.bottomLikeButton setTitle:[NSString stringWithFormat:@"%@", self.bbsDetail.praiseNumber] forState:UIControlStateNormal];
             [self.bottomLikeButton setImageEdgeInsets:UIEdgeInsetsMake(0, -5, 0, 0)];
         } else {
             [self.bottomLikeButton setTitle:nil forState:UIControlStateNormal];
@@ -98,61 +95,55 @@
     WYSuperViewController *currentVC = (WYSuperViewController *)[WYCommonUtils getCurrentVC];
     if (currentVC) {
         
-//        if (self.bbsDetail.bbsType == YTBBSTypeVideo) {
+        if (self.bbsDetail.bbsType == YTBBSTypeVideo) {
 //            WYNewVideoDetailViewController *vc = [[WYNewVideoDetailViewController alloc] init];
 //            vc.videoId = self.bbsDetail.videoID;
 //            [currentVC.navigationController pushViewController:vc animated:YES];
-//        } else {
-//            YTTopicDetailViewController *vc = [[YTTopicDetailViewController alloc] init];
-//            vc.topicId = self.bbsDetail.postsID;
-//            vc.isClickCommentBtn = YES;
-//            vc.hidesBottomBarWhenPushed = YES;
-//            [currentVC.navigationController pushViewController:vc animated:YES];
-//        }
+        } else {
+            WYSpaceDetailViewController *vc = [[WYSpaceDetailViewController alloc] init];
+            vc.topicId = self.bbsDetail.upvote_id;
+            vc.isClickCommentBtn = YES;
+            vc.hidesBottomBarWhenPushed = YES;
+            [currentVC.navigationController pushViewController:vc animated:YES];
+        }
     }
 }
 
 - (void)onCommunityInfoLikeButtonClick:(UIButton *)button
 {
     WEAKSELF
+    if (button.selected) {
+        return;
+    }
+    button.selected = !button.selected;
+    if (button.selected) {
+        self.bbsDetail.praiseNumber = [NSString stringWithFormat:@"%d",([self.bbsDetail.praiseNumber intValue] + 1)];
+        self.bbsDetail.isPraise = YES;
+        [self.bottomLikeButton setTitle:self.bbsDetail.praiseNumber forState:UIControlStateNormal];
+    }
     
-//    if (button.selected) {
-//        return;
-//    }
-//    //    /判断是否有登录
-//    WYSuperViewController *vc = [WYCommonUtils getCurrentVC];
-//    if ([[WYLoginManager sharedManager] needUserLogin:vc]) {
-//        return;
-//    }
-//    
-//    button.selected = !button.selected;
-//    if (button.selected) {
-//        self.bbsDetail.praiseNumber = [NSString stringWithFormat:@"%d",([self.bbsDetail.praiseNumber intValue] + 1)];
-//        self.bbsDetail.isPraise = YES;
-//        [self.bottomLikeButton setTitle:self.bbsDetail.praiseNumber forState:UIControlStateNormal];
-//    }
-//    
-//    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"do_praise"];
-//    
-//    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
-//    [paramsDic setObject:self.bbsDetail.postsID forKey:@"id"];
-//    [paramsDic setValue:@"2" forKey:@"type"];
-//     WYNetWorkManager *networkManager = [[WYNetWorkManager alloc] init];
-//    [networkManager GET:requestUrl needCache:NO caCheKey:nil parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
-//        STRONGSELF
-//        if (requestType == WYRequestTypeSuccess) {
-//            // 点赞成功
-//        } else {
-//            button.selected = NO;
-//            strongSelf.bbsDetail.praiseNumber = [NSString stringWithFormat:@"%d",([strongSelf.bbsDetail.praiseNumber intValue] - 1)];
-//            strongSelf.bbsDetail.isPraise = NO;
-//             [strongSelf.bottomLikeButton setTitle:[NSString stringWithFormat:@"%d", [strongSelf.bbsDetail.praiseNumber intValue]] forState:UIControlStateNormal];
-//            [MBProgressHUD showError:message];
-//        }
-//    } failure:^(id responseObject, NSError *error) {
-//        
-//    }];
+    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"upvote_blog"];
+    
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
+    [paramsDic setObject:self.bbsDetail.identity forKey:@"blog_id"];
+    [paramsDic setValue:[WYLoginUserManager userID] forKey:@"user_code"];
+    [paramsDic setValue:self.bbsDetail.upvote_id forKey:@"upvote_id"];
 
+     WYNetWorkManager *networkManager = [[WYNetWorkManager alloc] init];
+    [networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
+        STRONGSELF
+        if (requestType == WYRequestTypeSuccess) {
+            // 点赞成功
+        } else {
+            button.selected = NO;
+            strongSelf.bbsDetail.praiseNumber = [NSString stringWithFormat:@"%d",([strongSelf.bbsDetail.praiseNumber intValue] - 1)];
+            strongSelf.bbsDetail.isPraise = NO;
+            [strongSelf.bottomLikeButton setTitle:[NSString stringWithFormat:@"%d", [strongSelf.bbsDetail.praiseNumber intValue]] forState:UIControlStateNormal];
+            [MBProgressHUD showError:message];
+        }
+    } failure:^(id responseObject, NSError *error) {
+        
+    }];
 }
 
 @end

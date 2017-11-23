@@ -9,5 +9,7 @@
 #import "WYBaseCollectionController.h"
 
 @interface WYSpaceDetailViewController : WYBaseCollectionController
+@property (nonatomic, copy) NSString *topicId;
+@property (nonatomic, assign) BOOL isClickCommentBtn;
 
 @end

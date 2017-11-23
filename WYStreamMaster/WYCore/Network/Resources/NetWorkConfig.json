@@ -132,4 +132,10 @@
         "control" : "file",
         "action"  : "save"
     },
+    "upvote_blog": {
+        "protocol": "http",
+        "version" : "blog",
+        "control" : "api",
+        "action"  : "upvote_blog.do"
+    },
 }

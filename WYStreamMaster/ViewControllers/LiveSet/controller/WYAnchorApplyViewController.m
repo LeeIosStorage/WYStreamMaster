@@ -171,8 +171,7 @@ UITextFieldDelegate>
         
         if (requestType == WYRequestTypeSuccess) {
 //            [YTToast showSuccess:@"申请成功，请等待审核"];
-
-//            [MBProgressHUD showSuccess:@"申请成功，请等待审核" toView:weakSelf.view];
+            [MBProgressHUD showSuccess:@"申请成功，请等待审核" toView:weakSelf.view];
         }else{
             [MBProgressHUD showError:message toView:weakSelf.view];
         }
@@ -186,15 +185,15 @@ UITextFieldDelegate>
 - (void)uploadWithImageData:(NSData *)imageData uploadType:(LiveUploadImageType)uploadType
 {
     [MBProgressHUD showMessage:@"正在上传..."];
-    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"upload_image"];
+//    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"upload_image"];
+    NSString *requestUrl = @"http://www.legend8888.com/files/api/uploadfile.do?";
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
     //    [paramsDic setObject:imageData forKey:@"pic"];
     WS(weakSelf);
     [self.networkManager POST:requestUrl formFileName:@"pic" fileName:@"img.jpg" fileData:imageData mimeType:@"image/jpeg" parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
-        
         [MBProgressHUD hideHUD];
         if (requestType == WYRequestTypeSuccess) {
-            
+            [MBProgressHUD showSuccess:@"上传成功" toView:weakSelf.view];
             NSString *urlStr = nil;
             if ([dataObject isKindOfClass:[NSArray class]]) {
                 NSArray *array = dataObject;
@@ -217,11 +216,13 @@ UITextFieldDelegate>
             } else if (uploadType == UploadImageTypeAnchorArt){
                 _artImageStr = urlStr;
             }
-            
+        } else {
+            NSLog(@"");
+            [MBProgressHUD showError:message toView:weakSelf.view];
         }
         
     } failure:^(id responseObject, NSError *error) {
-        [MBProgressHUD showError:[WYCommonUtils acquireCurrentLocalizedText:@"wy_photo_upload_errer_tip"]];
+        [MBProgressHUD showError:[WYCommonUtils acquireCurrentLocalizedText:@"wy_photo_upload_errer_tip"] toView:weakSelf.view];
     }];
 }
 

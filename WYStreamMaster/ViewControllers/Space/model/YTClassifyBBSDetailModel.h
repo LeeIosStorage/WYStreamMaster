@@ -19,10 +19,13 @@ typedef NS_ENUM(NSUInteger, YTBBSType) {
 @property (copy, nonatomic) NSString *content;
 @property (copy, nonatomic) NSMutableArray *images;
 @property (copy, nonatomic) NSArray *videos;
-@property (copy, nonatomic) NSString *upvote;
 @property (copy, nonatomic) NSString *comment;
 @property (copy, nonatomic) NSString *create_date;
 @property (copy, nonatomic) NSString *upvote_id;
+@property (copy, nonatomic) NSString *identity;
+
+@property (copy, nonatomic) NSString *praiseNumber;
+
 
 @property (assign, nonatomic) BOOL isCertificate;
 @property (assign, nonatomic) BOOL isAttention;

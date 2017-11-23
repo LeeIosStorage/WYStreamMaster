@@ -205,7 +205,7 @@ UIImagePickerControllerDelegate
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
 //    [paramsDic setObject:imageData forKey:@"pic"];
     WS(weakSelf);
-    [self.networkManager POST:requestUrl formFileName:@"pic" fileName:@"img.jpg" fileData:imageData mimeType:@"image/jpeg" parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
+    [self.networkManager POST:requestUrl formFileName:@"pic" fileName:@"image.jpg" fileData:imageData mimeType:@"image/jpeg" parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
         
         [MBProgressHUD hideHUD];
         if (requestType == WYRequestTypeSuccess) {

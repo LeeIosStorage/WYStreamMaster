@@ -67,6 +67,8 @@ static NSString* IMG_URL = @"http://img.wangyuhudong.com";
 
 #define WEAKSELF  __weak __typeof(&*self)weakSelf = self;
 
+#define STRONGSELF  __strong __typeof(&*weakSelf)strongSelf = weakSelf;
+
 #define SCREEN_WIDTH (CGRectGetWidth([UIScreen mainScreen].bounds))
 #define SCREEN_HEIGHT (CGRectGetHeight([UIScreen mainScreen].bounds))
 

@@ -43,10 +43,11 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
     
     YTClassifyBBSDetailModel *model = [[YTClassifyBBSDetailModel alloc] init];
     model.content = @"橙卡，橙卡，橙卡";
+    model.identity = @"100";
     model.create_date = @"2017-09-19 08:51:34";
     model.images = [NSMutableArray arrayWithObjects:@"update", @"update", @"update", @"update", @"update", nil];
     model.comment = @"100";
-    model.upvote = @"100";
+    model.praiseNumber = @"100";
     //    [self.dataSource addObject:model];
     //    [self.dataSource addObject:model];
     //    [self.dataSource addObject:model];

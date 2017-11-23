@@ -136,16 +136,6 @@
         make.left.equalTo(self.nickNameLabel.mas_right).offset(10);
     }];
     
-//    // 认证标示
-//    [self addSubview:self.identiImageView];
-//    [self.identiImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(self.genderImageView.mas_right).offset(10);
-//        make.height.mas_equalTo(15);
-//        make.width.mas_equalTo(13);
-//        make.centerY.equalTo(self.nickNameLabel.mas_centerY);
-//        make.right.lessThanOrEqualTo(self.mas_right).offset(-10);
-//    }];
-    
     // 创建日期
     [self addSubview:self.creatDateLabel];
     [self.creatDateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -209,7 +199,6 @@
 
 #pragma mark
 #pragma mark - Private Methods
-
 - (void)pushToPersionalVC
 {
     
@@ -298,9 +287,7 @@
         _creatDateLabel.backgroundColor = [UIColor clearColor];
         _creatDateLabel.font = [UIFont systemFontOfSize:10];
         _creatDateLabel.textColor = [UIColor colorWithHexString:@"999999"];
-//        _creatDateLabel.text = @"2月2日 15:30";
     }
-    
     return _creatDateLabel;
 }
 
@@ -326,7 +313,6 @@
         _contentLabel.textColor = [UIColor colorWithHexString:@"666666"];
 //        _contentLabel.text = @"由于此次为不停机更新，维护时登入游戏，将收到“游戏维护中”的提示，维护完毕后即可正常进入；维护时已经登入游戏的玩家不受任何影响。更新结束后请各位在线的召唤师，切记退出游戏重新登录更新。以免遇到部分素材、资源等无法刷出的异常，影响大家的体验。";
     }
-    
     return _contentLabel;
 }
 
@@ -337,7 +323,6 @@
         _gameCategoryButton.layer.borderWidth = 1;
         _gameCategoryButton.layer.borderColor = [UIColor colorWithHexString:@"00A3FF"].CGColor;
     }
-    
     return _gameCategoryButton;
 }
 
@@ -346,7 +331,6 @@
     if (!_bottomView) {
         _bottomView = [[[NSBundle mainBundle] loadNibNamed:@"YTClassifyBottomView" owner:self options:nil] objectAtIndex:0];
     }
-    
     return _bottomView;
 }
 
@@ -355,8 +339,6 @@
     if (!_imagesview) {
         _imagesview = [[[NSBundle mainBundle] loadNibNamed:@"YTClassifyCommunityImageView" owner:self options:nil] objectAtIndex:0];
     }
-    
     return _imagesview;
 }
-
 @end
