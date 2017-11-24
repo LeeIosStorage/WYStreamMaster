@@ -277,41 +277,28 @@
 - (void)userLoginRequest{
     
     [MBProgressHUD showMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_log_in"]];
-    
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"login"];
-    
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
-    
     [paramsDic setObject:_loginAccountTextFieldText forKey:@"user_name"];
     [paramsDic setObject:[NSNumber numberWithInt:0] forKey:@"logintype"];
-    
     NSString *password = [self.loginPasswordTextField.text md5String];
     [paramsDic setObject:password forKey:@"password"];
-    
     WS(weakSelf)
     [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:[WYLoginModel class] success:^(WYRequestType requestType, NSString *message, id dataObject) {
         NSLog(@"error:%@ data:%@",message,dataObject);
         [MBProgressHUD hideHUD];
-        
         if (requestType == WYRequestTypeSuccess) {
-            
             WYLoginModel *loginModel = (WYLoginModel *)dataObject;
-            
 //            loginModel.anchorPushUrl = @"rtmp://pili-publish.kaisaiba.com/xklive/xklivetest";
-            
             [WYLoginUserManager updateUserDataWithLoginModel:loginModel];
-            
             [WYLoginUserManager setPassword:weakSelf.loginPasswordTextField.text];
             [WYLoginUserManager setAccount:weakSelf.loginAccountTextField.text];
             
             weakSelf.loginSuccessBlock();
             [MBProgressHUD showSuccess:@"登录成功" toView:weakSelf.view];
-            
         }else{
-            
             [MBProgressHUD showError:message toView:weakSelf.view];
         }
-        
     } failure:^(id responseObject, NSError *error) {
         [MBProgressHUD hideHUD];
         [MBProgressHUD showAlertMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_server_request_errer_tip"] toView:weakSelf.view];

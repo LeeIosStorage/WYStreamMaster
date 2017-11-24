@@ -155,6 +155,8 @@
 		7854B9E51FB5493D00A7F85E /* WYSpaceDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7854B9E31FB5493D00A7F85E /* WYSpaceDetailViewController.xib */; };
 		7854B9E91FB54B6C00A7F85E /* WYLiveViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 7854B9E71FB54B6C00A7F85E /* WYLiveViewController1.m */; };
 		7854B9EA1FB54B6C00A7F85E /* WYLiveViewController1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7854B9E81FB54B6C00A7F85E /* WYLiveViewController1.xib */; };
+		78716D4B1FC6C0D80019F9E5 /* YTCommunityDetailCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78716D481FC6C0D70019F9E5 /* YTCommunityDetailCollectionCell.m */; };
+		78716D4C1FC6C0D80019F9E5 /* YTCommunityDetailCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78716D4A1FC6C0D80019F9E5 /* YTCommunityDetailCollectionCell.xib */; };
 		787ADB6F1F8B509B005331C9 /* YTClassifyCommunityImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 787ADB6D1F8B509B005331C9 /* YTClassifyCommunityImageView.m */; };
 		787ADB701F8B509B005331C9 /* YTClassifyCommunityImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 787ADB6E1F8B509B005331C9 /* YTClassifyCommunityImageView.xib */; };
 		787ADB741F8B50AB005331C9 /* YTClassifyBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 787ADB721F8B50AB005331C9 /* YTClassifyBottomView.m */; };
@@ -535,6 +537,9 @@
 		7854B9E61FB54B6C00A7F85E /* WYLiveViewController1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYLiveViewController1.h; sourceTree = "<group>"; };
 		7854B9E71FB54B6C00A7F85E /* WYLiveViewController1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYLiveViewController1.m; sourceTree = "<group>"; };
 		7854B9E81FB54B6C00A7F85E /* WYLiveViewController1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYLiveViewController1.xib; sourceTree = "<group>"; };
+		78716D481FC6C0D70019F9E5 /* YTCommunityDetailCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTCommunityDetailCollectionCell.m; sourceTree = "<group>"; };
+		78716D491FC6C0D70019F9E5 /* YTCommunityDetailCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTCommunityDetailCollectionCell.h; sourceTree = "<group>"; };
+		78716D4A1FC6C0D80019F9E5 /* YTCommunityDetailCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YTCommunityDetailCollectionCell.xib; sourceTree = "<group>"; };
 		787ADB6C1F8B509B005331C9 /* YTClassifyCommunityImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTClassifyCommunityImageView.h; sourceTree = "<group>"; };
 		787ADB6D1F8B509B005331C9 /* YTClassifyCommunityImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTClassifyCommunityImageView.m; sourceTree = "<group>"; };
 		787ADB6E1F8B509B005331C9 /* YTClassifyCommunityImageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YTClassifyCommunityImageView.xib; sourceTree = "<group>"; };
@@ -1720,6 +1725,9 @@
 				78D1D3441F7E42E6007261E4 /* WYSpaceHeaderView.h */,
 				78D1D3451F7E42E6007261E4 /* WYSpaceHeaderView.m */,
 				78D1D3461F7E42E6007261E4 /* WYSpaceHeaderView.xib */,
+				78716D491FC6C0D70019F9E5 /* YTCommunityDetailCollectionCell.h */,
+				78716D481FC6C0D70019F9E5 /* YTCommunityDetailCollectionCell.m */,
+				78716D4A1FC6C0D80019F9E5 /* YTCommunityDetailCollectionCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1834,6 +1842,7 @@
 				78B82A2F1F78DB1B00279366 /* WYRegistersViewController.xib in Resources */,
 				44203D1F1E6FE78800D59B5E /* LaunchScreen.storyboard in Resources */,
 				78D1D3501F8B44E2007261E4 /* YTCommunityCollectionCell.xib in Resources */,
+				78716D4C1FC6C0D80019F9E5 /* YTCommunityDetailCollectionCell.xib in Resources */,
 				789DAA2C1F5688200012075C /* face_beautification.bundle in Resources */,
 				4425642D1F42AA830075467A /* wy_gameresult_win_1@2x.png in Resources */,
 				442564211F42AA830075467A /* gr_hu_icon@2x.png in Resources */,
@@ -1958,6 +1967,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				444DA6561E8BB56000C45DE5 /* WYGiftRecordModel.m in Sources */,
+				78716D4B1FC6C0D80019F9E5 /* YTCommunityDetailCollectionCell.m in Sources */,
 				444AA5871EBB126900A80FB9 /* UIImage+ProportionalFill.m in Sources */,
 				44203DA11E714BD600D59B5E /* RMPushUtils.m in Sources */,
 				44203DB71E7246D900D59B5E /* MainTabViewController.m in Sources */,

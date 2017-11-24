@@ -8,7 +8,7 @@
 
 #import "WYSpaceDetailViewController.h"
 #import <MJRefresh.h>
-#import "YTCommunityCollectionCell.h"
+#import "YTCommunityDetailCollectionCell.h"
 #import "YTClassifyBBSDetailModel.h"
 #import "WYCustomActionSheet.h"
 #import "WYImagePickerController.h"
@@ -16,7 +16,7 @@
 #import "UINavigationBar+Awesome.h"
 
 #define kClassifyHeaderHeight (kScreenWidth * 210 / 375 + 44)
-static NSString *const kCommunityCollectionCell = @"YTCommunityCollectionCell";
+static NSString *const kCommunityDetailCollectionCell = @"YTCommunityDetailCollectionCell";
 static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
 
 @interface WYSpaceDetailViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
@@ -28,7 +28,7 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"个人空间";
+    self.title = @"评论详情";
     [self setupView];
     [self getSpaceRequest];
 }
@@ -38,7 +38,7 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
 {
     self.collectionView.backgroundColor = [WYStyleSheet currentStyleSheet].themeBackgroundColor;
     
-    [self.collectionView registerNib:[UINib nibWithNibName:kCommunityCollectionCell bundle:nil] forCellWithReuseIdentifier:kCommunityCollectionCell];
+    [self.collectionView registerNib:[UINib nibWithNibName:kCommunityDetailCollectionCell bundle:nil] forCellWithReuseIdentifier:kCommunityDetailCollectionCell];
     [self.collectionView registerNib:[UINib nibWithNibName:kSpaceHeaderView bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kSpaceHeaderView];
     
     YTClassifyBBSDetailModel *model = [[YTClassifyBBSDetailModel alloc] init];
@@ -47,9 +47,10 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
     model.create_date = @"2017-09-19 08:51:34";
     model.images = [NSMutableArray arrayWithObjects:@"update", @"update", @"update", @"update", @"update", nil];
     model.comment = @"100";
+    model.identity = @"100";
     model.praiseNumber = @"100";
-    //    [self.dataSource addObject:model];
-    //    [self.dataSource addObject:model];
+        [self.dataSource addObject:model];
+        [self.dataSource addObject:model];
     //    [self.dataSource addObject:model];
     //    [self.dataSource addObject:model];
     
@@ -99,7 +100,7 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
             model.bbsType = YTBBSTypeText;
         }
     }
-    CGFloat itemHeight = [YTCommunityCollectionCell heightWithEntity:model];
+    CGFloat itemHeight = [YTCommunityDetailCollectionCell heightWithEntity:model];
     return CGSizeMake(kScreenWidth - 12*2, itemHeight);
     
 }
@@ -110,7 +111,7 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-    CGSize headerSize = CGSizeMake(SCREEN_WIDTH, 175);
+    CGSize headerSize = CGSizeMake(SCREEN_WIDTH, 0.1);
     return headerSize;
 }
 
@@ -131,12 +132,11 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    YTCommunityCollectionCell *communityCell = [collectionView dequeueReusableCellWithReuseIdentifier:kCommunityCollectionCell forIndexPath:indexPath];
+    YTCommunityDetailCollectionCell *communityCell = [collectionView dequeueReusableCellWithReuseIdentifier:kCommunityDetailCollectionCell forIndexPath:indexPath];
     if (indexPath.row < [self.dataSource count]) {
         
         [communityCell updateCommunifyCellWithData:(YTClassifyBBSDetailModel *)self.dataSource[indexPath.row]];
     }
-    
     return communityCell;
 }
 
