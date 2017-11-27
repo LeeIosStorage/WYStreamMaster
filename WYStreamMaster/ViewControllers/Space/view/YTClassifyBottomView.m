@@ -100,9 +100,7 @@
 //            vc.videoId = self.bbsDetail.videoID;
 //            [currentVC.navigationController pushViewController:vc animated:YES];
         } else {
-            WYSpaceDetailViewController *vc = [[WYSpaceDetailViewController alloc] init];
-            vc.topicId = self.bbsDetail.upvote_id;
-            vc.isClickCommentBtn = YES;
+            WYSpaceDetailViewController *vc = [[WYSpaceDetailViewController alloc] init:self.bbsDetail];
             vc.hidesBottomBarWhenPushed = YES;
             [currentVC.navigationController pushViewController:vc animated:YES];
         }

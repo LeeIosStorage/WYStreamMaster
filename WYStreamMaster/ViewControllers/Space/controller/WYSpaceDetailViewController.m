@@ -14,16 +14,25 @@
 #import "WYImagePickerController.h"
 #import "UIImage+ProportionalFill.h"
 #import "UINavigationBar+Awesome.h"
-
+#import "WYSpaceDetailModel.h"
 #define kClassifyHeaderHeight (kScreenWidth * 210 / 375 + 44)
 static NSString *const kCommunityDetailCollectionCell = @"YTCommunityDetailCollectionCell";
 static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
 
 @interface WYSpaceDetailViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
-
+@property (nonatomic, strong) YTClassifyBBSDetailModel *spaceModel;
 @end
 
 @implementation WYSpaceDetailViewController
+- (instancetype)init:(YTClassifyBBSDetailModel *)spaceListModel
+{
+    self = [super init];
+    if (self) {
+        self.startIndexPage = 1;
+        self.spaceModel = spaceListModel;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -64,25 +73,24 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
 #pragma mark -
 #pragma mark - Server
 - (void)getSpaceRequest{
-    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"user_blogs"];
+    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"get_blog_comments"];
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
-    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"user_code"];
-    [paramsDic setObject:@"1" forKey:@"cur_page"];
+    [paramsDic setObject:self.spaceModel.identity forKey:@"blog_id"];
+    [paramsDic setObject:[NSString stringWithFormat:@"%zd", self.startIndexPage] forKey:@"cur_page"];
     [paramsDic setObject:@"20" forKey:@"page_size"];
     WS(weakSelf)
-    [self.networkManager GET:requestUrl needCache:NO parameters:nil responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
+    [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
         NSLog(@"error:%@ data:%@",message,dataObject);
         if (requestType == WYRequestTypeSuccess) {
-            NSArray *dataArr = [NSArray modelArrayWithClass:[YTClassifyBBSDetailModel class] json:dataObject[@"list"]];
+            NSArray *dataArr = [NSArray modelArrayWithClass:[WYSpaceDetailModel class] json:dataObject[@"list"]];
             [weakSelf.dataSource addObjectsFromArray:dataArr];
-            
             [weakSelf.collectionView reloadData];
         } else {
             
         }
         
     } failure:^(id responseObject, NSError *error) {
-        
+        NSLog(@"");
     }];
 }
 

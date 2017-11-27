@@ -192,6 +192,9 @@
 		78B82A4A1F79279500279366 /* WYForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78B82A481F79279500279366 /* WYForgotPasswordViewController.xib */; };
 		78B82A521F7A2EF100279366 /* WYHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B82A501F7A2EF100279366 /* WYHelpViewController.m */; };
 		78B82A531F7A2EF100279366 /* WYHelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78B82A511F7A2EF100279366 /* WYHelpViewController.xib */; };
+		78BB09EF1FC80649001837FD /* YTInteractMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BB09ED1FC80649001837FD /* YTInteractMessageTableViewCell.m */; };
+		78BB09F01FC80649001837FD /* YTInteractMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78BB09EE1FC80649001837FD /* YTInteractMessageTableViewCell.xib */; };
+		78BB09F31FC808E8001837FD /* WYSpaceDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BB09F21FC808E8001837FD /* WYSpaceDetailModel.m */; };
 		78D1D3021F7A5087007261E4 /* WYHelpCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D1D3001F7A5087007261E4 /* WYHelpCell.m */; };
 		78D1D3031F7A5087007261E4 /* WYHelpCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78D1D3011F7A5087007261E4 /* WYHelpCell.xib */; };
 		78D1D30B1F7A7A12007261E4 /* WYMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D1D3091F7A7A12007261E4 /* WYMessageViewController.m */; };
@@ -589,6 +592,11 @@
 		78B82A4F1F7A2EF100279366 /* WYHelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYHelpViewController.h; sourceTree = "<group>"; };
 		78B82A501F7A2EF100279366 /* WYHelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYHelpViewController.m; sourceTree = "<group>"; };
 		78B82A511F7A2EF100279366 /* WYHelpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYHelpViewController.xib; sourceTree = "<group>"; };
+		78BB09EC1FC80649001837FD /* YTInteractMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTInteractMessageTableViewCell.h; sourceTree = "<group>"; };
+		78BB09ED1FC80649001837FD /* YTInteractMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTInteractMessageTableViewCell.m; sourceTree = "<group>"; };
+		78BB09EE1FC80649001837FD /* YTInteractMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YTInteractMessageTableViewCell.xib; sourceTree = "<group>"; };
+		78BB09F11FC808E8001837FD /* WYSpaceDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WYSpaceDetailModel.h; sourceTree = "<group>"; };
+		78BB09F21FC808E8001837FD /* WYSpaceDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WYSpaceDetailModel.m; sourceTree = "<group>"; };
 		78D1D2FF1F7A5087007261E4 /* WYHelpCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYHelpCell.h; sourceTree = "<group>"; };
 		78D1D3001F7A5087007261E4 /* WYHelpCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYHelpCell.m; sourceTree = "<group>"; };
 		78D1D3011F7A5087007261E4 /* WYHelpCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYHelpCell.xib; sourceTree = "<group>"; };
@@ -1706,6 +1714,8 @@
 			children = (
 				78D1D3511F8B451A007261E4 /* YTClassifyBBSDetailModel.h */,
 				78D1D3521F8B451A007261E4 /* YTClassifyBBSDetailModel.m */,
+				78BB09F11FC808E8001837FD /* WYSpaceDetailModel.h */,
+				78BB09F21FC808E8001837FD /* WYSpaceDetailModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1713,6 +1723,9 @@
 		78D1D33E1F7E10AA007261E4 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				78BB09EC1FC80649001837FD /* YTInteractMessageTableViewCell.h */,
+				78BB09ED1FC80649001837FD /* YTInteractMessageTableViewCell.m */,
+				78BB09EE1FC80649001837FD /* YTInteractMessageTableViewCell.xib */,
 				787ADB711F8B50AB005331C9 /* YTClassifyBottomView.h */,
 				787ADB721F8B50AB005331C9 /* YTClassifyBottomView.m */,
 				787ADB731F8B50AB005331C9 /* YTClassifyBottomView.xib */,
@@ -1828,6 +1841,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				78B82A531F7A2EF100279366 /* WYHelpViewController.xib in Resources */,
+				78BB09F01FC80649001837FD /* YTInteractMessageTableViewCell.xib in Resources */,
 				44D2F7E31E7FC30500122866 /* YTChatBottomView.xib in Resources */,
 				787ADB931F909E2B005331C9 /* WYIncomeRewardViewController.xib in Resources */,
 				789DAA2E1F5688200012075C /* EatRabbi.bundle in Resources */,
@@ -2072,12 +2086,14 @@
 				44203D9B1E714BD600D59B5E /* WYRefreshHeader.m in Sources */,
 				44203D981E714BD600D59B5E /* WYImageCodeView.m in Sources */,
 				78B82A521F7A2EF100279366 /* WYHelpViewController.m in Sources */,
+				78BB09EF1FC80649001837FD /* YTInteractMessageTableViewCell.m in Sources */,
 				78D1D3421F7E20F5007261E4 /* WYSpaceViewController.m in Sources */,
 				78D1D3021F7A5087007261E4 /* WYHelpCell.m in Sources */,
 				44D2F7E51E7FC30500122866 /* YTChatModel.m in Sources */,
 				441C23FD1E83FDA20020557C /* LiveGiftShowModel.m in Sources */,
 				7854B9E41FB5493D00A7F85E /* WYSpaceDetailViewController.m in Sources */,
 				78D1D31D1F7B933F007261E4 /* WYLiveSetViewController.m in Sources */,
+				78BB09F31FC808E8001837FD /* WYSpaceDetailModel.m in Sources */,
 				44203D971E714BD600D59B5E /* WYCustomAlertView.m in Sources */,
 				441C23FC1E83FDA20020557C /* LiveGiftShow.m in Sources */,
 				78526D691FC28491008D799C /* WYHelpDetailCell.m in Sources */,

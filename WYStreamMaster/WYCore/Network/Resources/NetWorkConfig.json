@@ -138,4 +138,10 @@
         "control" : "api",
         "action"  : "upvote_blog.do"
     },
+    "get_blog_comments": {
+        "protocol": "http",
+        "version" : "blog",
+        "control" : "api",
+        "action"  : "get_blog_comments.do"
+    },
 }

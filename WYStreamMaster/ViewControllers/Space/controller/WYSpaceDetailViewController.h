@@ -7,9 +7,9 @@
 //
 
 #import "WYBaseCollectionController.h"
-
+@class YTClassifyBBSDetailModel;
 @interface WYSpaceDetailViewController : WYBaseCollectionController
 @property (nonatomic, copy) NSString *topicId;
 @property (nonatomic, assign) BOOL isClickCommentBtn;
-
+- (instancetype)init:(YTClassifyBBSDetailModel *)spaceListModel;
 @end
