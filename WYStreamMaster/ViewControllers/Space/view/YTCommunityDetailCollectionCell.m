@@ -10,6 +10,8 @@
 #import "YTClassifyBBSDetailModel.h"
 #import "YTClassifyCommunityImageView.h"
 #import "YTClassifyBottomView.h"
+#import "WYSpaceDetailModel.h"
+#import "YTInteractMessageTableViewCell.h"
 
 #define kCommunityAvatarWidth  28
 
@@ -31,8 +33,10 @@
 
 @property (strong, nonatomic) YTClassifyBottomView *bottomView;
 @property (strong, nonatomic) YTClassifyCommunityImageView *imagesview;
+//@property (strong, nonatomic) YTInteractMessageTableViewCell *commentView;
 
 @property (strong, nonatomic) YTClassifyBBSDetailModel *bbsInfo;
+@property (strong, nonatomic) WYSpaceDetailModel *spaceModel;
 
 @end
 
@@ -79,8 +83,6 @@
         cellHeight += categoryHeight;
         cellHeight += bottomViewHeight;
     }
-    
-//    NSLog(@"计算专区cell的高度是      ……%f",cellHeight);
     return ceilf(cellHeight);
 }
 
@@ -89,11 +91,9 @@
     if (model) {
         _bbsInfo = model;
         NSURL *avatarUrl = [NSURL URLWithString:[WYLoginUserManager avatar]];
-
         [self.avatarImageView setImageWithURL:avatarUrl placeholder:[UIImage imageNamed:@"common_headImage"]];
         [self.videoCoverImageView setImageWithURL:avatarUrl placeholder:[UIImage imageNamed:@"common_headImage"]];
         self.nickNameLabel.text = [WYLoginUserManager nickname];
-
         self.contentLabel.text = model.content;
         self.creatDateLabel.text = model.create_date;
 //        self.nickNameLabel.text = @"爱打lol的妹子";
@@ -187,14 +187,22 @@
         make.height.mas_equalTo(37);
     }];
     
-    // 游戏分类label
-    [self addSubview:self.gameCategoryButton];
-    [self.gameCategoryButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(self.mas_top).offset(-10);
-        make.left.equalTo(self.contentLabel.mas_left);
-        make.height.mas_equalTo(18);
-        make.width.mas_lessThanOrEqualTo(200);
-    }];
+//    // 游戏分类label
+//    [self addSubview:self.gameCategoryButton];
+//    [self.gameCategoryButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.bottom.mas_equalTo(self.mas_top).offset(-10);
+//        make.left.equalTo(self.contentLabel.mas_left);
+//        make.height.mas_equalTo(18);
+//        make.width.mas_lessThanOrEqualTo(200);
+//    }];
+    
+    // 评论回复label
+//    CGFloat commentHeight = [self.spaceModel getCellHeigt];
+//    [self addSubview:self.commentView];
+//    [self.commentView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.bottom.right.equalTo(self);
+//        make.height.mas_equalTo(45);
+//    }];
 }
 
 #pragma mark
@@ -325,6 +333,13 @@
     }
     return _gameCategoryButton;
 }
+
+//- (YTInteractMessageTableViewCell *)commentView {
+//    if (!_commentView) {
+//        _commentView = [[[NSBundle mainBundle] loadNibNamed:@"YTInteractMessageTableViewCell" owner:self options:nil] objectAtIndex:0];
+//    }
+//    return _commentView;
+//}
 
 - (YTClassifyBottomView *)bottomView
 {

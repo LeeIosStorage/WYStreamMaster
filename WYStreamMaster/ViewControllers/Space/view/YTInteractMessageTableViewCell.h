@@ -20,6 +20,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *praiseImage;
 
 @property (copy, nonatomic) void(^answerButtonBlock)(void);
-
+- (void)updateInteractMessageWithInfo:(WYSpaceDetailModel *)spaceModel;
 @property (nonatomic, strong) WYSpaceDetailModel *model;
 @end

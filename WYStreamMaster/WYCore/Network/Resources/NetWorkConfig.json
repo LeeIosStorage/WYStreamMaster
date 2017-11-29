@@ -144,4 +144,16 @@
         "control" : "api",
         "action"  : "get_blog_comments.do"
     },
+    "publish_comment": {
+        "protocol": "http",
+        "version" : "blog",
+        "control" : "api",
+        "action"  : "publish_comment.do"
+    },
+    "publish_blog": {
+        "protocol": "http",
+        "version" : "blog",
+        "control" : "api",
+        "action"  : "publish_blog.do"
+    },
 }

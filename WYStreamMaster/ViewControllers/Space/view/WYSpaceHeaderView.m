@@ -20,6 +20,7 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
+    self.headerImageView.userInteractionEnabled = YES;
     UITapGestureRecognizer *headerImageViewTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickHeaderImageView)];
     [self.headerImageView addGestureRecognizer:headerImageViewTap];
 }

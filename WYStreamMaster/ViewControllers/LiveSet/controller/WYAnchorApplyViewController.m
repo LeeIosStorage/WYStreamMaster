@@ -324,7 +324,6 @@ UITextFieldDelegate>
 - (void)showSelectAreaView{
     WEAKSELF
     NSMutableArray *otherButtonTitles = [NSMutableArray array];
-    
     for (NSDictionary *dic in self.areaListArray) {
         NSString *areaName = [dic stringObjectForKey:@"Chain_name"];
         if ([[WYCommonUtils getPreferredLanguage] containsString:@"en"]) {
@@ -350,7 +349,6 @@ UITextFieldDelegate>
 
 #pragma mark -
 #pragma mark - UIImagePickerControllerDelegate
-
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(nullable NSDictionary<NSString *,id> *)editingInfo
 {
     UIImage* imageAfterScale = image;

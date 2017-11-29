@@ -16,6 +16,7 @@
 #import "UIImage+ProportionalFill.h"
 #import "UINavigationBar+Awesome.h"
 #import "WYSpaceDetailViewController.h"
+#import "CommentSubmitViewController.h"
 #define kClassifyHeaderHeight (kScreenWidth * 210 / 375 + 44)
 static NSString *const kCommunityCollectionCell = @"YTCommunityCollectionCell";
 static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
@@ -26,23 +27,26 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
 @end
 
 @implementation WYSpaceViewController
-//- (void)viewWillAppear:(BOOL)animated
-//{
-//    [super viewWillAppear:animated];
-//    [self.navigationController setNavigationBarHidden:YES];
-//}
-//
-//- (void)viewWillDisappear:(BOOL)animated
-//{
-//    [super viewWillDisappear:animated];
-//    [self.navigationController setNavigationBarHidden:NO];
-//}
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont boldSystemFontOfSize:15.0]};
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.edgesForExtendedLayout = UIRectEdgeTop;
     self.title = @"个人空间";
     [self setupView];
     [self getSpaceRequest];
+    //导航栏透明
+    self.navigationController.navigationBar.shadowImage = [[UIImage alloc]init];
+    [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc]init] forBarMetrics: UIBarMetricsDefault];
 }
 
 #pragma mark - setup
@@ -54,7 +58,7 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
     UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightBarButtonItem;
     [self setRightButton:rightButton];
-
+//    [self.navigationController.navigationBar setValue:@0 forKeyPath:@"backgroundView.alpha"];
     
     self.collectionView.backgroundColor = [WYStyleSheet currentStyleSheet].themeBackgroundColor;
     
@@ -68,8 +72,8 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
     model.comment = @"100";
     model.identity = @"101";
     model.praiseNumber = @"100";
-    [self.dataSource addObject:model];
-    [self.dataSource addObject:model];
+//    [self.dataSource addObject:model];
+//    [self.dataSource addObject:model];
 //    [self.dataSource addObject:model];
 //    [self.dataSource addObject:model];
 
@@ -78,6 +82,20 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.width.bottom.equalTo(weakSelf.view);
     }];
+}
+
+- (UIBarButtonItem *)leftBarButtonItem
+{
+    if (!self.backImage) {
+        self.backImage = [UIImage imageNamed:@"common_white_back"];
+    }
+    UIImage *backButtonImage = self.backImage;
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [backButton addTarget:self action:@selector(doBack) forControlEvents:UIControlEventTouchUpInside];
+    [backButton setImage:backButtonImage forState:UIControlStateNormal];
+    backButton.frame = CGRectMake(0, 0, backButtonImage.size.width, backButtonImage.size.height);
+    UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    return backBarButtonItem;
 }
 
 #pragma mark -
@@ -94,7 +112,6 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
         if (requestType == WYRequestTypeSuccess) {
             NSArray *dataArr = [NSArray modelArrayWithClass:[YTClassifyBBSDetailModel class] json:dataObject[@"list"]];
             [weakSelf.dataSource addObjectsFromArray:dataArr];
-            
             [weakSelf.collectionView reloadData];
         } else {
             
@@ -111,15 +128,29 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
 {
 //    UIButton *rightButton = (UIButton *)sender;
     WEAKSELF
-    WYCustomActionSheet *actionSheet = [[WYCustomActionSheet alloc] initWithTitle:nil actionBlock:^(NSInteger buttonIndex) {
-        NSLog(@"%ld",(long)buttonIndex);
-        if (buttonIndex == 1) {
-            [weakSelf showImageBroswerWithSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-        } else if (buttonIndex == 0){
-            [weakSelf showImageBroswerWithSourceType:UIImagePickerControllerSourceTypeCamera];
-        }
-    } cancelButtonTitle:[WYCommonUtils acquireCurrentLocalizedText:@"wy_cancel"] destructiveButtonTitle:nil otherButtonTitles:@[[WYCommonUtils acquireCurrentLocalizedText:@"wy_take_photos"],[WYCommonUtils acquireCurrentLocalizedText:@"wy_photo_library"]]];
-    [actionSheet showInView:self.view];
+//    WYCustomActionSheet *actionSheet = [[WYCustomActionSheet alloc] initWithTitle:nil actionBlock:^(NSInteger buttonIndex) {
+//        NSLog(@"%ld",(long)buttonIndex);
+//        if (buttonIndex == 1) {
+//            [weakSelf showImageBroswerWithSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+//        } else if (buttonIndex == 0){
+//            [weakSelf showImageBroswerWithSourceType:UIImagePickerControllerSourceTypeCamera];
+//        }
+//    } cancelButtonTitle:[WYCommonUtils acquireCurrentLocalizedText:@"wy_cancel"] destructiveButtonTitle:nil otherButtonTitles:@[[WYCommonUtils acquireCurrentLocalizedText:@"wy_take_photos"],[WYCommonUtils acquireCurrentLocalizedText:@"wy_photo_library"]]];
+//    [actionSheet showInView:self.view];
+    
+    CommentSubmitViewController *submitVc = [[CommentSubmitViewController alloc] init];
+    submitVc.submitType = 7;
+//    submitVc.delegate = self;
+    
+    UIButton *customRightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [customRightButton setTitle:@"发布" forState:UIControlStateNormal];
+    [customRightButton setTitleColor:[WYStyleSheet currentStyleSheet].normalButtonColor forState:UIControlStateNormal];
+    [customRightButton.titleLabel setFont:[UIFont systemFontOfSize:12]];
+    customRightButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+    
+    submitVc.rightButton = customRightButton;
+    
+    [self.navigationController pushViewController:submitVc animated:YES];
 
 }
 
@@ -258,7 +289,7 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     YTClassifyBBSDetailModel *model = (YTClassifyBBSDetailModel *)self.dataSource[indexPath.row];
-    WYSpaceDetailViewController *spaceDetailVC = [[WYSpaceDetailViewController alloc] init];
+    WYSpaceDetailViewController *spaceDetailVC = [[WYSpaceDetailViewController alloc] init:model];
     [self.navigationController pushViewController:spaceDetailVC animated:YES];
 //    if (model.bbsType == YTBBSTypeVideo) {
 //        WYNewVideoDetailViewController *vc = [[WYNewVideoDetailViewController alloc] init];

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 @class YTClassifyBBSDetailModel;
+@class WYSpaceDetailModel;
 typedef NS_ENUM(NSUInteger, CommunityCellType) {
     CommunityCellTypeText = 1,
     CommunityCellTypeGraphic,

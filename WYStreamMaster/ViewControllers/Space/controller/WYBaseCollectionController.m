@@ -73,7 +73,6 @@ DZNEmptyDataSetDelegate
 {
     self.refreshingFooterBlock = refreshBlock;
     WEAKSELF
-    
     self.collectionView.mj_footer = [WYRefreshFooter footerWithRefreshingBlock:^{
         if (weakSelf.refreshingFooterBlock) {
             weakSelf.refreshingFooterBlock();
