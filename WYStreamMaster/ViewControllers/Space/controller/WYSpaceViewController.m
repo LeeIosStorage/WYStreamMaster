@@ -41,6 +41,11 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeTop;
+    if (@available(iOS 11.0, *)) {
+        self.collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
     self.title = @"个人空间";
     [self setupView];
     [self getSpaceRequest];
@@ -58,7 +63,7 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
     UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightBarButtonItem;
     [self setRightButton:rightButton];
-//    [self.navigationController.navigationBar setValue:@0 forKeyPath:@"backgroundView.alpha"];
+    [self.navigationController.navigationBar setValue:@0 forKeyPath:@"backgroundView.alpha"];
     
     self.collectionView.backgroundColor = [WYStyleSheet currentStyleSheet].themeBackgroundColor;
     

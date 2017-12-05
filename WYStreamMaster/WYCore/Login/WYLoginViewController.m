@@ -93,9 +93,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkTextChaneg:) name:UITextFieldTextDidChangeNotification object:nil];
     [WYSettingConfig staticInstance].settingDelegater = self;
     self.edgesForExtendedLayout = UIRectEdgeAll;
-    
     [self.navigationController setNavigationBarHidden:YES];
-    
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -104,7 +102,6 @@
     _bViewDisappear = YES;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextFieldTextDidChangeNotification object:nil];
     [self.navigationController setNavigationBarHidden:NO];
-    
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -143,22 +140,15 @@
 #else
 //    [self changeServerOperate];
 #endif
-    
-    
-    
     [self initViewUI];
     //init subviews
     [self initSubviews];
-    
     
     [self setupLoginContainerView];
     [self refreshViewUI];
     
     self.cancelButton.hidden = !self.showCancelButton;
-    
-
     //[self.navigationController.navigationBar lt_reset];
-   
     if ([self.navigationController.navigationBar respondsToSelector:@selector( setBackgroundImage:forBarMetrics:)]){
         NSArray *list=self.navigationController.navigationBar.subviews;
         for (id obj in list) {
@@ -182,16 +172,13 @@
     [[UIDevice currentDevice] setValue:
      [NSNumber numberWithInteger:UIInterfaceOrientationPortrait]
                                 forKey:@"orientation"];
-    
     self.title = [WYCommonUtils acquireCurrentLocalizedText:@"wy_login"];
-
 }
 
 - (UIStatusBarStyle )preferredStatusBarStyle
 {
     return UIStatusBarStyleDefault;
 }
-
 - (void)initSubviews
 {
     self.passwordError.hidden = YES;
@@ -275,7 +262,6 @@
 
 #pragma mark - request
 - (void)userLoginRequest{
-    
     [MBProgressHUD showMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_log_in"]];
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"login"];
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
@@ -306,9 +292,7 @@
 }
 
 - (void)sendMsgCode:(NSString *)imageCode{
-    
     [MBProgressHUD showMessage:@"请求中..." toView:self.view];
-    
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"sendSMSCode"];
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
     [paramsDic setObject:[NSNumber numberWithInt:4] forKey:@"type"];
@@ -324,14 +308,13 @@
     [self.networkManager GET:requestUrl needCache:NO  parameters:paramsDic responseClass:nil success:^(NSInteger statusCode, NSString *message, id dataObject) {
         WYLog(@"error:%@ data:%@",message,dataObject);
         [MBProgressHUD hideHUDForView:weakSelf.view];
-        
         if (statusCode == 0) {
             [MBProgressHUD showSuccess:@"验证码发送成功" toView:weakSelf.view];
             [_imageCodeView dismissView];
-        }else if (statusCode == -2){
+        } else if (statusCode == -2) {
             [weakSelf removeCurrentTimer];
             [weakSelf showImageCodeView];
-        }else{
+        } else {
             if (statusCode == 6) {
                 [_imageCodeView showAnimationWithError];
             }else{
@@ -340,7 +323,6 @@
             [weakSelf removeCurrentTimer];
             [MBProgressHUD showError:message toView:weakSelf.view];
         }
-        
     } failure:^(id responseObject, NSError *error) {
         [weakSelf removeCurrentTimer];
         [MBProgressHUD hideHUDForView:weakSelf.view];
@@ -533,10 +515,14 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:@"YES" forKey:LOGIN_TIP_SHOW_IDENTIFIER];
     self.loginTipView.hidden = YES;
+    self.loginTipView.hidden = YES;
 }
 
 - (IBAction)cancelLogin:(id)sender
 {
+    if (self.loginCancelBlock) {
+        self.loginCancelBlock();
+    }
     if (self.loginCancelBlock) {
         self.loginCancelBlock();
     }
@@ -680,7 +666,7 @@
 //        [stringWithAddedSpaces appendString:tmpText];
 //        [stringWithAddedSpaces insertString:@" " atIndex:3];
 //        newText = stringWithAddedSpaces;
-//    }else if (tmpText.length > 7){
+//    } else if (tmpText.length > 7){
 //        [stringWithAddedSpaces appendString:tmpText];
 //        [stringWithAddedSpaces insertString:@" " atIndex:3];
 //        [stringWithAddedSpaces insertString:@" " atIndex:8];
@@ -704,8 +690,7 @@
     [self.loginMsgCodeTextField resignFirstResponder];
 }
 
-- (void)showImageCodeView{
-    
+- (void)showImageCodeView {
     [self textFieldResignFirstResponder];
     _imageCodeView = [[WYImageCodeView alloc] init:nil];
     _imageCodeView.telephone = _loginAccountTextFieldText;
@@ -715,7 +700,7 @@
 
 - (void)gotoBindPhoneVc:(NSDictionary *)info{
     
-    WS(weakSelf);
+//    WS(weakSelf);
 //    WYBindPhoneViewController *bindPhoneVc = [[WYBindPhoneViewController alloc] init];
 //    bindPhoneVc.socialInfo = info;
 //    bindPhoneVc.bindSuccessBlock = ^{

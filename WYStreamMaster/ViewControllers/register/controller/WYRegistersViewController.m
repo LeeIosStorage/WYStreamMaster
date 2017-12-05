@@ -17,6 +17,15 @@
 @property (strong, nonatomic) IBOutlet UIButton *registerButton;
 @property (strong, nonatomic) IBOutlet UIButton *backLoginButton;
 
+@property (strong, nonatomic) IBOutlet UIImageView *loginNameImageView;
+@property (strong, nonatomic) IBOutlet UIImageView *passwordImageView;
+@property (strong, nonatomic) IBOutlet UIImageView *againPasswordImageView;
+@property (strong, nonatomic) IBOutlet UIImageView *mailboxImageView;
+@property (strong, nonatomic) IBOutlet UIView *nicknameView;
+@property (strong, nonatomic) IBOutlet UIView *passwordView;
+@property (strong, nonatomic) IBOutlet UIView *againView;
+@property (strong, nonatomic) IBOutlet UIView *mailboxView;
+
 @end
 
 @implementation WYRegistersViewController
@@ -40,6 +49,10 @@
     [self.mailboxField setTextColor:[UIColor whiteColor]];
     [self.mailboxField setPlaceholder:@"请输入个人邮箱"];
     self.nicknameField.delegate = self;
+    self.mailboxField.delegate = self;
+    self.passwordField.delegate = self;
+    self.againPasswordField.delegate = self;
+
     UITapGestureRecognizer *tapGestureView =  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureView)];
     [self.view addGestureRecognizer:tapGestureView];
     
@@ -136,6 +149,79 @@
     return YES;
 }
 
+- (BOOL)textFieldShouldClear:(UITextField *)textField
+{
+    NSLog(@"");
+    return YES;
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    if (textField == self.nicknameField) {
+        self.loginNameImageView.alpha = 1.0;
+        self.passwordImageView.alpha = 0.2;
+        self.againPasswordImageView.alpha = 0.2;
+        self.mailboxImageView.alpha = 0.2;
+        self.nicknameField.alpha = 1.0;
+        self.passwordField.alpha = 0.5;
+        self.againPasswordField.alpha = 0.5;
+        self.mailboxField.alpha = 0.5;
+        self.nicknameView.backgroundColor = [UIColor whiteColor];
+        self.passwordView.backgroundColor = [UIColor clearColor];
+        self.againView.backgroundColor = [UIColor clearColor];
+        self.mailboxView.backgroundColor = [UIColor clearColor];
+
+    } else if (textField == self.passwordField) {
+        self.loginNameImageView.alpha = 0.2;
+        self.passwordImageView.alpha = 1.0;
+        self.againPasswordImageView.alpha = 0.2;
+        self.mailboxImageView.alpha = 0.2;
+        self.nicknameField.alpha = 0.5;
+        self.passwordField.alpha = 1.0;
+
+        self.againPasswordField.alpha = 0.5;
+        self.mailboxField.alpha = 0.5;
+        
+        self.nicknameView.backgroundColor = [UIColor clearColor];
+        self.passwordView.backgroundColor = [UIColor whiteColor];
+        self.againView.backgroundColor = [UIColor clearColor];
+        self.mailboxView.backgroundColor = [UIColor clearColor];
+    } else if (textField == self.againPasswordField) {
+        self.loginNameImageView.alpha = 0.2;
+        self.passwordImageView.alpha = 0.2;
+        self.againPasswordImageView.alpha = 1.0;
+        self.mailboxImageView.alpha = 0.2;
+        self.againPasswordField.alpha = 1.0;
+        self.passwordField.alpha = 0.5;
+        self.nicknameField.alpha = 0.5;
+        self.mailboxField.alpha = 0.5;
+        self.nicknameView.backgroundColor = [UIColor clearColor];
+        self.passwordView.backgroundColor = [UIColor clearColor];
+        self.againView.backgroundColor = [UIColor whiteColor];
+        self.mailboxView.backgroundColor = [UIColor clearColor];
+    } else if (textField == self.mailboxField) {
+        self.loginNameImageView.alpha = 0.2;
+        self.passwordImageView.alpha = 0.2;
+        self.againPasswordImageView.alpha = 0.2;
+        self.mailboxImageView.alpha = 1.0;
+        self.mailboxField.alpha = 1.0;
+        self.passwordField.alpha = 0.5;
+        self.againPasswordField.alpha = 0.5;
+        self.nicknameField.alpha = 0.5;
+        self.nicknameView.backgroundColor = [UIColor clearColor];
+        self.passwordView.backgroundColor = [UIColor clearColor];
+        self.againView.backgroundColor = [UIColor clearColor];
+        self.mailboxView.backgroundColor = [UIColor whiteColor];
+    }
+    NSLog(@"");
+    return YES;
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    NSLog(@"");
+    return YES;
+}
 /*
 #pragma mark - Navigation
 

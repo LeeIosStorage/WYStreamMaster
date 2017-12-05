@@ -71,7 +71,7 @@
         }
         
         [self doActionSheetClickedButtonAtIndex:buttonIndex];
-    } cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@[@"从手机相册选择", @"拍一张"]];
+    } cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@[@"从手机相册选择", @"拍一张(视频)"]];
     [sheet showInView:self.view];
 }
 
@@ -186,6 +186,9 @@
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     [picker.navigationBar setBarTintColor:[WYStyleSheet defaultStyleSheet].themeColor];
     [picker.navigationBar setTranslucent:NO];
+    NSArray* mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+
+    picker.mediaTypes = mediaTypes;
     picker.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,[WYStyleSheet defaultStyleSheet].navTitleFont,NSFontAttributeName,nil];
     
     picker.delegate = self;
@@ -238,9 +241,10 @@
     
     [MBProgressHUD showSuccess:@"上传中..." toView:self.view];
     WS(weakSelf);
-    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"uploadfile"];
+    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"upload_image"];
+    //        NSString *requestUrl = @"http://www.legend8888.com/files/api/uploadfile.do?";
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
-    //[paramsDic setObject:imageData forKey:@"pic"];
+    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"bizImgPath"];
     
     [self.networkManager POST:requestUrl formFileName:@"pic" fileName:@"pic" fileData:imageData mimeType:@"image/png" parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
         STRONGSELF

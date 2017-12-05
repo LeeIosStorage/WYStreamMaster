@@ -63,13 +63,13 @@
     self.helpDataArray = [NSMutableArray array];
     [self.helpDataArray addObjectsFromArray:@[@[
                                               @{},
-                                              @{@"title":@"直播出现卡顿"},
+                                              @{@"title":@"如何成为传奇娱乐主播?"},
                                               @{},
-                                              @{@"title":@"直播管理条例"},
+                                              @{@"title":@"直播出现卡顿?"},
+                                              @{},
+                                              @{@"title":@"直播管理条例?"},
                                               @{},
                                               @{@"title":@"直播手机推荐"},
-                                              @{},
-                                              @{@"title":@"H5我要开播"},
                                               @{},
                                               @{@"title":@"直播界面介绍"},
                                               ]]];
@@ -150,16 +150,16 @@
 {
     NSDictionary *dic = self.helpDataArray[indexPath.section][indexPath.row];
     NSString *titleString = dic[@"title"];
-    if ([titleString isEqualToString:@"直播出现卡顿"]) {
+    if ([titleString isEqualToString:@"直播出现卡顿?"]) {
         WYHelpDetailViewController *helpDetailVC = [[WYHelpDetailViewController alloc] initHelpDetailViewController:@"live_problem1" imageHeight:SCREEN_HEIGHT];
         [self.navigationController pushViewController:helpDetailVC animated:YES];
-    } else if ([titleString isEqualToString:@"直播管理条例"]) {
+    } else if ([titleString isEqualToString:@"直播管理条例?"]) {
         WYHelpDetailViewController *helpDetailVC = [[WYHelpDetailViewController alloc] initHelpDetailViewController:@"live_problem2" imageHeight:1100];
         [self.navigationController pushViewController:helpDetailVC animated:YES];
     } else if ([titleString isEqualToString:@"直播手机推荐"]) {
         WYHelpDetailViewController *helpDetailVC = [[WYHelpDetailViewController alloc] initHelpDetailViewController:@"live_problem3" imageHeight:SCREEN_HEIGHT];
         [self.navigationController pushViewController:helpDetailVC animated:YES];
-    } else if ([titleString isEqualToString:@"H5我要开播"]) {
+    } else if ([titleString isEqualToString:@"如何成为传奇娱乐主播?"]) {
         WYHelpDetailViewController *helpDetailVC = [[WYHelpDetailViewController alloc] initHelpDetailViewController:@"live_problem4" imageHeight:1010];
         [self.navigationController pushViewController:helpDetailVC animated:YES];
     } else if ([titleString isEqualToString:@"直播界面介绍"]) {

@@ -130,7 +130,7 @@
         "protocol": "http",
         "version" : "event-platform-admin",
         "control" : "file",
-        "action"  : "save"
+        "action"  : "ios_image"
     },
     "upvote_blog": {
         "protocol": "http",

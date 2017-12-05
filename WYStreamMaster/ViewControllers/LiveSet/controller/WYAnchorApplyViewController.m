@@ -185,10 +185,12 @@ UITextFieldDelegate>
 - (void)uploadWithImageData:(NSData *)imageData uploadType:(LiveUploadImageType)uploadType
 {
     [MBProgressHUD showMessage:@"正在上传..."];
-//    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"upload_image"];
-    NSString *requestUrl = @"http://www.legend8888.com/files/api/uploadfile.do?";
+    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"upload_image"];
+//        NSString *requestUrl = @"http://www.legend8888.com/files/api/uploadfile.do?";
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
-    //    [paramsDic setObject:imageData forKey:@"pic"];
+    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"bizImgPath"];
+    [paramsDic setObject:@"1" forKey:@"saveType"];
+
     WS(weakSelf);
     [self.networkManager POST:requestUrl formFileName:@"pic" fileName:@"img.jpg" fileData:imageData mimeType:@"image/jpeg" parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
         [MBProgressHUD hideHUD];
@@ -203,7 +205,7 @@ UITextFieldDelegate>
                         urlStr = [pathObject objectForKey:@"path"];
                     }
                 }
-            }else if ([dataObject isKindOfClass:[NSString class]]){
+            } else if ([dataObject isKindOfClass:[NSString class]]){
                 urlStr = dataObject;
             }
             

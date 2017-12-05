@@ -106,9 +106,10 @@ UITextFieldDelegate>
     WEAKSELF
     [MBProgressHUD showMessage:@"正在上传..."];
 //    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"uploadfile"];
-    NSString *requestUrl = @"http://www.legend8888.com/files/api/uploadfile.do?";
+    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"upload_image"];
+    //        NSString *requestUrl = @"http://www.legend8888.com/files/api/uploadfile.do?";
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
-//    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchorId"];
+    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"bizImgPath"];
     [self.networkManager POST:requestUrl formFileName:@"pic" fileName:@"img.jpg" fileData:imageData mimeType:@"image/jpeg" parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
         
         [MBProgressHUD hideHUD];

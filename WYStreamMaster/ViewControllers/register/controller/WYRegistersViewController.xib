@@ -1,21 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WYRegistersViewController">
             <connections>
                 <outlet property="againPasswordField" destination="rKL-FQ-0qx" id="CgT-4S-y1o"/>
+                <outlet property="againPasswordImageView" destination="eRV-db-XPc" id="yx0-6u-oQD"/>
+                <outlet property="againView" destination="O7R-9u-AXV" id="gcR-KX-b9V"/>
                 <outlet property="backLoginButton" destination="O6H-YA-R94" id="1Ip-ux-hII"/>
+                <outlet property="loginNameImageView" destination="OCH-7j-45H" id="b4s-1M-ZoV"/>
                 <outlet property="mailboxField" destination="TZ6-ey-SOX" id="EBw-mS-fZo"/>
+                <outlet property="mailboxImageView" destination="IyX-Xh-hHU" id="Ach-9C-qHS"/>
+                <outlet property="mailboxView" destination="9B5-gk-oCH" id="Hwy-0r-44D"/>
                 <outlet property="nicknameField" destination="bfB-Lk-3AZ" id="eVM-Lq-CaA"/>
+                <outlet property="nicknameView" destination="MCv-2e-0Pt" id="klf-7B-i8Z"/>
                 <outlet property="passwordField" destination="pWl-a2-dQ4" id="YuM-aS-Huz"/>
+                <outlet property="passwordImageView" destination="hHK-3f-cFO" id="kHx-60-em7"/>
+                <outlet property="passwordView" destination="XFB-bQ-7ov" id="qbi-GL-0Q9"/>
                 <outlet property="registerButton" destination="jl0-oU-bqd" id="O0Y-yq-8dW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -29,7 +37,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="注册" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QkP-pM-3Tp">
-                    <rect key="frame" x="166" y="200" width="42" height="24"/>
+                    <rect key="frame" x="166" y="240" width="42" height="24"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="42" id="v45-Zj-VNM"/>
                     </constraints>
@@ -38,7 +46,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MCv-2e-0Pt">
-                    <rect key="frame" x="37" y="239" width="301" height="40"/>
+                    <rect key="frame" x="37" y="279" width="301" height="40"/>
                     <subviews>
                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OCH-7j-45H">
                             <rect key="frame" x="0.0" y="0.0" width="301" height="40"/>
@@ -74,11 +82,11 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XFB-bQ-7ov">
-                    <rect key="frame" x="37" y="294" width="301" height="40"/>
+                    <rect key="frame" x="37" y="334" width="301" height="40"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hHK-3f-cFO">
                             <rect key="frame" x="0.0" y="0.0" width="301" height="40"/>
-                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </imageView>
                         <textField opaque="NO" clipsSubviews="YES" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="pWl-a2-dQ4">
                             <rect key="frame" x="45" y="0.0" width="236" height="40"/>
@@ -111,11 +119,11 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O7R-9u-AXV">
-                    <rect key="frame" x="37" y="349" width="301" height="40"/>
+                    <rect key="frame" x="37" y="389" width="301" height="40"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eRV-db-XPc">
                             <rect key="frame" x="0.0" y="0.0" width="301" height="40"/>
-                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </imageView>
                         <textField opaque="NO" clipsSubviews="YES" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请再次输入密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="rKL-FQ-0qx">
                             <rect key="frame" x="45" y="0.0" width="236" height="40"/>
@@ -148,11 +156,11 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9B5-gk-oCH">
-                    <rect key="frame" x="37" y="404" width="301" height="40"/>
+                    <rect key="frame" x="37" y="444" width="301" height="40"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IyX-Xh-hHU">
                             <rect key="frame" x="0.0" y="0.0" width="301" height="40"/>
-                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </imageView>
                         <textField opaque="NO" clipsSubviews="YES" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入个人邮箱" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="TZ6-ey-SOX">
                             <rect key="frame" x="45" y="0.0" width="236" height="40"/>
@@ -185,7 +193,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jl0-oU-bqd">
-                    <rect key="frame" x="37" y="474" width="301" height="40"/>
+                    <rect key="frame" x="37" y="514" width="301" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="xsU-jl-9xB"/>
                     </constraints>
@@ -201,7 +209,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O6H-YA-R94">
-                    <rect key="frame" x="126" y="526" width="123" height="30"/>
+                    <rect key="frame" x="126" y="566" width="123" height="30"/>
                     <state key="normal" title="已有账号? 请 登录">
                         <color key="titleColor" red="0.6588235294117647" green="0.67843137254901964" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
@@ -228,7 +236,7 @@
                 <constraint firstItem="jl0-oU-bqd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="37" id="ZLs-if-kbX"/>
                 <constraint firstItem="MCv-2e-0Pt" firstAttribute="top" secondItem="QkP-pM-3Tp" secondAttribute="bottom" constant="15" id="ala-N9-gAW"/>
                 <constraint firstItem="O6H-YA-R94" firstAttribute="top" secondItem="jl0-oU-bqd" secondAttribute="bottom" constant="12" id="bF4-qw-uZw"/>
-                <constraint firstItem="QkP-pM-3Tp" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="200" id="fOe-EG-eXD"/>
+                <constraint firstItem="QkP-pM-3Tp" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="240" id="fOe-EG-eXD"/>
                 <constraint firstItem="O7R-9u-AXV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="37" id="ign-De-CGp"/>
                 <constraint firstItem="RJA-68-5Wz" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="jei-ga-SC9"/>
                 <constraint firstAttribute="trailing" secondItem="jl0-oU-bqd" secondAttribute="trailing" constant="37" id="ker-KZ-GwX"/>
@@ -239,7 +247,7 @@
                 <constraint firstItem="RJA-68-5Wz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="xN9-Mr-SuA"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-274" y="247"/>
+            <point key="canvasLocation" x="69" y="233"/>
         </view>
     </objects>
     <resources>
