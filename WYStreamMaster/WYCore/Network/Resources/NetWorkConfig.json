@@ -95,7 +95,7 @@
         "control" : "api",
         "action"  : "get_user_messages.do"
     },
-    "apply_anchor": {
+    "applyAnchor": {
         "protocol": "http",
         "version" : "anchor",
         "control" : "api",

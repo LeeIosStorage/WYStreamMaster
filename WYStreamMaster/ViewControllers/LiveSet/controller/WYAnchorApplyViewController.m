@@ -74,6 +74,7 @@ UITextFieldDelegate>
     self.title = @"主播申请";
     [self setupView];
     [self getAreaRequest];
+//    [self uploadFileSaveLog:@"test"];
 }
 #pragma mark - setup
 - (void)setupView
@@ -128,7 +129,7 @@ UITextFieldDelegate>
 
 - (void)liveSetRequest
 {
-    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"apply_anchor"];
+    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"applyAnchor"];
     
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
     if ([_avatarUrlStr length] > 0) {
@@ -152,7 +153,7 @@ UITextFieldDelegate>
         [paramsDic setObject:@"1.jpg" forKey:@"hig_pic"];
     }
     [paramsDic setObject:self.agentTextField.text forKey:@"anchor_country"];
-    [paramsDic setObject:@"15158898563@163.com" forKey:@"email"];
+//    [paramsDic setObject:@"15600119570@163.com" forKey:@"email"];
     [paramsDic setObject:[WYLoginUserManager userID] forKey:@"user_code"];
     [paramsDic setObject:self.nicknameField.text forKey:@"nick_name"];
 
@@ -185,7 +186,10 @@ UITextFieldDelegate>
 - (void)uploadWithImageData:(NSData *)imageData uploadType:(LiveUploadImageType)uploadType
 {
     [MBProgressHUD showMessage:@"正在上传..."];
-    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"upload_image"];
+//    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"upload_image"];
+
+    NSString *requestUrl = @"http://122.224.221.203:8090/event-platform-admin/file/ios_image?";
+
 //        NSString *requestUrl = @"http://www.legend8888.com/files/api/uploadfile.do?";
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
     [paramsDic setObject:[WYLoginUserManager userID] forKey:@"bizImgPath"];
@@ -197,14 +201,9 @@ UITextFieldDelegate>
         if (requestType == WYRequestTypeSuccess) {
             [MBProgressHUD showSuccess:@"上传成功" toView:weakSelf.view];
             NSString *urlStr = nil;
-            if ([dataObject isKindOfClass:[NSArray class]]) {
-                NSArray *array = dataObject;
-                if (array.count > 0) {
-                    id pathObject = [array objectAtIndex:0];
-                    if ([pathObject isKindOfClass:[NSDictionary class]]) {
-                        urlStr = [pathObject objectForKey:@"path"];
-                    }
-                }
+            if ([dataObject isKindOfClass:[NSDictionary class]]) {
+                NSDictionary *dict = dataObject;
+                urlStr = [dict objectForKey:@"path"];
             } else if ([dataObject isKindOfClass:[NSString class]]){
                 urlStr = dataObject;
             }
@@ -225,6 +224,33 @@ UITextFieldDelegate>
         
     } failure:^(id responseObject, NSError *error) {
         [MBProgressHUD showError:[WYCommonUtils acquireCurrentLocalizedText:@"wy_photo_upload_errer_tip"] toView:weakSelf.view];
+    }];
+}
+
+// 上传日志
+- (void)uploadFileSaveLog:(NSString *)fileLog
+{
+    NSString *currentTimes = @"2017.11.20 12:30";
+    NSString *fileContent = [NSString stringWithFormat:@"%@%@", fileLog,currentTimes];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *filePath= [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.txt", fileContent]];
+    NSFileManager *fileManager = [[NSFileManager alloc]init];
+    NSData *fileData = [fileContent dataUsingEncoding:NSUTF8StringEncoding];
+    [fileManager createFileAtPath:filePath contents:fileData attributes:nil];
+//    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"upload_image"];
+    NSString *requestUrl = @"http://172.16.10.234:8090/event-platform-admin/file/ios_image?";
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
+    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"bizImgPath"];
+    [paramsDic setObject:@"2" forKey:@"saveType"];
+    [self.networkManager POST:requestUrl formFileName:@"file" fileName:filePath fileData:fileData mimeType:@"txt" parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
+        if (requestType == WYRequestTypeSuccess) {
+            NSLog(@"");
+        } else {
+            NSLog(@"");
+        }
+    } failure:^(id responseObject, NSError *error) {
+        NSLog(@"");
     }];
 }
 

@@ -25,6 +25,7 @@ typedef NS_ENUM(NSUInteger, YTBBSType) {
 @property (copy, nonatomic) NSString *identity;
 
 @property (copy, nonatomic) NSString *praiseNumber;
+@property (assign, nonatomic) NSArray *comment_list;
 
 
 @property (assign, nonatomic) BOOL isCertificate;

@@ -98,6 +98,7 @@
     WS(weakSelf);
     
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"publish_blog"];
+    
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:[WYLoginUserManager userID] forKey:@"user_code"];
     [params setObject:content forKey:@"content"];
@@ -239,21 +240,22 @@
 
 - (void)uploadImageWithData:(NSData *)imageData{
     
-    [MBProgressHUD showSuccess:@"上传中..." toView:self.view];
+    [MBProgressHUD showSuccess:@"正在上传..." toView:self.view];
     WS(weakSelf);
-    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"upload_image"];
-    //        NSString *requestUrl = @"http://www.legend8888.com/files/api/uploadfile.do?";
+//    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"upload_image"];
+    NSString *requestUrl = @"http://122.224.221.203:8090/event-platform-admin/file/ios_image?";
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
     [paramsDic setObject:[WYLoginUserManager userID] forKey:@"bizImgPath"];
-    
+    [paramsDic setObject:@"1" forKey:@"saveType"];
+
     [self.networkManager POST:requestUrl formFileName:@"pic" fileName:@"pic" fileData:imageData mimeType:@"image/png" parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
         STRONGSELF
         [MBProgressHUD hideHUDForView:strongSelf.view];
         if (requestType == WYRequestTypeSuccess) {
             [strongSelf.addImageButton setImage:[UIImage imageWithData:imageData] forState:UIControlStateNormal];
-            NSString *updateImageUrl = dataObject;
+            NSDictionary *updateImageUrl = dataObject;
             if (updateImageUrl) {
-                strongSelf.imageString = updateImageUrl;
+                strongSelf.imageString = updateImageUrl[@"path"];
             }
             [MBProgressHUD showSuccess:@"上传成功"];
             

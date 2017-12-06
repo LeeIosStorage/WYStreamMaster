@@ -106,24 +106,21 @@ UITextFieldDelegate>
     WEAKSELF
     [MBProgressHUD showMessage:@"正在上传..."];
 //    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"uploadfile"];
-    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"upload_image"];
-    //        NSString *requestUrl = @"http://www.legend8888.com/files/api/uploadfile.do?";
+//    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"upload_image"];
+    NSString *requestUrl = @"http://122.224.221.203:8090/event-platform-admin/file/ios_image?";
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
     [paramsDic setObject:[WYLoginUserManager userID] forKey:@"bizImgPath"];
+    [paramsDic setObject:@"1" forKey:@"saveType"];
+
     [self.networkManager POST:requestUrl formFileName:@"pic" fileName:@"img.jpg" fileData:imageData mimeType:@"image/jpeg" parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
         
         [MBProgressHUD hideHUD];
         if (requestType == WYRequestTypeSuccess) {
             [MBProgressHUD showSuccess:@"上传成功" toView:weakSelf.view];
             NSString *urlStr = nil;
-            if ([dataObject isKindOfClass:[NSArray class]]) {
-                NSArray *array = dataObject;
-                if (array.count > 0) {
-                    id pathObject = [array objectAtIndex:0];
-                    if ([pathObject isKindOfClass:[NSDictionary class]]) {
-                        urlStr = [pathObject objectForKey:@"path"];
-                    }
-                }
+            if ([dataObject isKindOfClass:[NSDictionary class]]) {
+                NSDictionary *dict = dataObject;
+                urlStr = [dict objectForKey:@"path"];
             } else if ([dataObject isKindOfClass:[NSString class]]){
                 urlStr = dataObject;
             }
@@ -153,11 +150,11 @@ UITextFieldDelegate>
         [paramsDic setObject:@"1.jpg" forKey:@"head_icon"];
     }
     if ([_anchorCoverStr length] > 0) {
-        [paramsDic setObject:_anchorCoverStr forKey:@"anchor_show_H5"];
-        [paramsDic setObject:_anchorCoverStr forKey:@"anchor_show_PC"];
+        [paramsDic setObject:_anchorCoverStr forKey:@"cover_img"];
+//        [paramsDic setObject:_anchorCoverStr forKey:@"anchor_show_PC"];
     } else {
-        [paramsDic setObject:@"2.jpg" forKey:@"anchor_show_H5"];
-        [paramsDic setObject:@"3.jpg" forKey:@"anchor_show_PC"];
+        [paramsDic setObject:@"2.jpg" forKey:@"cover_img"];
+//        [paramsDic setObject:@"3.jpg" forKey:@"anchor_show_PC"];
     }
     [paramsDic setObject:self.roomNameField.text forKey:@"room_name"];
     [paramsDic setObject:[WYLoginUserManager userID] forKey:@"user_code"];
@@ -170,7 +167,7 @@ UITextFieldDelegate>
         if (requestType == WYRequestTypeSuccess) {
 //            [YTToast showSuccess:@"设置成功"];
 
-//            [MBProgressHUD showSuccess:@"设置成功" toView:weakSelf.view];
+            [MBProgressHUD showSuccess:@"设置成功" toView:weakSelf.view];
         }else{
             [MBProgressHUD showError:message toView:weakSelf.view];
         }

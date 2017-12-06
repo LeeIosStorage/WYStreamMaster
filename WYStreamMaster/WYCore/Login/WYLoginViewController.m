@@ -275,7 +275,7 @@
         [MBProgressHUD hideHUD];
         if (requestType == WYRequestTypeSuccess) {
             WYLoginModel *loginModel = (WYLoginModel *)dataObject;
-//            loginModel.anchorPushUrl = @"rtmp://pili-publish.kaisaiba.com/xklive/xklivetest";
+            loginModel.audit_statu = loginModel.anchor[@"audit_statu"];
             [WYLoginUserManager updateUserDataWithLoginModel:loginModel];
             [WYLoginUserManager setPassword:weakSelf.loginPasswordTextField.text];
             [WYLoginUserManager setAccount:weakSelf.loginAccountTextField.text];
