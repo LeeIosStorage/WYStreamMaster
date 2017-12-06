@@ -18,7 +18,8 @@
              @"roomNumber":@"anchor.room_id_pk",
              @"anchorPushUrl":@"anchor.anchor_push_ur",
              @"icon":@"ext_info.head_icon",
-             @"chatRoomId":@"anchor.neteaseChatRoomId"
+             @"chatRoomId":@"anchor.neteaseChatRoomId",
+             @"audit_statu":@"anchor.audit_statu"
              };
 }
 

@@ -71,7 +71,7 @@
 #pragma mark - setupView
 - (void)setupView
 {
-    NSString *auditStatu = [WYLoginManager sharedManager].loginModel.audit_statu;
+    NSString *auditStatu = [NSString stringWithFormat:@"%@", [WYLoginManager sharedManager].loginModel.audit_statu];
     if ([auditStatu isEqualToString:@"0"]) {
         self.startLiveLabel.text = @"未审核";
         self.remarksLabel.text = @"您未提交主播申请";

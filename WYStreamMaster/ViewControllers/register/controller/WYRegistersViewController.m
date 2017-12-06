@@ -40,13 +40,13 @@
 #pragma mark - setup
 - (void)setupView
 {
-    [self.passwordField setTextColor:[UIColor whiteColor]];
+//    [self.passwordField setTextColor:[UIColor whiteColor]];
     [self.passwordField setPlaceholder:@"请输入密码"];
     
-    [self.againPasswordField setTextColor:[UIColor whiteColor]];
+//    [self.againPasswordField setTextColor:[UIColor whiteColor]];
     [self.againPasswordField setPlaceholder:@"请再次输入密码"];
     
-    [self.mailboxField setTextColor:[UIColor whiteColor]];
+//    [self.mailboxField setTextColor:[UIColor whiteColor]];
     [self.mailboxField setPlaceholder:@"请输入个人邮箱"];
     self.nicknameField.delegate = self;
     self.mailboxField.delegate = self;
@@ -111,12 +111,12 @@
             });
         }else{
 //            [YTToast showError:message];
-//            [MBProgressHUD showError:message toView:weakSelf.view];
+            [MBProgressHUD showError:message toView:weakSelf.view];
         }
         
     } failure:^(id responseObject, NSError *error) {
         [MBProgressHUD hideHUD];
-//        [MBProgressHUD showAlertMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_register_result_failure_tip"] toView:weakSelf.view];
+        [MBProgressHUD showAlertMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_register_result_failure_tip"] toView:weakSelf.view];
 //        [YTToast showError:[WYCommonUtils acquireCurrentLocalizedText:@"wy_register_result_failure_tip"]];
 
     }];

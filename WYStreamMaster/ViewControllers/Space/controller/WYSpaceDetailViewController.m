@@ -89,7 +89,8 @@ static NSString *const kInteractMessageTableViewCell = @"YTInteractMessageTableV
     WEAKSELF
     [self.view addSubview:self.collectionView];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.width.bottom.equalTo(weakSelf.view);
+        make.top.mas_offset(10);
+        make.left.right.width.bottom.equalTo(weakSelf.view);
     }];
     
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
@@ -99,11 +100,19 @@ static NSString *const kInteractMessageTableViewCell = @"YTInteractMessageTableV
     [self.tableView registerNib:[UINib nibWithNibName:kInteractMessageTableViewCell bundle:nil] forCellReuseIdentifier:kInteractMessageTableViewCell];
     [self.tableView reloadData];
     [self.view addSubview:self.tableView];
+    CGFloat itemHeight;
+    if (self.spaceModel.bbsType == YTBBSTypeText) {
+        itemHeight = 138;
+    } else if (self.spaceModel.bbsType == YTBBSTypeGraphic) {
+        itemHeight = 100.0*kScreenWidth / 375.0 + 168;
+    } else if (self.spaceModel.bbsType == YTBBSTypeVideo) {
+        itemHeight = 190;
+    }
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(@20);
         make.trailing.equalTo(@-20);
         make.bottom.equalTo(@-60);
-        make.top.equalTo(@265);
+        make.top.mas_offset(itemHeight);
     }];
     
     self.spaceDetailBottomView = [[[NSBundle mainBundle] loadNibNamed:@"WYSpaceDetailBottomView" owner:self options:nil] objectAtIndex:0];

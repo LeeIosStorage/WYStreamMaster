@@ -275,7 +275,7 @@
         [MBProgressHUD hideHUD];
         if (requestType == WYRequestTypeSuccess) {
             WYLoginModel *loginModel = (WYLoginModel *)dataObject;
-            loginModel.audit_statu = loginModel.anchor[@"audit_statu"];
+//            loginModel.audit_statu = loginModel.anchor[@"audit_statu"];
             [WYLoginUserManager updateUserDataWithLoginModel:loginModel];
             [WYLoginUserManager setPassword:weakSelf.loginPasswordTextField.text];
             [WYLoginUserManager setAccount:weakSelf.loginAccountTextField.text];

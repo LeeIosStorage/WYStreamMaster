@@ -55,7 +55,7 @@
         return 0;
     }
     CGFloat cellHeight = 0;
-    CGFloat contentTextY = 60; // 文字的y坐标
+    CGFloat contentTextY = 0; // 文字的y坐标
     CGFloat imageViewHeight = 100.0*kScreenWidth / 375.0;
     CGFloat videoViewHeight = 160;
     CGFloat categoryHeight = 40;
@@ -75,10 +75,12 @@
         cellHeight += bottomViewHeight;
     } else if (model.bbsType == YTBBSTypeGraphic) {
         // 图文
+        cellHeight += 30;
         cellHeight += imageViewHeight;
         cellHeight += categoryHeight;
         cellHeight += bottomViewHeight;
     } else if (model.bbsType == YTBBSTypeVideo) {
+        cellHeight += 30;
         cellHeight += videoViewHeight;
         cellHeight += categoryHeight;
         cellHeight += bottomViewHeight;

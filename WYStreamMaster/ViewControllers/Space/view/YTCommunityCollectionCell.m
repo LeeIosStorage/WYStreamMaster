@@ -51,7 +51,7 @@
         return 0;
     }
     CGFloat cellHeight = 0;
-    CGFloat contentTextY = 60; // 文字的y坐标
+    CGFloat contentTextY = 0; // 文字的y坐标
     CGFloat imageViewHeight = 100.0*kScreenWidth / 375.0;
     CGFloat videoViewHeight = 160;
     CGFloat categoryHeight = 40;
@@ -71,10 +71,12 @@
         cellHeight += bottomViewHeight;
     } else if (model.bbsType == YTBBSTypeGraphic) {
         // 图文
+        cellHeight += 30;
         cellHeight += imageViewHeight;
         cellHeight += categoryHeight;
         cellHeight += bottomViewHeight;
     } else if (model.bbsType == YTBBSTypeVideo) {
+        cellHeight += 30;
         cellHeight += videoViewHeight;
         cellHeight += categoryHeight;
         cellHeight += bottomViewHeight;
@@ -89,11 +91,8 @@
     if (model) {
         _bbsInfo = model;
         NSURL *avatarUrl = [NSURL URLWithString:[WYLoginUserManager avatar]];
-
-        [self.avatarImageView setImageWithURL:avatarUrl placeholder:[UIImage imageNamed:@"common_headImage"]];
-        [self.videoCoverImageView setImageWithURL:avatarUrl placeholder:[UIImage imageNamed:@"common_headImage"]];
+        [WYCommonUtils setImageWithURL:avatarUrl setImageView:self.avatarImageView placeholderImage:@"common_headImage"];
         self.nickNameLabel.text = [WYLoginUserManager nickname];
-
         self.contentLabel.text = model.content;
         self.creatDateLabel.text = model.create_date;
 //        self.nickNameLabel.text = @"爱打lol的妹子";
