@@ -14,11 +14,16 @@
 @property (strong, nonatomic) NSString *nickname;
 @property (strong, nonatomic) NSString *chatRoomId;//聊天室ID
 @property (strong, nonatomic) NSString *roomNumber;
+@property (strong, nonatomic) NSString *room_name;
 @property (strong, nonatomic) NSString *anchorPushUrl;
 @property (strong, nonatomic) NSString *icon;
 @property (strong, nonatomic) NSString *anchorTitle;
 @property (strong, nonatomic) NSString *anchorDescription;
+// 主播信息
+@property (strong, nonatomic) NSDictionary *anchor;
 
+// 是否审核通过 0为未审核，1为审核通过，2为审核不通过
+@property (strong, nonatomic) NSString *audit_statu;
 // 手机号
 @property (strong, nonatomic) NSString *mobile;
 @property (strong, nonatomic) NSString *token;
@@ -26,17 +31,13 @@
 @property (strong, nonatomic) NSString *iconMedia;
 @property (strong, nonatomic) NSString *iconThumb;
 @property (strong, nonatomic) NSString *fans;
-// 主播房间号
+
 @property (strong, nonatomic) NSString *sex;
 
 @property (copy, nonatomic) NSString *shouboAccid;
 
-//@property (strong, nonatomic) NSNumber *cityCode;
 // 分享地址
 @property (copy, nonatomic) NSString *shareUrl;
-
-@property (strong, nonatomic) NSString  *yuerCoin; //娱币
-@property (copy, nonatomic) NSString    *bait;//鱼饵
 
 // 直播时长
 @property (copy, nonatomic) NSString    *duration;

@@ -7,6 +7,10 @@
 //
 
 #import "WYRefreshFooter.h"
+NSString *const MJRefreshBackFooterNoMoreDataText = @"已经全部加载完毕";
+NSString *const MJRefreshBackFooterRefreshingText = @"正在加载更多的数据...";
+NSString *const MJRefreshBackFooterIdleText = @"上拉可以加载更多";
+NSString *const MJRefreshBackFooterPullingText = @"松开立即加载更多";
 
 @interface WYRefreshFooter ()
 

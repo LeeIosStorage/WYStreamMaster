@@ -38,6 +38,14 @@
     return attrString;
 }
 
++ (CGSize)sizeWithText:(NSString *)text font:(UIFont *)font width:(float)width{
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+    paragraphStyle.lineBreakMode = NSLineBreakByCharWrapping;
+    NSDictionary *attributes = @{NSFontAttributeName:font};
+    CGSize textSize = [text boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options:NSStringDrawingTruncatesLastVisibleLine| NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attributes context:nil].size;
+    return textSize;
+}
+
 + (NSMutableAttributedString *)stringToColorAndFontAttributeString:(NSString *)text range:(NSRange)range font:(UIFont *)font color:(UIColor *)color{
     NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc]initWithString:text];
     if (color) {
@@ -345,6 +353,17 @@ static bool dateFormatterOFUSInvalid ;
 
 + (NSString *)showServerErrorLocalizedText{
     return [WYCommonUtils acquireCurrentLocalizedText:@"wy_server_request_errer_tip"];
+}
+
++ (NSString*)stringSplitWithCommaForIds:(NSArray*)ids {
+    NSMutableString * idsString = [[NSMutableString alloc] init];
+    for (NSString* uid in ids) {
+        if (idsString.length > 0) {
+            [idsString appendString:@","];
+        }
+        [idsString appendString:uid.description];
+    }
+    return idsString;
 }
 
 + (NSString *)getPreferredLanguage

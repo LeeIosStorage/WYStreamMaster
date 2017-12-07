@@ -54,14 +54,13 @@
 //    [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
 //    [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
 
-
 //    [self.navigationController.navigationBar lt_setBackgroundColor:[WYStyleSheet defaultStyleSheet].themeColor];
 //    [self.navigationController.navigationBar setBarTintColor:[WYStyleSheet defaultStyleSheet].themeColor];
     
-    [self.navigationController.navigationBar lt_setBackgroundImage:[UIImage imageNamed:@"wy_navbar_bg"]];
+//    [self.navigationController.navigationBar lt_setBackgroundImage:[UIImage imageNamed:@"wy_navbar_bg"]];
     
-    [self.navigationController.navigationBar setTranslucent:NO];
-    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,[WYStyleSheet defaultStyleSheet].navTitleFont,NSFontAttributeName,nil];
+    [self.navigationController.navigationBar setTranslucent:YES];
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithHexString:@"333333"],NSForegroundColorAttributeName,[WYStyleSheet defaultStyleSheet].navTitleFont,NSFontAttributeName,nil];
     
     if (self.navigationController.viewControllers.firstObject != self) {
         self.navigationItem.leftBarButtonItem = [self leftBarButtonItem];
@@ -225,6 +224,7 @@
 {
     rightButton.frame = CGRectMake(0, 0, 60, 30);
     [rightButton addTarget:self action:@selector(rightButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [rightButton setTitleColor:[UIColor colorWithHexString:@"333333"] forState:UIControlStateNormal];
     UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     self.rightBarButtonItem = rightBarButtonItem;
     self.navigationItem.rightBarButtonItem = rightBarButtonItem;
@@ -304,7 +304,7 @@
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
-    return UIStatusBarStyleLightContent;
+    return UIStatusBarStyleDefault;
 }
 
 

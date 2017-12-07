@@ -102,7 +102,7 @@ static NSString* const apiFileExtension = @"json";
 #endif
     
     if ([host isEqualToString:defaultNetworkHost]) {
-        apiProtocol = @"https";
+        apiProtocol = @"http";
     }
     
     //拼接url

@@ -14,6 +14,7 @@ pod 'BlocksKit', '~> 2.2.5'
 pod 'NIMSDK'
 pod 'SocketRocket'
 pod 'GMGridView'
+pod 'CRToast'
 
 #腾讯bug统计SDK
 pod 'Bugly'

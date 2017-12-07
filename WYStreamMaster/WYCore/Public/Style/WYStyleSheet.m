@@ -80,6 +80,8 @@
         
         self.normalButtonColor = [UIColor colorWithHexString:@"FF3366"];
         self.selectedButtonColor = [UIColor colorWithHexString:@"445162"];
+        self.successLabelColor = [UIColor colorWithHexString:@"26d58d"];
+
     }
     return self;
 }

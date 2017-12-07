@@ -58,5 +58,6 @@
 #pragma mark - Button Style
 @property (strong, nonatomic) UIColor *normalButtonColor;
 @property (strong, nonatomic) UIColor *selectedButtonColor;
+@property (strong, nonatomic) UIColor *successLabelColor;       // 26d58d
 
 @end

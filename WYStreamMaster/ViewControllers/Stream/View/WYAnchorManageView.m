@@ -200,8 +200,8 @@ GMGridViewActionDelegate
         NSLog(@"error:%@ data:%@",message,dataObject);
         
         if (requestType == WYRequestTypeSuccess) {
-            [MBProgressHUD showSuccess:[NSString stringWithFormat:@"成功取消 %@ 的房管",managerModel.managerUserName] toView:nil];
-            
+//            [MBProgressHUD showSuccess:[NSString stringWithFormat:@"成功取消 %@ 的房管",managerModel.managerUserName] toView:nil];
+//            [YTToast showSuccess:[NSString stringWithFormat:@"成功取消 %@ 的房管",managerModel.managerUserName]];
             for (WYRoomManagerModel *tmpModel in weakSelf.roomManagerList) {
                 if ([tmpModel.managerUserId isEqualToString:managerModel.managerUserId]) {
                     [weakSelf.roomManagerList removeObject:managerModel];
