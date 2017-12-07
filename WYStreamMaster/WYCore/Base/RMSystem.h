@@ -81,4 +81,12 @@ static NSString* IMG_URL = @"http://img.wangyuhudong.com";
 
 #define kTempNetworkHTTPURL     @"http://103.230.243.174:8888/uploadfile/263673c8-e1b6-494f-87c2-8c23bafbcaf1.png"
 
+#define WYNotificationWSConnect   @"WYNotificationWSConnect"
+
+#define WYNotificationReConnectFailed   @"WYNotificationReConnectFailed"
+
+#define WYNotificationWSDisConnect   @"WYNotificationWSDisConnect"
+
+#define WYNotificationAgainStartLive   @"WYNotificationAgainStartLive"
+
 #endif /* RMSystem_h */
