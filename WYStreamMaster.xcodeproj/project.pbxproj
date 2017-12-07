@@ -114,7 +114,6 @@
 		446D432A1E839520002E5C52 /* WYAnchorManageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 446D43291E839520002E5C52 /* WYAnchorManageView.xib */; };
 		449C663A1EC1A97500648A5F /* WYGiftAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 449C66391EC1A97500648A5F /* WYGiftAnimationManager.m */; };
 		44D2F7C01E7A6FBF00122866 /* WYStreamingConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2F7BF1E7A6FBF00122866 /* WYStreamingConfig.m */; };
-		44D2F7C51E7BCA6B00122866 /* WYSocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2F7C41E7BCA6B00122866 /* WYSocketManager.m */; };
 		44D2F7CA1E7BECFF00122866 /* WYGiftRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2F7C91E7BECFF00122866 /* WYGiftRecordView.m */; };
 		44D2F7CE1E7FA27400122866 /* WYCustomActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2F7CC1E7FA27400122866 /* WYCustomActionSheet.m */; };
 		44D2F7D11E7FA8F300122866 /* WYAnchorInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D2F7D01E7FA8F300122866 /* WYAnchorInfoView.m */; };
@@ -150,6 +149,7 @@
 		78526D6A1FC28491008D799C /* WYHelpDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78526D681FC28491008D799C /* WYHelpDetailCell.xib */; };
 		7852D5211FD915C000CB3249 /* WYLiveViewController1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7852D51E1FD915BF00CB3249 /* WYLiveViewController1.xib */; };
 		7852D5221FD915C000CB3249 /* WYLiveViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 7852D51F1FD915BF00CB3249 /* WYLiveViewController1.m */; };
+		7852D5271FD917BF00CB3249 /* WYSocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7852D5261FD917BF00CB3249 /* WYSocketManager.m */; };
 		7854B9A61FB3F9F900A7F85E /* WYRewardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7854B9A51FB3F9F900A7F85E /* WYRewardModel.m */; };
 		7854B9AA1FB405B100A7F85E /* WYIncomeRewardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7854B9A81FB405B100A7F85E /* WYIncomeRewardTableViewCell.m */; };
 		7854B9AB1FB405B100A7F85E /* WYIncomeRewardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7854B9A91FB405B100A7F85E /* WYIncomeRewardTableViewCell.xib */; };
@@ -471,8 +471,6 @@
 		449C66391EC1A97500648A5F /* WYGiftAnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYGiftAnimationManager.m; sourceTree = "<group>"; };
 		44D2F7BE1E7A6FBF00122866 /* WYStreamingConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYStreamingConfig.h; sourceTree = "<group>"; };
 		44D2F7BF1E7A6FBF00122866 /* WYStreamingConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYStreamingConfig.m; sourceTree = "<group>"; };
-		44D2F7C31E7BCA6B00122866 /* WYSocketManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYSocketManager.h; sourceTree = "<group>"; };
-		44D2F7C41E7BCA6B00122866 /* WYSocketManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYSocketManager.m; sourceTree = "<group>"; };
 		44D2F7C81E7BECFF00122866 /* WYGiftRecordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYGiftRecordView.h; sourceTree = "<group>"; };
 		44D2F7C91E7BECFF00122866 /* WYGiftRecordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYGiftRecordView.m; sourceTree = "<group>"; };
 		44D2F7CC1E7FA27400122866 /* WYCustomActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCustomActionSheet.m; sourceTree = "<group>"; };
@@ -536,6 +534,8 @@
 		7852D51E1FD915BF00CB3249 /* WYLiveViewController1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYLiveViewController1.xib; sourceTree = "<group>"; };
 		7852D51F1FD915BF00CB3249 /* WYLiveViewController1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYLiveViewController1.m; sourceTree = "<group>"; };
 		7852D5201FD915C000CB3249 /* WYLiveViewController1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYLiveViewController1.h; sourceTree = "<group>"; };
+		7852D5251FD917BF00CB3249 /* WYSocketManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYSocketManager.h; sourceTree = "<group>"; };
+		7852D5261FD917BF00CB3249 /* WYSocketManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYSocketManager.m; sourceTree = "<group>"; };
 		7854B9A41FB3F9F900A7F85E /* WYRewardModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYRewardModel.h; sourceTree = "<group>"; };
 		7854B9A51FB3F9F900A7F85E /* WYRewardModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYRewardModel.m; sourceTree = "<group>"; };
 		7854B9A71FB405B100A7F85E /* WYIncomeRewardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYIncomeRewardTableViewCell.h; sourceTree = "<group>"; };
@@ -879,6 +879,7 @@
 		44203D661E714BD600D59B5E /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				7852D5241FD917BF00CB3249 /* Socket */,
 				78D1D3321F7CCB50007261E4 /* WYItem */,
 				44D2F7CB1E7FA25900122866 /* ActionSheet */,
 				44203D671E714BD600D59B5E /* AlertView */,
@@ -1191,8 +1192,6 @@
 			isa = PBXGroup;
 			children = (
 				44D2F7EC1E7FFDB700122866 /* MessageAttachment */,
-				44D2F7C31E7BCA6B00122866 /* WYSocketManager.h */,
-				44D2F7C41E7BCA6B00122866 /* WYSocketManager.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1295,6 +1294,15 @@
 				782119021F5805F00073CBC2 /* ZegoLiveRoom.framework */,
 			);
 			path = iphoneos_simulator;
+			sourceTree = "<group>";
+		};
+		7852D5241FD917BF00CB3249 /* Socket */ = {
+			isa = PBXGroup;
+			children = (
+				7852D5251FD917BF00CB3249 /* WYSocketManager.h */,
+				7852D5261FD917BF00CB3249 /* WYSocketManager.m */,
+			);
+			path = Socket;
 			sourceTree = "<group>";
 		};
 		789DAA111F56871F0012075C /* Face */ = {
@@ -2014,6 +2022,7 @@
 				78B82A3B1F7914C700279366 /* YTQuickLoginViewController.m in Sources */,
 				7826BD2A1FB0406200EACB75 /* WYMessageModel.m in Sources */,
 				784A19F41FCBF66800CCC529 /* WYSpaceDetailBottomView.m in Sources */,
+				7852D5271FD917BF00CB3249 /* WYSocketManager.m in Sources */,
 				442563DD1F39993C0075467A /* ZegoAVManager.m in Sources */,
 				7852D5221FD915C000CB3249 /* WYLiveViewController1.m in Sources */,
 				44203DB11E715A9100D59B5E /* WYNetWorkExceptionHandling.m in Sources */,
@@ -2056,7 +2065,6 @@
 				44D2F7E11E7FC30500122866 /* NSString+YTChatRoom.m in Sources */,
 				44203D9E1E714BD600D59B5E /* WYStyleSheet.m in Sources */,
 				441C24051E8501CD0020557C /* WYBetTopView.m in Sources */,
-				44D2F7C51E7BCA6B00122866 /* WYSocketManager.m in Sources */,
 				44D2F7FC1E7FFDB700122866 /* YTMessageNotificationAttachment.m in Sources */,
 				44203D8A1E714BD600D59B5E /* WYWebViewController.m in Sources */,
 				44203D851E714BD600D59B5E /* UIColor+Hex.m in Sources */,
@@ -2493,7 +2501,7 @@
 				);
 				GCC_PREFIX_HEADER = WYStreamMaster/PrefixHeader.pch;
 				INFOPLIST_FILE = WYStreamMaster/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2533,7 +2541,7 @@
 				);
 				GCC_PREFIX_HEADER = WYStreamMaster/PrefixHeader.pch;
 				INFOPLIST_FILE = WYStreamMaster/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
