@@ -148,6 +148,8 @@
 		784A1A001FCD3FFD00CCC529 /* CommentSubmitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 784A19FD1FCD3FFC00CCC529 /* CommentSubmitViewController.xib */; };
 		78526D691FC28491008D799C /* WYHelpDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78526D671FC28491008D799C /* WYHelpDetailCell.m */; };
 		78526D6A1FC28491008D799C /* WYHelpDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78526D681FC28491008D799C /* WYHelpDetailCell.xib */; };
+		7852D5211FD915C000CB3249 /* WYLiveViewController1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7852D51E1FD915BF00CB3249 /* WYLiveViewController1.xib */; };
+		7852D5221FD915C000CB3249 /* WYLiveViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 7852D51F1FD915BF00CB3249 /* WYLiveViewController1.m */; };
 		7854B9A61FB3F9F900A7F85E /* WYRewardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7854B9A51FB3F9F900A7F85E /* WYRewardModel.m */; };
 		7854B9AA1FB405B100A7F85E /* WYIncomeRewardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7854B9A81FB405B100A7F85E /* WYIncomeRewardTableViewCell.m */; };
 		7854B9AB1FB405B100A7F85E /* WYIncomeRewardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7854B9A91FB405B100A7F85E /* WYIncomeRewardTableViewCell.xib */; };
@@ -157,8 +159,6 @@
 		7854B9DA1FB4699600A7F85E /* WYHelpDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7854B9D81FB4699600A7F85E /* WYHelpDetailViewController.xib */; };
 		7854B9E41FB5493D00A7F85E /* WYSpaceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7854B9E21FB5493D00A7F85E /* WYSpaceDetailViewController.m */; };
 		7854B9E51FB5493D00A7F85E /* WYSpaceDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7854B9E31FB5493D00A7F85E /* WYSpaceDetailViewController.xib */; };
-		7854B9E91FB54B6C00A7F85E /* WYLiveViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 7854B9E71FB54B6C00A7F85E /* WYLiveViewController1.m */; };
-		7854B9EA1FB54B6C00A7F85E /* WYLiveViewController1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7854B9E81FB54B6C00A7F85E /* WYLiveViewController1.xib */; };
 		78716D4B1FC6C0D80019F9E5 /* YTCommunityDetailCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78716D481FC6C0D70019F9E5 /* YTCommunityDetailCollectionCell.m */; };
 		78716D4C1FC6C0D80019F9E5 /* YTCommunityDetailCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78716D4A1FC6C0D80019F9E5 /* YTCommunityDetailCollectionCell.xib */; };
 		787ADB6F1F8B509B005331C9 /* YTClassifyCommunityImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 787ADB6D1F8B509B005331C9 /* YTClassifyCommunityImageView.m */; };
@@ -533,6 +533,9 @@
 		78526D661FC28491008D799C /* WYHelpDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYHelpDetailCell.h; sourceTree = "<group>"; };
 		78526D671FC28491008D799C /* WYHelpDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYHelpDetailCell.m; sourceTree = "<group>"; };
 		78526D681FC28491008D799C /* WYHelpDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYHelpDetailCell.xib; sourceTree = "<group>"; };
+		7852D51E1FD915BF00CB3249 /* WYLiveViewController1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYLiveViewController1.xib; sourceTree = "<group>"; };
+		7852D51F1FD915BF00CB3249 /* WYLiveViewController1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYLiveViewController1.m; sourceTree = "<group>"; };
+		7852D5201FD915C000CB3249 /* WYLiveViewController1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYLiveViewController1.h; sourceTree = "<group>"; };
 		7854B9A41FB3F9F900A7F85E /* WYRewardModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYRewardModel.h; sourceTree = "<group>"; };
 		7854B9A51FB3F9F900A7F85E /* WYRewardModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYRewardModel.m; sourceTree = "<group>"; };
 		7854B9A71FB405B100A7F85E /* WYIncomeRewardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYIncomeRewardTableViewCell.h; sourceTree = "<group>"; };
@@ -547,9 +550,6 @@
 		7854B9E11FB5493D00A7F85E /* WYSpaceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYSpaceDetailViewController.h; sourceTree = "<group>"; };
 		7854B9E21FB5493D00A7F85E /* WYSpaceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYSpaceDetailViewController.m; sourceTree = "<group>"; };
 		7854B9E31FB5493D00A7F85E /* WYSpaceDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYSpaceDetailViewController.xib; sourceTree = "<group>"; };
-		7854B9E61FB54B6C00A7F85E /* WYLiveViewController1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYLiveViewController1.h; sourceTree = "<group>"; };
-		7854B9E71FB54B6C00A7F85E /* WYLiveViewController1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYLiveViewController1.m; sourceTree = "<group>"; };
-		7854B9E81FB54B6C00A7F85E /* WYLiveViewController1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYLiveViewController1.xib; sourceTree = "<group>"; };
 		78716D481FC6C0D70019F9E5 /* YTCommunityDetailCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTCommunityDetailCollectionCell.m; sourceTree = "<group>"; };
 		78716D491FC6C0D70019F9E5 /* YTCommunityDetailCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTCommunityDetailCollectionCell.h; sourceTree = "<group>"; };
 		78716D4A1FC6C0D80019F9E5 /* YTCommunityDetailCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YTCommunityDetailCollectionCell.xib; sourceTree = "<group>"; };
@@ -1002,9 +1002,9 @@
 				44203DBA1E72551600D59B5E /* WYLiveViewController.h */,
 				44203DBB1E72551600D59B5E /* WYLiveViewController.m */,
 				44203DBC1E72551600D59B5E /* WYLiveViewController.xib */,
-				7854B9E61FB54B6C00A7F85E /* WYLiveViewController1.h */,
-				7854B9E71FB54B6C00A7F85E /* WYLiveViewController1.m */,
-				7854B9E81FB54B6C00A7F85E /* WYLiveViewController1.xib */,
+				7852D5201FD915C000CB3249 /* WYLiveViewController1.h */,
+				7852D51F1FD915BF00CB3249 /* WYLiveViewController1.m */,
+				7852D51E1FD915BF00CB3249 /* WYLiveViewController1.xib */,
 			);
 			path = Stream;
 			sourceTree = "<group>";
@@ -1868,7 +1868,6 @@
 				78D1D3151F7B49BE007261E4 /* WYHomePageViewController.xib in Resources */,
 				7854B9E51FB5493D00A7F85E /* WYSpaceDetailViewController.xib in Resources */,
 				442563FD1F429B030075467A /* gr_xian_3_icon@2x.png in Resources */,
-				7854B9EA1FB54B6C00A7F85E /* WYLiveViewController1.xib in Resources */,
 				4425642A1F42AA830075467A /* wy_gameresult_lose_1@2x.png in Resources */,
 				78B82A2F1F78DB1B00279366 /* WYRegistersViewController.xib in Resources */,
 				44203D1F1E6FE78800D59B5E /* LaunchScreen.storyboard in Resources */,
@@ -1897,6 +1896,7 @@
 				442563CE1F385DD70075467A /* zegoliveroom.version.txt in Resources */,
 				78D1D30C1F7A7A12007261E4 /* WYMessageViewController.xib in Resources */,
 				446D432A1E839520002E5C52 /* WYAnchorManageView.xib in Resources */,
+				7852D5211FD915C000CB3249 /* WYLiveViewController1.xib in Resources */,
 				78D1D3431F7E20F5007261E4 /* WYSpaceViewController.xib in Resources */,
 				7854B9B01FB42B2600A7F85E /* WYIncomeRewardHeaderView.xib in Resources */,
 				789DAA321F5688200012075C /* yazui.bundle in Resources */,
@@ -2015,6 +2015,7 @@
 				7826BD2A1FB0406200EACB75 /* WYMessageModel.m in Sources */,
 				784A19F41FCBF66800CCC529 /* WYSpaceDetailBottomView.m in Sources */,
 				442563DD1F39993C0075467A /* ZegoAVManager.m in Sources */,
+				7852D5221FD915C000CB3249 /* WYLiveViewController1.m in Sources */,
 				44203DB11E715A9100D59B5E /* WYNetWorkExceptionHandling.m in Sources */,
 				44203DC31E76380A00D59B5E /* WYStreamingSessionManager.m in Sources */,
 				44D2F7CE1E7FA27400122866 /* WYCustomActionSheet.m in Sources */,
@@ -2052,7 +2053,6 @@
 				787ADB6F1F8B509B005331C9 /* YTClassifyCommunityImageView.m in Sources */,
 				784A19FF1FCD3FFD00CCC529 /* CommentSubmitViewController.m in Sources */,
 				444AA5841EBB0D4E00A80FB9 /* WYImagePickerController.m in Sources */,
-				7854B9E91FB54B6C00A7F85E /* WYLiveViewController1.m in Sources */,
 				44D2F7E11E7FC30500122866 /* NSString+YTChatRoom.m in Sources */,
 				44203D9E1E714BD600D59B5E /* WYStyleSheet.m in Sources */,
 				441C24051E8501CD0020557C /* WYBetTopView.m in Sources */,

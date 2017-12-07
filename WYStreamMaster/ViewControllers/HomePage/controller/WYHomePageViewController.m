@@ -183,7 +183,7 @@
             [WYLoginUserManager setLiveGameType:gameType];
             
             WYLiveViewController1 *liveVc = [[WYLiveViewController1 alloc] init];
-            liveVc.isShowFaceUnity = YES;
+//            liveVc.isShowFaceUnity = YES;
             liveVc.streamURL = [WYLoginUserManager anchorPushUrl];
             [self.navigationController pushViewController:liveVc animated:YES];
             
