@@ -102,12 +102,11 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:[WYLoginUserManager userID] forKey:@"user_code"];
     [params setObject:content forKey:@"content"];
-//    if (imgs && imgs.count > 0) {
-//        NSString * imgsString;
-//        imgsString = [WYCommonUtils stringSplitWithCommaForIds:imgs];
-//        [params setObject:imgsString forKey:@"img"];
-//    }
-//
+    if (imgs && imgs.count > 0) {
+        NSString * imgsString;
+        imgsString = [WYCommonUtils stringSplitWithCommaForIds:imgs];
+        [params setObject:imgsString forKey:@"img"];
+    }
     [self.networkManager POST:requestUrl needCache:YES parameters:params responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
         WYLog(@"dataObject = %@",dataObject);
         [MBProgressHUD hideHUDForView:weakSelf.view];
@@ -248,7 +247,7 @@
     [paramsDic setObject:[WYLoginUserManager userID] forKey:@"bizImgPath"];
     [paramsDic setObject:@"1" forKey:@"saveType"];
 
-    [self.networkManager POST:requestUrl formFileName:@"pic" fileName:@"pic" fileData:imageData mimeType:@"image/png" parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
+    [self.networkManager POST:requestUrl formFileName:@"pic" fileName:@"pic" fileData:imageData mimeType:@"video/MOV" parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
         STRONGSELF
         [MBProgressHUD hideHUDForView:strongSelf.view];
         if (requestType == WYRequestTypeSuccess) {

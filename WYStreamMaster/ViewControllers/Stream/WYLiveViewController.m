@@ -742,7 +742,7 @@ static bool frontCamera = YES;
 
 #pragma mark -
 #pragma mark - WYAnchorInfoViewDelegate
-- (void)anchorInfoViewAvatarClicked{
+- (void)anchorInfoViewAvatarClicked {
     //主播信息
     [self.anchorManageView show];
 }

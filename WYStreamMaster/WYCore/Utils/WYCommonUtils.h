@@ -10,6 +10,7 @@
 #import "WYSuperViewController.h"
 
 @interface WYCommonUtils : NSObject
++ (NSString*)stringSplitWithCommaForIds:(NSArray*)ids;
 
 /**
  *  根据固定的Width 计算 AttributedString 的Size

@@ -17,6 +17,7 @@
 #import "WYSpaceDetailModel.h"
 #import "YTInteractMessageTableViewCell.h"
 #import "WYSpaceDetailBottomView.h"
+#import "WYLoginManager.h"
 #define kClassifyHeaderHeight (kScreenWidth * 210 / 375 + 44)
 static NSString *const kCommunityDetailCollectionCell = @"YTCommunityDetailCollectionCell";
 static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
@@ -60,31 +61,6 @@ static NSString *const kInteractMessageTableViewCell = @"YTInteractMessageTableV
     [self.collectionView registerNib:[UINib nibWithNibName:kCommunityDetailCollectionCell bundle:nil] forCellWithReuseIdentifier:kCommunityDetailCollectionCell];
     [self.collectionView registerNib:[UINib nibWithNibName:kSpaceHeaderView bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kSpaceHeaderView];
     
-    WYSpaceDetailModel *model = [[WYSpaceDetailModel alloc] init];
-    WYSpaceDetailModel *model1 = [[WYSpaceDetailModel alloc] init];
-    model.content = @"橙卡，橙卡，橙卡";
-    model.commentId = @"100";
-    model.create_date = @"2017-09-19 08:51:34";
-    model.parent_id = @"200";
-    model.user_code = @"100";
-    model.parent_user_code = @"200";
-    model.nickname = @"小飞侠";
-    model.parent_nickname = @"奥特曼";
-    model.content = @"我是一只小蜜蜂，飞到花丛中我是一只小蜜蜂，飞到花丛中";
-    
-    model1.content = @"橙卡，橙卡，橙卡";
-    model1.commentId = @"100";
-    model1.create_date = @"2017-09-19 08:51:34";
-    model1.user_code = @"100";
-    model1.parent_user_code = @"200";
-    model1.nickname = @"小飞侠";
-    model1.parent_nickname = @"奥特曼";
-    model1.content = @"我是一只小蜜蜂，飞到花丛中";
-
-//    [self.dataSource addObject:model];
-//    [self.dataSource addObject:model];
-//    [self.dataSource addObject:model1];
-//    [self.dataSource addObject:model1];
     
     WEAKSELF
     [self.view addSubview:self.collectionView];
@@ -107,6 +83,8 @@ static NSString *const kInteractMessageTableViewCell = @"YTInteractMessageTableV
         itemHeight = 100.0*kScreenWidth / 375.0 + 168;
     } else if (self.spaceModel.bbsType == YTBBSTypeVideo) {
         itemHeight = 190;
+    } else {
+        itemHeight = 0.0;
     }
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(@20);
@@ -158,11 +136,19 @@ static NSString *const kInteractMessageTableViewCell = @"YTInteractMessageTableV
 }
 
 - (void)publishComment:(NSString *)parent_id{
+    NSString *auditStatu = [NSString stringWithFormat:@"%@", [WYLoginManager sharedManager].loginModel.audit_statu];
+
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"publish_comment"];
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
     [paramsDic setObject:self.spaceModel.identity forKey:@"blog_id"];
-    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"user_code"];
+//    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"user_code"];
     [paramsDic setObject:self.spaceDetailBottomView.spaceDetailTextField.text forKey:@"content"];
+    if ([auditStatu isEqualToString:@"2"]) {
+        [paramsDic setObject:@"1" forKey:@"is_anchor"];
+    } else {
+        [paramsDic setObject:@"0" forKey:@"is_anchor"];
+    }
+
     if ([parent_id length] != 0) {
         [paramsDic setObject:parent_id forKey:@"parent_id"];
     }
@@ -304,7 +290,7 @@ static NSString *const kInteractMessageTableViewCell = @"YTInteractMessageTableV
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     WYSpaceDetailModel *model = self.dataSource[indexPath.row];
-    self.parent_id = model.parent_id;
+    self.parent_id = model.commentId;
     [self.spaceDetailBottomView.spaceDetailTextField becomeFirstResponder];
 }
 

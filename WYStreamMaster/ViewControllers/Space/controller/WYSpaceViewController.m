@@ -70,17 +70,17 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
     [self.collectionView registerNib:[UINib nibWithNibName:kCommunityCollectionCell bundle:nil] forCellWithReuseIdentifier:kCommunityCollectionCell];
     [self.collectionView registerNib:[UINib nibWithNibName:kSpaceHeaderView bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kSpaceHeaderView];
 
-    YTClassifyBBSDetailModel *model = [[YTClassifyBBSDetailModel alloc] init];
-    model.content = @"橙卡，橙卡，橙卡";
-    model.create_date = @"2017-09-19 08:51:34";
-    model.images = [NSMutableArray arrayWithObjects:@"update", @"update", @"update", @"update", @"update", nil];
-    model.comment = @"100";
-    model.identity = @"101";
-    model.praiseNumber = @"100";
-//    [self.dataSource addObject:model];
-//    [self.dataSource addObject:model];
-//    [self.dataSource addObject:model];
-//    [self.dataSource addObject:model];
+//    YTClassifyBBSDetailModel *model = [[YTClassifyBBSDetailModel alloc] init];
+//    model.content = @"橙卡，橙卡，橙卡";
+//    model.create_date = @"2017-09-19 08:51:34";
+//    model.images = [NSMutableArray arrayWithObjects:@"update", @"update", @"update", @"update", @"update", nil];
+//    model.comment = @"100";
+//    model.identity = @"101";
+//    model.praiseNumber = @"100";
+////    [self.dataSource addObject:model];
+////    [self.dataSource addObject:model];
+////    [self.dataSource addObject:model];
+////    [self.dataSource addObject:model];
 
     WEAKSELF
     [self.view addSubview:self.collectionView];

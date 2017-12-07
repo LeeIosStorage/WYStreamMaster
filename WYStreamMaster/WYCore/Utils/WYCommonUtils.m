@@ -355,6 +355,17 @@ static bool dateFormatterOFUSInvalid ;
     return [WYCommonUtils acquireCurrentLocalizedText:@"wy_server_request_errer_tip"];
 }
 
++ (NSString*)stringSplitWithCommaForIds:(NSArray*)ids {
+    NSMutableString * idsString = [[NSMutableString alloc] init];
+    for (NSString* uid in ids) {
+        if (idsString.length > 0) {
+            [idsString appendString:@","];
+        }
+        [idsString appendString:uid.description];
+    }
+    return idsString;
+}
+
 + (NSString *)getPreferredLanguage
 {
     NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];

@@ -28,7 +28,9 @@
     [super awakeFromNib];
     
     [self.bottomLikeButton setImage:[UIImage imageNamed:@"video_detail_buttom_liked"] forState:(UIControlStateSelected | UIControlStateHighlighted)];
-    
+    self.bottomLikeButton.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
+    self.bottomCommentButton.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
+
     [self.bottomShareButton addTarget:self action:@selector(onCommunityInfoShareButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.bottomCommentButton addTarget:self action:@selector(onCommunityInfoCommentButtonClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -45,7 +47,7 @@
             [self.bottomCommentButton setTitle:[NSString stringWithFormat:@"%@", self.bbsDetail.comment] forState:UIControlStateNormal];
             [self.bottomCommentButton setImageEdgeInsets:UIEdgeInsetsMake(0, -5, 0, 0)];
         } else {
-            [self.bottomCommentButton setTitle:nil forState:UIControlStateNormal];
+            [self.bottomCommentButton setTitle:@"0" forState:UIControlStateNormal];
             [self.bottomCommentButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
         }
         
@@ -53,7 +55,7 @@
             [self.bottomLikeButton setTitle:[NSString stringWithFormat:@"%@", self.bbsDetail.praiseNumber] forState:UIControlStateNormal];
             [self.bottomLikeButton setImageEdgeInsets:UIEdgeInsetsMake(0, -5, 0, 0)];
         } else {
-            [self.bottomLikeButton setTitle:nil forState:UIControlStateNormal];
+            [self.bottomLikeButton setTitle:@"0" forState:UIControlStateNormal];
             [self.bottomLikeButton setImageEdgeInsets:UIEdgeInsetsZero];
         }
         
@@ -109,15 +111,19 @@
 
 - (void)onCommunityInfoLikeButtonClick:(UIButton *)button
 {
-    WEAKSELF
-    if (button.selected) {
-        return;
-    }
+//    WEAKSELF
+    NSString *is_like;
     button.selected = !button.selected;
     if (button.selected) {
         self.bbsDetail.praiseNumber = [NSString stringWithFormat:@"%d",([self.bbsDetail.praiseNumber intValue] + 1)];
         self.bbsDetail.isPraise = YES;
         [self.bottomLikeButton setTitle:self.bbsDetail.praiseNumber forState:UIControlStateNormal];
+        is_like = @"1";
+    } else {
+        self.bbsDetail.praiseNumber = [NSString stringWithFormat:@"%d",([self.bbsDetail.praiseNumber intValue] - 1)];
+        self.bbsDetail.isPraise = NO;
+        [self.bottomLikeButton setTitle:self.bbsDetail.praiseNumber forState:UIControlStateNormal];
+        is_like = @"0";
     }
     
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"upvote_blog"];
@@ -125,22 +131,24 @@
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
     [paramsDic setObject:self.bbsDetail.identity forKey:@"blog_id"];
     [paramsDic setValue:[WYLoginUserManager userID] forKey:@"user_code"];
-    [paramsDic setValue:self.bbsDetail.upvote_id forKey:@"upvote_id"];
+    [paramsDic setValue:is_like forKey:@"is_like"];
 
      WYNetWorkManager *networkManager = [[WYNetWorkManager alloc] init];
     [networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
-        STRONGSELF
+//        STRONGSELF
         if (requestType == WYRequestTypeSuccess) {
             // 点赞成功
+            NSLog(@"");
         } else {
-            button.selected = NO;
-            strongSelf.bbsDetail.praiseNumber = [NSString stringWithFormat:@"%d",([strongSelf.bbsDetail.praiseNumber intValue] - 1)];
-            strongSelf.bbsDetail.isPraise = NO;
-            [strongSelf.bottomLikeButton setTitle:[NSString stringWithFormat:@"%d", [strongSelf.bbsDetail.praiseNumber intValue]] forState:UIControlStateNormal];
-            [MBProgressHUD showError:message];
+//            button.selected = NO;
+//            strongSelf.bbsDetail.praiseNumber = [NSString stringWithFormat:@"%d",([strongSelf.bbsDetail.praiseNumber intValue] - 1)];
+//            strongSelf.bbsDetail.isPraise = NO;
+//            [strongSelf.bottomLikeButton setTitle:[NSString stringWithFormat:@"%d", [strongSelf.bbsDetail.praiseNumber intValue]] forState:UIControlStateNormal];
+//            [MBProgressHUD showError:message];
+            NSLog(@"");
         }
     } failure:^(id responseObject, NSError *error) {
-        
+        NSLog(@"");
     }];
 }
 
