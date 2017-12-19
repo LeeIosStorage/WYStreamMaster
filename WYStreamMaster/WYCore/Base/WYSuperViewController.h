@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "WYNetWorkManager.h"
-
+#import "YTDefualtLoadingView.h"
 
 @interface WYSuperViewController : UIViewController<UIGestureRecognizerDelegate>
 
@@ -20,9 +20,12 @@
 @property (strong, nonatomic) UIImage                   *backImage;
 //禁用侧滑
 @property (nonatomic, assign) BOOL                      disablePan;
+@property (strong, nonatomic) YTDefualtLoadingView      *loadingView;
 
 @property (strong, nonatomic) UIView                    *defualtPageView;
+- (void)hideLoadingView;
 
+- (void)onLoadingViewButtonClick;
 
 @property (weak, nonatomic) IBOutlet UIImageView    *accountError;
 @property (weak, nonatomic) IBOutlet UIImageView    *passwordError;

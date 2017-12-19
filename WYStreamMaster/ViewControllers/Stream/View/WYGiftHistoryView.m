@@ -112,7 +112,7 @@ UITableViewDataSource
             [weakSelf.tableView reloadData];
             
         }else{
-            [MBProgressHUD showError:message toView:nil];
+//            [MBProgressHUD showError:message toView:nil];
         }
         
     } failure:^(id responseObject, NSError *error) {

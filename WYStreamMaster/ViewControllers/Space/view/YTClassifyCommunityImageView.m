@@ -7,7 +7,7 @@
 //
 
 #import "YTClassifyCommunityImageView.h"
-
+#import "WYAvatarBrowser.h"
 #define kImageWidth  100.f*kScreenWidth/375.f
 
 
@@ -40,17 +40,34 @@
         if (i > 2) {
             return;
         }
+        NSString *imageStr = array[i];
+//        NSString *imageCoverStr = [imageStr substringToIndex:imageStr.length - 1];
         
-        NSString *imageURL = [NSString stringWithFormat:@"%@",array[i]];
+        NSString *imageURL = [NSString stringWithFormat:@"%@", imageStr];
         UIImageView *imageView = [[UIImageView alloc] init];
+        imageView.tag = 100 + i;
+        [imageView setClipsToBounds:YES];
+        imageView.layer.cornerRadius = 5.0;
         [imageView setImageWithURL:[NSURL URLWithString:imageURL] placeholder:[UIImage imageNamed:@"common_headImage"]];
         imageView.contentMode = UIViewContentModeScaleAspectFill;
         // 解决图片出界之后还显示问题
         imageView.clipsToBounds = YES;
-
+        imageView.userInteractionEnabled = YES;
         imageView.frame = CGRectMake(12+ i * (kImageWidth + 5), 0, kImageWidth, kImageWidth);
         [self addSubview:imageView];
+        UITapGestureRecognizer *tap  = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(magnifyImage:)];
+        UIView *singleTapView = [tap view];
+        singleTapView.tag =1000 + i;
+        [imageView addGestureRecognizer:tap];
     }
+}
+
+- (void)magnifyImage:(UITapGestureRecognizer *)tap
+{
+    NSInteger tapView = [tap view].tag;
+    UIImageView *imageView = [self viewWithTag:tapView];
+    NSLog(@"局部放大");
+    [WYAvatarBrowser showImage:imageView]; //调用方法
 }
 
 - (UIButton *)viewAllButton {

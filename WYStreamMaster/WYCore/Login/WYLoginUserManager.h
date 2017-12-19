@@ -119,6 +119,10 @@ typedef NS_ENUM(NSInteger, CPLoginUserType){
 // 是否记住密码 0 不记住 1 记住
 + (NSString *)rememberPassword;
 + (void)setRememberPassword:(NSString *)rememberPassword;
+
+// 是否第一次进入程序 1不是
++ (NSString *)isFirstEnterApplication;
++ (void)setIsFirstEnterApplication:(NSString *)isFirstEnterApplication;
 #pragma mark - User Setting
 
 

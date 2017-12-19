@@ -69,7 +69,6 @@
     
     WS(weakSelf)
     viewController.loginSuccessBlock = ^(void) {
-        
         [weakSelf didLoginSuccess];
         [weakSelf.loginViewController.navigationController popViewControllerAnimated:YES];
     };
@@ -125,7 +124,6 @@
     if(self.loginViewController == [navigationController.viewControllers objectAtIndex:0]){
         return YES;
     }
-    
     return NO;
 }
 

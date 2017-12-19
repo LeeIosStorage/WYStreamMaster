@@ -25,6 +25,7 @@
 #import "FUManager.h"
 #import "AFNetworkReachabilityManager.h"
 #import "YTBetRankingView.h"
+#import "WYLiveEndViewController.h"
 // 直播通知重试次数
 static NSInteger kLiveNotifyRetryCount = 0;
 static NSInteger kLiveNotifyRetryMaxCount = 3;
@@ -76,9 +77,12 @@ FUAPIDemoBarDelegate
 @property (nonatomic, strong) UIButton *demoBtn ;
 @property (nonatomic, strong) FUAPIDemoBar *demoBar ;
 @property (nonatomic, assign) NSInteger pauseTime;
-@property (nonatomic ,strong) NSTimer *pauseTimers;
+@property (nonatomic, strong) NSTimer *pauseTimers;
 @property (strong, nonatomic) YTBetRankingView *betRankingView;
 @property (strong, nonatomic) YTBetRankingView *primaryBetRankingView;
+
+
+
 
 @end
 
@@ -466,7 +470,7 @@ FUAPIDemoBarDelegate
     NSString *gameStatusTipText = nil;
     if (gameStatus == 1) {
         gameStatusTipText = [WYCommonUtils acquireCurrentLocalizedText:@"等待玩家下注"];
-    }else if (gameStatus == 2){
+    } else if (gameStatus == 2){
         gameStatusTipText = [WYCommonUtils acquireCurrentLocalizedText:@"正在发牌 等待游戏结果"];
     }
     
@@ -476,15 +480,14 @@ FUAPIDemoBarDelegate
 }
 
 - (void)serverNoticeFinishStream{
-    
     [self stopPublishing];
-    
     [self.streamingSessionManager destroyStream];
     [self.roomView.chatroomControl exitRoom];
     //通知服务器停止直播了
     [self closeLive];
-    
-    [self.navigationController popViewControllerAnimated:YES];
+    WYLiveEndViewController *liveEndVC = [[WYLiveEndViewController alloc] init];
+    [self.navigationController pushViewController:liveEndVC animated:YES];
+//    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)stopPublishing
@@ -499,13 +502,10 @@ FUAPIDemoBarDelegate
 #pragma mark -
 #pragma mark - Button Clicked
 - (IBAction)doBackAction:(id)sender{
-    
     WEAKSELF
     UIAlertView *alertView = [UIAlertView bk_showAlertViewWithTitle:[WYCommonUtils acquireCurrentLocalizedText:@"确定要停止直播吗？"] message:nil cancelButtonTitle:[WYCommonUtils acquireCurrentLocalizedText:@"再想想"] otherButtonTitles:@[[WYCommonUtils acquireCurrentLocalizedText:@"wy_affirm"]] handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
         if (buttonIndex == 1) {
-            
             [weakSelf serverNoticeFinishStream];
-            
 //            [weakSelf.streamingSessionManager destroyStream];
 //            [weakSelf.roomView.chatroomControl exitRoom];
 //            //通知服务器停止直播了

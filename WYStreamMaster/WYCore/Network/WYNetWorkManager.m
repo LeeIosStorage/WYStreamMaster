@@ -172,7 +172,7 @@ responseClass:(Class)classType
     AFJSONResponseSerializer *jsonReponseSerializer = [AFJSONResponseSerializer serializer];
     jsonReponseSerializer.acceptableContentTypes = nil;
     manager.responseSerializer = jsonReponseSerializer;
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+//    manager.requestSerializer = [AFJSONRequestSerializer serializer];
     
     NSString *requestURLString = [self urlStringAddCommonParamForSourceURLString:URLString];
     

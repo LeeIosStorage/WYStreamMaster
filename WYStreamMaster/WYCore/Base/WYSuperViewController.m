@@ -67,6 +67,16 @@
     }
     
     [self initTipsView];
+    
+    WEAKSELF
+    if (!self.loadingView) {
+        self.loadingView = [[YTDefualtLoadingView alloc] initWithFrame:self.view.bounds containerView:self.view];
+    }
+    self.loadingView.clickButtonBlock = ^(id sender){
+        if (sender) {
+            [weakSelf onLoadingViewButtonClick];
+        }
+    };
 }
 
 - (void)needTapGestureRecognizer
@@ -278,6 +288,15 @@
 - (NSString *)pageName
 {
     return self.title;
+}
+
+- (void)hideLoadingView {
+    [self.loadingView hide];
+}
+
+- (void)onLoadingViewButtonClick
+{
+    // 子类重写
 }
 
 #pragma mark

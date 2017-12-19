@@ -23,6 +23,7 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
 
 @interface WYSpaceViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (strong, nonatomic) WYSpaceHeaderView *headerView;
+@property (assign, nonatomic) NSInteger startIndexPage;
 
 @end
 
@@ -31,6 +32,9 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
 {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont boldSystemFontOfSize:15.0]};
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self getSpaceRequest];
+    });
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -40,6 +44,7 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.startIndexPage = 1;
     self.edgesForExtendedLayout = UIRectEdgeTop;
     if (@available(iOS 11.0, *)) {
         self.collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
@@ -52,6 +57,7 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
     //导航栏透明
     self.navigationController.navigationBar.shadowImage = [[UIImage alloc]init];
     [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc]init] forBarMetrics: UIBarMetricsDefault];
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 #pragma mark - setup
@@ -70,20 +76,16 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
     [self.collectionView registerNib:[UINib nibWithNibName:kCommunityCollectionCell bundle:nil] forCellWithReuseIdentifier:kCommunityCollectionCell];
     [self.collectionView registerNib:[UINib nibWithNibName:kSpaceHeaderView bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kSpaceHeaderView];
 
-//    YTClassifyBBSDetailModel *model = [[YTClassifyBBSDetailModel alloc] init];
-//    model.content = @"橙卡，橙卡，橙卡";
-//    model.create_date = @"2017-09-19 08:51:34";
-//    model.images = [NSMutableArray arrayWithObjects:@"update", @"update", @"update", @"update", @"update", nil];
-//    model.comment = @"100";
-//    model.identity = @"101";
-//    model.praiseNumber = @"100";
-////    [self.dataSource addObject:model];
-////    [self.dataSource addObject:model];
-////    [self.dataSource addObject:model];
-////    [self.dataSource addObject:model];
-
     WEAKSELF
     [self.view addSubview:self.collectionView];
+    [self addRefreshHeaderWithBlock:^{
+        weakSelf.startIndexPage = 1;
+        [weakSelf getSpaceRequest];
+    }];
+    
+//    [self addRefreshFooterWithBlock:^{
+//        [weakSelf getSpaceRequest];
+//    }];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.width.bottom.equalTo(weakSelf.view);
     }];
@@ -103,27 +105,55 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
     return backBarButtonItem;
 }
 
+#pragma mark
+#pragma mark - Super Methods
+
+- (void)onLoadingViewButtonClick
+{
+    [self hideLoadingView];
+    [self loadingAction];
+}
+
+- (void)loadingAction
+{
+   
+}
+
 #pragma mark -
 #pragma mark - Server
 - (void)getSpaceRequest{
+    if (self.startIndexPage == 1) {
+        [self.dataSource removeAllObjects];
+    }
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"user_blogs"];
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
-    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"user_code"];
-    [paramsDic setObject:@"1" forKey:@"cur_page"];
-    [paramsDic setObject:@"20" forKey:@"page_size"];
+//    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"user_code"];
+    [paramsDic setObject:[NSString stringWithFormat:@"%zd", self.startIndexPage] forKey:@"cur_page"];
+    [paramsDic setObject:@"1000" forKey:@"page_size"];
     WS(weakSelf)
     [self.networkManager GET:requestUrl needCache:NO parameters:nil responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
         NSLog(@"error:%@ data:%@",message,dataObject);
+        [weakSelf.collectionView.mj_header endRefreshing];
+        [weakSelf.collectionView.mj_footer beginRefreshing];
         if (requestType == WYRequestTypeSuccess) {
             NSArray *dataArr = [NSArray modelArrayWithClass:[YTClassifyBBSDetailModel class] json:dataObject[@"list"]];
             [weakSelf.dataSource addObjectsFromArray:dataArr];
             [weakSelf.collectionView reloadData];
+            if (dataArr.count < 10) {
+                [weakSelf.collectionView.mj_footer setHidden:YES];
+                [weakSelf showRefreshFooter];
+            } else {
+                [weakSelf hideRefreshFooter];
+                weakSelf.startIndexPage ++;
+//                [weakSelf getSpaceRequest];
+//                [weakSelf.collectionView.mj_footer setHidden:NO];
+            }
         } else {
             
         }
-        
     } failure:^(id responseObject, NSError *error) {
-       
+        [weakSelf.collectionView.mj_header endRefreshing];
+        [weakSelf.collectionView.mj_footer beginRefreshing];
     }];
 }
 
@@ -131,18 +161,6 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
 #pragma mark - Action
 - (void)rightButtonClicked:(id)sender
 {
-//    UIButton *rightButton = (UIButton *)sender;
-    WEAKSELF
-//    WYCustomActionSheet *actionSheet = [[WYCustomActionSheet alloc] initWithTitle:nil actionBlock:^(NSInteger buttonIndex) {
-//        NSLog(@"%ld",(long)buttonIndex);
-//        if (buttonIndex == 1) {
-//            [weakSelf showImageBroswerWithSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-//        } else if (buttonIndex == 0){
-//            [weakSelf showImageBroswerWithSourceType:UIImagePickerControllerSourceTypeCamera];
-//        }
-//    } cancelButtonTitle:[WYCommonUtils acquireCurrentLocalizedText:@"wy_cancel"] destructiveButtonTitle:nil otherButtonTitles:@[[WYCommonUtils acquireCurrentLocalizedText:@"wy_take_photos"],[WYCommonUtils acquireCurrentLocalizedText:@"wy_photo_library"]]];
-//    [actionSheet showInView:self.view];
-    
     CommentSubmitViewController *submitVc = [[CommentSubmitViewController alloc] init];
     submitVc.submitType = 7;
 //    submitVc.delegate = self;

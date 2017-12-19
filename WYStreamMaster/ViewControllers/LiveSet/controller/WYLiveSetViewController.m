@@ -57,6 +57,7 @@ UITextFieldDelegate>
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"直播设置";
+    self.edgesForExtendedLayout = UIRectEdgeTop;
     [self setupView];
     [self getAreaRequest];
 }

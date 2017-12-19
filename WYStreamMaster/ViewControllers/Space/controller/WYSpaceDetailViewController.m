@@ -18,6 +18,7 @@
 #import "YTInteractMessageTableViewCell.h"
 #import "WYSpaceDetailBottomView.h"
 #import "WYLoginManager.h"
+#import "ZYZCPlayViewController.h"
 #define kClassifyHeaderHeight (kScreenWidth * 210 / 375 + 44)
 static NSString *const kCommunityDetailCollectionCell = @"YTCommunityDetailCollectionCell";
 static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
@@ -46,6 +47,7 @@ static NSString *const kInteractMessageTableViewCell = @"YTInteractMessageTableV
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = @"评论详情";
+//    self.edgesForExtendedLayout = UIRectEdgeTop;
     [self setupView];
     [self getSpaceRequest];
 }
@@ -54,7 +56,7 @@ static NSString *const kInteractMessageTableViewCell = @"YTInteractMessageTableV
 - (void)setupView
 {
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped)];
-    [self.collectionView addGestureRecognizer:tap];
+    [self.view addGestureRecognizer:tap];
     
     self.collectionView.backgroundColor = [WYStyleSheet currentStyleSheet].themeBackgroundColor;
     
@@ -82,10 +84,11 @@ static NSString *const kInteractMessageTableViewCell = @"YTInteractMessageTableV
     } else if (self.spaceModel.bbsType == YTBBSTypeGraphic) {
         itemHeight = 100.0*kScreenWidth / 375.0 + 168;
     } else if (self.spaceModel.bbsType == YTBBSTypeVideo) {
-        itemHeight = 190;
+        itemHeight = 310;
     } else {
         itemHeight = 0.0;
     }
+    [self.tableView becomeFirstResponder];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(@20);
         make.trailing.equalTo(@-20);
@@ -111,6 +114,14 @@ static NSString *const kInteractMessageTableViewCell = @"YTInteractMessageTableV
 - (void)viewTapped
 {
     [self.spaceDetailBottomView.spaceDetailTextField resignFirstResponder];
+    if (self.spaceModel.bbsType == YTBBSTypeVideo) {
+        NSString *videosStr = self.spaceModel.videos[0];
+//        NSString *videoCoverStr = [videosStr substringToIndex:videosStr.length - 1];
+        ZYZCPlayViewController *playVC = [[ZYZCPlayViewController alloc] init];
+        playVC.urlString = videosStr;
+        playVC.hidesBottomBarWhenPushed = YES;
+        [self presentViewController:playVC animated:YES completion:nil];
+    }
 }
 #pragma mark -
 #pragma mark - Server
@@ -174,7 +185,6 @@ static NSString *const kInteractMessageTableViewCell = @"YTInteractMessageTableV
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
-    
     return YES;
 }
 
@@ -185,25 +195,12 @@ static NSString *const kInteractMessageTableViewCell = @"YTInteractMessageTableV
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    
     return YES;
 }
 #pragma - mark UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     YTClassifyBBSDetailModel *model = self.spaceModel;
-//    if (self.dataSource.count > 0) {
-//        model = (YTClassifyBBSDetailModel *)self.dataSource[indexPath.row];
-//        if ([model.images count] > 0) {
-//            model.bbsType = YTBBSTypeGraphic;
-//        } else if ([model.videos count] != 0) {
-//            model.bbsType = YTBBSTypeVideo;
-//        } else {
-//            model.bbsType = YTBBSTypeText;
-//        }
-//    }
-//    WYSpaceDetailModel *spaceModel = self.dataSource[indexPath.row];
-//    itemHeight +=  [spaceModel getCellHeigt] + 74;
     CGFloat itemHeight = [YTCommunityDetailCollectionCell heightWithEntity:model];
     return CGSizeMake(kScreenWidth - 12 * 2, itemHeight);
 }
@@ -245,17 +242,14 @@ static NSString *const kInteractMessageTableViewCell = @"YTInteractMessageTableV
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    //    if (model.bbsType == YTBBSTypeVideo) {
-    //        WYNewVideoDetailViewController *vc = [[WYNewVideoDetailViewController alloc] init];
-    //        vc.videoId = model.videoID;
-    //        vc.hidesBottomBarWhenPushed = YES;
-    //        [self.navigationController pushViewController:vc animated:YES];
-    //    } else {
-    //        YTTopicDetailViewController *vc = [[YTTopicDetailViewController alloc] init];
-    //        vc.topicId = model.postsID;
-    //        vc.hidesBottomBarWhenPushed = YES;
-    //        [self.navigationController pushViewController:vc animated:YES];
-    //    }
+        if (self.spaceModel.bbsType == YTBBSTypeVideo) {
+            NSString *videosStr = self.spaceModel.videos[0];
+            NSString *videoCoverStr = [videosStr substringToIndex:videosStr.length - 1];
+            ZYZCPlayViewController *playVC = [[ZYZCPlayViewController alloc] init];
+            playVC.urlString = videoCoverStr;
+            playVC.hidesBottomBarWhenPushed = YES;
+            [self presentViewController:playVC animated:YES completion:nil];
+        }
     
 }
 
@@ -292,6 +286,7 @@ static NSString *const kInteractMessageTableViewCell = @"YTInteractMessageTableV
     WYSpaceDetailModel *model = self.dataSource[indexPath.row];
     self.parent_id = model.commentId;
     [self.spaceDetailBottomView.spaceDetailTextField becomeFirstResponder];
+    [tableView becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -302,7 +297,7 @@ static NSString *const kInteractMessageTableViewCell = @"YTInteractMessageTableV
 /*
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.

@@ -26,6 +26,7 @@
 #import "AFNetworkReachabilityManager.h"
 #import "WYSocketManager.h"
 #import "YTChatModel.h"
+#import "WYLiveEndViewController.h"
 // 直播通知重试次数
 static NSInteger kLiveNotifyRetryCount = 0;
 static NSInteger kLiveNotifyRetryMaxCount = 3;
@@ -81,6 +82,12 @@ ZegoRoomDelegate
 
 @property (nonatomic, strong) NSTimer *pauseTimers;
 
+@property (nonatomic, assign) NSInteger startLiveTime;
+@property (nonatomic, assign) NSInteger liveDurationTime;
+// 直播结束截取图片
+@property (nonatomic, strong) UIImage *liveEndImage;
+@property (nonatomic, copy) NSString *flvStr;
+
 @end
 
 @implementation WYLiveViewController1
@@ -97,19 +104,12 @@ ZegoRoomDelegate
 //    [[WYFaceRendererManager sharedInstance] stopTimer];
 }
 
--(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-//    if (self.isShowFaceUnity) {
-//        [self.view addSubview:self.demoBtn];
-//        [self.view addSubview:self.demoBar];
-//        
-//        [[FUManager shareManager] setUpFaceunity];
-//        [FUManager shareManager].isShown = YES ;
-//        
-//    }
-}
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
+}
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -123,9 +123,8 @@ ZegoRoomDelegate
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.edgesForExtendedLayout = UIRectEdgeTop;
     // Do any additional setup after loading the view from its nib.
-    self.navigationController.navigationBar.hidden = YES;
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(serverNoticeCustomAttachment:) name:WYServerNoticeAttachment_Notification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ReachabilityDidChangeNotification:) name:AFNetworkingReachabilityDidChangeNotification object:nil];
     
@@ -138,6 +137,7 @@ ZegoRoomDelegate
     [self prepareForCameraSetting];
 //    [self crateWebSocket];
     [[ZegoHelper api] setRoomDelegate:self];
+    self.startLiveTime = [self getCurrentTime];
     //开始检测人脸礼物动效
 //    [[WYFaceRendererManager sharedInstance] stopTimer];
 //    [[WYFaceRendererManager sharedInstance] startTimer];
@@ -149,7 +149,6 @@ ZegoRoomDelegate
 //        giftModel.senderID = @"10010";
 //        [[WYFaceRendererManager sharedInstance] addGiftModel:giftModel];
 //    }
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -188,7 +187,7 @@ ZegoRoomDelegate
         }
         
     } failure:^(id responseObject, NSError *error) {
-        [MBProgressHUD showAlertMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_server_request_errer_tip"] toView:weakSelf.view];
+//        [MBProgressHUD showAlertMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_server_request_errer_tip"] toView:weakSelf.view];
     }];
 }
 
@@ -237,7 +236,7 @@ ZegoRoomDelegate
         }
         
     } failure:^(id responseObject, NSError *error) {
-        [MBProgressHUD showAlertMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_server_request_errer_tip"] toView:weakSelf.view];
+//        [MBProgressHUD showAlertMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_server_request_errer_tip"] toView:weakSelf.view];
     }];
 }
 
@@ -530,7 +529,6 @@ ZegoRoomDelegate
         //不处理游戏状态
         return;
     }
-    
     NSString *gameStatusTipText = nil;
     if (gameStatus == 1) {
         gameStatusTipText = [WYCommonUtils acquireCurrentLocalizedText:@"等待玩家下注"];
@@ -544,15 +542,14 @@ ZegoRoomDelegate
 }
 
 - (void)serverNoticeFinishStream{
-    
     [self stopPublishing];
-    
     [self.streamingSessionManager destroyStream];
     [self.roomView.chatroomControl exitRoom];
     //通知服务器停止直播了
     [self closeLive];
-    
-    [self.navigationController popViewControllerAnimated:YES];
+    self.liveDurationTime = [self getCurrentTime] - self.startLiveTime;
+    WYLiveEndViewController *liveEndVC = [[WYLiveEndViewController alloc] init:self.liveDurationTime liveEndImage:self.liveEndImage];
+    [self.navigationController pushViewController:liveEndVC animated:YES];
 }
 
 - (void)stopPublishing
@@ -605,13 +602,14 @@ ZegoRoomDelegate
 
 }
 - (IBAction)doBackAction:(id)sender{
+    self.liveEndImage = [self getImage];
+//    self.liveEndImage = [[self class] thumbnailImageForVideo:[NSURL URLWithString:self.flvStr] atTime:0];
+
     [self uploadFileSaveLog:@"clickCloseButton"];
     WEAKSELF
     UIAlertView *alertView = [UIAlertView bk_showAlertViewWithTitle:[WYCommonUtils acquireCurrentLocalizedText:@"确定要停止直播吗？"] message:nil cancelButtonTitle:[WYCommonUtils acquireCurrentLocalizedText:@"再想想"] otherButtonTitles:@[[WYCommonUtils acquireCurrentLocalizedText:@"wy_affirm"]] handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
         if (buttonIndex == 1) {
-            
             [weakSelf serverNoticeFinishStream];
-            
 //            [weakSelf.streamingSessionManager destroyStream];
 //            [weakSelf.roomView.chatroomControl exitRoom];
 //            //通知服务器停止直播了
@@ -628,51 +626,9 @@ ZegoRoomDelegate
 static bool frontCamera = YES;
 //static int tempCount = 0;
 - (IBAction)changeCameraAction:(id)sender{
-    
-//    tempCount++;
-//    
-//    WYGiftModel *gifModel = [[WYGiftModel alloc] init];
-//    
-//    gifModel.giftId = @"1";
-//    gifModel.name = @"礼物礼物礼物礼物1";
-//    gifModel.noFrameIcon = kTempNetworkHTTPURL;
-//    int type = tempCount%5;
-//    if (type == 1) {
-//        gifModel.giftId = @"2";
-//        gifModel.name = @"礼物礼物礼物礼物礼物2";
-//        gifModel.noFrameIcon = @"";
-////        [self.roomView sendMessageWithText:@"你的谢腾飞，尬舞尬起来啊，我牛牛就问你怕不怕，我屮艸芔茻赢了1000万"];
-////        return;
-//    }else if (type == 2){
-//        gifModel.giftId = @"3";
-//        gifModel.name = @"礼物礼物礼物礼物礼物3";
-//        gifModel.noFrameIcon = @"http://103.230.243.174:8888/uploadfile/847336c0-a5c1-48d4-8a12-3a3c9dc49d43.gif";
-//    }else if (type == 3){
-//        gifModel.giftId = @"4";
-//        gifModel.name = @"大茄子";
-//        gifModel.noFrameIcon = @"";
-//    }else if (type == 4){
-//        gifModel.giftId = @"5";
-//        gifModel.name = @"5米黄瓜";
-//        gifModel.noFrameIcon = @"";
-//    }
-//    
-//    gifModel.sender = [WYLoginUserManager nickname];
-//    gifModel.clickNumber = 1;
-//    [self.roomView.chatroomControl sendMessageWithGift:gifModel];
-//
-//    return;
-    
-    
     [self.plSession toggleCamera];
-    
     frontCamera = !frontCamera;
     [[ZegoHelper api] setFrontCam:frontCamera];
-    
-    
-//    [_plSession getScreenshotWithCompletionHandler:^(UIImage * _Nullable image) {
-//        UIImage *screenshotImage = image;
-//    }];
 }
 
 //押注排行榜
@@ -690,7 +646,6 @@ static bool frontCamera = YES;
 }
 
 - (IBAction)changeChatViewFrameAction:(id)sender{
-    
     self.expandChatButton.selected = !self.expandChatButton.selected;
     [self animationChangeChatViewFrame];
 }
@@ -829,7 +784,7 @@ static bool frontCamera = YES;
     [FUManager shareManager].enlargingLevel = _demoBar.enlargingLevel;
 }
 
-+(NSString*)getCurrentTimes{
++ (NSString*)getCurrentTimes{
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     // ----------设置你想要的格式,hh与HH的区别:分别表示12小时制,24小时制
     [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
@@ -839,6 +794,47 @@ static bool frontCamera = YES;
     NSString *currentTimeString = [formatter stringFromDate:datenow];
     NSLog(@"currentTimeString =  %@",currentTimeString);
     return currentTimeString;
+}
+
+// 获取当前时间
+- (NSInteger)getCurrentTime
+{
+    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval a=[dat timeIntervalSince1970];
+    NSString*timeString = [NSString stringWithFormat:@"%0.f", a];//转为字符型
+    NSInteger currentTime = [timeString integerValue];
+    return currentTime;
+}
+
+// 从view上截图
+- (UIImage *)getImage {
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT), NO, 1.0);  //NO，YES 控制是否透明
+    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    // 生成后的image
+    return image;
+}
+
++ (UIImage*)thumbnailImageForVideo:(NSURL *)videoURL atTime:(NSTimeInterval)time {
+    
+    AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:videoURL options:nil];
+    NSParameterAssert(asset);
+    AVAssetImageGenerator *assetImageGenerator =[[AVAssetImageGenerator alloc] initWithAsset:asset];
+    assetImageGenerator.appliesPreferredTrackTransform = YES;
+    assetImageGenerator.apertureMode = AVAssetImageGeneratorApertureModeEncodedPixels;
+    
+    CGImageRef thumbnailImageRef = NULL;
+    CFTimeInterval thumbnailImageTime = time;
+    NSError *thumbnailImageGenerationError = nil;
+    thumbnailImageRef = [assetImageGenerator copyCGImageAtTime:CMTimeMake(thumbnailImageTime, 60)actualTime:NULL error:&thumbnailImageGenerationError];
+    
+    if(!thumbnailImageRef)
+        NSLog(@"thumbnailImageGenerationError %@",thumbnailImageGenerationError);
+    
+    UIImage*thumbnailImage = thumbnailImageRef ? [[UIImage alloc]initWithCGImage: thumbnailImageRef] : nil;
+    
+    return thumbnailImage;
 }
 
 #pragma mark -
@@ -908,6 +904,7 @@ static bool frontCamera = YES;
         [self.pauseTimers setFireDate:[NSDate date]];
         [MBProgressHUD showAlertMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_live_succeed_tip"] toView:nil];
         NSLog(@"infoinfoinfo%@", info);
+        self.flvStr = info[@"flvList"][0];
     }
     else
     {

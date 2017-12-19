@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 @class YTClassifyBBSDetailModel;
 @class WYSpaceDetailModel;
+typedef void(^YTAvatarImageViewViewActionBlock)(UIImageView *avatarImageView);
+
 typedef NS_ENUM(NSUInteger, CommunityCellType) {
     CommunityCellTypeText = 1,
     CommunityCellTypeGraphic,
@@ -22,5 +24,7 @@ typedef NS_ENUM(NSUInteger, CommunityCellType) {
 - (void)updateCommunifyCellWithData:(YTClassifyBBSDetailModel *)model;
 
 + (CGFloat)heightWithEntity:(YTClassifyBBSDetailModel *)model;
+
+@property (copy, nonatomic) YTAvatarImageViewViewActionBlock clickAvatarImageViewBlock;
 
 @end

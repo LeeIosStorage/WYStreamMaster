@@ -47,30 +47,41 @@
         self.itemScrollView.backgroundColor = [UIColor clearColor];
     }
     
-    [self.itemScrollView addSubview:self.lineView];
+//    [self.itemScrollView addSubview:self.lineView];
     
     for (int i = 0; i < self.items.count; i++) {
         NSString *itemTitle = self.items[i];
         UIButton *itemButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//        if (i != 1) {
+//            [itemButton.layer setMasksToBounds:YES];
+//            [itemButton.layer setCornerRadius:4.0]; //设置矩形四个圆角半径
+//        }
+        itemButton.layer.borderColor=[UIColor colorWithHexString:@"000000"].CGColor;
+        //边框宽度
+        [itemButton.layer setBorderWidth:1.0];
         [itemButton setTitle:itemTitle forState:UIControlStateNormal];
         [self.itemScrollView addSubview:itemButton];
         itemButton.size = CGSizeMake(self.itemWidth, self.height);
         itemButton.left = i * self.itemWidth;
         itemButton.top = 0;
         itemButton.titleLabel.font = [UIFont systemFontOfSize:13.f];
-        [itemButton setTitleColor:[WYStyleSheet defaultStyleSheet].titleLabelColor forState:UIControlStateNormal];
+        [itemButton setTitleColor:[UIColor colorWithHexString:@"333333"] forState:UIControlStateNormal];
         [itemButton addTarget:self action:@selector(itemClicked:) forControlEvents:UIControlEventTouchUpInside];
         itemButton.tag = 10 + i;
         if (i == 0) {
+            [self setBezierPathLeft:itemButton];
             //self.lineView.centerY = itemButton.centerY;
             self.lineView.centerX = itemButton.centerX;
             self.lineView.bottom = itemButton.bottom;
             if (self.itemViewType == YTItemViewTypeBorder) {
                 [itemButton setTitleColor:[UIColor whiteColor]  forState:UIControlStateNormal];
             } else {
-                [itemButton setTitleColor:[WYStyleSheet defaultStyleSheet].titleLabelSelectedColor  forState:UIControlStateNormal];
+                [itemButton setTitleColor:[UIColor whiteColor]  forState:UIControlStateNormal];
+                itemButton.backgroundColor = [UIColor blackColor];
             }
             self.beforSeletedButton = itemButton;
+        } else if (i == 2) {
+            [self setBezierPathRight:itemButton];
         }
     }
 }
@@ -84,11 +95,13 @@
 - (void)itemClicked:(UIButton *)button
 {
     if (self.beforSeletedButton != button) {
-        [self.beforSeletedButton setTitleColor:[WYStyleSheet defaultStyleSheet].titleLabelColor  forState:UIControlStateNormal];
+        [self.beforSeletedButton setTitleColor:[UIColor colorWithHexString:@"333333"]  forState:UIControlStateNormal];
+        self.beforSeletedButton.backgroundColor = [UIColor clearColor];
         if (self.itemViewType == YTItemViewTypeBorder) {
             [button setTitleColor:[UIColor whiteColor]  forState:UIControlStateNormal];
         } else {
-            [button setTitleColor:[WYStyleSheet defaultStyleSheet].titleLabelSelectedColor  forState:UIControlStateNormal];
+            [button setTitleColor:[UIColor whiteColor]  forState:UIControlStateNormal];
+            button.backgroundColor = [UIColor blackColor];
         }
         
         self.beforSeletedButton = button;
@@ -97,8 +110,25 @@
     self.seletedIndex = button.tag - 10;
     if (self.itemSeletedBlock) {
         self.itemSeletedBlock(button.tag - 10);
-        
     }
+}
+
+- (void)setBezierPathLeft:(UIButton *)button
+{
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:button.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerBottomLeft cornerRadii:CGSizeMake(4, 4)];
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    maskLayer.frame = button.bounds;
+    maskLayer.path = maskPath.CGPath;
+    button.layer.mask = maskLayer;
+}
+
+- (void)setBezierPathRight:(UIButton *)button
+{
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:button.bounds byRoundingCorners:UIRectCornerTopRight | UIRectCornerBottomRight cornerRadii:CGSizeMake(4, 4)];
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    maskLayer.frame = button.bounds;
+    maskLayer.path = maskPath.CGPath;
+    button.layer.mask = maskLayer;
 }
 
 - (void)lineMoveWithButton:(UIButton *)button
@@ -111,8 +141,8 @@
 - (UIScrollView *)itemScrollView
 {
     if (!_itemScrollView) {
-        _itemScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.width, self.height)];
-        self.itemWidth = self.width / self.items.count;
+        _itemScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(37.5, 0, self.width - 75, self.height)];
+        self.itemWidth = self.width / self.items.count - 25;
         self.itemScrollView.contentSize = CGSizeMake(self.width, self.height);
         self.itemScrollView.showsVerticalScrollIndicator = NO;
         self.itemScrollView.showsHorizontalScrollIndicator = NO;

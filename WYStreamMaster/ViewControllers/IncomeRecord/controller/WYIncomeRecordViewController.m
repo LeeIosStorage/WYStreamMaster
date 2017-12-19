@@ -132,7 +132,7 @@ static NSString *const kIncomeRecordTableViewCell = @"WYIncomeRecordTableViewCel
     [self.homePageTable registerNib:[UINib nibWithNibName:kIncomeRecordTableViewCell bundle:nil] forCellReuseIdentifier:kIncomeRecordTableViewCell];
     
     [self.homePageTable mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(weakSelf.view).offset(200);
+        make.top.mas_equalTo(weakSelf.view).offset(240);
         make.leading.bottom.trailing.equalTo(weakSelf.view);
     }];
     
@@ -380,7 +380,7 @@ static NSString *const kIncomeRecordTableViewCell = @"WYIncomeRecordTableViewCel
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 200)];
+    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 240)];
     footerView.backgroundColor = [WYStyleSheet defaultStyleSheet].themeBackgroundColor;
     return footerView;
 }
@@ -506,7 +506,7 @@ static NSString *const kIncomeRecordTableViewCell = @"WYIncomeRecordTableViewCel
 {
     WEAKSELF
     [self.homePageTable mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(weakSelf.view).offset(200);
+        make.top.mas_equalTo(weakSelf.view).offset(240);
         make.leading.bottom.trailing.equalTo(weakSelf.view);
     }];
     

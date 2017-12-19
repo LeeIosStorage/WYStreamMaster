@@ -68,6 +68,8 @@
 
     // Do any additional setup after loading the view from its nib.
 }
+
+
 #pragma mark - setupView
 - (void)setupView
 {
@@ -88,7 +90,7 @@
         self.startLiveLabel.text = @"重新审核";
         self.remarksLabel.text = @"十分抱歉!您的申请没有通过。请完善信息后重新申请!";
     } else if ([auditStatu isEqualToString:@"2"]) {
-        self.startLiveLabel.text = @"开始直播";
+        self.startLiveLabel.text = @"开启\n直播";
         self.remarksLabel.text = @"粉丝们都等不及了赶快开启直播吧!";
     } else {
         self.startLiveLabel.text = @"未审核";

@@ -12,7 +12,9 @@
 #import "YTClassifyBottomView.h"
 #import "WYSpaceDetailModel.h"
 #import "YTInteractMessageTableViewCell.h"
-
+#import <AVFoundation/AVFoundation.h>
+#import <AVFoundation/AVAssetImageGenerator.h>
+#import <AVFoundation/AVAsset.h>
 #define kCommunityAvatarWidth  28
 
 @interface YTCommunityDetailCollectionCell ()
@@ -94,7 +96,7 @@
         _bbsInfo = model;
         NSURL *avatarUrl = [NSURL URLWithString:[WYLoginUserManager avatar]];
         [self.avatarImageView setImageWithURL:avatarUrl placeholder:[UIImage imageNamed:@"common_headImage"]];
-        [self.videoCoverImageView setImageWithURL:avatarUrl placeholder:[UIImage imageNamed:@"common_headImage"]];
+//        [self.videoCoverImageView setImageWithURL:avatarUrl placeholder:[UIImage imageNamed:@"common_headImage"]];
         self.nickNameLabel.text = [WYLoginUserManager nickname];
         self.contentLabel.text = model.content;
         self.creatDateLabel.text = model.create_date;
@@ -104,6 +106,9 @@
         } else if (model.bbsType == YTBBSTypeGraphic) {
            
         } else if (model.bbsType == YTBBSTypeVideo) {
+            NSString *videosStr = model.videos[0];
+//            NSString *videoCoverStr = [videosStr substringToIndex:videosStr.length - 1];
+            self.videoCoverImageView.image = [[self class] thumbnailImageForVideo:[NSURL URLWithString:videosStr] atTime:0];
             self.videoCoverImageView.hidden = NO;
         }
         
@@ -176,9 +181,9 @@
     [self addSubview:self.videoCoverImageView];
     [self.videoCoverImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.contentLabel.mas_bottom).offset(0);
-        make.left.equalTo(self.contentLabel.mas_left);
+        make.left.equalTo(@30);
         make.height.mas_equalTo(150);
-        make.width.mas_equalTo(150*25/14);
+        make.width.mas_equalTo(SCREEN_WIDTH - 60);
     }];
     self.videoCoverImageView.hidden = YES;
     
@@ -212,6 +217,27 @@
 - (void)pushToPersionalVC
 {
     
+}
+
++ (UIImage*)thumbnailImageForVideo:(NSURL *)videoURL atTime:(NSTimeInterval)time {
+    
+    AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:videoURL options:nil];
+    NSParameterAssert(asset);
+    AVAssetImageGenerator *assetImageGenerator =[[AVAssetImageGenerator alloc] initWithAsset:asset];
+    assetImageGenerator.appliesPreferredTrackTransform = YES;
+    assetImageGenerator.apertureMode = AVAssetImageGeneratorApertureModeEncodedPixels;
+    
+    CGImageRef thumbnailImageRef = NULL;
+    CFTimeInterval thumbnailImageTime = time;
+    NSError *thumbnailImageGenerationError = nil;
+    thumbnailImageRef = [assetImageGenerator copyCGImageAtTime:CMTimeMake(thumbnailImageTime, 60)actualTime:NULL error:&thumbnailImageGenerationError];
+    
+    if(!thumbnailImageRef)
+        NSLog(@"thumbnailImageGenerationError %@",thumbnailImageGenerationError);
+    
+    UIImage*thumbnailImage = thumbnailImageRef ? [[UIImage alloc]initWithCGImage: thumbnailImageRef] : nil;
+    
+    return thumbnailImage;
 }
 
 #pragma mark

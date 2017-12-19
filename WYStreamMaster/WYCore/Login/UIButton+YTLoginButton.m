@@ -24,7 +24,7 @@
 {
     self.backgroundColor = [UIColor colorWithHexString:@"9d9d9d"];
     self.userInteractionEnabled = NO;
-    [self setBackgroundImage:nil forState:UIControlStateNormal];
+    [self setBackgroundImage:[UIImage imageNamed:@"login_noSelected"] forState:UIControlStateNormal];
     [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 }
 

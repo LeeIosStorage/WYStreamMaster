@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -64,7 +64,7 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                     </userDefinedRuntimeAttributes>
                 </imageView>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入您的昵称" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f5h-Zi-aPH">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  请输入您的昵称" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f5h-Zi-aPH">
                     <rect key="frame" x="97" y="110" width="250" height="40"/>
                     <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -89,7 +89,7 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入您的房间名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vdl-FM-dXF">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  请输入您的房间名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vdl-FM-dXF">
                     <rect key="frame" x="97" y="175" width="250" height="40"/>
                     <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -114,11 +114,11 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="中华人民共和国" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KDG-Gs-oWx">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  请选择国家" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KDG-Gs-oWx">
                     <rect key="frame" x="97" y="240" width="250" height="40"/>
                     <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="Bg2-v9-puY"/>
+                        <constraint firstAttribute="height" constant="40" id="dpE-nu-nXw"/>
                     </constraints>
                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -139,7 +139,7 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="common_headImage" translatesAutoresizingMaskIntoConstraints="NO" id="aaF-1f-S0U">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="live_common_headImage" translatesAutoresizingMaskIntoConstraints="NO" id="aaF-1f-S0U">
                     <rect key="frame" x="142" y="320" width="90" height="90"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="90" id="ESh-6o-DcM"/>
@@ -178,6 +178,20 @@
                         <action selector="submitButtonAction:" destination="-1" eventType="touchUpInside" id="lsi-r5-oik"/>
                     </connections>
                 </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="upload_header_image" translatesAutoresizingMaskIntoConstraints="NO" id="DKB-1I-Bn1">
+                    <rect key="frame" x="202" y="80" width="15" height="15"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="15" id="kel-gs-DgE"/>
+                        <constraint firstAttribute="width" constant="15" id="vjI-k7-j9l"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="upload_header_image" translatesAutoresizingMaskIntoConstraints="NO" id="bl9-DS-wlc">
+                    <rect key="frame" x="207" y="395" width="15" height="15"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="15" id="FoG-a4-fWc"/>
+                        <constraint firstAttribute="height" constant="15" id="cay-cB-cMh"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="0.92941176469999998" green="0.92941176469999998" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -188,11 +202,14 @@
                 <constraint firstItem="OQd-mc-Z9v" firstAttribute="top" secondItem="0NT-c7-s3p" secondAttribute="bottom" constant="30" id="5lu-TB-EfA"/>
                 <constraint firstItem="QMx-5I-rs5" firstAttribute="centerX" secondItem="SvN-F6-bWe" secondAttribute="centerX" id="AG8-CF-4Ld"/>
                 <constraint firstItem="i50-nd-uQC" firstAttribute="top" secondItem="vdl-FM-dXF" secondAttribute="top" id="CQg-zN-xcZ"/>
+                <constraint firstItem="f5h-Zi-aPH" firstAttribute="top" secondItem="DKB-1I-Bn1" secondAttribute="bottom" constant="15" id="E1V-i0-xu1"/>
                 <constraint firstItem="f5h-Zi-aPH" firstAttribute="top" secondItem="QMx-5I-rs5" secondAttribute="bottom" constant="20" id="F9D-P0-NF8"/>
                 <constraint firstItem="vdl-FM-dXF" firstAttribute="top" secondItem="f5h-Zi-aPH" secondAttribute="bottom" constant="25" id="H3a-uG-Hm7"/>
                 <constraint firstItem="QMx-5I-rs5" firstAttribute="top" secondItem="SvN-F6-bWe" secondAttribute="top" constant="20" id="I0z-ca-j3z"/>
+                <constraint firstItem="DKB-1I-Bn1" firstAttribute="trailing" secondItem="QMx-5I-rs5" secondAttribute="trailing" constant="-5" id="Jl0-bs-o20"/>
                 <constraint firstAttribute="trailing" secondItem="f5h-Zi-aPH" secondAttribute="trailing" constant="28" id="LyL-tz-gUo"/>
                 <constraint firstItem="Oe4-nm-xwV" firstAttribute="top" secondItem="KDG-Gs-oWx" secondAttribute="top" id="PXw-ah-SeG"/>
+                <constraint firstItem="bl9-DS-wlc" firstAttribute="bottom" secondItem="aaF-1f-S0U" secondAttribute="bottom" id="QrN-4v-Hmj"/>
                 <constraint firstItem="0NT-c7-s3p" firstAttribute="leading" secondItem="SvN-F6-bWe" secondAttribute="leading" id="SSD-Ef-p0Y"/>
                 <constraint firstItem="Oe4-nm-xwV" firstAttribute="leading" secondItem="i50-nd-uQC" secondAttribute="leading" id="YXX-YY-RSI"/>
                 <constraint firstItem="0NT-c7-s3p" firstAttribute="top" secondItem="SvN-F6-bWe" secondAttribute="top" id="eTL-Zh-qyK"/>
@@ -208,11 +225,15 @@
                 <constraint firstItem="KDG-Gs-oWx" firstAttribute="top" secondItem="vdl-FM-dXF" secondAttribute="bottom" constant="25" id="wZU-dp-fdR"/>
                 <constraint firstItem="f5h-Zi-aPH" firstAttribute="leading" secondItem="SvN-F6-bWe" secondAttribute="leading" constant="97" id="wku-PB-GiC"/>
                 <constraint firstItem="obq-Wj-yl2" firstAttribute="centerY" secondItem="f5h-Zi-aPH" secondAttribute="centerY" id="zQ0-bL-xt2"/>
+                <constraint firstItem="bl9-DS-wlc" firstAttribute="trailing" secondItem="QMx-5I-rs5" secondAttribute="trailing" id="zq2-Du-OeN"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="73.5" y="168"/>
         </view>
     </objects>
     <resources>
         <image name="common_headImage" width="70" height="70"/>
+        <image name="live_common_headImage" width="90" height="90"/>
+        <image name="upload_header_image" width="15" height="15"/>
     </resources>
 </document>

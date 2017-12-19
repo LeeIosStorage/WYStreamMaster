@@ -192,7 +192,7 @@ UITextFieldDelegate
     
     self.roomNameTipLabel.text = [WYCommonUtils acquireCurrentLocalizedText:@"房间名称"];
     self.roomNoticeTipLabel.text = [WYCommonUtils acquireCurrentLocalizedText:@"公告"];
-    self.startLiveTipLabel.text = [WYCommonUtils acquireCurrentLocalizedText:@"开始直播"];
+    self.startLiveTipLabel.text = [WYCommonUtils acquireCurrentLocalizedText:@"开启\n直播"];
     
     NSString *placeholder = [WYCommonUtils acquireCurrentLocalizedText:@"给自己取一个闪亮的房间名字吧！"];
     self.roomNameTextField.attributedPlaceholder = [WYCommonUtils stringToColorAndFontAttributeString:placeholder range:NSMakeRange(0, placeholder.length) font:[UIFont systemFontOfSize:12] color:UIColorHex(0xbcbbbb)];

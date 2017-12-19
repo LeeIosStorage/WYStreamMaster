@@ -38,7 +38,7 @@ static NSString *const kYuerCoin = @"kYuerCoin";
 static NSString *const kYuerBait = @"kYuerBait";
 static NSString *const kLiveDuration = @"kLiveDuration";
 static NSString *const kRememberPassword = @"kRememberPassword";
-
+static NSString *const kIsFirstEnterApplication = @"kIsFirstEnterApplication";
 @implementation WYLoginUserManager
 
 
@@ -247,6 +247,20 @@ static NSString *const kRememberPassword = @"kRememberPassword";
 {
     [self saveToUserDefaultsObject:rememberPassword forKey:kRememberPassword];
 }
+
+// 是否第一次进入程序
++ (void)setIsFirstEnterApplication:(NSString *)isFirstEnterApplication;
+{
+    [self saveToUserDefaultsObject:isFirstEnterApplication forKey:kIsFirstEnterApplication];
+}
+
+// 是否第一次进入程序
++ (NSString *)isFirstEnterApplication
+{
+    return [self objectFromUserDefaultsKey:kIsFirstEnterApplication];
+}
+
+
 
 #pragma mark - User Setting
 

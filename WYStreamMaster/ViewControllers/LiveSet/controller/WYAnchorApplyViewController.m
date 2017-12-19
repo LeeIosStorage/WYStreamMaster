@@ -72,6 +72,7 @@ UITextFieldDelegate>
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"主播申请";
+    self.edgesForExtendedLayout = UIRectEdgeTop;
     [self setupView];
     [self getAreaRequest];
 //    [self uploadFileSaveLog:@"test"];

@@ -187,11 +187,11 @@
     
     self.loginAccountTextField.text = [WYLoginUserManager account];
     self.loginAccountTextField.delegate = self;
+    self.loginPasswordTextField.delegate = self;
     if ([[WYLoginUserManager rememberPassword] isEqualToString:@"1"]) {
         self.loginPasswordTextField.text = [WYLoginUserManager password];
     }
     [self stringFormatWithPhone:self.loginAccountTextField.text];
-    
     self.rememberPasswordButton.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
     self.rememberPasswordButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 5);
     
@@ -202,6 +202,11 @@
 }
 
 - (void)initViewUI {
+    if (![[WYLoginUserManager isFirstEnterApplication] isEqualToString:@"1"]) {
+        [WYLoginUserManager setRememberPassword:@"1"];
+        [WYLoginUserManager setIsFirstEnterApplication:@"1"];
+    }
+    
     _phoneLoginType = YES;
     NSString *placeholder = [WYCommonUtils acquireCurrentLocalizedText:@"wy_login_account_placeholder"];
     self.loginAccountTextField.attributedPlaceholder = [WYCommonUtils stringToColorAndFontAttributeString:placeholder range:NSMakeRange(0, placeholder.length) font:[WYStyleSheet currentStyleSheet].subheadLabelFont color:UIColorHex(0xcacaca)];
@@ -782,10 +787,10 @@
         } else {
             self.loginButton.canClicked = NO;
         }
-        NSString *fieldText = self.loginAccountTextField.text;
-        if ([fieldText length] >= 10) {
-            return NO;
-        }
+//        NSString *fieldText = self.loginAccountTextField.text;
+//        if ([fieldText length] >= 10) {
+//            return NO;
+//        }
     }
     if (textField == self.loginPasswordTextField) {
         NSString *accountString = self.loginAccountTextField.text;

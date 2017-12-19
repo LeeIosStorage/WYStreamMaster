@@ -48,8 +48,6 @@
     
     [self.tableview registerNib:[UINib nibWithNibName:@"WYHelpCell" bundle:nil] forCellReuseIdentifier:@"cell"];
 
-    
-    
     WS(weakSelf)
     [self.tableview mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.width.equalTo(weakSelf.view);
@@ -133,7 +131,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row % 2 != 0) {
-        return 40.f;
+        return 45.f;
     } else {
         return 1;
     }
