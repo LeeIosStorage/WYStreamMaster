@@ -145,8 +145,8 @@
 		7826BD341FB057F100EACB75 /* WYAnchorApplyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7826BD321FB057F100EACB75 /* WYAnchorApplyViewController.xib */; };
 		784A19F41FCBF66800CCC529 /* WYSpaceDetailBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 784A19F31FCBF66800CCC529 /* WYSpaceDetailBottomView.m */; };
 		784A19FA1FCBF73F00CCC529 /* WYSpaceDetailBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 784A19F91FCBF73F00CCC529 /* WYSpaceDetailBottomView.xib */; };
-		784A19FF1FCD3FFD00CCC529 /* CommentSubmitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 784A19FC1FCD3FFC00CCC529 /* CommentSubmitViewController.m */; };
-		784A1A001FCD3FFD00CCC529 /* CommentSubmitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 784A19FD1FCD3FFC00CCC529 /* CommentSubmitViewController.xib */; };
+		784A19FF1FCD3FFD00CCC529 /* WYIssueTalkAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 784A19FC1FCD3FFC00CCC529 /* WYIssueTalkAboutViewController.m */; };
+		784A1A001FCD3FFD00CCC529 /* WYIssueTalkAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 784A19FD1FCD3FFC00CCC529 /* WYIssueTalkAboutViewController.xib */; };
 		784D02E71FE0FE5100A380F8 /* ZYZCPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 784D02E51FE0FE5100A380F8 /* ZYZCPlayViewController.m */; };
 		784EBB741FE793ED002C61B4 /* WYAvatarBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 784EBB731FE793ED002C61B4 /* WYAvatarBrowser.m */; };
 		78526D691FC28491008D799C /* WYHelpDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78526D671FC28491008D799C /* WYHelpDetailCell.m */; };
@@ -533,9 +533,9 @@
 		784A19F21FCBF66800CCC529 /* WYSpaceDetailBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WYSpaceDetailBottomView.h; sourceTree = "<group>"; };
 		784A19F31FCBF66800CCC529 /* WYSpaceDetailBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WYSpaceDetailBottomView.m; sourceTree = "<group>"; };
 		784A19F91FCBF73F00CCC529 /* WYSpaceDetailBottomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYSpaceDetailBottomView.xib; sourceTree = "<group>"; };
-		784A19FC1FCD3FFC00CCC529 /* CommentSubmitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentSubmitViewController.m; sourceTree = "<group>"; };
-		784A19FD1FCD3FFC00CCC529 /* CommentSubmitViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentSubmitViewController.xib; sourceTree = "<group>"; };
-		784A19FE1FCD3FFD00CCC529 /* CommentSubmitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentSubmitViewController.h; sourceTree = "<group>"; };
+		784A19FC1FCD3FFC00CCC529 /* WYIssueTalkAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYIssueTalkAboutViewController.m; sourceTree = "<group>"; };
+		784A19FD1FCD3FFC00CCC529 /* WYIssueTalkAboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYIssueTalkAboutViewController.xib; sourceTree = "<group>"; };
+		784A19FE1FCD3FFD00CCC529 /* WYIssueTalkAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYIssueTalkAboutViewController.h; sourceTree = "<group>"; };
 		784D02E51FE0FE5100A380F8 /* ZYZCPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYZCPlayViewController.m; sourceTree = "<group>"; };
 		784D02E61FE0FE5100A380F8 /* ZYZCPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYZCPlayViewController.h; sourceTree = "<group>"; };
 		784EBB721FE793ED002C61B4 /* WYAvatarBrowser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WYAvatarBrowser.h; sourceTree = "<group>"; };
@@ -1745,9 +1745,9 @@
 				7854B9E11FB5493D00A7F85E /* WYSpaceDetailViewController.h */,
 				7854B9E21FB5493D00A7F85E /* WYSpaceDetailViewController.m */,
 				7854B9E31FB5493D00A7F85E /* WYSpaceDetailViewController.xib */,
-				784A19FE1FCD3FFD00CCC529 /* CommentSubmitViewController.h */,
-				784A19FC1FCD3FFC00CCC529 /* CommentSubmitViewController.m */,
-				784A19FD1FCD3FFC00CCC529 /* CommentSubmitViewController.xib */,
+				784A19FE1FCD3FFD00CCC529 /* WYIssueTalkAboutViewController.h */,
+				784A19FC1FCD3FFC00CCC529 /* WYIssueTalkAboutViewController.m */,
+				784A19FD1FCD3FFC00CCC529 /* WYIssueTalkAboutViewController.xib */,
 				784D02E61FE0FE5100A380F8 /* ZYZCPlayViewController.h */,
 				784D02E51FE0FE5100A380F8 /* ZYZCPlayViewController.m */,
 			);
@@ -1892,7 +1892,7 @@
 				78BB09F01FC80649001837FD /* YTInteractMessageTableViewCell.xib in Resources */,
 				44D2F7E31E7FC30500122866 /* YTChatBottomView.xib in Resources */,
 				787ADB931F909E2B005331C9 /* WYIncomeRewardViewController.xib in Resources */,
-				784A1A001FCD3FFD00CCC529 /* CommentSubmitViewController.xib in Resources */,
+				784A1A001FCD3FFD00CCC529 /* WYIssueTalkAboutViewController.xib in Resources */,
 				789DAA2E1F5688200012075C /* EatRabbi.bundle in Resources */,
 				789DAA2F1F5688200012075C /* lixiaolong.bundle in Resources */,
 				787ADB8E1F8F45F1005331C9 /* WYIncomeRecordHeaderView.xib in Resources */,
@@ -2088,7 +2088,7 @@
 				78D1D3221F7BC0C1007261E4 /* WYMessageTableViewCell.m in Sources */,
 				44D9B3091E96830D00E15BEA /* WYLiveGameResultView.m in Sources */,
 				787ADB6F1F8B509B005331C9 /* YTClassifyCommunityImageView.m in Sources */,
-				784A19FF1FCD3FFD00CCC529 /* CommentSubmitViewController.m in Sources */,
+				784A19FF1FCD3FFD00CCC529 /* WYIssueTalkAboutViewController.m in Sources */,
 				444AA5841EBB0D4E00A80FB9 /* WYImagePickerController.m in Sources */,
 				44D2F7E11E7FC30500122866 /* NSString+YTChatRoom.m in Sources */,
 				44203D9E1E714BD600D59B5E /* WYStyleSheet.m in Sources */,

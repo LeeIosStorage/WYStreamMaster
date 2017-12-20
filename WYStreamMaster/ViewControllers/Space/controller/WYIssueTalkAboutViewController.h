@@ -17,7 +17,7 @@ typedef enum SubmitType_{
 
 @protocol CommentSubmitViewControllerDelegate;
 
-@interface CommentSubmitViewController : WYSuperViewController
+@interface WYIssueTalkAboutViewController : WYSuperViewController
 
 @property (nonatomic, strong) NSString *bountyId;
 

@@ -16,7 +16,7 @@
 #import "UIImage+ProportionalFill.h"
 #import "UINavigationBar+Awesome.h"
 #import "WYSpaceDetailViewController.h"
-#import "CommentSubmitViewController.h"
+#import "WYIssueTalkAboutViewController.h"
 #define kClassifyHeaderHeight (kScreenWidth * 210 / 375 + 44)
 static NSString *const kCommunityCollectionCell = @"YTCommunityCollectionCell";
 static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
@@ -161,8 +161,8 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
 #pragma mark - Action
 - (void)rightButtonClicked:(id)sender
 {
-    CommentSubmitViewController *submitVc = [[CommentSubmitViewController alloc] init];
-    submitVc.submitType = 7;
+    WYIssueTalkAboutViewController *issueTalkAboutVC = [[WYIssueTalkAboutViewController alloc] init];
+    issueTalkAboutVC.submitType = 7;
 //    submitVc.delegate = self;
     
     UIButton *customRightButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -171,10 +171,9 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
     [customRightButton.titleLabel setFont:[UIFont systemFontOfSize:12]];
     customRightButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     
-    submitVc.rightButton = customRightButton;
+    issueTalkAboutVC.rightButton = customRightButton;
     
-    [self.navigationController pushViewController:submitVc animated:YES];
-
+    [self.navigationController pushViewController:issueTalkAboutVC animated:YES];
 }
 
 - (void)showImageBroswerWithSourceType:(UIImagePickerControllerSourceType )sourceType
@@ -291,7 +290,6 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
     YTCommunityCollectionCell *communityCell = [collectionView dequeueReusableCellWithReuseIdentifier:kCommunityCollectionCell forIndexPath:indexPath];
     if (indexPath.row < [self.dataSource count]) {
         
@@ -320,6 +318,8 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
 //        vc.hidesBottomBarWhenPushed = YES;
 //        [self.navigationController pushViewController:vc animated:YES];
 //    } else {
+ //
+    
 //        YTTopicDetailViewController *vc = [[YTTopicDetailViewController alloc] init];
 //        vc.topicId = model.postsID;
 //        vc.hidesBottomBarWhenPushed = YES;
@@ -333,9 +333,7 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
 {
     if (!_headerView) {
         _headerView = (WYSpaceHeaderView *)[[NSBundle mainBundle] loadNibNamed:@"WYSpaceHeaderView" owner:self options:nil].lastObject;
-
     }
-    
     return _headerView;
 }
 
@@ -349,6 +347,7 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
+ 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.

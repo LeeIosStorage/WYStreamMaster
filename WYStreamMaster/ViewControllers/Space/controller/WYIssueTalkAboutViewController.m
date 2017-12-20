@@ -6,7 +6,7 @@
 //  Copyright © 2016年 KID. All rights reserved.
 //
 
-#import "CommentSubmitViewController.h"
+#import "WYIssueTalkAboutViewController.h"
 #import "WYCustomActionSheet.h"
 #import "WYLoginManager.h"
 #import "MBProgressHUD+WYTools.h"
@@ -22,7 +22,7 @@
 
 #define VIDEOCACHEPATH [NSTemporaryDirectory() stringByAppendingPathComponent:@"videoCache"]
 
-@interface CommentSubmitViewController ()<UITextViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@interface WYIssueTalkAboutViewController ()<UITextViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 {
     int _maxReplyTextLength;
 }
@@ -38,7 +38,7 @@
 
 @end
 
-@implementation CommentSubmitViewController
+@implementation WYIssueTalkAboutViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

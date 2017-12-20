@@ -142,7 +142,6 @@
     } else {
         [self normalLoginNIMService];
     }
-    
 }
 
 - (void)normalLoginNIMService

@@ -82,9 +82,8 @@
         cellHeight += videoViewHeight;
         cellHeight += categoryHeight;
         cellHeight += bottomViewHeight;
+        cellHeight += categoryHeight - categoryHeight;
     }
-    
-//    NSLog(@"计算专区cell的高度是      ……%f",cellHeight);
     return ceilf(cellHeight);
 }
 

@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CommentSubmitViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WYIssueTalkAboutViewController">
             <connections>
                 <outlet property="addImageButton" destination="gZc-Ip-kX6" id="YgH-Ba-QWo"/>
                 <outlet property="commentTextView" destination="RVD-9T-PVe" id="nZW-gd-662"/>
