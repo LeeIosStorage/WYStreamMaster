@@ -82,7 +82,6 @@ static NSString *const kIncomeRewardTableViewCell = @"WYIncomeRewardTableViewCel
 - (void)getIncomeRecordData:(NSString *)type
 {
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"last_month"];
-    
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
     [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchor_user_code"];
     [paramsDic setObject:self.currencyType forKey:@"currency"];
@@ -94,12 +93,13 @@ static NSString *const kIncomeRewardTableViewCell = @"WYIncomeRewardTableViewCel
         [MBProgressHUD hideHUD];
         if (requestType == WYRequestTypeSuccess) {
             WYRewardModel *rewardModel = (WYRewardModel *)dataObject;
+            weakSelf.rewardModel = rewardModel;
             [weakSelf.dayArray addObjectsFromArray:rewardModel.gift_number_value];
+            [weakSelf updateRewardView];
             [weakSelf.tableview reloadData];
         }else{
             [MBProgressHUD showError:message toView:weakSelf.view];
         }
-        
     } failure:^(id responseObject, NSError *error) {
         [MBProgressHUD hideHUD];
         [MBProgressHUD showAlertMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_register_result_failure_tip"] toView:weakSelf.view];
@@ -108,8 +108,8 @@ static NSString *const kIncomeRewardTableViewCell = @"WYIncomeRewardTableViewCel
 
 - (void)getMonthIncomeRecordData
 {
+    self.DividedLabel.text = [NSString stringWithFormat:@"近一个月分成奖励(%@)", self.currencyType];
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"last_month"];
-    
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
     [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchor_user_code"];
     [paramsDic setObject:self.currencyType forKey:@"currency"];
@@ -126,7 +126,6 @@ static NSString *const kIncomeRewardTableViewCell = @"WYIncomeRewardTableViewCel
         }else{
             [MBProgressHUD showError:message toView:weakSelf.view];
         }
-        
     } failure:^(id responseObject, NSError *error) {
         [MBProgressHUD hideHUD];
         [MBProgressHUD showAlertMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_register_result_failure_tip"] toView:weakSelf.view];
@@ -221,7 +220,6 @@ static NSString *const kIncomeRewardTableViewCell = @"WYIncomeRewardTableViewCel
 
 - (void)updateRewardView
 {
-    self.DividedLabel.text = [NSString stringWithFormat:@"近一个月分成奖励(%@)", self.currencyType];
     NSString *monthValue = [NSString stringWithFormat:@"%@", self.rewardModel.month[@"month_value"]];
     if ([monthValue length] > 0 && ![monthValue isEqualToString:@"<null>"]) {
         self.dividedAmountLabel.text = monthValue;
@@ -233,13 +231,19 @@ static NSString *const kIncomeRewardTableViewCell = @"WYIncomeRewardTableViewCel
 #pragma mark - WYIncomeRecordHeaderViewDelegate
 - (void)clickCurrencyButtonDelegate:(NSString *)currencyString
 {
+    self.headerView.hidden = YES;
+    self.effectImgView.hidden = YES;
     if ([currencyString isEqualToString:@"本周"]) {
+        self.DividedLabel.text = [NSString stringWithFormat:@"一周分成奖励(%@)", self.currencyType];
         [self getIncomeRecordData:@"1"];
     } else if ([currencyString isEqualToString:@"本月"]) {
+        self.DividedLabel.text = [NSString stringWithFormat:@"本月分成奖励(%@)", self.currencyType];
         [self getIncomeRecordData:@"2"];
     } else if ([currencyString isEqualToString:@"近一月"]) {
+        self.DividedLabel.text = [NSString stringWithFormat:@"近一个月分成奖励(%@)", self.currencyType];
         [self getIncomeRecordData:@"3"];
     } else if ([currencyString isEqualToString:@"近三月"]) {
+        self.DividedLabel.text = [NSString stringWithFormat:@"近三个月分成奖励(%@)", self.currencyType];
         [self getIncomeRecordData:@"4"];
     }
 }
@@ -247,6 +251,7 @@ static NSString *const kIncomeRewardTableViewCell = @"WYIncomeRewardTableViewCel
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
+ 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.

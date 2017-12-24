@@ -40,12 +40,26 @@
 #pragma mark - setup
 - (void)setupView
 {
+    self.loginNameImageView.alpha = 1.0;
+    self.passwordImageView.alpha = 0.5;
+    self.againPasswordImageView.alpha = 0.5;
+    self.mailboxImageView.alpha = 0.5;
+    self.nicknameField.alpha = 1.0;
+    self.passwordField.alpha = 0.5;
+    self.againPasswordField.alpha = 0.5;
+    self.mailboxField.alpha = 0.5;
+    self.nicknameView.backgroundColor = [UIColor whiteColor];
+    self.passwordView.backgroundColor = [UIColor clearColor];
+    self.againView.backgroundColor = [UIColor clearColor];
+    self.mailboxView.backgroundColor = [UIColor clearColor];
+    
 //    [self.passwordField setTextColor:[UIColor whiteColor]];
-    [self.passwordField setPlaceholder:@"请输入密码"];
+    [self.passwordField setPlaceholder:@"请输入密码(4~10位)"];
     
 //    [self.againPasswordField setTextColor:[UIColor whiteColor]];
-    [self.againPasswordField setPlaceholder:@"请再次输入密码"];
-    
+    [self.againPasswordField setPlaceholder:@"请再次输入密码(4~10位)"];
+    self.nicknameView.backgroundColor = [UIColor whiteColor];
+
 //    [self.mailboxField setTextColor:[UIColor whiteColor]];
     [self.mailboxField setPlaceholder:@"请输入个人邮箱"];
     self.nicknameField.delegate = self;
@@ -159,9 +173,9 @@
 {
     if (textField == self.nicknameField) {
         self.loginNameImageView.alpha = 1.0;
-        self.passwordImageView.alpha = 0.2;
-        self.againPasswordImageView.alpha = 0.2;
-        self.mailboxImageView.alpha = 0.2;
+        self.passwordImageView.alpha = 0.5;
+        self.againPasswordImageView.alpha = 0.5;
+        self.mailboxImageView.alpha = 0.5;
         self.nicknameField.alpha = 1.0;
         self.passwordField.alpha = 0.5;
         self.againPasswordField.alpha = 0.5;
@@ -172,13 +186,12 @@
         self.mailboxView.backgroundColor = [UIColor clearColor];
 
     } else if (textField == self.passwordField) {
-        self.loginNameImageView.alpha = 0.2;
+        self.loginNameImageView.alpha = 0.5;
         self.passwordImageView.alpha = 1.0;
-        self.againPasswordImageView.alpha = 0.2;
-        self.mailboxImageView.alpha = 0.2;
+        self.againPasswordImageView.alpha = 0.5;
+        self.mailboxImageView.alpha = 0.5;
         self.nicknameField.alpha = 0.5;
         self.passwordField.alpha = 1.0;
-
         self.againPasswordField.alpha = 0.5;
         self.mailboxField.alpha = 0.5;
         
@@ -187,10 +200,10 @@
         self.againView.backgroundColor = [UIColor clearColor];
         self.mailboxView.backgroundColor = [UIColor clearColor];
     } else if (textField == self.againPasswordField) {
-        self.loginNameImageView.alpha = 0.2;
-        self.passwordImageView.alpha = 0.2;
+        self.loginNameImageView.alpha = 0.5;
+        self.passwordImageView.alpha = 0.5;
         self.againPasswordImageView.alpha = 1.0;
-        self.mailboxImageView.alpha = 0.2;
+        self.mailboxImageView.alpha = 0.5;
         self.againPasswordField.alpha = 1.0;
         self.passwordField.alpha = 0.5;
         self.nicknameField.alpha = 0.5;
@@ -200,9 +213,9 @@
         self.againView.backgroundColor = [UIColor whiteColor];
         self.mailboxView.backgroundColor = [UIColor clearColor];
     } else if (textField == self.mailboxField) {
-        self.loginNameImageView.alpha = 0.2;
-        self.passwordImageView.alpha = 0.2;
-        self.againPasswordImageView.alpha = 0.2;
+        self.loginNameImageView.alpha = 0.5;
+        self.passwordImageView.alpha = 0.5;
+        self.againPasswordImageView.alpha = 0.5;
         self.mailboxImageView.alpha = 1.0;
         self.mailboxField.alpha = 1.0;
         self.passwordField.alpha = 0.5;

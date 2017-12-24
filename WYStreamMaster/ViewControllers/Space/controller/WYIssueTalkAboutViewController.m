@@ -311,7 +311,7 @@
     [paramsDic setObject:[WYLoginUserManager userID] forKey:@"bizImgPath"];
     [paramsDic setObject:@"1" forKey:@"saveType"];
     
-    [self.networkManager POST:requestUrl formFileName:@"video" fileName:@"aa.MOV" fileData:videoData mimeType:@"video/mpeg" parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
+    [self.networkManager POST:requestUrl formFileName:@"video" fileName:@"aa.mp4" fileData:videoData mimeType:@"video/mpeg" parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
         STRONGSELF
         [MBProgressHUD hideHUDForView:strongSelf.view];
         if (requestType == WYRequestTypeSuccess) {
@@ -403,6 +403,41 @@
     UIImage*thumbnailImage = thumbnailImageRef ? [[UIImage alloc]initWithCGImage: thumbnailImageRef] : nil;
     
     return thumbnailImage;
+}
+
+- (void)assetWithPath:(NSString *)path
+{
+    AVURLAsset *avAsset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:path] options:nil];
+    NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:avAsset];
+    
+    if ([compatiblePresets containsObject:AVAssetExportPresetLowQuality])
+        
+    {
+        
+        AVAssetExportSession *exportSession = [[AVAssetExportSession alloc]initWithAsset:avAsset presetName:AVAssetExportPresetPassthrough];
+        NSString *exportPath = [NSString stringWithFormat:@"%@/%@.mp4",
+                                [NSHomeDirectory() stringByAppendingString:@"/tmp"],
+                                @"1"];
+        exportSession.outputURL = [NSURL fileURLWithPath:exportPath];
+        NSLog(@"%@", exportPath);
+        exportSession.outputFileType = AVFileTypeMPEG4;
+        [exportSession exportAsynchronouslyWithCompletionHandler:^{
+            
+            switch ([exportSession status]) {
+                case AVAssetExportSessionStatusFailed:
+                    NSLog(@"Export failed: %@", [[exportSession error] localizedDescription]);
+                    break;
+                case AVAssetExportSessionStatusCancelled:
+                    NSLog(@"Export canceled");
+                    break;
+                case AVAssetExportSessionStatusCompleted:
+                    NSLog(@"转换成功");
+                    break;
+                default:
+                    break;
+            }
+        }];
+    }
 }
 
 @end
