@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue-Bold</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WYLoginViewController">
             <connections>
@@ -29,8 +34,8 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_background" translatesAutoresizingMaskIntoConstraints="NO" id="2rc-U8-bs2">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                 </imageView>
-                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d1o-v3-gab">
-                    <rect key="frame" x="10" y="51" width="355" height="40"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d1o-v3-gab">
+                    <rect key="frame" x="10" y="74" width="355" height="40"/>
                     <subviews>
                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9LJ-Gh-23q">
                             <rect key="frame" x="0.0" y="0.0" width="355" height="40"/>
@@ -62,8 +67,8 @@
                         <constraint firstAttribute="trailing" secondItem="4kg-lc-pfc" secondAttribute="trailing" constant="20" id="yz7-WZ-2u1"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="duM-lf-zwJ">
-                    <rect key="frame" x="10" y="112" width="355" height="40"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="duM-lf-zwJ">
+                    <rect key="frame" x="10" y="131" width="355" height="40"/>
                     <subviews>
                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vnN-UC-tAd">
                             <rect key="frame" x="0.0" y="0.0" width="355" height="40"/>
@@ -123,8 +128,8 @@
                         <action selector="toQuickLogin:" destination="-1" eventType="touchUpInside" id="61l-NF-fT4"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yoB-0a-sys">
-                    <rect key="frame" x="16" y="182" width="355" height="44"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yoB-0a-sys">
+                    <rect key="frame" x="10" y="201" width="355" height="44"/>
                     <color key="backgroundColor" red="1" green="0.49411764705882355" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="0t6-jX-fSh"/>
@@ -159,7 +164,7 @@
                 <constraint firstItem="2rc-U8-bs2" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="l4Z-Ql-FoB"/>
                 <constraint firstItem="duM-lf-zwJ" firstAttribute="top" secondItem="d1o-v3-gab" secondAttribute="bottom" constant="17" id="pqJ-TR-tjs"/>
                 <constraint firstItem="pgQ-72-w0p" firstAttribute="leading" secondItem="duM-lf-zwJ" secondAttribute="leading" id="r5y-a3-9mb"/>
-                <constraint firstItem="d1o-v3-gab" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="wBb-1v-80k"/>
+                <constraint firstItem="d1o-v3-gab" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="74" id="xjh-yq-4xC"/>
                 <constraint firstAttribute="trailing" secondItem="2rc-U8-bs2" secondAttribute="trailing" id="zO9-wW-vAI"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
@@ -168,7 +173,7 @@
     </objects>
     <resources>
         <image name="login_background" width="375" height="667"/>
-        <image name="wy_login_name_icon" width="20" height="20"/>
-        <image name="wy_login_password_icon" width="20" height="20"/>
+        <image name="wy_login_name_icon" width="15" height="16"/>
+        <image name="wy_login_password_icon" width="15" height="17"/>
     </resources>
 </document>

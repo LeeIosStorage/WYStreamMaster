@@ -57,8 +57,8 @@
 //    [self.navigationController.navigationBar lt_setBackgroundColor:[WYStyleSheet defaultStyleSheet].themeColor];
 //    [self.navigationController.navigationBar setBarTintColor:[WYStyleSheet defaultStyleSheet].themeColor];
     
-//    [self.navigationController.navigationBar lt_setBackgroundImage:[UIImage imageNamed:@"wy_navbar_bg"]];
-    
+    [self.navigationController.navigationBar lt_setBackgroundImage:[UIImage imageNamed:@"wy_navbar_bg"]];
+    [self.navigationController.navigationBar setBackgroundImage: [UIImage imageNamed:@"wy_navbar_bg"] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setTranslucent:YES];
     self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithHexString:@"333333"],NSForegroundColorAttributeName,[WYStyleSheet defaultStyleSheet].navTitleFont,NSFontAttributeName,nil];
     
