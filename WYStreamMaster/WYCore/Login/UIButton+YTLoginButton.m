@@ -31,7 +31,7 @@
 - (void)buttonCanClickedStatus
 {
     self.userInteractionEnabled = YES;
-    [self setBackgroundImage:[UIImage imageNamed:@"login_Selected"] forState:UIControlStateNormal];
+    [self setBackgroundImage:[UIImage imageNamed:@"wy_login_button_bg_icon"] forState:UIControlStateNormal];
     self.backgroundColor = [UIColor colorWithHexString:@"ff7e00"];
     [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 }
