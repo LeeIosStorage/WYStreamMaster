@@ -27,6 +27,7 @@
 #import "WYSocketManager.h"
 #import "YTChatModel.h"
 #import "WYLiveEndViewController.h"
+#import "YTBetRankingView.h"
 // 直播通知重试次数
 static NSInteger kLiveNotifyRetryCount = 0;
 static NSInteger kLiveNotifyRetryMaxCount = 3;
@@ -87,6 +88,9 @@ ZegoRoomDelegate
 // 直播结束截取图片
 @property (nonatomic, strong) UIImage *liveEndImage;
 @property (nonatomic, copy) NSString *flvStr;
+
+@property (strong, nonatomic) YTBetRankingView *betRankingView;
+@property (strong, nonatomic) YTBetRankingView *primaryBetRankingView;
 
 @end
 
@@ -349,8 +353,8 @@ ZegoRoomDelegate
     
     [self.anchorInfoView updateAnchorInfoWith:nil];
     
-    [self initRoomView];
-    
+    [self initView];
+
     [self.view addSubview:self.liveGameResultView];
     [self.liveGameResultView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.view);
@@ -372,20 +376,51 @@ ZegoRoomDelegate
     }
 }
 
-
-- (void)initRoomView
+- (void)initView
 {
     self.expandChatButton.selected = NO;
     
     CGFloat height = (250/667.0)*SCREEN_HEIGHT;
     [self.contentContainerView addSubview:self.roomView];
     [self.roomView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.contentContainerView).offset(-55);
+        make.bottom.equalTo(self.contentContainerView).offset(-180);
         make.left.equalTo(self.contentContainerView).offset(8);
         make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH-kRoomChatViewCustomWidth, height));
     }];
     [self.roomView roomViewPrepare];
+    
+    //    CGFloat height = (250/667.0)*SCREEN_HEIGHT;
+    [self.view addSubview:self.betRankingView];
+    [self.betRankingView updateBottomViewWithInfo:nil];
+    [self.betRankingView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.view).mas_offset(-130);
+        make.left.right.equalTo(self.view);
+        make.height.mas_equalTo(120);
+    }];
+    
+    [self.view addSubview:self.primaryBetRankingView];
+    [self.primaryBetRankingView updateBottomViewWithInfo:nil];
+    [self.primaryBetRankingView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.view);
+        make.left.right.equalTo(self.view);
+        make.height.mas_equalTo(120);
+    }];
 }
+
+
+//- (void)initRoomView
+//{
+//    self.expandChatButton.selected = NO;
+//    
+//    CGFloat height = (250/667.0)*SCREEN_HEIGHT;
+//    [self.contentContainerView addSubview:self.roomView];
+//    [self.roomView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.bottom.equalTo(self.contentContainerView).offset(-55);
+//        make.left.equalTo(self.contentContainerView).offset(8);
+//        make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH-kRoomChatViewCustomWidth, height));
+//    }];
+//    [self.roomView roomViewPrepare];
+//}
 
 - (void)prepareForCameraSetting
 {
@@ -686,6 +721,22 @@ static bool frontCamera = YES;
         _giftRecordView = [[WYGiftRecordView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     }
     return _giftRecordView;
+}
+
+- (YTBetRankingView *)betRankingView{
+    if (!_betRankingView) {
+        _betRankingView = (YTBetRankingView *)[[NSBundle mainBundle] loadNibNamed:@"YTBetRankingView" owner:self options:nil].lastObject;
+        _betRankingView.betRankingType = BetRankingSeniorType;
+    }
+    return _betRankingView;
+}
+
+- (YTBetRankingView *)primaryBetRankingView{
+    if (!_primaryBetRankingView) {
+        _primaryBetRankingView = (YTBetRankingView *)[[NSBundle mainBundle] loadNibNamed:@"YTBetRankingView" owner:self options:nil].lastObject;
+        _primaryBetRankingView.betRankingType = BetRankingPrimaryType;
+    }
+    return _primaryBetRankingView;
 }
 
 - (WYBetTopView *)betTopView{

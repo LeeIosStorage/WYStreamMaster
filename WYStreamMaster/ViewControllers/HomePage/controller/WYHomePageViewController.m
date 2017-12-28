@@ -121,8 +121,10 @@
 //        [self.navigationController pushViewController:anchorApplyVC animated:YES];
     } else {
 //        [self toCreateLiveRoom];
-        WYAnchorApplyViewController *anchorApplyVC = [[WYAnchorApplyViewController alloc] init];
-        [self.navigationController pushViewController:anchorApplyVC animated:YES];
+//        WYAnchorApplyViewController *anchorApplyVC = [[WYAnchorApplyViewController alloc] init];
+//        [self.navigationController pushViewController:anchorApplyVC animated:YES];
+        [self toCreateLiveRoom];
+
     }
 }
 - (IBAction)clickLiveSetButton:(UIButton *)sender {

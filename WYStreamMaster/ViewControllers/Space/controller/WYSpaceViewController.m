@@ -250,7 +250,6 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
     }
     CGFloat itemHeight = [YTCommunityCollectionCell heightWithEntity:model];
     return CGSizeMake(kScreenWidth - 12*2, itemHeight);
-
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
@@ -345,8 +344,8 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
 
 /*
 #pragma mark - Navigation
-
 // In a storyboard-based application, you will often want to do a little preparation before navigation
+ 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
