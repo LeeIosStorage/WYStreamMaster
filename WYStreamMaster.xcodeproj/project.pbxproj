@@ -161,6 +161,9 @@
 		7854B9DA1FB4699600A7F85E /* WYHelpDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7854B9D81FB4699600A7F85E /* WYHelpDetailViewController.xib */; };
 		7854B9E41FB5493D00A7F85E /* WYSpaceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7854B9E21FB5493D00A7F85E /* WYSpaceDetailViewController.m */; };
 		7854B9E51FB5493D00A7F85E /* WYSpaceDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7854B9E31FB5493D00A7F85E /* WYSpaceDetailViewController.xib */; };
+		7854DA25200309A6002D552C /* WYLiveViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7854DA23200309A5002D552C /* WYLiveViewController2.m */; };
+		7854DA26200309A6002D552C /* WYLiveViewController2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7854DA24200309A6002D552C /* WYLiveViewController2.xib */; };
+		7854DA292003653F002D552C /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7854DA272003653F002D552C /* YTPlayerView.m */; };
 		7856162A1FF4BF2A00E3AE8E /* WYSocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 785616281FF4BF2A00E3AE8E /* WYSocketManager.m */; };
 		78716D4B1FC6C0D80019F9E5 /* YTCommunityDetailCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78716D481FC6C0D70019F9E5 /* YTCommunityDetailCollectionCell.m */; };
 		78716D4C1FC6C0D80019F9E5 /* YTCommunityDetailCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78716D4A1FC6C0D80019F9E5 /* YTCommunityDetailCollectionCell.xib */; };
@@ -558,6 +561,11 @@
 		7854B9E11FB5493D00A7F85E /* WYSpaceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYSpaceDetailViewController.h; sourceTree = "<group>"; };
 		7854B9E21FB5493D00A7F85E /* WYSpaceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYSpaceDetailViewController.m; sourceTree = "<group>"; };
 		7854B9E31FB5493D00A7F85E /* WYSpaceDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYSpaceDetailViewController.xib; sourceTree = "<group>"; };
+		7854DA22200309A5002D552C /* WYLiveViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYLiveViewController2.h; sourceTree = "<group>"; };
+		7854DA23200309A5002D552C /* WYLiveViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYLiveViewController2.m; sourceTree = "<group>"; };
+		7854DA24200309A6002D552C /* WYLiveViewController2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYLiveViewController2.xib; sourceTree = "<group>"; };
+		7854DA272003653F002D552C /* YTPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTPlayerView.m; sourceTree = "<group>"; };
+		7854DA282003653F002D552C /* YTPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTPlayerView.h; sourceTree = "<group>"; };
 		785616281FF4BF2A00E3AE8E /* WYSocketManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYSocketManager.m; sourceTree = "<group>"; };
 		785616291FF4BF2A00E3AE8E /* WYSocketManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYSocketManager.h; sourceTree = "<group>"; };
 		78716D481FC6C0D70019F9E5 /* YTCommunityDetailCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTCommunityDetailCollectionCell.m; sourceTree = "<group>"; };
@@ -1024,6 +1032,9 @@
 				7852D5201FD915C000CB3249 /* WYLiveViewController1.h */,
 				7852D51F1FD915BF00CB3249 /* WYLiveViewController1.m */,
 				7852D51E1FD915BF00CB3249 /* WYLiveViewController1.xib */,
+				7854DA22200309A5002D552C /* WYLiveViewController2.h */,
+				7854DA23200309A5002D552C /* WYLiveViewController2.m */,
+				7854DA24200309A6002D552C /* WYLiveViewController2.xib */,
 			);
 			path = Stream;
 			sourceTree = "<group>";
@@ -1050,6 +1061,8 @@
 		44203DC01E72554100D59B5E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7854DA282003653F002D552C /* YTPlayerView.h */,
+				7854DA272003653F002D552C /* YTPlayerView.m */,
 				44D2F7CF1E7FA8F300122866 /* WYAnchorInfoView.h */,
 				44D2F7D01E7FA8F300122866 /* WYAnchorInfoView.m */,
 				446D43261E837DAC002E5C52 /* WYAnchorManageView.h */,
@@ -1960,6 +1973,7 @@
 				4460B6041F04E8BC00085F8F /* WYLiveTigerResultView.xib in Resources */,
 				78D1D3311F7CC79F007261E4 /* WYIncomeRecordViewController.xib in Resources */,
 				4425642E1F42AA830075467A /* wy_gameresult_win_2@2x.png in Resources */,
+				7854DA26200309A6002D552C /* WYLiveViewController2.xib in Resources */,
 				789DAA331F5688200012075C /* yuguan.bundle in Resources */,
 				442564281F42AA830075467A /* gr_zhuangdui_icon@2x.png in Resources */,
 				7826BD341FB057F100EACB75 /* WYAnchorApplyViewController.xib in Resources */,
@@ -2117,6 +2131,7 @@
 				44203D141E6FE78800D59B5E /* AppDelegate.m in Sources */,
 				7826BD331FB057F100EACB75 /* WYAnchorApplyViewController.m in Sources */,
 				444DA6591E8BD3B000C45DE5 /* WYGiftContributionModel.m in Sources */,
+				7854DA292003653F002D552C /* YTPlayerView.m in Sources */,
 				446D43251E829030002E5C52 /* WYContributionListView.m in Sources */,
 				44D2F7F81E7FFDB700122866 /* YTBaseCustomMessageAttachment.m in Sources */,
 				44F7361C1EC83C3A00BB68F9 /* NSDictionary+ObjectForKey.m in Sources */,
@@ -2134,6 +2149,7 @@
 				44203D8D1E714BD600D59B5E /* UIButton+YTCodeVerify.m in Sources */,
 				442317801EC56A5A003AB4AE /* WYSettingViewController.m in Sources */,
 				44203D841E714BD600D59B5E /* RMSuperViewController.m in Sources */,
+				7854DA25200309A6002D552C /* WYLiveViewController2.m in Sources */,
 				44203D891E714BD600D59B5E /* WYTabBarController.m in Sources */,
 				78B82A491F79279500279366 /* WYForgotPasswordViewController.m in Sources */,
 				78D1D3471F7E42E6007261E4 /* WYSpaceHeaderView.m in Sources */,

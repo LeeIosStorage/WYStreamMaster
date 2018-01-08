@@ -18,6 +18,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *betRankingSeventhLabel;
 @property (strong, nonatomic) IBOutlet UILabel *betRankingEighthLabel;
 @property (strong, nonatomic) IBOutlet UILabel *betRankingNinthLabel;
+@property (strong, nonatomic) IBOutlet UIButton *questionMarkButton;
 
 @end
 
@@ -79,4 +80,9 @@
 
 }
 
+- (IBAction)clickQuestionMarkButton:(UIButton *)sender {
+    if ([self.delegate respondsToSelector:@selector(clickQuestionMarkButton)]) {
+        [self.delegate clickQuestionMarkButton];
+    }
+}
 @end

@@ -318,14 +318,12 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
 //        [self.navigationController pushViewController:vc animated:YES];
 //    } else {
  //
-    
 //        YTTopicDetailViewController *vc = [[YTTopicDetailViewController alloc] init];
 //        vc.topicId = model.postsID;
 //        vc.hidesBottomBarWhenPushed = YES;
 //        [self.navigationController pushViewController:vc animated:YES];
 //    }
 }
-
 
 #pragma mark - Getters
 - (WYSpaceHeaderView *)headerView
@@ -336,7 +334,6 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
     return _headerView;
 }
 
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -345,6 +342,7 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
 /*
 #pragma mark - Navigation
 // In a storyboard-based application, you will often want to do a little preparation before navigation
+ 
  
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].

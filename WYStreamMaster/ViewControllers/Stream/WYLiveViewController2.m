@@ -6,7 +6,7 @@
 //  Copyright © 2017年 Leejun. All rights reserved.
 //
 
-#import "WYLiveViewController1.h"
+#import "WYLiveViewController2.h"
 #import "WYStreamingSessionManager.h"
 #import <BlocksKit/BlocksKit+UIKit.h>
 #import "WYAnchorInfoView.h"
@@ -28,11 +28,12 @@
 #import "YTChatModel.h"
 #import "WYLiveEndViewController.h"
 #import "YTBetRankingView.h"
+#import "YTPlayerView.h"
 // 直播通知重试次数
 static NSInteger kLiveNotifyRetryCount = 0;
 static NSInteger kLiveNotifyRetryMaxCount = 3;
 
-@interface WYLiveViewController1 ()
+@interface WYLiveViewController2 ()
 <
 WYStreamingSessionManagerDelegate,
 WYAnchorInfoViewDelegate,
@@ -41,9 +42,7 @@ FUAPIDemoBarDelegate,
 ZegoRoomDelegate,
 YTBetRankingViewDelegate
 >
-{
-    
-}
+@property (strong, nonatomic) YTPlayerView *playerView;
 
 @property (nonatomic, strong) WYStreamingSessionManager *streamingSessionManager;
 
@@ -103,7 +102,7 @@ YTBetRankingViewDelegate
 
 @end
 
-@implementation WYLiveViewController1
+@implementation WYLiveViewController2
 - (instancetype)init
 {
     if (self = [super init]) {
@@ -325,6 +324,11 @@ YTBetRankingViewDelegate
 }
 
 - (void)setupSubView{
+    self.playerView = [[YTPlayerView alloc] init];
+    [self.view addSubview:self.playerView];
+    [self.playerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(weakSelf.view);
+    }];
     
     self.betTopTipLabel.text = [WYCommonUtils acquireCurrentLocalizedText:@"押注排名"];
     self.giftHistoryTipLabel.text = [WYCommonUtils acquireCurrentLocalizedText:@"礼物历史"];
@@ -555,7 +559,6 @@ YTBetRankingViewDelegate
 //        }
 //        return YES;
 //    };
-    
 }
 
 - (void)animationChangeChatViewFrame{

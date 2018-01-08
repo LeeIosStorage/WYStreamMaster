@@ -114,17 +114,17 @@
         [self toCreateLiveRoom];
         
     } else if ([auditStatu isEqualToString:@"0"]) {
-        WYAnchorApplyViewController *anchorApplyVC = [[WYAnchorApplyViewController alloc] init];
-        [self.navigationController pushViewController:anchorApplyVC animated:YES];
+        [self toCreateLiveRoom];
+
+//        WYAnchorApplyViewController *anchorApplyVC = [[WYAnchorApplyViewController alloc] init];
+//        [self.navigationController pushViewController:anchorApplyVC animated:YES];
     } else if ([auditStatu isEqualToString:@"1"]) {
 //        WYAnchorApplyViewController *anchorApplyVC = [[WYAnchorApplyViewController alloc] init];
 //        [self.navigationController pushViewController:anchorApplyVC animated:YES];
     } else {
-//        [self toCreateLiveRoom];
+        [self toCreateLiveRoom];
 //        WYAnchorApplyViewController *anchorApplyVC = [[WYAnchorApplyViewController alloc] init];
 //        [self.navigationController pushViewController:anchorApplyVC animated:YES];
-        [self toCreateLiveRoom];
-
     }
 }
 - (IBAction)clickLiveSetButton:(UIButton *)sender {
@@ -150,9 +150,7 @@
 }
 #pragma mark - network
 - (void)anchorOnLineRequest{
-    
     [MBProgressHUD showMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_live_prepare_ing"]];
-    
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"anchor_on_off"];
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
     [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchor_user_code"];
@@ -193,6 +191,10 @@
             
         }else{
             [MBProgressHUD showError:message toView:weakSelf.view];
+            WYLiveViewController1 *liveVc = [[WYLiveViewController1 alloc] init];
+            //            liveVc.isShowFaceUnity = YES;
+            liveVc.streamURL = [WYLoginUserManager anchorPushUrl];
+            [self.navigationController pushViewController:liveVc animated:YES];
         }
         
     } failure:^(id responseObject, NSError *error) {
@@ -255,8 +257,9 @@
 
 /*
 #pragma mark - Navigation
-
+ 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
+ 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.

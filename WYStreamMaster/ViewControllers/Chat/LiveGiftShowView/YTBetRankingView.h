@@ -7,6 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@protocol YTBetRankingViewDelegate <NSObject>
+@optional
+- (void)clickQuestionMarkButton;
+@end
 typedef enum : NSUInteger {
     BetRankingPrimaryType,            //德州扑克
     BetRankingSeniorType,                 //老虎机
@@ -17,5 +21,8 @@ typedef enum : NSUInteger {
 
 @property (strong, nonatomic) IBOutlet UILabel *betMostLabel;
 @property (nonatomic, assign) BetRankingType betRankingType;
+@property (nonatomic, weak) id <YTBetRankingViewDelegate> delegate;
+
 - (void)updateBottomViewWithInfo:(YTClassifyBBSDetailModel *)data;
 @end
+

@@ -11,7 +11,7 @@ pod 'SDWebImage', '~> 3.8.0'
 pod 'PLMediaStreamingKit', '~> 2.1.5'
 pod 'MBProgressHUD'
 pod 'BlocksKit', '~> 2.2.5'
-pod 'NIMSDK'
+#pod 'NIMSDK'
 pod 'SocketRocket'
 pod 'GMGridView'
 pod 'CRToast'
@@ -32,5 +32,11 @@ pod 'DeviceUtil', '~> 2.0.1'
 
 pod 'NJKWebViewProgress', '~> 0.2.3'
 
+# 七牛播放器SDK
+pod 'PLPlayerKit'
+
+#################### LiCan Start ######################
+pod 'NIMSDK', :path=>'/Users/wangjingkeji/Desktop/暂存文件/NIM_iOS_SDK'
+#################### LiCan End ######################
 end
 
