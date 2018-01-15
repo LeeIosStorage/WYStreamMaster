@@ -324,11 +324,11 @@ YTBetRankingViewDelegate
 }
 
 - (void)setupSubView{
-    self.playerView = [[YTPlayerView alloc] init];
-    [self.view addSubview:self.playerView];
-    [self.playerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(weakSelf.view);
-    }];
+//    self.playerView = [[YTPlayerView alloc] init];
+//    [self.view addSubview:self.playerView];
+//    [self.playerView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.edges.mas_equalTo(weakSelf.view);
+//    }];
     
     self.betTopTipLabel.text = [WYCommonUtils acquireCurrentLocalizedText:@"押注排名"];
     self.giftHistoryTipLabel.text = [WYCommonUtils acquireCurrentLocalizedText:@"礼物历史"];
@@ -783,7 +783,7 @@ static bool frontCamera = YES;
 - (UILabel *)questionMarkLabel{
     if (!_questionMarkLabel) {
         _questionMarkLabel = [[UILabel alloc] init];
-        _questionMarkLabel.text = @"送礼之星记录自主播本次开播开始，所有观看用户的累计送礼排名";
+        _questionMarkLabel.text = @"土豪榜记录自主播本次开播开始，所有观看用户的累计送礼排名";
         _questionMarkLabel.numberOfLines = 0;
         _questionMarkLabel.font = [UIFont systemFontOfSize:12.0f];
         _questionMarkLabel.textColor = [UIColor whiteColor];

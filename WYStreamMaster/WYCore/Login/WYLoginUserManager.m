@@ -35,7 +35,7 @@ static NSString *const kVideoQuality = @"kVideoQuality";
 static NSString *const kLiveGameType = @"kLiveGameType";
 
 static NSString *const kYuerCoin = @"kYuerCoin";
-static NSString *const kYuerBait = @"kYuerBait";
+static NSString *const kSpacePhoto = @"kSpacePhoto";
 static NSString *const kLiveDuration = @"kLiveDuration";
 static NSString *const kRememberPassword = @"kRememberPassword";
 static NSString *const kIsFirstEnterApplication = @"kIsFirstEnterApplication";
@@ -218,13 +218,14 @@ static NSString *const kIsFirstEnterApplication = @"kIsFirstEnterApplication";
     [self saveToUserDefaultsObject:yuerCoin forKey:kYuerCoin];
 }
 // 鱼饵
-+ (NSString *)yuerBait
+// 空间照片
++ (NSString *)spacePhoto
 {
-    return [self objectFromUserDefaultsKey:kYuerBait];
+    return [self objectFromUserDefaultsKey:kSpacePhoto];
 }
-+ (void)setYuerBait:(NSString *)yuerBait
++ (void)setSpacePhoto:(NSString *)spacePhoto
 {
-    [self saveToUserDefaultsObject:yuerBait forKey:kYuerBait];
+    [self saveToUserDefaultsObject:spacePhoto forKey:kSpacePhoto];
 }
 // 直播时长
 + (NSString *)liveDuration

@@ -11,6 +11,7 @@
 #import "UINavigationBar+Awesome.h"
 #import "WYImagePickerController.h"
 #import "UIImage+ProportionalFill.h"
+#import "WYLoginManager.h"
 typedef NS_ENUM(NSInteger, LiveUploadImageType){
     UploadImageTypeAvatar = 0,   //avatar
     UploadImageTypeAnchorNormal,
@@ -103,6 +104,17 @@ UITextFieldDelegate>
     self.agentTextField.delegate = self;
     UITapGestureRecognizer *tapGestureView =  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureView)];
     [self.view addGestureRecognizer:tapGestureView];
+    
+    UIView *leftView = [[UIView alloc] init];
+    leftView.backgroundColor = [UIColor clearColor];
+    self.nicknameField.leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 10, 0)];
+    self.agentTextField.leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 10, 0)];
+    self.roomNameField.leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 10, 0)];
+    self.InvitationCodeField.leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 10, 0)];
+    self.nicknameField.leftViewMode = UITextFieldViewModeAlways;
+    self.agentTextField.leftViewMode = UITextFieldViewModeAlways;
+    self.roomNameField.leftViewMode = UITextFieldViewModeAlways;
+    self.InvitationCodeField.leftViewMode = UITextFieldViewModeAlways;
 }
 #pragma mark -
 #pragma mark - Server
@@ -173,7 +185,9 @@ UITextFieldDelegate>
         
         if (requestType == WYRequestTypeSuccess) {
 //            [YTToast showSuccess:@"申请成功，请等待审核"];
+            [WYLoginManager sharedManager].loginModel.audit_statu = @"1";
             [MBProgressHUD showSuccess:@"申请成功，请等待审核" toView:weakSelf.view];
+            [weakSelf performSelector:@selector(popLastViewCtroller) withObject:nil afterDelay:1.0];
         }else{
             [MBProgressHUD showError:message toView:weakSelf.view];
         }
@@ -189,7 +203,7 @@ UITextFieldDelegate>
     [MBProgressHUD showMessage:@"正在上传..."];
 //    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"upload_image"];
 
-    NSString *requestUrl = @"http://122.224.221.203:8090/event-platform-admin/file/ios_image?";
+    NSString *requestUrl = @"http://http://172.16.2.180:8090/event-platform-admin/file/ios_image?";
 
 //        NSString *requestUrl = @"http://www.legend8888.com/files/api/uploadfile.do?";
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
@@ -254,7 +268,10 @@ UITextFieldDelegate>
         NSLog(@"");
     }];
 }
-
+#pragma mark - Getters and Setters
+- (void)popLastViewCtroller{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 #pragma mark - event
 - (void)tapGestureHeaderImageView
 {

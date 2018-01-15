@@ -35,6 +35,8 @@
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 
     [self setupView];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(transformView:) name:UIKeyboardWillChangeFrameNotification object:nil];
+
     // Do any additional setup after loading the view from its nib.
 }
 #pragma mark - setup
@@ -150,6 +152,36 @@
     [self.passwordField resignFirstResponder];
     [self.againPasswordField resignFirstResponder];
     [self.mailboxField resignFirstResponder];
+}
+
+#pragma mark - keyBoard
+//键盘回收
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    for(UIView *view in self.view.subviews)
+    {
+        [view resignFirstResponder];
+    }
+}
+//移动UIView
+-(void)transformView:(NSNotification *)aNSNotification
+{
+    //获取键盘弹出前的Rect
+    NSValue *keyBoardBeginBounds=[[aNSNotification userInfo]objectForKey:UIKeyboardFrameBeginUserInfoKey];
+    CGRect beginRect=[keyBoardBeginBounds CGRectValue];
+    
+    //获取键盘弹出后的Rect
+    NSValue *keyBoardEndBounds=[[aNSNotification userInfo]objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect  endRect=[keyBoardEndBounds CGRectValue];
+    
+    //获取键盘位置变化前后纵坐标Y的变化值
+    CGFloat deltaY=endRect.origin.y-beginRect.origin.y;
+    NSLog(@"看看这个变化的Y值:%f",deltaY);
+    
+    //在0.25s内完成self.view的Frame的变化，等于是给self.view添加一个向上移动deltaY的动画
+    [UIView animateWithDuration:0.25f animations:^{
+        [self.view setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y+deltaY, self.view.frame.size.width, self.view.frame.size.height)];
+    }];
 }
 #pragma mark - UITextFieldDelegate
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string

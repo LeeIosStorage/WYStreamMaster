@@ -50,6 +50,7 @@ static NSString *const kInteractMessageTableViewCell = @"YTInteractMessageTableV
 //    self.edgesForExtendedLayout = UIRectEdgeTop;
     [self setupView];
     [self getSpaceRequest];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(transformView:) name:UIKeyboardWillChangeFrameNotification object:nil];
 }
 
 #pragma mark - setup
@@ -57,6 +58,8 @@ static NSString *const kInteractMessageTableViewCell = @"YTInteractMessageTableV
 {
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped)];
     [self.view addGestureRecognizer:tap];
+    UITapGestureRecognizer *collectionViewTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(collectionViewTapped)];
+    [self.collectionView addGestureRecognizer:collectionViewTap];
     
     self.collectionView.backgroundColor = [WYStyleSheet currentStyleSheet].themeBackgroundColor;
     
@@ -111,7 +114,7 @@ static NSString *const kInteractMessageTableViewCell = @"YTInteractMessageTableV
     [self publishComment:self.parent_id];
 }
 
-- (void)viewTapped
+- (void)collectionViewTapped
 {
     [self.spaceDetailBottomView.spaceDetailTextField resignFirstResponder];
     if (self.spaceModel.bbsType == YTBBSTypeVideo) {
@@ -121,7 +124,13 @@ static NSString *const kInteractMessageTableViewCell = @"YTInteractMessageTableV
         playVC.urlString = videosStr;
         playVC.hidesBottomBarWhenPushed = YES;
         [self presentViewController:playVC animated:YES completion:nil];
+      
     }
+}
+
+- (void)viewTapped
+{
+    [self.spaceDetailBottomView.spaceDetailTextField resignFirstResponder];
 }
 #pragma mark -
 #pragma mark - Server
@@ -177,6 +186,37 @@ static NSString *const kInteractMessageTableViewCell = @"YTInteractMessageTableV
         [MBProgressHUD showAlertMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_register_result_failure_tip"] toView:weakSelf.view];
     }];
 }
+
+#pragma mark - keyBoard
+//键盘回收
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    for(UIView *view in self.view.subviews)
+    {
+        [view resignFirstResponder];
+    }
+}
+//移动UIView
+-(void)transformView:(NSNotification *)aNSNotification
+{
+    //获取键盘弹出前的Rect
+    NSValue *keyBoardBeginBounds=[[aNSNotification userInfo]objectForKey:UIKeyboardFrameBeginUserInfoKey];
+    CGRect beginRect=[keyBoardBeginBounds CGRectValue];
+    
+    //获取键盘弹出后的Rect
+    NSValue *keyBoardEndBounds=[[aNSNotification userInfo]objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect  endRect=[keyBoardEndBounds CGRectValue];
+    
+    //获取键盘位置变化前后纵坐标Y的变化值
+    CGFloat deltaY=endRect.origin.y-beginRect.origin.y;
+    NSLog(@"看看这个变化的Y值:%f",deltaY);
+    
+    //在0.25s内完成self.view的Frame的变化，等于是给self.view添加一个向上移动deltaY的动画
+    [UIView animateWithDuration:0.25f animations:^{
+        [self.view setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y+deltaY, self.view.frame.size.width, self.view.frame.size.height)];
+    }];
+}
+
 #pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldClear:(UITextField *)textField
 {
@@ -228,6 +268,7 @@ static NSString *const kInteractMessageTableViewCell = @"YTInteractMessageTableV
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     YTCommunityDetailCollectionCell *communityCell = [collectionView dequeueReusableCellWithReuseIdentifier:kCommunityDetailCollectionCell forIndexPath:indexPath];
+    self.spaceModel.isSpaceDetail = YES;
     [communityCell updateCommunifyCellWithData:self.spaceModel];
     return communityCell;
 }

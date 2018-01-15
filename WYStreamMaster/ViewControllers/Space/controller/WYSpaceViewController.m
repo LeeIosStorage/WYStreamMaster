@@ -17,6 +17,7 @@
 #import "UINavigationBar+Awesome.h"
 #import "WYSpaceDetailViewController.h"
 #import "WYIssueTalkAboutViewController.h"
+#import "WYLoginUserManager.h"
 #define kClassifyHeaderHeight (kScreenWidth * 210 / 375 + 44)
 static NSString *const kCommunityCollectionCell = @"YTCommunityCollectionCell";
 static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
@@ -32,7 +33,8 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
 {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont boldSystemFontOfSize:15.0]};
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.startIndexPage = 1;
         [self getSpaceRequest];
     });
 }
@@ -89,6 +91,9 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.width.bottom.equalTo(weakSelf.view);
     }];
+
+    UITapGestureRecognizer *headerViewTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headerViewTapped)];
+    [self.headerView addGestureRecognizer:headerViewTap];
 }
 
 - (UIBarButtonItem *)leftBarButtonItem
@@ -157,8 +162,104 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
     }];
 }
 
+- (void)changeSpacePhoto:(NSString *)spacePhoto{
+    
+    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"change_spacePhoto"];
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
+    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"user_code"];
+    [paramsDic setObject:spacePhoto forKey:@"zone_img"];
+    WS(weakSelf)
+    [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
+        NSLog(@"error:%@ data:%@",message,dataObject);
+        [weakSelf.collectionView.mj_header endRefreshing];
+        [weakSelf.collectionView.mj_footer beginRefreshing];
+        if (requestType == WYRequestTypeSuccess) {
+            [weakSelf.headerView.spaceHeaderImageView setImageWithURL:[NSURL URLWithString:spacePhoto] placeholder:[UIImage imageNamed:@"space_background"]];
+            [WYLoginUserManager setSpacePhoto:spacePhoto];
+        } else {
+            NSLog(@"aaaa");
+        }
+    } failure:^(id responseObject, NSError *error) {
+        [weakSelf.collectionView.mj_header endRefreshing];
+        [weakSelf.collectionView.mj_footer beginRefreshing];
+    }];
+}
+// 删除说说
+- (void)deleteTalkAbout:(NSInteger)row{
+    YTClassifyBBSDetailModel *model = (YTClassifyBBSDetailModel *)self.dataSource[row];
+
+    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"blog_delete"];
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
+    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"user_code"];
+    [paramsDic setObject:model.identity forKey:@"id"];
+    WS(weakSelf)
+    [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
+        NSLog(@"error:%@ data:%@",message,dataObject);
+        [weakSelf.collectionView.mj_header endRefreshing];
+        [weakSelf.collectionView.mj_footer beginRefreshing];
+        if (requestType == WYRequestTypeSuccess) {
+            [MBProgressHUD showError:@"删除成功" toView:weakSelf.view];
+            [self.dataSource removeObjectAtIndex:row];
+            [self.collectionView reloadData];
+        } else {
+            [MBProgressHUD showError:message toView:weakSelf.view];
+        }
+    } failure:^(id responseObject, NSError *error) {
+        [weakSelf.collectionView.mj_header endRefreshing];
+        [weakSelf.collectionView.mj_footer beginRefreshing];
+    }];
+}
+
+- (void)uploadWithImageData:(NSData *)imageData
+{
+    [MBProgressHUD showMessage:@"正在上传..."];
+    //    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"upload_image"];
+    
+    NSString *requestUrl = @"http://172.16.2.180:8090/event-platform-admin/file/ios_image?";
+    
+    //        NSString *requestUrl = @"http://www.legend8888.com/files/api/uploadfile.do?";
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
+    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"bizImgPath"];
+    [paramsDic setObject:@"1" forKey:@"saveType"];
+    
+    WS(weakSelf);
+    [self.networkManager POST:requestUrl formFileName:@"pic" fileName:@"img.jpg" fileData:imageData mimeType:@"image/jpeg" parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
+        [MBProgressHUD hideHUD];
+        if (requestType == WYRequestTypeSuccess) {
+            [MBProgressHUD showSuccess:@"上传成功" toView:weakSelf.view];
+            NSString *urlStr = nil;
+            if ([dataObject isKindOfClass:[NSDictionary class]]) {
+                NSDictionary *dict = dataObject;
+                urlStr = [dict objectForKey:@"path"];
+            } else if ([dataObject isKindOfClass:[NSString class]]){
+                urlStr = dataObject;
+            }
+            [weakSelf changeSpacePhoto:urlStr];
+        } else {
+            NSLog(@"");
+            [MBProgressHUD showError:message toView:weakSelf.view];
+        }
+        
+    } failure:^(id responseObject, NSError *error) {
+        [MBProgressHUD showError:[WYCommonUtils acquireCurrentLocalizedText:@"wy_photo_upload_errer_tip"] toView:weakSelf.view];
+    }];
+}
+
+
 #pragma mark - event
-#pragma mark - Action
+- (void)headerViewTapped
+{
+    WEAKSELF
+    WYCustomActionSheet *actionSheet = [[WYCustomActionSheet alloc] initWithTitle:nil actionBlock:^(NSInteger buttonIndex) {
+        NSLog(@"%ld",(long)buttonIndex);
+        if (buttonIndex == 1) {
+            [weakSelf showImageBroswerWithSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+        } else if (buttonIndex == 0){
+            [weakSelf showImageBroswerWithSourceType:UIImagePickerControllerSourceTypeCamera];
+        }
+    } cancelButtonTitle:[WYCommonUtils acquireCurrentLocalizedText:@"wy_cancel"] destructiveButtonTitle:nil otherButtonTitles:@[[WYCommonUtils acquireCurrentLocalizedText:@"wy_take_photos"],[WYCommonUtils acquireCurrentLocalizedText:@"wy_photo_library"]]];
+    [actionSheet showInView:self.view];
+}
 - (void)rightButtonClicked:(id)sender
 {
     WYIssueTalkAboutViewController *issueTalkAboutVC = [[WYIssueTalkAboutViewController alloc] init];
@@ -174,6 +275,11 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
     issueTalkAboutVC.rightButton = customRightButton;
     
     [self.navigationController pushViewController:issueTalkAboutVC animated:YES];
+}
+// 删除说说
+- (void)deleteButtonAction:(UIButton *)sender
+{
+    [self deleteTalkAbout:sender.tag];
 }
 
 - (void)showImageBroswerWithSourceType:(UIImagePickerControllerSourceType )sourceType
@@ -224,8 +330,7 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
         imageAfterScale = newImage;
         imageData = UIImageJPEGRepresentation(newImage, compressionQuality);
     }
-    
-    //    [self uploadWithImageData:imageData uploadType:self.uploadImageType];
+    [self uploadWithImageData:imageData];
     [picker dismissViewControllerAnimated:YES completion:nil];
     
 }
@@ -264,6 +369,7 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
     self.headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kSpaceHeaderView forIndexPath:indexPath];
     self.headerView.backgroundColor = [UIColor whiteColor];
     [self.headerView updateHeaderViewWithData:nil];
+    [self.headerView.spaceHeaderImageView setImageWithURL:[NSURL URLWithString:[WYLoginUserManager spacePhoto]] placeholder:[UIImage imageNamed:@"space_background"]];
     return self.headerView;
 }
 
@@ -291,8 +397,9 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     YTCommunityCollectionCell *communityCell = [collectionView dequeueReusableCellWithReuseIdentifier:kCommunityCollectionCell forIndexPath:indexPath];
     if (indexPath.row < [self.dataSource count]) {
-        
         [communityCell updateCommunifyCellWithData:(YTClassifyBBSDetailModel *)self.dataSource[indexPath.row]];
+        communityCell.deleteButton.tag = indexPath.row;
+        [communityCell.deleteButton addTarget:self action:@selector(deleteButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     
     return communityCell;

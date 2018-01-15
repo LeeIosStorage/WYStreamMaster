@@ -233,6 +233,7 @@ UITextFieldDelegate
 - (void)changeServerOperate{
     UIButton *serverButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [serverButton setTitle:@"切换服务器" forState:UIControlStateNormal];
+    serverButton.hidden = YES;
     [serverButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     [serverButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
     [serverButton addTarget:self action:@selector(changeServerAction) forControlEvents:UIControlEventTouchUpInside];

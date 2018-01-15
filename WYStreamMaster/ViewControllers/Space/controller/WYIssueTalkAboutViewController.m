@@ -35,6 +35,7 @@
 @property (nonatomic, strong) NSString *imageString;
 @property (nonatomic, strong) NSString *videoString;
 @property (nonatomic, strong) UIImage *videoImage;
+@property (nonatomic, strong) NSMutableArray *imageStringArray;
 
 @end
 
@@ -43,12 +44,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.imageStringArray = [NSMutableArray array];
     _commentTextView.keyboardAppearance = UIKeyboardAppearanceAlert;
     self.contentView.layer.masksToBounds = YES;
     [self.contentView setLayerShadow:[UIColor colorWithHexString:@"e6e6e6"] offset:CGSizeMake(0, 0) radius:5.f];
     self.contentView.layer.shadowOpacity = .8f;
     [self setTitle:@"发布动态"];
-    _maxReplyTextLength = 150;
+    _maxReplyTextLength = 200;
     
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self.textCountLabel.text];
     [attributedString addAttribute:NSForegroundColorAttributeName value:[WYStyleSheet defaultStyleSheet].titleLabelSelectedColor range:NSMakeRange(5, 3)];
@@ -67,6 +69,10 @@
 }
 
 - (IBAction)addImageAction:(id)sender {
+    UIButton *button = (UIButton *)sender;
+    if (button != self.addImageButton) {
+        return;
+    }
     [self.commentTextView resignFirstResponder];
     WYCustomActionSheet *sheet = [[WYCustomActionSheet alloc] initWithTitle:nil actionBlock:^(NSInteger buttonIndex) {
         if (2 == buttonIndex) {
@@ -83,7 +89,7 @@
 }
 
 
-#pragma mark - 评论的
+#pragma mark - event
 - (void)commitComment{
     NSString *content = [self.commentTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if (self.imageString.length == 0 && content.length == 0 && self.videoString.length == 0) {
@@ -103,9 +109,9 @@
     [params setObject:[WYLoginUserManager userID] forKey:@"user_code"];
     [params setObject:content forKey:@"content"];
 
-    if (imgs && imgs.count > 0) {
+    if (self.imageStringArray && self.imageStringArray.count > 0) {
         NSString * imgsString;
-        imgsString = [WYCommonUtils stringSplitWithCommaForIds:imgs];
+        imgsString = [WYCommonUtils stringSplitWithCommaForIds:self.imageStringArray];
         [params setObject:[NSString stringWithFormat:@"%@", imgsString] forKey:@"images"];
     }
     if (self.videoString && self.videoString.length > 0) {
@@ -130,6 +136,34 @@
 
 - (void)popLastViewCtroller{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)clickDelegeteButton:(UIButton *)sender
+{
+    sender.hidden = YES;
+    NSInteger tag = sender.tag;
+    [self.imageStringArray removeObjectAtIndex:tag - 100 - 1];
+//    UIButton *newButton = [self.view viewWithTag:tag - 100];
+//    newButton.userInteractionEnabled = YES;
+//    newButton.hidden = NO;
+//    self.addImageButton = newButton;
+    for (int i = 0; i < 9; i++) {
+        UIButton *button = [self.view viewWithTag:i + 1];
+        button.hidden = YES;
+    }
+    for (int i = 0; i < self.imageStringArray.count; i++) {
+        UIButton *button = [self.view viewWithTag:i + 1];
+        UIButton *delegateButton = [self.view viewWithTag:i + 1 + 100];
+        delegateButton.hidden = NO;
+        button.hidden = NO;
+        [button setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.imageStringArray[i]]]] forState:UIControlStateNormal];
+    }
+    UIButton *newButton = [self.view viewWithTag:self.imageStringArray.count + 1];
+    UIButton *newDelegateButton = [self.view viewWithTag:self.imageStringArray.count + 1 + 100];
+    [newButton setImage:[UIImage imageNamed:@"addPhoto"] forState:UIControlStateNormal];
+    newButton.hidden = NO;
+    newDelegateButton.hidden = YES;
+    self.addImageButton = newButton;
 }
 
 #pragma mark - TextViewDelegate
@@ -168,21 +202,26 @@
     }
 }
 
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+    self.placeHoldLabel.hidden = YES;
+    return YES;
+}
 
 -(void)doActionSheetClickedButtonAtIndex:(NSInteger)buttonIndex{
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    [picker.navigationBar setBarTintColor:[WYStyleSheet defaultStyleSheet].themeColor];
-    [picker.navigationBar setTranslucent:NO];
-    NSArray* mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
-
-    picker.mediaTypes = mediaTypes;
-    picker.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,[WYStyleSheet defaultStyleSheet].navTitleFont,NSFontAttributeName,nil];
-    picker.delegate = self;
-    picker.allowsEditing = YES;
-    
     if (buttonIndex == 1) {
         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
     }
+    picker.allowsEditing = YES;
+    [picker.navigationBar setBarTintColor:[WYStyleSheet defaultStyleSheet].themeColor];
+    [picker.navigationBar setTranslucent:NO];
+    NSArray* mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+    picker.mediaTypes = mediaTypes;
+    picker.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,[WYStyleSheet defaultStyleSheet].navTitleFont,NSFontAttributeName,nil];
+    picker.delegate = self;
+    picker.videoMaximumDuration = 15.0f;
+    
     [self.navigationController presentViewController:picker animated:YES completion:NULL];
 }
 
@@ -220,14 +259,14 @@
             [self uploadImageWithData:imageData];
         }
     } else if ([mediaType isEqualToString:(NSString *)kUTTypeMovie]) {
-
         if (picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
-        NSURL *sourceURL = [info objectForKey:UIImagePickerControllerMediaURL];
-        NSURL *newVideoUrl ; //一般.mp4
-        NSDateFormatter *formater = [[NSDateFormatter alloc] init];//用时间给文件全名，以免重复，在测试的时候其实可以判断文件是否存在若存在，则删除，重新生成文件即可
-        [formater setDateFormat:@"yyyy-MM-dd-HH:mm:ss"];
-        newVideoUrl = [NSURL fileURLWithPath:[NSHomeDirectory() stringByAppendingFormat:@"/Documents/output-%@.mp4", [formater stringFromDate:[NSDate date]]]] ;//这个是保存在app自己的沙盒路径里，后面可以选择是否在上传后删除掉。我建议删除掉，免得占空间。
-        [self convertVideoQuailtyWithInputURL:sourceURL outputURL:newVideoUrl completeHandler:nil];
+            NSURL *sourceURL = [info objectForKey:UIImagePickerControllerMediaURL];
+            NSURL *newVideoUrl ; //一般.mp4
+            NSDateFormatter *formater = [[NSDateFormatter alloc] init];//用时间给文件全名，以免重复，在测试的时候其实可以判断文件是否存在若存在，则删除，重新生成文件即可
+        
+            [formater setDateFormat:@"yyyy-MM-dd-HH:mm:ss"];
+            newVideoUrl = [NSURL fileURLWithPath:[NSHomeDirectory() stringByAppendingFormat:@"/Documents/output-%@.mp4", [formater stringFromDate:[NSDate date]]]] ;//这个是保存在app自己的沙盒路径里，后面可以选择是否在上传后删除掉。我建议删除掉，免得占空间。
+            [self convertVideoQuailtyWithInputURL:sourceURL outputURL:newVideoUrl completeHandler:nil];
         }
     }
     [picker dismissViewControllerAnimated:YES completion:NULL];
@@ -274,7 +313,7 @@
     [MBProgressHUD showSuccess:@"正在上传..." toView:self.view];
     WS(weakSelf);
 //    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"upload_image"];
-    NSString *requestUrl = @"http://122.224.221.203:8090/event-platform-admin/file/ios_image?";
+    NSString *requestUrl = @"http://172.16.2.180:8090/event-platform-admin/file/ios_image?";
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
     [paramsDic setObject:[WYLoginUserManager userID] forKey:@"bizImgPath"];
     [paramsDic setObject:@"1" forKey:@"saveType"];
@@ -287,6 +326,7 @@
             [weakSelf changeOld:strongSelf.addImageButton];
             NSDictionary *updateImageUrl = dataObject;
             if (updateImageUrl) {
+                [weakSelf.imageStringArray addObject:updateImageUrl[@"path"]];
                 if (strongSelf.imageString.length == 0) {
                     strongSelf.imageString = updateImageUrl[@"path"];
                 } else {
@@ -306,7 +346,7 @@
 - (void)uploadVideoWithData:(NSData *)videoData{
     WS(weakSelf);
     //    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"upload_image"];
-    NSString *requestUrl = @"http://122.224.221.203:8090/event-platform-admin/file/ios_image?";
+    NSString *requestUrl = @"http://172.16.2.180:8090/event-platform-admin/file/ios_image?";
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
     [paramsDic setObject:[WYLoginUserManager userID] forKey:@"bizImgPath"];
     [paramsDic setObject:@"1" forKey:@"saveType"];
@@ -375,6 +415,14 @@
 #pragma mark - Getters and Setters
 - (void)changeOld:(UIButton *)btn
 {
+//    btn.userInteractionEnabled = NO;
+    UIButton *delegateButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [delegateButton setImage:[UIImage imageNamed:@"delete_photo"] forState:UIControlStateNormal];
+    delegateButton.frame = CGRectMake(53, 0, 23, 23);
+    delegateButton.tag = btn.tag + 100;
+    delegateButton.userInteractionEnabled = YES;
+    [delegateButton addTarget:self action:@selector(clickDelegeteButton:) forControlEvents:UIControlEventTouchUpInside];
+    [btn addSubview:delegateButton];
     if (btn.tag == 9) {
         return;
     }

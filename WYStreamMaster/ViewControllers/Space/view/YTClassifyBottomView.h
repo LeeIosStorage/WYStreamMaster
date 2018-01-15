@@ -15,6 +15,6 @@
 @property (nonatomic, strong) IBOutlet UIButton *bottomLikeButton;
 @property (nonatomic, strong) IBOutlet UIButton *bottomShareButton;
 
-
+@property (nonatomic, strong) YTClassifyBBSDetailModel *model;
 - (void)updateBottomViewWithInfo:(YTClassifyBBSDetailModel *)data;
 @end

@@ -23,4 +23,12 @@
              };
 }
 
+//- (void)setIcon:(NSString *)icon
+//{
+//    if (![icon hasPrefix:@"http"]) {
+//        icon = [NSString stringWithFormat:@"%@%@",[WYAPIGenerate sharedInstance].baseURL,icon];
+//    }
+//    _icon = icon;
+//}
+
 @end

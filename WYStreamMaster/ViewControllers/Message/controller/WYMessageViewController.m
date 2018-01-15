@@ -12,13 +12,15 @@
 @interface WYMessageViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *tableview;
 @property (nonatomic, strong) NSMutableArray *messageArray;
-
+@property (nonatomic, assign) int startIndexPage;
 @end
 
 @implementation WYMessageViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.startIndexPage = 1;
+    self.title = @"我的消息";
     [self setupView];
     [self setupData];
     [self getMessageRequest];
@@ -28,10 +30,25 @@
 #pragma mark - setup
 - (void)setupView
 {
-    self.tableview.delegate = self;
-    self.tableview.dataSource = self;
-    self.tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.tableview registerNib:[UINib nibWithNibName:@"WYMessageTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.tableView registerNib:[UINib nibWithNibName:@"WYMessageTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+    [self.view addSubview:self.tableView];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.leading.trailing.equalTo(self.view);
+        make.bottom.equalTo(self.view);
+    }];
+    WEAKSELF
+    [self addRefreshHeaderWithBlock:^{
+        self.startIndexPage = 1;
+        [weakSelf getMessageRequest];
+    }];
+    
+    [self addRefreshFooterWithBlock:^{
+        [weakSelf getMessageRequest];
+    }];
 }
 
 - (void)setupData
@@ -42,25 +59,40 @@
 #pragma mark -
 #pragma mark - Server
 - (void)getMessageRequest{
+    if (self.startIndexPage == 1) {
+        [self.messageArray removeAllObjects];
+    }
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"get_messages"];
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
     [paramsDic setObject:[WYLoginUserManager userID] forKey:@"user_code"];
+    [paramsDic setObject:@"20" forKey:@"page_size"];
+    [paramsDic setObject:[NSString stringWithFormat:@"%d", self.startIndexPage] forKey:@"cur_page"];
+
     WS(weakSelf)
-    [self.networkManager GET:requestUrl needCache:NO parameters:nil responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
+    [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
         NSLog(@"error:%@ data:%@",message,dataObject);
         if (requestType == WYRequestTypeSuccess) {
+            weakSelf.startIndexPage ++;
             NSDictionary *dataDic = (NSDictionary *)dataObject;
             if ([dataObject isKindOfClass:[NSArray class]]) {
                 return ;
             }
             NSArray *object = [NSArray modelArrayWithClass:[WYMessageModel class] json:[dataDic objectForKey:@"list"]];
             [weakSelf.messageArray addObjectsFromArray:object];
-            [weakSelf.tableview reloadData];
+            if (object.count < 20) {
+                [weakSelf hideRefreshFooter];
+            }
+            [weakSelf.tableView reloadData];
         }else{
             [MBProgressHUD showError:message toView:weakSelf.view];
         }
-        
+        [weakSelf endRefreshHeader];
+        [weakSelf endRefreshFooter];
+
     } failure:^(id responseObject, NSError *error) {
+        [weakSelf endRefreshHeader];
+        [weakSelf endRefreshFooter];
+
         //        [MBProgressHUD showAlertMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_register_result_failure_tip"] toView:weakSelf.view];
     }];
 }

@@ -686,6 +686,7 @@ YTBetRankingViewDelegate
     self.betStarButton.hidden = NO;
     self.giftStarLabel.hidden = NO;
     self.betStarLabel.hidden = NO;
+    self.questionMarkLabel.hidden = YES;
 }
 
 
@@ -718,6 +719,8 @@ static bool frontCamera = YES;
 }
 - (IBAction)clickGiftStar:(UIButton *)sender {
     self.betRankingView.hidden = NO;
+    self.questionMarkLabel.text = @"送礼之星记录自主播本次开播开始，所有观看用户的累计送礼排名。";
+
 //    self.primaryBetRankingView.hidden = YES;
     self.giftStarButton.hidden = YES;
     self.betStarButton.hidden = YES;
@@ -728,6 +731,7 @@ static bool frontCamera = YES;
 - (IBAction)clickBetStar:(UIButton *)sender {
     self.primaryBetRankingView.hidden = NO;
 //    self.betRankingView.hidden = YES;
+    self.questionMarkLabel.text = @"赌神榜记录自主播本次开播开始，所有观看用户中投下重注的玩家。";
     self.giftStarButton.hidden = YES;
     self.betStarButton.hidden = YES;
     self.giftStarLabel.hidden = YES;
@@ -794,6 +798,7 @@ static bool frontCamera = YES;
     if (!_betRankingView) {
         _betRankingView = (YTBetRankingView *)[[NSBundle mainBundle] loadNibNamed:@"YTBetRankingView" owner:self options:nil].lastObject;
         _betRankingView.betRankingType = BetRankingSeniorType;
+        _betRankingView.delegate = self;
         _betRankingView.hidden = YES;
     }
     return _betRankingView;

@@ -10,6 +10,7 @@
 
 @interface WYSpaceHeaderView : UICollectionReusableView
 
+@property (strong, nonatomic) IBOutlet UIImageView *spaceHeaderImageView;
 - (void)updateHeaderViewWithData:(id)data;
 
 @end

@@ -185,7 +185,7 @@
                         <action selector="clickBetStar:" destination="-1" eventType="touchUpInside" id="NkR-q2-YQh"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="送礼之星" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5e5-l2-keB">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="土豪榜" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5e5-l2-keB">
                     <rect key="frame" x="104" y="627" width="60" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="7Vh-rF-DMJ"/>
@@ -195,7 +195,7 @@
                     <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="投注之星" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1EI-2N-O02">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="赌神榜" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1EI-2N-O02">
                     <rect key="frame" x="211" y="627" width="60" height="20"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="60" id="8zy-0Z-75A"/>
@@ -223,7 +223,7 @@
                 <constraint firstAttribute="bottom" secondItem="QMK-xQ-oal" secondAttribute="bottom" constant="50" id="uv1-u7-jvO"/>
                 <constraint firstAttribute="trailing" secondItem="XvK-GL-Hax" secondAttribute="trailing" id="yY4-uJ-THB"/>
             </constraints>
-            <point key="canvasLocation" x="-433" y="117"/>
+            <point key="canvasLocation" x="-433.5" y="116.5"/>
         </view>
     </objects>
     <resources>

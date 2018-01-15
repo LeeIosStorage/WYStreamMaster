@@ -233,6 +233,7 @@
 		78D804511FB1A4C4009CDB54 /* WYTodayProfitModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D804501FB1A4C4009CDB54 /* WYTodayProfitModel.m */; };
 		78D804541FB2DF4E009CDB54 /* WYContributionListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D804531FB2DF4E009CDB54 /* WYContributionListModel.m */; };
 		78D804571FB2DFF9009CDB54 /* WYContributionInformationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D804561FB2DFF9009CDB54 /* WYContributionInformationModel.m */; };
+		78FAC6882007432E00641D29 /* WYBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FAC6862007432D00641D29 /* WYBaseTableViewController.m */; };
 		C69795F58C80289B30CE5F15 /* libPods-WYStreamMaster.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D7A3645D8D449741FC609F4 /* libPods-WYStreamMaster.a */; };
 /* End PBXBuildFile section */
 
@@ -671,6 +672,8 @@
 		78D804531FB2DF4E009CDB54 /* WYContributionListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYContributionListModel.m; sourceTree = "<group>"; };
 		78D804551FB2DFF9009CDB54 /* WYContributionInformationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYContributionInformationModel.h; sourceTree = "<group>"; };
 		78D804561FB2DFF9009CDB54 /* WYContributionInformationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYContributionInformationModel.m; sourceTree = "<group>"; };
+		78FAC6862007432D00641D29 /* WYBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYBaseTableViewController.m; sourceTree = "<group>"; };
+		78FAC6872007432D00641D29 /* WYBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYBaseTableViewController.h; sourceTree = "<group>"; };
 		7D7A3645D8D449741FC609F4 /* libPods-WYStreamMaster.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WYStreamMaster.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4223266790A64B80390313C /* Pods-WYStreamMaster.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WYStreamMaster.release.xcconfig"; path = "Pods/Target Support Files/Pods-WYStreamMaster/Pods-WYStreamMaster.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -852,6 +855,8 @@
 				44203D4E1E714BD600D59B5E /* YTBaseTableViewController.m */,
 				444AA5821EBB0D4E00A80FB9 /* WYImagePickerController.h */,
 				444AA5831EBB0D4E00A80FB9 /* WYImagePickerController.m */,
+				78FAC6872007432D00641D29 /* WYBaseTableViewController.h */,
+				78FAC6862007432D00641D29 /* WYBaseTableViewController.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -2101,6 +2106,7 @@
 				78D1D3221F7BC0C1007261E4 /* WYMessageTableViewCell.m in Sources */,
 				44D9B3091E96830D00E15BEA /* WYLiveGameResultView.m in Sources */,
 				787ADB6F1F8B509B005331C9 /* YTClassifyCommunityImageView.m in Sources */,
+				78FAC6882007432E00641D29 /* WYBaseTableViewController.m in Sources */,
 				784A19FF1FCD3FFD00CCC529 /* WYIssueTalkAboutViewController.m in Sources */,
 				444AA5841EBB0D4E00A80FB9 /* WYImagePickerController.m in Sources */,
 				44D2F7E11E7FC30500122866 /* NSString+YTChatRoom.m in Sources */,

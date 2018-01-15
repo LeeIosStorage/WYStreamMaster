@@ -108,7 +108,7 @@ UITextFieldDelegate>
     [MBProgressHUD showMessage:@"正在上传..."];
 //    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"uploadfile"];
 //    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"upload_image"];
-    NSString *requestUrl = @"http://122.224.221.203:8090/event-platform-admin/file/ios_image?";
+    NSString *requestUrl = @"http://http://172.16.2.180:8090/event-platform-admin/file/ios_image?";
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
     [paramsDic setObject:[WYLoginUserManager userID] forKey:@"bizImgPath"];
     [paramsDic setObject:@"1" forKey:@"saveType"];

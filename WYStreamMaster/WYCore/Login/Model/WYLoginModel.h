@@ -31,6 +31,8 @@
 @property (strong, nonatomic) NSString *iconMedia;
 @property (strong, nonatomic) NSString *iconThumb;
 @property (strong, nonatomic) NSString *fans;
+// 空间封面
+@property (strong, nonatomic) NSString *spacePhoto;
 
 @property (strong, nonatomic) NSString *sex;
 

@@ -25,7 +25,7 @@ NSString *const MJRefreshAutoFooterNoMoreDataText = @"MJRefreshAutoFooterNoMoreD
 
 NSString *const MJRefreshBackFooterIdleText = @"MJRefreshBackFooterIdleText";
 NSString *const MJRefreshBackFooterPullingText = @"MJRefreshBackFooterPullingText";
-NSString *const MJRefreshBackFooterRefreshingText = @"MJRefreshBackFooterRefreshingText";
+NSString *const MJRefreshBackFooterRefreshingText = @"正在加载更多的数据...";
 NSString *const MJRefreshBackFooterNoMoreDataText = @"MJRefreshBackFooterNoMoreDataText";
 
 NSString *const MJRefreshHeaderLastTimeText = @"MJRefreshHeaderLastTimeText";

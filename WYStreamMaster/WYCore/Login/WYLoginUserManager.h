@@ -98,9 +98,9 @@ typedef NS_ENUM(NSInteger, CPLoginUserType){
 // 鱼币
 + (NSString *)yuerCoin;
 + (void)setYuerCoin:(NSString *)yuerCoin;
-// 鱼饵
-+ (NSString *)yuerBait;
-+ (void)setYuerBait:(NSString *)yuerBait;
+// 空间照片
++ (NSString *)spacePhoto;
++ (void)setSpacePhoto:(NSString *)spacePhoto;
 // 直播时长
 + (NSString *)liveDuration;
 + (void)setLiveDuration:(NSString *)liveDuration;

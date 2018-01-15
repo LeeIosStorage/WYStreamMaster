@@ -24,6 +24,7 @@
 //@property (strong, nonatomic) UIImageView *identiImageView;
 
 @property (strong, nonatomic) UIImageView *videoCoverImageView;
+@property (strong, nonatomic) UIImageView *videoPlayImageView;
 
 @property (strong, nonatomic) UILabel *nickNameLabel;
 @property (strong, nonatomic) UILabel *creatDateLabel;
@@ -109,7 +110,9 @@
             NSString *videosStr = model.videos[0];
 //            NSString *videoCoverStr = [videosStr substringToIndex:videosStr.length - 1];
             self.videoCoverImageView.image = [[self class] thumbnailImageForVideo:[NSURL URLWithString:videosStr] atTime:0];
+            
             self.videoCoverImageView.hidden = NO;
+            self.videoPlayImageView.hidden = NO;
         }
         
         [self.imagesview updateImageViewWithArray:model.images];
@@ -187,6 +190,15 @@
     }];
     self.videoCoverImageView.hidden = YES;
     
+    // 播放按钮
+    [self addSubview:self.videoPlayImageView];
+    [self.videoPlayImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.videoCoverImageView);
+        make.height.mas_equalTo(30);
+        make.width.mas_equalTo(30);
+    }];
+    self.videoPlayImageView.hidden = YES;
+
     // 底部操作view
     [self addSubview:self.bottomView];
     [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -296,6 +308,18 @@
     }
     
     return _videoCoverImageView;
+}
+
+- (UIImageView *)videoPlayImageView {
+    if (!_videoPlayImageView) {
+        _videoPlayImageView = [[UIImageView alloc] init];
+        _videoPlayImageView.contentMode = UIViewContentModeScaleAspectFit;
+        _videoPlayImageView.opaque = NO;
+        _videoPlayImageView.clipsToBounds = YES;
+        _videoPlayImageView.image = [UIImage imageNamed:@"play_button_image"];
+    }
+    
+    return _videoPlayImageView;
 }
 
 - (UILabel *)nickNameLabel {

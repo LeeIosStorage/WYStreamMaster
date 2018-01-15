@@ -1,20 +1,20 @@
 //
-//  YTBaseTableViewController.h
-//  WYTelevision
+//  WYBaseTableViewController.h
+//  EQPeopleCongress
 //
-//  Created by Jyh on 2016/12/28.
-//  Copyright © 2016年 Zhejiang wangjing network Co., Ltd. All rights reserved.
-//  Tableview的基类
+//  Created by Jyh on 2017/4/16.
+//  Copyright © 2017年 Zurich. All rights reserved.
+//
 
 #import "WYSuperViewController.h"
 
 typedef void (^WYRefreshComponentRefreshingHeaderBlock)();
 typedef void (^WYRefreshComponentRefreshingFooterBlock)();
 
-@interface YTBaseTableViewController : WYSuperViewController
+@interface WYBaseTableViewController : WYSuperViewController
 
 /**
- *  显示数据的tableview控件
+ *  显示数据的tableView控件
  */
 @property (strong, nonatomic) UITableView *tableView;
 

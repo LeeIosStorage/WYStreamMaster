@@ -28,7 +28,7 @@ typedef NS_ENUM(NSUInteger, YTBBSType) {
 @property (assign, nonatomic) NSArray *comment_list;
 
 
-@property (assign, nonatomic) BOOL isCertificate;
+@property (assign, nonatomic) BOOL isSpaceDetail;
 @property (assign, nonatomic) BOOL isAttention;
 @property (assign, nonatomic) BOOL isPraise;
 @property (assign, nonatomic) BOOL isFemale;

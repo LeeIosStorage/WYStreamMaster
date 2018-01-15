@@ -114,6 +114,8 @@ responseClass:(Class)classType
             if (statusCode) {
                 status = statusCode.integerValue;
             }
+//            if (status == -1) {
+//            }
             responseDataObject = responseObject[@"data"];
             //此处有两种情况发生，正常的是json，非正常是一个常规string
         }
@@ -367,5 +369,11 @@ responseClass:(Class )classType
     NSString *resultUrlString = [urlString stringByAppendingString:addString];
     return resultUrlString;
 }
+
+- (void)backLoginViewController
+{
+    
+}
+
 
 @end

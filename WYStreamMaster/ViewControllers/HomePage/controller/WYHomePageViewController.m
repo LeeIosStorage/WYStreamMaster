@@ -48,6 +48,9 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self setupView];
+    });
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -75,8 +78,8 @@
 {
     NSString *auditStatu = [NSString stringWithFormat:@"%@", [WYLoginManager sharedManager].loginModel.audit_statu];
     if ([auditStatu isEqualToString:@"0"]) {
-        self.startLiveLabel.text = @"未审核";
-        self.remarksLabel.text = @"您未提交主播申请";
+        self.startLiveLabel.text = @"提交\n申请";
+        self.remarksLabel.text = @"您未提交主播申请!";
     } else if ([auditStatu isEqualToString:@"1"]) {
         self.startLiveButton.backgroundColor = [UIColor grayColor];
         self.startLabel.backgroundColor = [UIColor grayColor];
@@ -84,17 +87,17 @@
         self.startLiveButton.alpha = 0.1;
         self.startLiveLabel.alpha = 0.5;
         self.startLiveLabel.backgroundColor = [UIColor grayColor];
-        self.startLiveLabel.text = @"等待审核";
+        self.startLiveLabel.text = @"等待\n审核";
         self.remarksLabel.text = @"您的申请还未通过请留意邮箱或新消息提醒";
     } else if ([auditStatu isEqualToString:@"3"]) {
-        self.startLiveLabel.text = @"重新审核";
+        self.startLiveLabel.text = @"重新\n审核";
         self.remarksLabel.text = @"十分抱歉!您的申请没有通过。请完善信息后重新申请!";
     } else if ([auditStatu isEqualToString:@"2"]) {
         self.startLiveLabel.text = @"开启\n直播";
-        self.remarksLabel.text = @"粉丝们都等不及了赶快开启直播吧!";
+        self.remarksLabel.text = @"粉丝们都等不及了赶快开启直播吧";
     } else {
-        self.startLiveLabel.text = @"未审核";
-        self.remarksLabel.text = @"您未提交主播申请";
+        self.startLiveLabel.text = @"提交\n申请";
+        self.remarksLabel.text = @"您未提交主播申请!";
     }
     NSURL *avatarUrl = [NSURL URLWithString:[WYLoginUserManager avatar]];
     [WYCommonUtils setImageWithURL:avatarUrl setImageView:self.headerImageView placeholderImage:@"common_headImage"];
@@ -114,17 +117,18 @@
         [self toCreateLiveRoom];
         
     } else if ([auditStatu isEqualToString:@"0"]) {
-        [self toCreateLiveRoom];
+//        [self toCreateLiveRoom];
 
-//        WYAnchorApplyViewController *anchorApplyVC = [[WYAnchorApplyViewController alloc] init];
-//        [self.navigationController pushViewController:anchorApplyVC animated:YES];
+        WYAnchorApplyViewController *anchorApplyVC = [[WYAnchorApplyViewController alloc] init];
+        [self.navigationController pushViewController:anchorApplyVC animated:YES];
     } else if ([auditStatu isEqualToString:@"1"]) {
+//        [self toCreateLiveRoom];
 //        WYAnchorApplyViewController *anchorApplyVC = [[WYAnchorApplyViewController alloc] init];
 //        [self.navigationController pushViewController:anchorApplyVC animated:YES];
     } else {
-        [self toCreateLiveRoom];
-//        WYAnchorApplyViewController *anchorApplyVC = [[WYAnchorApplyViewController alloc] init];
-//        [self.navigationController pushViewController:anchorApplyVC animated:YES];
+//        [self toCreateLiveRoom];
+        WYAnchorApplyViewController *anchorApplyVC = [[WYAnchorApplyViewController alloc] init];
+        [self.navigationController pushViewController:anchorApplyVC animated:YES];
     }
 }
 - (IBAction)clickLiveSetButton:(UIButton *)sender {
@@ -140,8 +144,15 @@
     [self.navigationController pushViewController:helpCenterVC animated:YES];
 }
 - (IBAction)clickSpaceButton:(UIButton *)sender {
-    WYSpaceViewController *spaceVC = [[WYSpaceViewController alloc] init];
-    [self.navigationController pushViewController:spaceVC animated:YES];
+    NSString *auditStatu = [NSString stringWithFormat:@"%@", [WYLoginManager sharedManager].loginModel.audit_statu];
+    if ([auditStatu isEqualToString:@"2"]) {
+        WYSpaceViewController *spaceVC = [[WYSpaceViewController alloc] init];
+        [self.navigationController pushViewController:spaceVC animated:YES];
+    } else {
+        WYSpaceViewController *spaceVC = [[WYSpaceViewController alloc] init];
+        [self.navigationController pushViewController:spaceVC animated:YES];
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -210,19 +221,6 @@
     self.roomNameTitle = [WYLoginUserManager roomNameTitle];
     self.roomNoticeTitle = [WYLoginUserManager roomNoticeTitle];
     self.roomType = @"0";
-
-    if ([self.roomNameTitle length] == 0) {
-        //        [MBProgressHUD showError:[WYCommonUtils acquireCurrentLocalizedText:@"给自己取一个闪亮的房间名字吧！"]];
-        //        return;
-    }
-    //    if ([self.gameCategory length] == 0 || [self.gameCategoryId length] == 0) {
-    //        [MBProgressHUD showError:[WYCommonUtils acquireCurrentLocalizedText:@"选择直播的游戏"]];
-    //        return;
-    //    }
-//    if ([self.roomType intValue] == 1 && self.vipRoomPasswordTextField.text.length == 0) {
-//        [MBProgressHUD showError:@"请为VIP房间设置密码"];
-//        return;
-//    }
     
     if (![WYCommonUtils checkMicrophonePermissionStatus] || ![WYCommonUtils userCaptureIsAuthorization]) {
         // 麦克风未授权

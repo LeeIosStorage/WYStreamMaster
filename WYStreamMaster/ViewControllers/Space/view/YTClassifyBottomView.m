@@ -41,6 +41,7 @@
 
 - (void)updateBottomViewWithInfo:(YTClassifyBBSDetailModel *)data
 {
+    self.model = data;
     if ([data isKindOfClass:[YTClassifyBBSDetailModel class]]) {
         self.bbsDetail = (YTClassifyBBSDetailModel *)data;
         if ([self.bbsDetail.comment integerValue] > 0) {
@@ -94,6 +95,9 @@
 
 - (void)onCommunityInfoCommentButtonClick:(UIButton *)button
 {
+    if (self.model.isSpaceDetail) {
+        return;
+    }
     WYSuperViewController *currentVC = (WYSuperViewController *)[WYCommonUtils getCurrentVC];
     if (currentVC) {
         

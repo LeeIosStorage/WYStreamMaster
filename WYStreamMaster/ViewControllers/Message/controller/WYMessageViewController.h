@@ -6,8 +6,8 @@
 //  Copyright © 2017年 Leejun. All rights reserved.
 //
 
-#import "WYSuperViewController.h"
+#import "WYBaseTableViewController.h"
 
-@interface WYMessageViewController : WYSuperViewController
+@interface WYMessageViewController : WYBaseTableViewController
 
 @end

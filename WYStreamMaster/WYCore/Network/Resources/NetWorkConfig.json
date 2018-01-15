@@ -162,4 +162,16 @@
         "control" : "api",
         "action"  : "getAnchorDetail.do"
     },
+    "change_spacePhoto": {
+        "protocol": "http",
+        "version" : "anchor",
+        "control" : "api",
+        "action"  : "set_zone_image.do"
+    },
+    "blog_delete": {
+        "protocol": "http",
+        "version" : "blog",
+        "control" : "api",
+        "action"  : "blog_delete.do"
+    },
 }

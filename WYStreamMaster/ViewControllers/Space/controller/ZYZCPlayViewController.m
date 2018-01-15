@@ -49,6 +49,10 @@
         NSURL *netUrl = [NSURL URLWithString:urlString];
         AVPlayer *player = [AVPlayer playerWithURL:netUrl];
         self.player = player;
+        if([[UIDevice currentDevice] systemVersion].intValue>=10){
+            //     主要是这行
+            self.player.automaticallyWaitsToMinimizeStalling = NO;
+        }
         [player play];
     }
     
