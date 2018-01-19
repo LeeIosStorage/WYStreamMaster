@@ -108,8 +108,12 @@
            
         } else if (model.bbsType == YTBBSTypeVideo) {
             NSString *videosStr = model.videos[0];
-//            NSString *videoCoverStr = [videosStr substringToIndex:videosStr.length - 1];
-            self.videoCoverImageView.image = [[self class] thumbnailImageForVideo:[NSURL URLWithString:videosStr] atTime:0];
+            NSString *videosNewStr = [videosStr substringToIndex:[videosStr length] - 1];
+            NSURL *url = [NSURL URLWithString:videosStr];
+            if (!url) {
+                url = [NSURL URLWithString:videosNewStr];
+            }
+            self.videoCoverImageView.image = [[self class] thumbnailImageForVideo:url atTime:0];
             
             self.videoCoverImageView.hidden = NO;
             self.videoPlayImageView.hidden = NO;
@@ -122,6 +126,8 @@
 
 ///添加subviews
 - (void)setupSubViews {
+    self.layer.cornerRadius = 8.0;
+    self.layer.masksToBounds = YES;
     self.backgroundColor = [UIColor whiteColor];
     // 头像
     [self addSubview:self.avatarImageView];
@@ -149,19 +155,18 @@
     // 创建日期
     [self addSubview:self.creatDateLabel];
     [self.creatDateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.nickNameLabel.mas_bottom).offset(2);
+        make.left.equalTo(self.avatarImageView.mas_right).offset(10);
+    }];
+    
+    // 删除按钮
+    [self addSubview:self.deleteButton];
+    [self.deleteButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_top).offset(15);
         make.left.equalTo(self.nickNameLabel.mas_right);
         make.right.equalTo(self.mas_right).offset(-10);
+        make.width.mas_equalTo(60);
     }];
-    
-    // 标题
-//    [self addSubview:self.titleLabel];
-//    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(self.avatarImageView.mas_left);
-//        make.top.equalTo(self.avatarImageView.mas_bottom).offset(15);
-//        make.right.equalTo(self.mas_right).offset(-12);
-//        make.height.priority(10);
-//    }];
     
     // 内容
     [self addSubview:self.contentLabel];
@@ -287,16 +292,19 @@
     return _genderImageView;
 }
 
-//- (UIImageView *)identiImageView {
-//    if (!_identiImageView) {
-//        _identiImageView = [[UIImageView alloc] init];
-//        _identiImageView.contentMode = UIViewContentModeScaleAspectFill;
-//        _identiImageView.image = [UIImage imageNamed:@"authentication"];
-//        _identiImageView.opaque = NO;
-//    }
-//    
-//    return _identiImageView;
-//}
+- (UIButton *)deleteButton {
+    if (!_deleteButton) {
+        _deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_deleteButton setImage:[UIImage imageNamed:@"delete_talkAbout"] forState:UIControlStateNormal];
+        [_deleteButton setTitle:@"删除" forState:UIControlStateNormal];
+        [_deleteButton setTitleColor:[UIColor colorWithHexString:@"838ea2"] forState:UIControlStateNormal];
+        _deleteButton.titleLabel.font = [UIFont systemFontOfSize:12.0f];
+        _deleteButton.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 15);
+        _deleteButton.imageEdgeInsets = UIEdgeInsetsMake(0, 43, 0, 0);
+    }
+    
+    return _deleteButton;
+}
 
 - (UIImageView *)videoCoverImageView {
     if (!_videoCoverImageView) {

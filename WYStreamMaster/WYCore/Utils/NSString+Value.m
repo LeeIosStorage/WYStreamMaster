@@ -178,4 +178,19 @@
     return H * 3600 + M * 60 + S;
 }
 
++ (BOOL)isEmpty:(NSString *)str {
+    if (!str) {
+        return true;
+    } else {
+        NSCharacterSet *set = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+        NSString *trimedString = [str stringByTrimmingCharactersInSet:set];
+        if ([trimedString length] == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+
+
 @end

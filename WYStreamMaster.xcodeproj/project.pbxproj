@@ -137,6 +137,8 @@
 		44F8D9841E9E30D2002EC952 /* WYDataMemoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F8D9831E9E30D2002EC952 /* WYDataMemoryManager.m */; };
 		780965681FD93ACD004F438B /* WYLiveEndViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 780965661FD93ACD004F438B /* WYLiveEndViewController.m */; };
 		780965691FD93ACD004F438B /* WYLiveEndViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 780965671FD93ACD004F438B /* WYLiveEndViewController.xib */; };
+		780D510B200CD84A00538334 /* WYLiveViewController3.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D510A200CD84A00538334 /* WYLiveViewController3.m */; };
+		780D510F200DED4C00538334 /* HHCountdowLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D510E200DED4B00538334 /* HHCountdowLabel.m */; };
 		782119031F5805F00073CBC2 /* ZegoLiveRoom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 782119001F5805F00073CBC2 /* ZegoLiveRoom.framework */; };
 		782119041F5805F00073CBC2 /* ZegoLiveRoom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 782119021F5805F00073CBC2 /* ZegoLiveRoom.framework */; };
 		7826BD2A1FB0406200EACB75 /* WYMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7826BD291FB0406200EACB75 /* WYMessageModel.m */; };
@@ -525,6 +527,11 @@
 		780965651FD93ACD004F438B /* WYLiveEndViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WYLiveEndViewController.h; sourceTree = "<group>"; };
 		780965661FD93ACD004F438B /* WYLiveEndViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WYLiveEndViewController.m; sourceTree = "<group>"; };
 		780965671FD93ACD004F438B /* WYLiveEndViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WYLiveEndViewController.xib; sourceTree = "<group>"; };
+		780D5108200CD84900538334 /* WYLiveViewController3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WYLiveViewController3.h; sourceTree = "<group>"; };
+		780D5109200CD84900538334 /* WYLiveViewController3.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WYLiveViewController3.xib; sourceTree = "<group>"; };
+		780D510A200CD84A00538334 /* WYLiveViewController3.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WYLiveViewController3.m; sourceTree = "<group>"; };
+		780D510D200DED4300538334 /* HHCountdowLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HHCountdowLabel.h; sourceTree = "<group>"; };
+		780D510E200DED4B00538334 /* HHCountdowLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHCountdowLabel.m; sourceTree = "<group>"; };
 		782119001F5805F00073CBC2 /* ZegoLiveRoom.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoLiveRoom.framework; sourceTree = "<group>"; };
 		782119021F5805F00073CBC2 /* ZegoLiveRoom.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoLiveRoom.framework; sourceTree = "<group>"; };
 		7826BD281FB0406200EACB75 /* WYMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYMessageModel.h; sourceTree = "<group>"; };
@@ -906,6 +913,7 @@
 		44203D661E714BD600D59B5E /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				780D510C200DED1900538334 /* Animation */,
 				785616211FF4BE5C00E3AE8E /* Socket */,
 				78D1D3321F7CCB50007261E4 /* WYItem */,
 				44D2F7CB1E7FA25900122866 /* ActionSheet */,
@@ -1040,6 +1048,9 @@
 				7854DA22200309A5002D552C /* WYLiveViewController2.h */,
 				7854DA23200309A5002D552C /* WYLiveViewController2.m */,
 				7854DA24200309A6002D552C /* WYLiveViewController2.xib */,
+				780D5108200CD84900538334 /* WYLiveViewController3.h */,
+				780D510A200CD84A00538334 /* WYLiveViewController3.m */,
+				780D5109200CD84900538334 /* WYLiveViewController3.xib */,
 			);
 			path = Stream;
 			sourceTree = "<group>";
@@ -1305,6 +1316,15 @@
 				7D7A3645D8D449741FC609F4 /* libPods-WYStreamMaster.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		780D510C200DED1900538334 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				780D510D200DED4300538334 /* HHCountdowLabel.h */,
+				780D510E200DED4B00538334 /* HHCountdowLabel.m */,
+			);
+			path = Animation;
 			sourceTree = "<group>";
 		};
 		782118FE1F5805F00073CBC2 /* ZegoLiveRoom-all */ = {
@@ -2067,6 +2087,7 @@
 				78B82A3B1F7914C700279366 /* YTQuickLoginViewController.m in Sources */,
 				7826BD2A1FB0406200EACB75 /* WYMessageModel.m in Sources */,
 				784A19F41FCBF66800CCC529 /* WYSpaceDetailBottomView.m in Sources */,
+				780D510B200CD84A00538334 /* WYLiveViewController3.m in Sources */,
 				442563DD1F39993C0075467A /* ZegoAVManager.m in Sources */,
 				7852D5221FD915C000CB3249 /* WYLiveViewController1.m in Sources */,
 				44203DB11E715A9100D59B5E /* WYNetWorkExceptionHandling.m in Sources */,
@@ -2110,6 +2131,7 @@
 				784A19FF1FCD3FFD00CCC529 /* WYIssueTalkAboutViewController.m in Sources */,
 				444AA5841EBB0D4E00A80FB9 /* WYImagePickerController.m in Sources */,
 				44D2F7E11E7FC30500122866 /* NSString+YTChatRoom.m in Sources */,
+				780D510F200DED4C00538334 /* HHCountdowLabel.m in Sources */,
 				44203D9E1E714BD600D59B5E /* WYStyleSheet.m in Sources */,
 				441C24051E8501CD0020557C /* WYBetTopView.m in Sources */,
 				44D2F7FC1E7FFDB700122866 /* YTMessageNotificationAttachment.m in Sources */,

@@ -6,7 +6,7 @@
 //  Copyright © 2017年 Leejun. All rights reserved.
 //
 
-#import "WYLiveViewController1.h"
+#import "WYLiveViewController3.h"
 #import "WYStreamingSessionManager.h"
 #import <BlocksKit/BlocksKit+UIKit.h>
 #import "WYAnchorInfoView.h"
@@ -32,7 +32,7 @@
 static NSInteger kLiveNotifyRetryCount = 0;
 static NSInteger kLiveNotifyRetryMaxCount = 3;
 
-@interface WYLiveViewController1 ()
+@interface WYLiveViewController3 ()
 <
 WYStreamingSessionManagerDelegate,
 WYAnchorInfoViewDelegate,
@@ -103,7 +103,7 @@ YTBetRankingViewDelegate
 
 @end
 
-@implementation WYLiveViewController1
+@implementation WYLiveViewController3
 - (instancetype)init
 {
     if (self = [super init]) {

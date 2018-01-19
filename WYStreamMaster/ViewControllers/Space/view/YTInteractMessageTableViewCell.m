@@ -69,8 +69,14 @@
     
     if ([model.parent_id length] == 0) {
         self.commentLabel.text = [NSString stringWithFormat:@"%@ :%@", model.nickname, model.content];
+        NSMutableAttributedString *commentLabelAttributedString = [[NSMutableAttributedString alloc] initWithString:self.commentLabel.text];
+        [commentLabelAttributedString addAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"ff9900" withAlpha:1.0]} range:NSMakeRange(0, [model.nickname length] + 2)];
+        self.commentLabel.attributedText = commentLabelAttributedString;
     } else if ([model.parent_id length] != 0) {
         self.commentLabel.text = [NSString stringWithFormat:@"%@ 回复 %@:%@", model.parent_nickname, model.nickname, model.content];
+        NSMutableAttributedString *commentLabelAttributedString = [[NSMutableAttributedString alloc] initWithString:self.commentLabel.text];
+        [commentLabelAttributedString addAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"ff9900" withAlpha:1.0]} range:NSMakeRange(0, [model.nickname length] + 4 + [model.parent_nickname length])];
+        self.commentLabel.attributedText = commentLabelAttributedString;
     }
 }
 
@@ -78,6 +84,9 @@
 {
     if ([spaceModel.parent_id length] == 0) {
         self.commentLabel.text = [NSString stringWithFormat:@"%@ :%@", spaceModel.nickname, spaceModel.content];
+        NSMutableAttributedString *commentLabelAttributedString = [[NSMutableAttributedString alloc] initWithString:self.commentLabel.text];
+        [commentLabelAttributedString addAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} range:NSMakeRange(0, [spaceModel.nickname length] + 2)];
+        self.commentLabel.attributedText = commentLabelAttributedString;
     } else if ([spaceModel.parent_id length] != 0) {
         self.commentLabel.text = [NSString stringWithFormat:@"%@ 回复 %@:%@", spaceModel.parent_nickname, spaceModel.nickname, spaceModel.content];
     }

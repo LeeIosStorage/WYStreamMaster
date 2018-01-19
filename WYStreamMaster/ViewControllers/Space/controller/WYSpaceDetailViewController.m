@@ -19,6 +19,8 @@
 #import "WYSpaceDetailBottomView.h"
 #import "WYLoginManager.h"
 #import "ZYZCPlayViewController.h"
+#import "WYSpaceHeaderView.h"
+#import "NSString+Value.h"
 #define kClassifyHeaderHeight (kScreenWidth * 210 / 375 + 44)
 static NSString *const kCommunityDetailCollectionCell = @"YTCommunityDetailCollectionCell";
 static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
@@ -29,6 +31,8 @@ static NSString *const kInteractMessageTableViewCell = @"YTInteractMessageTableV
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) WYSpaceDetailBottomView *spaceDetailBottomView;
 @property (nonatomic, copy) NSString *parent_id;
+@property (strong, nonatomic) WYSpaceHeaderView *headerView;
+
 
 @end
 
@@ -43,26 +47,59 @@ static NSString *const kInteractMessageTableViewCell = @"YTInteractMessageTableV
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont boldSystemFontOfSize:15.0]};
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = @"评论详情";
-//    self.edgesForExtendedLayout = UIRectEdgeTop;
+    self.edgesForExtendedLayout = UIRectEdgeTop;
+    if (@available(iOS 11.0, *)) {
+        self.collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
     [self setupView];
     [self getSpaceRequest];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(transformView:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    //导航栏透明
+    self.navigationController.navigationBar.shadowImage = [[UIImage alloc]init];
+    [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc]init] forBarMetrics: UIBarMetricsDefault];
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 #pragma mark - setup
 - (void)setupView
 {
+    UIView *backgroundView = [[UIView alloc] init];
+    backgroundView.backgroundColor = [WYStyleSheet currentStyleSheet].themeBackgroundColor;
+    [self.view addSubview:backgroundView];
+    [backgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_offset(175);
+        make.left.right.bottom.equalTo(self.view);
+    }];
+    
+    self.headerView.backgroundColor = [UIColor whiteColor];
+    [self.headerView updateHeaderViewWithData:nil];
+    
+    [self.headerView.spaceHeaderImageView setImageWithURL:[NSURL URLWithString:[WYLoginManager sharedManager].loginModel.zone_img] placeholder:[UIImage imageNamed:@"space_background"]];
+    [self.view addSubview:self.headerView];
+    [self.headerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_offset(0);
+        make.left.right.equalTo(self.view);
+        make.height.mas_equalTo(175);
+    }];
+    
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped)];
+    tap.delegate = self;
     [self.view addGestureRecognizer:tap];
     UITapGestureRecognizer *collectionViewTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(collectionViewTapped)];
     [self.collectionView addGestureRecognizer:collectionViewTap];
-    
-    self.collectionView.backgroundColor = [WYStyleSheet currentStyleSheet].themeBackgroundColor;
-    
+    self.collectionView.backgroundColor = [UIColor clearColor];
     [self.collectionView registerNib:[UINib nibWithNibName:kCommunityDetailCollectionCell bundle:nil] forCellWithReuseIdentifier:kCommunityDetailCollectionCell];
     [self.collectionView registerNib:[UINib nibWithNibName:kSpaceHeaderView bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kSpaceHeaderView];
     
@@ -70,8 +107,10 @@ static NSString *const kInteractMessageTableViewCell = @"YTInteractMessageTableV
     WEAKSELF
     [self.view addSubview:self.collectionView];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_offset(10);
-        make.left.right.width.bottom.equalTo(weakSelf.view);
+        make.top.mas_offset(70);
+        make.left.mas_equalTo(0);
+        make.right.mas_equalTo(-10);
+        make.width.bottom.equalTo(weakSelf.view);
     }];
     
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
@@ -83,11 +122,11 @@ static NSString *const kInteractMessageTableViewCell = @"YTInteractMessageTableV
     [self.view addSubview:self.tableView];
     CGFloat itemHeight;
     if (self.spaceModel.bbsType == YTBBSTypeText) {
-        itemHeight = 138;
+        itemHeight = 138 + 80;
     } else if (self.spaceModel.bbsType == YTBBSTypeGraphic) {
-        itemHeight = 100.0*kScreenWidth / 375.0 + 168;
+        itemHeight = 100.0*kScreenWidth / 375.0 + 168 + 55;
     } else if (self.spaceModel.bbsType == YTBBSTypeVideo) {
-        itemHeight = 310;
+        itemHeight = 310 + 50;
     } else {
         itemHeight = 0.0;
     }
@@ -108,9 +147,30 @@ static NSString *const kInteractMessageTableViewCell = @"YTInteractMessageTableV
         make.height.mas_offset(50);
     }];
 }
+
+- (UIBarButtonItem *)leftBarButtonItem
+{
+    if (!self.backImage) {
+        self.backImage = [UIImage imageNamed:@"common_white_back"];
+    }
+    UIImage *backButtonImage = self.backImage;
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [backButton addTarget:self action:@selector(doBack) forControlEvents:UIControlEventTouchUpInside];
+    [backButton setImage:backButtonImage forState:UIControlStateNormal];
+    backButton.frame = CGRectMake(0, 0, backButtonImage.size.width, backButtonImage.size.height);
+    UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    return backBarButtonItem;
+}
+
 #pragma mark - event
 - (void)sendButtonAction:(UIButton *)sender
 {
+    if ([NSString isEmpty:self.spaceDetailBottomView.spaceDetailTextField.text]) {
+        [MBProgressHUD showError:@"评论的内容为空" toView:self.view];
+        return;
+    }
+   
+    [self.spaceDetailBottomView.spaceDetailTextField resignFirstResponder];
     [self publishComment:self.parent_id];
 }
 
@@ -124,7 +184,6 @@ static NSString *const kInteractMessageTableViewCell = @"YTInteractMessageTableV
         playVC.urlString = videosStr;
         playVC.hidesBottomBarWhenPushed = YES;
         [self presentViewController:playVC animated:YES completion:nil];
-      
     }
 }
 
@@ -155,13 +214,41 @@ static NSString *const kInteractMessageTableViewCell = @"YTInteractMessageTableV
     }];
 }
 
+// 删除说说
+- (void)deleteTalkAbout{
+    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"blog_delete"];
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
+    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"user_code"];
+    [paramsDic setObject:self.spaceModel.identity forKey:@"id"];
+    WS(weakSelf)
+    [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
+        NSLog(@"error:%@ data:%@",message,dataObject);
+        [weakSelf.collectionView.mj_header endRefreshing];
+        [weakSelf.collectionView.mj_footer beginRefreshing];
+        if (requestType == WYRequestTypeSuccess) {
+            [MBProgressHUD showError:@"删除成功" toView:weakSelf.view];
+            [weakSelf performSelector:@selector(popLastViewCtroller) withObject:nil afterDelay:1.0];
+
+        } else {
+            [MBProgressHUD showError:message toView:weakSelf.view];
+        }
+    } failure:^(id responseObject, NSError *error) {
+        [weakSelf.collectionView.mj_header endRefreshing];
+        [weakSelf.collectionView.mj_footer beginRefreshing];
+    }];
+}
+
+- (void)popLastViewCtroller{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)publishComment:(NSString *)parent_id{
     NSString *auditStatu = [NSString stringWithFormat:@"%@", [WYLoginManager sharedManager].loginModel.audit_statu];
 
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"publish_comment"];
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
     [paramsDic setObject:self.spaceModel.identity forKey:@"blog_id"];
-//    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"user_code"];
+    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"user_code"];
     [paramsDic setObject:self.spaceDetailBottomView.spaceDetailTextField.text forKey:@"content"];
     if ([auditStatu isEqualToString:@"2"]) {
         [paramsDic setObject:@"1" forKey:@"is_anchor"];
@@ -216,7 +303,15 @@ static NSString *const kInteractMessageTableViewCell = @"YTInteractMessageTableV
         [self.view setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y+deltaY, self.view.frame.size.width, self.view.frame.size.height)];
     }];
 }
-
+//解决TabView与Tap手势冲突
+#pragma mark - UIGestureRecognizerDelegate
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    if (!self.spaceDetailBottomView.spaceDetailTextField.isFirstResponder) {
+        return NO;
+    }
+    return  YES;
+}
 #pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldClear:(UITextField *)textField
 {
@@ -242,7 +337,7 @@ static NSString *const kInteractMessageTableViewCell = @"YTInteractMessageTableV
 {
     YTClassifyBBSDetailModel *model = self.spaceModel;
     CGFloat itemHeight = [YTCommunityDetailCollectionCell heightWithEntity:model];
-    return CGSizeMake(kScreenWidth - 12 * 2, itemHeight);
+    return CGSizeMake(kScreenWidth - 22 * 2, itemHeight);
 }
 //- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
 //
@@ -270,6 +365,8 @@ static NSString *const kInteractMessageTableViewCell = @"YTInteractMessageTableV
     YTCommunityDetailCollectionCell *communityCell = [collectionView dequeueReusableCellWithReuseIdentifier:kCommunityDetailCollectionCell forIndexPath:indexPath];
     self.spaceModel.isSpaceDetail = YES;
     [communityCell updateCommunifyCellWithData:self.spaceModel];
+    [communityCell.deleteButton addTarget:self action:@selector(deleteTalkAbout) forControlEvents:UIControlEventTouchUpInside];
+
     return communityCell;
 }
 
@@ -287,7 +384,9 @@ static NSString *const kInteractMessageTableViewCell = @"YTInteractMessageTableV
             NSString *videosStr = self.spaceModel.videos[0];
             NSString *videoCoverStr = [videosStr substringToIndex:videosStr.length - 1];
             ZYZCPlayViewController *playVC = [[ZYZCPlayViewController alloc] init];
+//            playVC.urlString = videoCoverStr;
             playVC.urlString = videoCoverStr;
+            playVC.hidesBottomBarWhenPushed = YES;
             playVC.hidesBottomBarWhenPushed = YES;
             [self presentViewController:playVC animated:YES completion:nil];
         }
@@ -325,11 +424,22 @@ static NSString *const kInteractMessageTableViewCell = @"YTInteractMessageTableV
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     WYSpaceDetailModel *model = self.dataSource[indexPath.row];
+    if ([[WYLoginUserManager userID] isEqualToString:model.user_code]) {
+        return;
+    }
     self.parent_id = model.commentId;
     [self.spaceDetailBottomView.spaceDetailTextField becomeFirstResponder];
     [tableView becomeFirstResponder];
 }
 
+#pragma mark - Getters
+- (WYSpaceHeaderView *)headerView
+{
+    if (!_headerView) {
+        _headerView = (WYSpaceHeaderView *)[[NSBundle mainBundle] loadNibNamed:@"WYSpaceHeaderView" owner:self options:nil].lastObject;
+    }
+    return _headerView;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

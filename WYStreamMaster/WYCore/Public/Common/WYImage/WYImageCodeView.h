@@ -12,7 +12,7 @@
 
 @interface WYImageCodeView : UIView
 
-@property (nonatomic, assign) id <WYImageCodeViewDelegate>delegate;
+@property (nonatomic, weak) id <WYImageCodeViewDelegate> delegate;
 @property (nonatomic, strong) NSString *telephone;
 
 - (id)init:(id)owner;

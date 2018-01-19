@@ -134,6 +134,8 @@
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     // Do any additional setup after loading the view from its nib. counting stars
     self.edgesForExtendedLayout = UIRectEdgeAll;
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(TokenFailed) name:WYNotificationTokenFailed object:nil];
+
     
     //测试时用
 #ifdef DEBUG
@@ -747,7 +749,15 @@
 
 #pragma mark -
 #pragma mark - NSNotification
-
+//- (void)TokenFailed
+//{
+//    [MBProgressHUD showMessage:@"您的账号在其他地方登录,请重新登录" toView:self.view];
+//    [self performSelector:@selector(dismissViewControllerLogin) withObject:nil afterDelay:1.0];
+//}
+//- (void)dismissViewControllerLogin
+//{
+//    [self dismissViewControllerAnimated:YES completion:nil];
+//}
 
 #pragma mark - UITextFieldDelegate
 
@@ -759,8 +769,6 @@
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
-   
-   
     return YES;
 }
 

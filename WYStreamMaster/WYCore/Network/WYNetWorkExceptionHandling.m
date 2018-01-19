@@ -52,6 +52,10 @@
     WYSuperViewController *result = nil;
     
     UIWindow * window = [[UIApplication sharedApplication] keyWindow];
+    [MBProgressHUD showError:@"您的账号在其他地方登录,请重新登录" toView:window];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [MBProgressHUD hideHUDForView:window];
+    });
     if (window.windowLevel != UIWindowLevelNormal)
     {
         NSArray *windows = [[UIApplication sharedApplication] windows];

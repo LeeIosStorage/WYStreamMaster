@@ -17,6 +17,7 @@
 #import "WYLoginUserManager.h"
 #import "WYLoginManager.h"
 #import "WYLiveViewController1.h"
+#import "HHCountdowLabel.h"
 @interface WYHomePageViewController ()
 @property (copy, nonatomic) NSString *roomNameTitle;
 @property (copy, nonatomic) NSString *roomNoticeTitle;
@@ -27,7 +28,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *headerImageView;
 @property (strong, nonatomic) IBOutlet UILabel *startLabel;
 
-@property (strong, nonatomic) IBOutlet UILabel *startLiveLabel;
+@property (strong, nonatomic) IBOutlet HHCountdowLabel *startLiveLabel;
 @property (strong, nonatomic) IBOutlet UIButton *startLiveButton;
 // 我的消息
 @property (strong, nonatomic) IBOutlet UIButton *messageButton;
@@ -95,6 +96,15 @@
     } else if ([auditStatu isEqualToString:@"2"]) {
         self.startLiveLabel.text = @"开启\n直播";
         self.remarksLabel.text = @"粉丝们都等不及了赶快开启直播吧";
+        
+//        HHCountdowLabel *countLabel = [[HHCountdowLabel alloc] initWithFrame:CGRectMake(0, 0, 200, 100)];
+//        countLabel.center = self.view.center;
+//        countLabel.font = [UIFont boldSystemFontOfSize:18];
+//        countLabel.textColor = [UIColor blueColor];
+//        countLabel.count = 5; //不设置的话，默认是3
+//        [self.view addSubview:countLabel];
+        
+        [self.startLiveLabel startCount];
     } else {
         self.startLiveLabel.text = @"提交\n申请";
         self.remarksLabel.text = @"您未提交主播申请!";
@@ -149,8 +159,8 @@
         WYSpaceViewController *spaceVC = [[WYSpaceViewController alloc] init];
         [self.navigationController pushViewController:spaceVC animated:YES];
     } else {
-        WYSpaceViewController *spaceVC = [[WYSpaceViewController alloc] init];
-        [self.navigationController pushViewController:spaceVC animated:YES];
+//        WYSpaceViewController *spaceVC = [[WYSpaceViewController alloc] init];
+//        [self.navigationController pushViewController:spaceVC animated:YES];
     }
     
 }

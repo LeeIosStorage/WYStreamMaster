@@ -46,7 +46,11 @@
         
 //        urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];//url只支持英文和少数其它字符，因此对url中非标准字符需要进行编码，这个编码方*****能不完善，因此使用下面的方法编码。
 //        NSString *newUrlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+        NSString *videosNewStr = [urlString substringToIndex:[urlString length] - 1];
         NSURL *netUrl = [NSURL URLWithString:urlString];
+        if (!netUrl) {
+            netUrl = [NSURL URLWithString:videosNewStr];
+        }
         AVPlayer *player = [AVPlayer playerWithURL:netUrl];
         self.player = player;
         if([[UIDevice currentDevice] systemVersion].intValue>=10){

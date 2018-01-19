@@ -50,10 +50,7 @@ responseClass:(Class)classType
     success:(WYRequestSuccessBlock)success
     failure:(WYRequestFailureBlock)failure
 {
-    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    
-    
     AFSecurityPolicy *securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
     [securityPolicy setValidatesDomainName:YES];
     manager.securityPolicy = securityPolicy;
@@ -114,8 +111,10 @@ responseClass:(Class)classType
             if (statusCode) {
                 status = statusCode.integerValue;
             }
-//            if (status == -1) {
-//            }
+            if (status == -1) {
+//                [[NSNotificationCenter defaultCenter] postNotificationName:WYNotificationTokenFailed object:nil];
+
+            }
             responseDataObject = responseObject[@"data"];
             //此处有两种情况发生，正常的是json，非正常是一个常规string
         }
@@ -134,8 +133,6 @@ responseClass:(Class)classType
                   
                     NSDictionary *dic = [NSDictionary modelDictionaryWithClass:classType json:responseObject];
                     id model = dic[@"data"];
-   
-
                     if (needCache) {
                         [WYCache setObject:model forKey:URLString];
                     }
@@ -273,7 +270,7 @@ formFileName:(NSString *)formFileName
     fileData:(NSData *)fileData
     mimeType:(NSString *)mimeType
   parameters:(id )parameters
-responseClass:(Class )classType
+responseClass:(Class)classType
      success:(WYRequestSuccessBlock)success
      failure:(WYRequestFailureBlock)failure
 {

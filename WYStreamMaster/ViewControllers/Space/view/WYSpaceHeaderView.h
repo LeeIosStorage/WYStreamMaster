@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+@protocol WYSpaceImageViewDelegate <NSObject>
 
+-(void)spaceHeaderImageViewTapped;
+
+@end
 @interface WYSpaceHeaderView : UICollectionReusableView
-
+@property (nonatomic, weak) id <WYSpaceImageViewDelegate> delegate;
 @property (strong, nonatomic) IBOutlet UIImageView *spaceHeaderImageView;
 - (void)updateHeaderViewWithData:(id)data;
 

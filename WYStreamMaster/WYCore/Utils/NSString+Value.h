@@ -34,5 +34,7 @@
 - (NSData *) GetDataImage;
 //字符计算时差
 - (NSTimeInterval)GetTimeValue;
+// 判断是否全为空格
++ (BOOL)isEmpty:(NSString *)str;
 
 @end

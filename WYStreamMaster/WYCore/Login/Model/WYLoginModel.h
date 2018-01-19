@@ -19,10 +19,12 @@
 @property (strong, nonatomic) NSString *icon;
 @property (strong, nonatomic) NSString *anchorTitle;
 @property (strong, nonatomic) NSString *anchorDescription;
+// 主播空间封面
+@property (strong, nonatomic) NSString *zone_img;
 // 主播信息
 @property (strong, nonatomic) NSDictionary *anchor;
 
-// 是否审核通过 0为未审核，1为审核通过，2为审核不通过
+// 是否审核通过 0未提交; 1待审核; 2审核通过; 3审核拒绝
 @property (strong, nonatomic) NSString *audit_statu;
 // 手机号
 @property (strong, nonatomic) NSString *mobile;

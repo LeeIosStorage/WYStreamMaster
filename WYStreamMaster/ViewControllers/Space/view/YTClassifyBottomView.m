@@ -59,8 +59,12 @@
             [self.bottomLikeButton setTitle:@"0" forState:UIControlStateNormal];
             [self.bottomLikeButton setImageEdgeInsets:UIEdgeInsetsZero];
         }
-        
-        self.bottomLikeButton.selected = self.bbsDetail.isPraise;
+        if ([data.upvote_id length] > 0) {
+            self.bottomLikeButton.selected = YES;
+        } else {
+            self.bottomLikeButton.selected = NO;
+        }
+//        self.bottomLikeButton.selected = self.bbsDetail.isPraise;
 //        [self.bottomCommentButton setTitle:@"892" forState:UIControlStateNormal];
 //        [self.bottomLikeButton setTitle:@"7277" forState:UIControlStateNormal];
     }
@@ -115,18 +119,17 @@
 
 - (void)onCommunityInfoLikeButtonClick:(UIButton *)button
 {
-//    WEAKSELF
+    WEAKSELF
     NSString *is_like;
-    button.selected = !button.selected;
-    if (button.selected) {
-        self.bbsDetail.praiseNumber = [NSString stringWithFormat:@"%d",([self.bbsDetail.praiseNumber intValue] + 1)];
-        self.bbsDetail.isPraise = YES;
-        [self.bottomLikeButton setTitle:self.bbsDetail.praiseNumber forState:UIControlStateNormal];
+    if (!button.selected) {
+//        self.bbsDetail.praiseNumber = [NSString stringWithFormat:@"%d",([self.bbsDetail.praiseNumber intValue] + 1)];
+//        self.bbsDetail.isPraise = YES;
+//        [self.bottomLikeButton setTitle:self.bbsDetail.praiseNumber forState:UIControlStateNormal];
         is_like = @"1";
     } else {
-        self.bbsDetail.praiseNumber = [NSString stringWithFormat:@"%d",([self.bbsDetail.praiseNumber intValue] - 1)];
-        self.bbsDetail.isPraise = NO;
-        [self.bottomLikeButton setTitle:self.bbsDetail.praiseNumber forState:UIControlStateNormal];
+//        self.bbsDetail.praiseNumber = [NSString stringWithFormat:@"%d",([self.bbsDetail.praiseNumber intValue] - 1)];
+//        self.bbsDetail.isPraise = NO;
+//        [self.bottomLikeButton setTitle:self.bbsDetail.praiseNumber forState:UIControlStateNormal];
         is_like = @"0";
     }
     
@@ -139,16 +142,24 @@
 
      WYNetWorkManager *networkManager = [[WYNetWorkManager alloc] init];
     [networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
-//        STRONGSELF
+        STRONGSELF
         if (requestType == WYRequestTypeSuccess) {
+            button.selected = !button.selected;
+            if ([is_like isEqualToString:@"1"]) {
+                strongSelf.bbsDetail.praiseNumber = [NSString stringWithFormat:@"%d",([strongSelf.bbsDetail.praiseNumber intValue] + 1)];
+                strongSelf.bbsDetail.isPraise = YES;
+                [strongSelf.bottomLikeButton setTitle:self.bbsDetail.praiseNumber forState:UIControlStateNormal];
+                [MBProgressHUD showError:@"点赞成功"];
+            } else {
+                strongSelf.bbsDetail.praiseNumber = [NSString stringWithFormat:@"%d",([strongSelf.bbsDetail.praiseNumber intValue] - 1)];
+                strongSelf.bbsDetail.isPraise = NO;
+                [strongSelf.bottomLikeButton setTitle:[NSString stringWithFormat:@"%d", [strongSelf.bbsDetail.praiseNumber intValue]] forState:UIControlStateNormal];
+                [MBProgressHUD showError:@"取消点赞成功"];
+            }
             // 点赞成功
             NSLog(@"");
         } else {
-//            button.selected = NO;
-//            strongSelf.bbsDetail.praiseNumber = [NSString stringWithFormat:@"%d",([strongSelf.bbsDetail.praiseNumber intValue] - 1)];
-//            strongSelf.bbsDetail.isPraise = NO;
-//            [strongSelf.bottomLikeButton setTitle:[NSString stringWithFormat:@"%d", [strongSelf.bbsDetail.praiseNumber intValue]] forState:UIControlStateNormal];
-//            [MBProgressHUD showError:message];
+            [MBProgressHUD showError:message];
             NSLog(@"");
         }
     } failure:^(id responseObject, NSError *error) {

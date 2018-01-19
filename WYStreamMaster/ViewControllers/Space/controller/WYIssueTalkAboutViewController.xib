@@ -70,7 +70,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="还可以输入200字" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PyC-YQ-PkT">
-                            <rect key="frame" x="158" y="96" width="185" height="21"/>
+                            <rect key="frame" x="158" y="118" width="185" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="185" id="6xB-NO-bmU"/>
                                 <constraint firstAttribute="height" constant="21" id="e3e-4D-tAo"/>
@@ -194,7 +194,7 @@
                         <constraint firstAttribute="trailing" secondItem="RVD-9T-PVe" secondAttribute="trailing" constant="8" id="NVA-YJ-CxE"/>
                         <constraint firstItem="RVD-9T-PVe" firstAttribute="top" secondItem="gve-vc-irh" secondAttribute="top" constant="2" id="PPZ-DH-S4x"/>
                         <constraint firstItem="rSZ-AD-0Rk" firstAttribute="top" secondItem="91h-kb-J7a" secondAttribute="bottom" constant="20" id="PUa-Mr-EKh"/>
-                        <constraint firstItem="91h-kb-J7a" firstAttribute="top" secondItem="PyC-YQ-PkT" secondAttribute="bottom" constant="0.5" id="QF4-yY-Vuz"/>
+                        <constraint firstItem="91h-kb-J7a" firstAttribute="top" secondItem="PyC-YQ-PkT" secondAttribute="bottom" constant="-21" id="QF4-yY-Vuz"/>
                         <constraint firstItem="91h-kb-J7a" firstAttribute="top" secondItem="RVD-9T-PVe" secondAttribute="bottom" constant="0.5" id="RB7-xQ-pZy"/>
                         <constraint firstItem="o0d-1h-C2z" firstAttribute="top" secondItem="NZj-ja-Tja" secondAttribute="bottom" constant="20" id="URl-lo-IgQ"/>
                         <constraint firstAttribute="trailing" secondItem="7mw-1d-rfr" secondAttribute="trailing" id="W5W-FZ-1mF"/>
@@ -226,7 +226,7 @@
                 <constraint firstAttribute="trailing" secondItem="gve-vc-irh" secondAttribute="trailing" constant="12" id="nf2-Tx-ijw"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
-            <point key="canvasLocation" x="-119.5" y="86.5"/>
+            <point key="canvasLocation" x="-188" y="39"/>
         </view>
     </objects>
     <resources>

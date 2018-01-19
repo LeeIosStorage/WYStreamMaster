@@ -19,7 +19,8 @@
              @"anchorPushUrl":@"anchor.anchor_push_ur",
              @"icon":@"ext_info.head_icon",
              @"chatRoomId":@"anchor.neteaseChatRoomId",
-             @"audit_statu":@"anchor.audit_statu"
+             @"audit_statu":@"anchor.audit_statu",
+             @"zone_img":@"anchor.zone_img"
              };
 }
 

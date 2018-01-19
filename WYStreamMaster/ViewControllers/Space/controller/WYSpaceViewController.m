@@ -17,12 +17,13 @@
 #import "UINavigationBar+Awesome.h"
 #import "WYSpaceDetailViewController.h"
 #import "WYIssueTalkAboutViewController.h"
-#import "WYLoginUserManager.h"
+#import "WYLoginManager.h"
+
 #define kClassifyHeaderHeight (kScreenWidth * 210 / 375 + 44)
 static NSString *const kCommunityCollectionCell = @"YTCommunityCollectionCell";
 static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
 
-@interface WYSpaceViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface WYSpaceViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate, WYSpaceImageViewDelegate>
 @property (strong, nonatomic) WYSpaceHeaderView *headerView;
 @property (assign, nonatomic) NSInteger startIndexPage;
 
@@ -32,6 +33,7 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.collectionView.userInteractionEnabled = NO;
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont boldSystemFontOfSize:15.0]};
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.startIndexPage = 1;
@@ -55,7 +57,7 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
     }
     self.title = @"个人空间";
     [self setupView];
-    [self getSpaceRequest];
+//    [self getSpaceRequest];
     //导航栏透明
     self.navigationController.navigationBar.shadowImage = [[UIImage alloc]init];
     [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc]init] forBarMetrics: UIBarMetricsDefault];
@@ -91,9 +93,6 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.width.bottom.equalTo(weakSelf.view);
     }];
-
-    UITapGestureRecognizer *headerViewTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headerViewTapped)];
-    [self.headerView addGestureRecognizer:headerViewTap];
 }
 
 - (UIBarButtonItem *)leftBarButtonItem
@@ -156,7 +155,9 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
         } else {
             
         }
+        weakSelf.collectionView.userInteractionEnabled = YES;
     } failure:^(id responseObject, NSError *error) {
+        weakSelf.collectionView.userInteractionEnabled = YES;
         [weakSelf.collectionView.mj_header endRefreshing];
         [weakSelf.collectionView.mj_footer beginRefreshing];
     }];
@@ -169,13 +170,14 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
     [paramsDic setObject:[WYLoginUserManager userID] forKey:@"user_code"];
     [paramsDic setObject:spacePhoto forKey:@"zone_img"];
     WS(weakSelf)
+    
     [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
         NSLog(@"error:%@ data:%@",message,dataObject);
         [weakSelf.collectionView.mj_header endRefreshing];
         [weakSelf.collectionView.mj_footer beginRefreshing];
         if (requestType == WYRequestTypeSuccess) {
             [weakSelf.headerView.spaceHeaderImageView setImageWithURL:[NSURL URLWithString:spacePhoto] placeholder:[UIImage imageNamed:@"space_background"]];
-            [WYLoginUserManager setSpacePhoto:spacePhoto];
+            [WYLoginManager sharedManager].loginModel.zone_img = spacePhoto;
         } else {
             NSLog(@"aaaa");
         }
@@ -247,19 +249,6 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
 
 
 #pragma mark - event
-- (void)headerViewTapped
-{
-    WEAKSELF
-    WYCustomActionSheet *actionSheet = [[WYCustomActionSheet alloc] initWithTitle:nil actionBlock:^(NSInteger buttonIndex) {
-        NSLog(@"%ld",(long)buttonIndex);
-        if (buttonIndex == 1) {
-            [weakSelf showImageBroswerWithSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-        } else if (buttonIndex == 0){
-            [weakSelf showImageBroswerWithSourceType:UIImagePickerControllerSourceTypeCamera];
-        }
-    } cancelButtonTitle:[WYCommonUtils acquireCurrentLocalizedText:@"wy_cancel"] destructiveButtonTitle:nil otherButtonTitles:@[[WYCommonUtils acquireCurrentLocalizedText:@"wy_take_photos"],[WYCommonUtils acquireCurrentLocalizedText:@"wy_photo_library"]]];
-    [actionSheet showInView:self.view];
-}
 - (void)rightButtonClicked:(id)sender
 {
     WYIssueTalkAboutViewController *issueTalkAboutVC = [[WYIssueTalkAboutViewController alloc] init];
@@ -297,6 +286,20 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
     imagePickerController.delegate = self;
     imagePickerController.navigationController.delegate = self;
     [self presentViewController:imagePickerController animated:YES completion:nil];
+}
+#pragma mark - WYSpaceImageViewDelegate
+- (void)spaceHeaderImageViewTapped
+{
+    WEAKSELF
+    WYCustomActionSheet *actionSheet = [[WYCustomActionSheet alloc] initWithTitle:nil actionBlock:^(NSInteger buttonIndex) {
+        NSLog(@"%ld",(long)buttonIndex);
+        if (buttonIndex == 1) {
+            [weakSelf showImageBroswerWithSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+        } else if (buttonIndex == 0){
+            [weakSelf showImageBroswerWithSourceType:UIImagePickerControllerSourceTypeCamera];
+        }
+    } cancelButtonTitle:[WYCommonUtils acquireCurrentLocalizedText:@"wy_cancel"] destructiveButtonTitle:nil otherButtonTitles:@[[WYCommonUtils acquireCurrentLocalizedText:@"wy_take_photos"],[WYCommonUtils acquireCurrentLocalizedText:@"wy_photo_library"]]];
+    [actionSheet showInView:self.view];
 }
 
 #pragma mark -
@@ -367,9 +370,11 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
            viewForSupplementaryElementOfKind:(NSString *)kind
                                  atIndexPath:(NSIndexPath *)indexPath {
     self.headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kSpaceHeaderView forIndexPath:indexPath];
+    self.headerView.delegate = self;
     self.headerView.backgroundColor = [UIColor whiteColor];
     [self.headerView updateHeaderViewWithData:nil];
-    [self.headerView.spaceHeaderImageView setImageWithURL:[NSURL URLWithString:[WYLoginUserManager spacePhoto]] placeholder:[UIImage imageNamed:@"space_background"]];
+    
+    [self.headerView.spaceHeaderImageView setImageWithURL:[NSURL URLWithString:[WYLoginManager sharedManager].loginModel.zone_img] placeholder:[UIImage imageNamed:@"space_background"]];
     return self.headerView;
 }
 

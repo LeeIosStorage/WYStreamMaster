@@ -107,7 +107,9 @@
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"publish_blog"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:[WYLoginUserManager userID] forKey:@"user_code"];
-    [params setObject:content forKey:@"content"];
+    if ([content length] > 0) {
+        [params setObject:content forKey:@"content"];
+    }
 
     if (self.imageStringArray && self.imageStringArray.count > 0) {
         NSString * imgsString;
@@ -259,7 +261,7 @@
             [self uploadImageWithData:imageData];
         }
     } else if ([mediaType isEqualToString:(NSString *)kUTTypeMovie]) {
-        if (picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
+        if (picker.sourceType == UIImagePickerControllerSourceTypeCamera || picker.sourceType == UIImagePickerControllerSourceTypePhotoLibrary) {
             NSURL *sourceURL = [info objectForKey:UIImagePickerControllerMediaURL];
             NSURL *newVideoUrl ; //一般.mp4
             NSDateFormatter *formater = [[NSDateFormatter alloc] init];//用时间给文件全名，以免重复，在测试的时候其实可以判断文件是否存在若存在，则删除，重新生成文件即可

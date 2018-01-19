@@ -108,8 +108,12 @@
             self.videoPlayImageView.hidden = YES;
         } else if (model.bbsType == YTBBSTypeVideo) {
             NSString *videosStr = model.videos[0];
-//            NSString *videoCoverStr = [videosStr substringToIndex:videosStr.length - 1];
-            self.videoCoverImageView.image = [self thumbnailImageForVideo:[NSURL URLWithString:videosStr] atTime:0];
+            NSString *videosNewStr = [videosStr substringToIndex:[videosStr length] - 1];
+            NSURL *url = [NSURL URLWithString:videosStr];
+            if (!url) {
+                 url = [NSURL URLWithString:videosNewStr];
+            }
+            self.videoCoverImageView.image = [self thumbnailImageForVideo:url atTime:0];
             self.videoCoverImageView.hidden = NO;
             self.videoPlayImageView.hidden = NO;
         }

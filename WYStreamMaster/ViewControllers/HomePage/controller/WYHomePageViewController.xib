@@ -22,7 +22,7 @@
                 <outlet property="remarksLabel" destination="JKs-2q-GlM" id="8KG-A7-m3f"/>
                 <outlet property="startLabel" destination="49t-f1-uPv" id="EEK-wG-pzq"/>
                 <outlet property="startLiveButton" destination="TTj-Do-SwY" id="mil-Qm-yi0"/>
-                <outlet property="startLiveLabel" destination="cWf-24-eoK" id="H3C-VW-lZp"/>
+                <outlet property="startLiveLabel" destination="cWf-24-eoK" id="YS1-7H-DZ3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -114,7 +114,7 @@
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                             </userDefinedRuntimeAttributes>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="开启直播" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cWf-24-eoK">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="开启直播" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cWf-24-eoK" customClass="HHCountdowLabel">
                             <rect key="frame" x="147" y="340" width="80" height="80"/>
                             <color key="backgroundColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>

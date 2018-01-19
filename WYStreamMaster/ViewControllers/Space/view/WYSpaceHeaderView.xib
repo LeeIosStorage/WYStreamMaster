@@ -18,6 +18,10 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="F8h-Pg-1AF">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
                 </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lCc-EA-Wlq">
+                    <rect key="frame" x="-200" y="120" width="775" height="55"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="common_headImage" translatesAutoresizingMaskIntoConstraints="NO" id="4MI-GG-HUC">
                     <rect key="frame" x="152" y="90" width="70" height="70"/>
                     <constraints>
@@ -35,14 +39,18 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="4MI-GG-HUC" firstAttribute="centerX" secondItem="F8h-Pg-1AF" secondAttribute="centerX" id="0pj-Qx-zDM"/>
+                <constraint firstAttribute="trailing" secondItem="lCc-EA-Wlq" secondAttribute="trailing" constant="-200" id="5tf-CN-JcX"/>
                 <constraint firstItem="F8h-Pg-1AF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="8E4-bC-XTk"/>
                 <constraint firstAttribute="bottom" secondItem="F8h-Pg-1AF" secondAttribute="bottom" id="E3c-RH-fTW"/>
                 <constraint firstAttribute="bottom" secondItem="4MI-GG-HUC" secondAttribute="bottom" constant="15" id="JEY-Gj-1Lp"/>
                 <constraint firstItem="F8h-Pg-1AF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="JT8-4E-kNk"/>
+                <constraint firstAttribute="bottom" secondItem="lCc-EA-Wlq" secondAttribute="bottom" id="Jdq-lm-ekM"/>
+                <constraint firstItem="lCc-EA-Wlq" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="120" id="K3s-tZ-gEE"/>
                 <constraint firstItem="4MI-GG-HUC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="90" id="M9D-aT-cvn"/>
                 <constraint firstItem="4MI-GG-HUC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="90" id="Phc-PD-jci"/>
                 <constraint firstAttribute="trailing" secondItem="F8h-Pg-1AF" secondAttribute="trailing" id="R50-o6-rKM"/>
                 <constraint firstAttribute="trailing" secondItem="F8h-Pg-1AF" secondAttribute="trailing" id="RUb-78-b7c"/>
+                <constraint firstItem="lCc-EA-Wlq" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="-200" id="bpP-V6-wWI"/>
                 <constraint firstItem="F8h-Pg-1AF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="qJN-f5-5aO"/>
                 <constraint firstAttribute="bottom" secondItem="F8h-Pg-1AF" secondAttribute="bottom" id="rOv-Cf-x8f"/>
                 <constraint firstItem="F8h-Pg-1AF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="xqm-eQ-OK8"/>
@@ -50,6 +58,7 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="backgroundImageView" destination="lCc-EA-Wlq" id="KXj-PC-n8a"/>
                 <outlet property="headerImageView" destination="4MI-GG-HUC" id="49E-cr-gn6"/>
                 <outlet property="spaceHeaderImageView" destination="F8h-Pg-1AF" id="r2a-Gj-tBG"/>
             </connections>

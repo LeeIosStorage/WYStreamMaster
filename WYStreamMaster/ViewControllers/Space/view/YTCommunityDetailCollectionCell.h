@@ -20,6 +20,8 @@ typedef NS_ENUM(NSUInteger, CommunityCellType) {
 @interface YTCommunityDetailCollectionCell : UICollectionViewCell
 
 @property (assign, nonatomic) CommunityCellType communityCellType;
+// 删除按钮
+@property (strong, nonatomic) UIButton *deleteButton;
 
 - (void)updateCommunifyCellWithData:(YTClassifyBBSDetailModel *)model;
 
