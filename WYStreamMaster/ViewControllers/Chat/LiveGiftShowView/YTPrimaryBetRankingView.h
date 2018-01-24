@@ -7,21 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-@protocol YTBetRankingViewDelegate <NSObject>
+@protocol YTPrimaryBetRankingViewDelegate <NSObject>
 @optional
 - (void)clickQuestionMarkButton;
 @end
-typedef enum : NSUInteger {
-    BetRankingPrimaryType,            // 赌神榜
-    BetRankingSeniorType,             // 土豪榜
-} BetRankingType;
 @class YTClassifyBBSDetailModel;
 
-@interface YTBetRankingView : UIView
+@interface YTPrimaryBetRankingView : UIView
 
 @property (strong, nonatomic) IBOutlet UILabel *betMostLabel;
-@property (nonatomic, assign) BetRankingType betRankingType;
-@property (nonatomic, weak) id <YTBetRankingViewDelegate> delegate;
+@property (nonatomic, weak) id <YTPrimaryBetRankingViewDelegate> delegate;
 
 - (void)updateBottomViewWithInfo:(NSMutableArray *)infoArray;
 @end

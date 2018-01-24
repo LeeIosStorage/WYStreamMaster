@@ -7,7 +7,7 @@
 //
 
 #import "YTBetRankingView.h"
-
+#import "WYBetStarModel.h"
 @interface YTBetRankingView ()
 @property (strong, nonatomic) IBOutlet UILabel *betRankingFirstLabel;
 @property (strong, nonatomic) IBOutlet UILabel *betRankingSecondLabel;
@@ -56,12 +56,59 @@
 }
 
 
-- (void)updateBottomViewWithInfo:(YTClassifyBBSDetailModel *)data
+- (void)updateBottomViewWithInfo:(NSMutableArray *)infoArray
 {
     if (self.betRankingType == BetRankingSeniorType) {
-        self.betMostLabel.text = @"高级场下注最多";
+        [self updateViewWithInfo:infoArray];
+//        self.betMostLabel.text = @"高级场下注最多";
     } else {
-        self.betMostLabel.text = @"初级场下注最多";
+        [self updateViewWithInfo:infoArray];
+//        self.betMostLabel.text = @"初级场下注最多";
+    }
+}
+
+- (void)updateViewWithInfo:(NSMutableArray *)infoArray
+{
+    for (int i = 0; i < 9; i++) {
+        if (infoArray.count > i) {
+            WYBetStarModel *model = infoArray[i];
+            switch (i) {
+                case 0:
+                    self.betRankingFirstLabel.text = [NSString stringWithFormat:@"%@ %@", model.currency, model.profit];
+                    break;
+                case 1:
+                    self.betRankingSecondLabel.text = [NSString stringWithFormat:@"%@ %@", model.currency, model.profit];
+                    break;
+                case 2:
+                    self.betRankingThirdLabel.text = [NSString stringWithFormat:@"%@ %@", model.currency, model.profit];
+
+                    break;
+                case 3:
+                    self.betRankingFourthLabel.text = [NSString stringWithFormat:@"%@ %@", model.currency, model.profit];
+                    break;
+                case 4:
+                    self.betRankingFifthLabel.text = [NSString stringWithFormat:@"%@ %@", model.currency, model.profit];
+                    break;
+                case 5:
+                    self.betRankingSixthLabel.text = [NSString stringWithFormat:@"%@ %@", model.currency, model.profit];
+
+                    break;
+                case 6:
+                    self.betRankingSeventhLabel.text = [NSString stringWithFormat:@"%@ %@", model.currency, model.profit];
+
+                    break;
+                case 7:
+                    self.betRankingEighthLabel.text = [NSString stringWithFormat:@"%@ %@", model.currency, model.profit];
+
+                    break;
+                case 8:
+                    self.betRankingNinthLabel.text = [NSString stringWithFormat:@"%@ %@", model.currency, model.profit];
+                    break;
+                    
+                default:
+                    break;
+            }
+        }
     }
 }
 

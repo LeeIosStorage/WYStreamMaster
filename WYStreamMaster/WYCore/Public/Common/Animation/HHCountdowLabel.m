@@ -38,11 +38,10 @@
 - (void)countDown{
     CAKeyframeAnimation *anima2 = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
     //字体变化大小
-    NSValue *value1 = [NSNumber numberWithFloat:1.2f];
-    NSValue *value2 = [NSNumber numberWithFloat:1.1f];
-    NSValue *value3 = [NSNumber numberWithFloat:0.9f];
-    NSValue *value4 = [NSNumber numberWithFloat:1.0f];
-    anima2.values = @[value1,value2,value3,value4];
+    NSValue *value1 = [NSNumber numberWithFloat:1.1f];
+//    NSValue *value2 = [NSNumber numberWithFloat:0.9f];
+    NSValue *value2 = [NSNumber numberWithFloat:1.0f];
+    anima2.values = @[value1,value2];
     anima2.duration = 0.5;
     [self.layer addAnimation:anima2 forKey:@"scalsTime"];
 }

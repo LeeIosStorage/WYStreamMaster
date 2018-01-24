@@ -95,6 +95,12 @@
         "control" : "api",
         "action"  : "get_user_messages.do"
     },
+    "read_message": {
+        "protocol": "http",
+        "version" : "message",
+        "control" : "api",
+        "action"  : "read_message.do"
+    },
     "applyAnchor": {
         "protocol": "http",
         "version" : "anchor",

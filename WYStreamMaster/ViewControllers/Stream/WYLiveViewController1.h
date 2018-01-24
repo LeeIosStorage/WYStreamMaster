@@ -7,11 +7,11 @@
 //
 
 #import "WYSuperViewController.h"
-#import "YTRoomView.h"
+#import "YTRoomView1.h"
 
 @interface WYLiveViewController1 : WYSuperViewController
 
-@property (strong, nonatomic) YTRoomView *roomView;//chatView
+@property (strong, nonatomic) YTRoomView1 *roomView;//chatView
 
 @property (nonatomic, strong) NSString *streamURL;
 

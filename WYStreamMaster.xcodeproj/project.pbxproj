@@ -167,6 +167,11 @@
 		7854DA26200309A6002D552C /* WYLiveViewController2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7854DA24200309A6002D552C /* WYLiveViewController2.xib */; };
 		7854DA292003653F002D552C /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7854DA272003653F002D552C /* YTPlayerView.m */; };
 		7856162A1FF4BF2A00E3AE8E /* WYSocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 785616281FF4BF2A00E3AE8E /* WYSocketManager.m */; };
+		785EEF2E2016DE0100AF01B3 /* YTRoomView1.m in Sources */ = {isa = PBXBuildFile; fileRef = 785EEF2B2016DE0000AF01B3 /* YTRoomView1.m */; };
+		785EEF2F2016DE0100AF01B3 /* YTChatRoomControl1.m in Sources */ = {isa = PBXBuildFile; fileRef = 785EEF2C2016DE0000AF01B3 /* YTChatRoomControl1.m */; };
+		785EEF32201732B000AF01B3 /* WYBetStarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 785EEF31201732B000AF01B3 /* WYBetStarModel.m */; };
+		785EEF36201865EF00AF01B3 /* YTPrimaryBetRankingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 785EEF33201865ED00AF01B3 /* YTPrimaryBetRankingView.xib */; };
+		785EEF37201865EF00AF01B3 /* YTPrimaryBetRankingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 785EEF34201865EE00AF01B3 /* YTPrimaryBetRankingView.m */; };
 		78716D4B1FC6C0D80019F9E5 /* YTCommunityDetailCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78716D481FC6C0D70019F9E5 /* YTCommunityDetailCollectionCell.m */; };
 		78716D4C1FC6C0D80019F9E5 /* YTCommunityDetailCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78716D4A1FC6C0D80019F9E5 /* YTCommunityDetailCollectionCell.xib */; };
 		787ADB6F1F8B509B005331C9 /* YTClassifyCommunityImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 787ADB6D1F8B509B005331C9 /* YTClassifyCommunityImageView.m */; };
@@ -576,6 +581,15 @@
 		7854DA282003653F002D552C /* YTPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTPlayerView.h; sourceTree = "<group>"; };
 		785616281FF4BF2A00E3AE8E /* WYSocketManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYSocketManager.m; sourceTree = "<group>"; };
 		785616291FF4BF2A00E3AE8E /* WYSocketManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYSocketManager.h; sourceTree = "<group>"; };
+		785EEF2A2016DDFF00AF01B3 /* YTRoomView1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTRoomView1.h; sourceTree = "<group>"; };
+		785EEF2B2016DE0000AF01B3 /* YTRoomView1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTRoomView1.m; sourceTree = "<group>"; };
+		785EEF2C2016DE0000AF01B3 /* YTChatRoomControl1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTChatRoomControl1.m; sourceTree = "<group>"; };
+		785EEF2D2016DE0100AF01B3 /* YTChatRoomControl1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTChatRoomControl1.h; sourceTree = "<group>"; };
+		785EEF30201732B000AF01B3 /* WYBetStarModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WYBetStarModel.h; sourceTree = "<group>"; };
+		785EEF31201732B000AF01B3 /* WYBetStarModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WYBetStarModel.m; sourceTree = "<group>"; };
+		785EEF33201865ED00AF01B3 /* YTPrimaryBetRankingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YTPrimaryBetRankingView.xib; sourceTree = "<group>"; };
+		785EEF34201865EE00AF01B3 /* YTPrimaryBetRankingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTPrimaryBetRankingView.m; sourceTree = "<group>"; };
+		785EEF35201865EE00AF01B3 /* YTPrimaryBetRankingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTPrimaryBetRankingView.h; sourceTree = "<group>"; };
 		78716D481FC6C0D70019F9E5 /* YTCommunityDetailCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTCommunityDetailCollectionCell.m; sourceTree = "<group>"; };
 		78716D491FC6C0D70019F9E5 /* YTCommunityDetailCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTCommunityDetailCollectionCell.h; sourceTree = "<group>"; };
 		78716D4A1FC6C0D80019F9E5 /* YTCommunityDetailCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YTCommunityDetailCollectionCell.xib; sourceTree = "<group>"; };
@@ -744,6 +758,9 @@
 				787ADB941F95A87D005331C9 /* YTBetRankingView.h */,
 				787ADB951F95A87D005331C9 /* YTBetRankingView.m */,
 				787ADB961F95A87D005331C9 /* YTBetRankingView.xib */,
+				785EEF35201865EE00AF01B3 /* YTPrimaryBetRankingView.h */,
+				785EEF34201865EE00AF01B3 /* YTPrimaryBetRankingView.m */,
+				785EEF33201865ED00AF01B3 /* YTPrimaryBetRankingView.xib */,
 			);
 			path = LiveGiftShowView;
 			sourceTree = "<group>";
@@ -1070,6 +1087,8 @@
 				44D2F7BF1E7A6FBF00122866 /* WYStreamingConfig.m */,
 				44F8D9821E9E30D2002EC952 /* WYDataMemoryManager.h */,
 				44F8D9831E9E30D2002EC952 /* WYDataMemoryManager.m */,
+				785EEF30201732B000AF01B3 /* WYBetStarModel.h */,
+				785EEF31201732B000AF01B3 /* WYBetStarModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1218,6 +1237,10 @@
 				44D2F7DC1E7FC30500122866 /* YTChatRoomControl.m */,
 				44D2F7DF1E7FC30500122866 /* YTRoomView.h */,
 				44D2F7E01E7FC30500122866 /* YTRoomView.m */,
+				785EEF2D2016DE0100AF01B3 /* YTChatRoomControl1.h */,
+				785EEF2C2016DE0000AF01B3 /* YTChatRoomControl1.m */,
+				785EEF2A2016DDFF00AF01B3 /* YTRoomView1.h */,
+				785EEF2B2016DE0000AF01B3 /* YTRoomView1.m */,
 				44D2F7D21E7FC30500122866 /* NSString+YTChatRoom.h */,
 				44D2F7D31E7FC30500122866 /* NSString+YTChatRoom.m */,
 				44D2F7D41E7FC30500122866 /* YTChatBottomView.h */,
@@ -1996,6 +2019,7 @@
 				78D1D33A1F7CEF0A007261E4 /* WYIncomeRecordTableViewCell.xib in Resources */,
 				789DAA2B1F5688200012075C /* release_note.txt in Resources */,
 				4460B6041F04E8BC00085F8F /* WYLiveTigerResultView.xib in Resources */,
+				785EEF36201865EF00AF01B3 /* YTPrimaryBetRankingView.xib in Resources */,
 				78D1D3311F7CC79F007261E4 /* WYIncomeRecordViewController.xib in Resources */,
 				4425642E1F42AA830075467A /* wy_gameresult_win_2@2x.png in Resources */,
 				7854DA26200309A6002D552C /* WYLiveViewController2.xib in Resources */,
@@ -2078,6 +2102,7 @@
 				44203DB71E7246D900D59B5E /* MainTabViewController.m in Sources */,
 				78D1D3141F7B49BE007261E4 /* WYHomePageViewController.m in Sources */,
 				44D2F7E81E7FC30500122866 /* YTRoomView.m in Sources */,
+				785EEF37201865EF00AF01B3 /* YTPrimaryBetRankingView.m in Sources */,
 				44203D881E714BD600D59B5E /* WYSuperViewController.m in Sources */,
 				44D2F7D11E7FA8F300122866 /* WYAnchorInfoView.m in Sources */,
 				787ADB971F95A87D005331C9 /* YTBetRankingView.m in Sources */,
@@ -2124,6 +2149,7 @@
 				7854B9A61FB3F9F900A7F85E /* WYRewardModel.m in Sources */,
 				78D1D34F1F8B44E2007261E4 /* YTCommunityCollectionCell.m in Sources */,
 				78D804511FB1A4C4009CDB54 /* WYTodayProfitModel.m in Sources */,
+				785EEF2E2016DE0100AF01B3 /* YTRoomView1.m in Sources */,
 				78D1D3221F7BC0C1007261E4 /* WYMessageTableViewCell.m in Sources */,
 				44D9B3091E96830D00E15BEA /* WYLiveGameResultView.m in Sources */,
 				787ADB6F1F8B509B005331C9 /* YTClassifyCommunityImageView.m in Sources */,
@@ -2146,6 +2172,7 @@
 				446D43281E837DAC002E5C52 /* WYAnchorManageView.m in Sources */,
 				44D2F7E71E7FC30500122866 /* YTEnterExtraModel.m in Sources */,
 				441C23EC1E83EEA30020557C /* WYGiftModel.m in Sources */,
+				785EEF32201732B000AF01B3 /* WYBetStarModel.m in Sources */,
 				44203D8E1E714BD600D59B5E /* UIButton+YTLoginButton.m in Sources */,
 				44203DBD1E72551600D59B5E /* WYLiveViewController.m in Sources */,
 				78B82A381F7914C700279366 /* WYLoginViewController.m in Sources */,
@@ -2202,6 +2229,7 @@
 				444DA6511E8A716E00C45DE5 /* WYChatUserNormalView.m in Sources */,
 				7854B9D91FB4699600A7F85E /* WYHelpDetailViewController.m in Sources */,
 				44203D8C1E714BD600D59B5E /* WYLoginModel.m in Sources */,
+				785EEF2F2016DE0100AF01B3 /* YTChatRoomControl1.m in Sources */,
 				44203D9F1E714BD600D59B5E /* MBProgressHUD+WYTools.m in Sources */,
 				44203DAF1E715A9100D59B5E /* WYAPIGenerate.m in Sources */,
 			);

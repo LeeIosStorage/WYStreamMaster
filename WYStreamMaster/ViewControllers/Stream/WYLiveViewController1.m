@@ -28,6 +28,8 @@
 #import "YTChatModel.h"
 #import "WYLiveEndViewController.h"
 #import "YTBetRankingView.h"
+#import "WYBetStarModel.h"
+#import "YTPrimaryBetRankingView.h"
 // 直播通知重试次数
 static NSInteger kLiveNotifyRetryCount = 0;
 static NSInteger kLiveNotifyRetryMaxCount = 3;
@@ -39,18 +41,17 @@ WYAnchorInfoViewDelegate,
 ZegoLivePublisherDelegate,
 FUAPIDemoBarDelegate,
 ZegoRoomDelegate,
-YTBetRankingViewDelegate
+YTBetRankingViewDelegate,
+YTPrimaryBetRankingViewDelegate
 >
 {
     
 }
-
 @property (nonatomic, strong) WYStreamingSessionManager *streamingSessionManager;
 
 @property (nonatomic, strong) PLMediaStreamingSession *plSession;
 
 @property (nonatomic, strong) UIImageView *liveBgImageView;
-
 @property (nonatomic, strong) UIView *liveContainerView;
 @property (nonatomic, strong) UIView *preView;
 @property (nonatomic, strong) UIImageView *videoView;
@@ -91,7 +92,7 @@ YTBetRankingViewDelegate
 @property (nonatomic, copy) NSString *flvStr;
 
 @property (strong, nonatomic) YTBetRankingView *betRankingView;
-@property (strong, nonatomic) YTBetRankingView *primaryBetRankingView;
+@property (strong, nonatomic) YTPrimaryBetRankingView *primaryBetRankingView;
 // 送礼之星
 @property (strong, nonatomic) IBOutlet UIButton *giftStarButton;
 // 投注之星
@@ -100,7 +101,10 @@ YTBetRankingViewDelegate
 @property (strong, nonatomic) IBOutlet UILabel *betStarLabel;
 // 投注之星介绍
 @property (strong, nonatomic)  UILabel *questionMarkLabel;
-
+// 赌神榜
+@property (nonatomic, strong) NSMutableArray *betStarArray;
+// 土豪榜
+@property (nonatomic, strong) NSMutableArray *giftStarArray;
 @end
 
 @implementation WYLiveViewController1
@@ -145,23 +149,17 @@ YTBetRankingViewDelegate
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(socketReConnectFailed) name:WYNotificationReConnectFailed object:nil];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationWSDisConnect) name:WYNotificationWSDisConnect object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationSocketConnect:) name:WYNotificationSocketConnect object:nil];
+
     [self setupSubView];
     
     [self prepareForCameraSetting];
 //    [self crateWebSocket];
     [[ZegoHelper api] setRoomDelegate:self];
     self.startLiveTime = [self getCurrentTime];
-    //开始检测人脸礼物动效
-//    [[WYFaceRendererManager sharedInstance] stopTimer];
-//    [[WYFaceRendererManager sharedInstance] startTimer];
-//    
-//    
-//    for (int i = 39; i < 47; i ++) {
-//        YTGiftAttachment *giftModel = [[YTGiftAttachment alloc] init];
-//        giftModel.giftID = [NSString stringWithFormat:@"%d",i];
-//        giftModel.senderID = @"10010";
-//        [[WYFaceRendererManager sharedInstance] addGiftModel:giftModel];
-//    }
+    self.betStarArray = [NSMutableArray array];
+    self.giftStarArray = [NSMutableArray array];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -172,10 +170,10 @@ YTBetRankingViewDelegate
 #pragma mark -
 #pragma mark - Server
 - (void)anchorDetail{
-    if (![[[NIMSDK sharedSDK] loginManager] isLogined]) {
-        [self uploadFileSaveLog:@"NIM NoLogined"];
-        [MBProgressHUD showError:@"系统消息：您的账号在别处登录，您已经被踢出直播间，无法收到聊天及礼物消息，需要杀掉进程重新登录" toView:self.view];
-    }
+//    if (![[[NIMSDK sharedSDK] loginManager] isLogined]) {
+//        [self uploadFileSaveLog:@"NIM NoLogined"];
+//        [MBProgressHUD showError:@"系统消息：您的账号在别处登录，您已经被踢出直播间，无法收到聊天及礼物消息，需要杀掉进程重新登录" toView:self.view];
+//    }
 //    [[NSNotificationCenter defaultCenter] postNotificationName:WYNotificationAgainStartLive object:nil];
 
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"anchor_detail"];
@@ -259,17 +257,15 @@ YTBetRankingViewDelegate
         
         if (serverNoticeAttachment.customMessageType == CustomMessageTypeBetRank) {
             [self.anchorInfoView updateAnchorInfoWith:serverNoticeAttachment];
-            
             [self.betTopView show:self.contentContainerView];
             [self.betTopView updateBetTopData:serverNoticeAttachment.contentData];
-        }else if (serverNoticeAttachment.customMessageType == CustomMessageTypeGameResult){
+        } else if (serverNoticeAttachment.customMessageType == CustomMessageTypeGameResult){
             [self.liveGameResultView updateWithGameResultInfo:serverNoticeAttachment];
             [self refreshGameResultStatusTip:serverNoticeAttachment];
         }
         
         //是否要结束推流
         if (serverNoticeAttachment.anchorStatus == 2) {
-            
             [MBProgressHUD showError:[WYCommonUtils acquireCurrentLocalizedText:@"wy_banned_live_tip"] toView:nil];
             [self serverNoticeFinishStream];
         }
@@ -319,7 +315,7 @@ YTBetRankingViewDelegate
 #pragma mark - Private Methods
 - (void)crateWebSocket
 {
-    NSString *webSocketString = [NSString stringWithFormat:@"ws://www.legend8888.com/chat_room/ws.do?userCode=%@&anchor_user_code=%@&game_type=%zd&device=1&isAnchor=1", [WYLoginUserManager userID], [WYLoginUserManager userID], [WYLoginUserManager liveGameType]];
+    NSString *webSocketString = [NSString stringWithFormat:@"ws://172.16.2.182:8000/chat_room/ws.do?userCode=%@&anchor_user_code=%@&game_type=%zd&device=1&isAnchor=1", [WYLoginUserManager userID], [WYLoginUserManager userID], [WYLoginUserManager liveGameType]];
     [[WYSocketManager sharedInstance] initSocketURL:[NSURL URLWithString:webSocketString]];
     [self uploadFileSaveLog:@"createWebSocket"];
 }
@@ -359,11 +355,11 @@ YTBetRankingViewDelegate
         make.width.mas_equalTo(125);
         make.height.mas_equalTo(40);
     }];
-    
+
     [self.anchorInfoView updateAnchorInfoWith:nil];
     
     [self initView];
-
+    
     [self.view addSubview:self.liveGameResultView];
     [self.liveGameResultView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.view);
@@ -371,7 +367,6 @@ YTBetRankingViewDelegate
     }];
     [self.liveGameResultView updateWithGameResultInfo:nil];
     
-
     if ([WYLoginUserManager liveGameType] == LiveGameTypeSlots){
         self.liveGameResultView.hidden = YES;
         [self.contentContainerView removeFromSuperview];
@@ -384,13 +379,13 @@ YTBetRankingViewDelegate
         [self.view insertSubview:self.contentContainerView belowSubview:self.backButton];
     }
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped)];
+    
     [self.view addGestureRecognizer:tap];
 }
 
 - (void)initView
 {
     self.expandChatButton.selected = NO;
-    
     CGFloat height = (250/667.0)*SCREEN_HEIGHT;
     [self.contentContainerView addSubview:self.roomView];
     [self.roomView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -399,7 +394,7 @@ YTBetRankingViewDelegate
         make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH-kRoomChatViewCustomWidth, height));
     }];
     [self.roomView roomViewPrepare];
-    
+
     //    CGFloat height = (250/667.0)*SCREEN_HEIGHT;
     [self.view addSubview:self.betRankingView];
     [self.betRankingView updateBottomViewWithInfo:nil];
@@ -414,7 +409,7 @@ YTBetRankingViewDelegate
     [self.primaryBetRankingView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.view);
         make.left.right.equalTo(self.view);
-        make.height.mas_equalTo(150);
+        make.height.mas_equalTo(180);
     }];
     
     [self.view addSubview:self.questionMarkLabel];
@@ -630,6 +625,52 @@ YTBetRankingViewDelegate
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)notificationSocketConnect:(NSNotification *)notification
+{
+    NSDictionary *notiDict = notification.userInfo;
+    NSString *socketCmmid = [NSString stringWithFormat:@"%@", notiDict[@"cmmid"]];
+    if ([socketCmmid isEqualToString:@"100001"]) {
+        
+    } else if ([socketCmmid isEqualToString:@"100002"]) {
+        NSString *message = notiDict[@"data"][@"message"];
+        [MBProgressHUD showMessage:message toView:self.view];
+    } else if ([socketCmmid isEqualToString:@"100003"]) {
+        WYBetStarModel *betStarModel = [[WYBetStarModel alloc] init];
+        betStarModel.anchorNickName = notiDict[@"data"][@"anchorNickName"];
+        betStarModel.currency = notiDict[@"data"][@"currency"];
+        betStarModel.profit = notiDict[@"data"][@"profit"];
+        betStarModel.roomName = notiDict[@"data"][@"roomName"];
+        betStarModel.userNickName = notiDict[@"data"][@"userNickName"];
+        [self.betStarArray addObject:betStarModel];
+        [self.primaryBetRankingView updateBottomViewWithInfo:self.betStarArray];
+    } else if ([socketCmmid isEqualToString:@"310001"]) {
+        
+    } else if ([socketCmmid isEqualToString:@"310003"]) {
+        NSString *content = notiDict[@"data"][@"content"];
+        NSString *extraString = notiDict[@"data"][@"extInfo"][@"nickname"];
+        [self.roomView.chatroomControl sendLocalMessageWithExtraString:extraString content:[NSString stringWithFormat:@"%@:%@", extraString, content] extraColor:[UIColor colorWithHexString:@"ffcc00"]];
+    } else if ([socketCmmid isEqualToString:@"310004"]) {
+        WYGiftModel *model = [[WYGiftModel alloc] init];
+        model.icon = notiDict[@"data"][@"giftInfo"][@"gift_logo"];
+        model.giftId = notiDict[@"data"][@"giftInfo"][@"gift_id"];
+        model.name = notiDict[@"data"][@"giftInfo"][@"gift_name"];
+        model.giftId = notiDict[@"data"][@"giftInfo"][@"gift_id"];
+        model.clickNumber = [notiDict[@"data"][@"giftInfo"][@"gift_number"] integerValue];
+        model.noFrameIcon = notiDict[@"data"][@"giftInfo"][@"gift_logo"];
+        model.num = notiDict[@"data"][@"giftInfo"][@"gift_number"];
+        model.sender = notiDict[@"data"][@"extInfo"][@"nickname"];
+        [self.roomView.chatroomControl sendMessageWithGift:model];
+    } else if ([socketCmmid isEqualToString:@"310006"]) {
+        NSString *content = notiDict[@"data"][@"content"];
+        NSString *extraString = @"系统消息";
+        [self.roomView.chatroomControl sendLocalMessageWithExtraString:extraString content:[NSString stringWithFormat:@"%@:%@", extraString, content] extraColor:[UIColor colorWithHexString:@"ffcc00"]];
+    } else if ([socketCmmid isEqualToString:@"310007"]) {
+        WYServerNoticeAttachment *attachment = [[WYServerNoticeAttachment alloc] init];
+        attachment.onlineNum = [notiDict[@"data"][@"online"] integerValue];
+        [self.anchorInfoView updateAnchorInfoWith:attachment];
+    }
+}
+
 - (void)socketReConnectFailed
 {
     [self serverNoticeFinishStream];
@@ -653,6 +694,7 @@ YTBetRankingViewDelegate
 {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"直播错误，请重新开启", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alertView show];
+    
     [self serverNoticeFinishStream];
 
 }
@@ -669,13 +711,12 @@ YTBetRankingViewDelegate
 //            [weakSelf.roomView.chatroomControl exitRoom];
 //            //通知服务器停止直播了
 //            [weakSelf closeLive];
-//            
+//
 //            [weakSelf.navigationController popViewControllerAnimated:YES];
         }
     }];
     
     [alertView show];
-    
 }
 
 - (void)viewTapped
@@ -760,9 +801,9 @@ static bool frontCamera = YES;
     return _anchorManageView;
 }
 
-- (YTRoomView *)roomView{
+- (YTRoomView1 *)roomView{
     if (!_roomView) {
-        _roomView = [[YTRoomView alloc] init];
+        _roomView = [[YTRoomView1 alloc] init];
     }
     return _roomView;
 }
@@ -804,10 +845,9 @@ static bool frontCamera = YES;
     return _betRankingView;
 }
 
-- (YTBetRankingView *)primaryBetRankingView{
+- (YTPrimaryBetRankingView *)primaryBetRankingView{
     if (!_primaryBetRankingView) {
-        _primaryBetRankingView = (YTBetRankingView *)[[NSBundle mainBundle] loadNibNamed:@"YTBetRankingView" owner:self options:nil].lastObject;
-        _primaryBetRankingView.betRankingType = BetRankingPrimaryType;
+        _primaryBetRankingView = (YTPrimaryBetRankingView *)[[NSBundle mainBundle] loadNibNamed:@"YTPrimaryBetRankingView" owner:self options:nil].lastObject;
         _primaryBetRankingView.delegate = self;
         _primaryBetRankingView.hidden = YES;
     }

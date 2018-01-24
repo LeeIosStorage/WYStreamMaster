@@ -30,7 +30,6 @@
 #pragma mark - setup
 - (void)setupView
 {
-
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -67,7 +66,7 @@
     [paramsDic setObject:[WYLoginUserManager userID] forKey:@"user_code"];
     [paramsDic setObject:@"20" forKey:@"page_size"];
     [paramsDic setObject:[NSString stringWithFormat:@"%d", self.startIndexPage] forKey:@"cur_page"];
-
+    
     WS(weakSelf)
     [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
         NSLog(@"error:%@ data:%@",message,dataObject);
@@ -92,8 +91,24 @@
     } failure:^(id responseObject, NSError *error) {
         [weakSelf endRefreshHeader];
         [weakSelf endRefreshFooter];
-
-        //        [MBProgressHUD showAlertMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_register_result_failure_tip"] toView:weakSelf.view];
+    }];
+}
+// 读取消息
+- (void)readMessageRequest{
+    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"read_message"];
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
+    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"user_code"];
+    
+    WS(weakSelf)
+    [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
+        NSLog(@"error:%@ data:%@",message,dataObject);
+        if (requestType == WYRequestTypeSuccess) {
+            
+        } else {
+            
+        }
+    } failure:^(id responseObject, NSError *error) {
+        
     }];
 }
 

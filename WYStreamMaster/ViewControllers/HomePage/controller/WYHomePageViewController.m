@@ -162,7 +162,6 @@
 //        WYSpaceViewController *spaceVC = [[WYSpaceViewController alloc] init];
 //        [self.navigationController pushViewController:spaceVC animated:YES];
     }
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -217,7 +216,6 @@
             liveVc.streamURL = [WYLoginUserManager anchorPushUrl];
             [self.navigationController pushViewController:liveVc animated:YES];
         }
-        
     } failure:^(id responseObject, NSError *error) {
         [MBProgressHUD hideHUD];
         [MBProgressHUD showAlertMessage:[WYCommonUtils showServerErrorLocalizedText] toView:weakSelf.view];
@@ -239,7 +237,7 @@
         UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:[WYCommonUtils acquireCurrentLocalizedText:@"wy_affirm"] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
             if([[UIApplication sharedApplication] canOpenURL:url]) {
-                NSURL*url =[NSURL URLWithString:UIApplicationOpenSettingsURLString];
+                NSURL*url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
                 [[UIApplication sharedApplication] openURL:url];
             }
         }];

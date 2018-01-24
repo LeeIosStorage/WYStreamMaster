@@ -91,4 +91,6 @@ static NSString* IMG_URL = @"http://img.wangyuhudong.com";
 
 #define WYNotificationTokenFailed   @"WYNotificationTokenFailed"
 
+#define WYNotificationSocketConnect   @"WYNotificationSocketConnect"
+
 #endif /* RMSystem_h */
