@@ -44,7 +44,7 @@
     for (int i = 0; i < 3; i++) {
         if (infoArray.count > i) {
             WYBetStarModel *model = infoArray[i];
-            NSString *contentString = [NSString stringWithFormat:@"    %@  在您的房间投下重注 ", model.userNickName];
+            NSString *contentString = [NSString stringWithFormat:@"    %@  在您的房间赢取高额的奖励 ", model.userNickName];
             NSRange nameRane = [contentString rangeOfString:[NSString stringWithFormat:@"    %@  ", model.userNickName]];
             NSMutableAttributedString *contentAttributedString = [[NSMutableAttributedString alloc] initWithString:contentString];
             [contentAttributedString setColor:[UIColor whiteColor] range:nameRane];

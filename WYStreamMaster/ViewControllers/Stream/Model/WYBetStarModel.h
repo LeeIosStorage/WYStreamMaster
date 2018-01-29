@@ -14,4 +14,8 @@
 @property (copy, nonatomic) NSString *profit;
 @property (copy, nonatomic) NSString *roomName;
 @property (copy, nonatomic) NSString *userNickName;
+@property (copy, nonatomic) NSString *head_icon;
+@property (copy, nonatomic) NSString *cny_amount;
+@property (copy, nonatomic) NSString *nickname;
+
 @end

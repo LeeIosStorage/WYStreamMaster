@@ -308,7 +308,6 @@
     if (imageCode) {
         [paramsDic setObject:imageCode forKey:@"code"];
     }
-    
     [[WYSettingConfig staticInstance] addLoginTimer];
     _sendCodeButton.enabled = NO;
     

@@ -315,7 +315,7 @@
     [MBProgressHUD showSuccess:@"正在上传..." toView:self.view];
     WS(weakSelf);
 //    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"upload_image"];
-    NSString *requestUrl = @"http://172.16.2.180:8090/event-platform-admin/file/ios_image?";
+    NSString *requestUrl = @"http://69.172.89.208/event-platform-admin/file/ios_image?";
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
     [paramsDic setObject:[WYLoginUserManager userID] forKey:@"bizImgPath"];
     [paramsDic setObject:@"1" forKey:@"saveType"];
@@ -348,7 +348,7 @@
 - (void)uploadVideoWithData:(NSData *)videoData{
     WS(weakSelf);
     //    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"upload_image"];
-    NSString *requestUrl = @"http://172.16.2.180:8090/event-platform-admin/file/ios_image?";
+    NSString *requestUrl = @"http://69.172.89.208/event-platform-admin/file/ios_image?";
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
     [paramsDic setObject:[WYLoginUserManager userID] forKey:@"bizImgPath"];
     [paramsDic setObject:@"1" forKey:@"saveType"];

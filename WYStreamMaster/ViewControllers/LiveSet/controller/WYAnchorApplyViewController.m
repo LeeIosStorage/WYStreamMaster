@@ -203,7 +203,7 @@ UITextFieldDelegate>
     [MBProgressHUD showMessage:@"正在上传..."];
 //    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"upload_image"];
 
-    NSString *requestUrl = @"http://172.16.2.180:8090/event-platform-admin/file/ios_image?";
+    NSString *requestUrl = @"http://69.172.89.208/event-platform-admin/file/ios_image?";
 
 //        NSString *requestUrl = @"http://www.legend8888.com/files/api/uploadfile.do?";
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
@@ -254,7 +254,7 @@ UITextFieldDelegate>
     NSData *fileData = [fileContent dataUsingEncoding:NSUTF8StringEncoding];
     [fileManager createFileAtPath:filePath contents:fileData attributes:nil];
 //    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"upload_image"];
-    NSString *requestUrl = @"http://172.16.10.234:8090/event-platform-admin/file/ios_image?";
+    NSString *requestUrl = @"http://69.172.89.208/event-platform-admin/file/ios_image?";
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
     [paramsDic setObject:[WYLoginUserManager userID] forKey:@"bizImgPath"];
     [paramsDic setObject:@"2" forKey:@"saveType"];

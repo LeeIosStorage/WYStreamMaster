@@ -353,7 +353,7 @@
                 <outlet property="betRankingThirdLabel" destination="2bD-Ig-OPs" id="Osy-zh-KmV"/>
                 <outlet property="questionMarkButton" destination="5vO-og-oxC" id="dvc-7o-vb0"/>
             </connections>
-            <point key="canvasLocation" x="-6" y="-107"/>
+            <point key="canvasLocation" x="109" y="-112"/>
         </view>
     </objects>
     <resources>

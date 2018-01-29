@@ -160,6 +160,7 @@ YTPrimaryBetRankingViewDelegate
     self.startLiveTime = [self getCurrentTime];
     self.betStarArray = [NSMutableArray array];
     self.giftStarArray = [NSMutableArray array];
+    [self anchorGiftRealtimeRank];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -199,6 +200,33 @@ YTPrimaryBetRankingViewDelegate
         
     } failure:^(id responseObject, NSError *error) {
 //        [MBProgressHUD showAlertMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_server_request_errer_tip"] toView:weakSelf.view];
+    }];
+}
+// 主播送礼排行榜
+- (void)anchorGiftRealtimeRank
+{
+    [self.giftStarArray removeAllObjects];
+    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"anchor_realtime_rank"];
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
+    [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchor_user_code"];
+    
+    WEAKSELF
+    [self.networkManager GET:requestUrl needCache:NO parameters:paramsDic responseClass:nil success:^(WYRequestType requestType, NSString *message, id dataObject) {
+        NSLog(@"error:%@ data:%@",message,dataObject);
+        
+        if (requestType == WYRequestTypeSuccess) {
+            NSDictionary *dataDic = (NSDictionary *)dataObject;
+            NSArray *object = [NSArray modelArrayWithClass:[WYBetStarModel class] json:[dataDic objectForKey:@"rankList"]];
+            [weakSelf.giftStarArray addObjectsFromArray:object];
+            [weakSelf.betRankingView updateBottomViewWithInfo:weakSelf.giftStarArray];
+            NSLog(@"aaaaaa");
+        }else{
+            NSLog(@"error:%@ data:%@",message,dataObject);
+        }
+        
+    } failure:^(id responseObject, NSError *error) {
+        NSLog(@"error:%@", error);
+
     }];
 }
 
@@ -315,7 +343,7 @@ YTPrimaryBetRankingViewDelegate
 #pragma mark - Private Methods
 - (void)crateWebSocket
 {
-    NSString *webSocketString = [NSString stringWithFormat:@"ws://172.16.2.182:8000/chat_room/ws.do?userCode=%@&anchor_user_code=%@&game_type=%zd&device=1&isAnchor=1", [WYLoginUserManager userID], [WYLoginUserManager userID], [WYLoginUserManager liveGameType]];
+    NSString *webSocketString = [NSString stringWithFormat:@"ws://%@/chat_room/ws.do?userCode=%@&anchor_user_code=%@&game_type=%zd&device=1&isAnchor=1", defaultNetworkHost,[WYLoginUserManager userID], [WYLoginUserManager userID], [WYLoginUserManager liveGameType]];
     [[WYSocketManager sharedInstance] initSocketURL:[NSURL URLWithString:webSocketString]];
     [self uploadFileSaveLog:@"createWebSocket"];
 }
@@ -644,7 +672,7 @@ YTPrimaryBetRankingViewDelegate
         [self.betStarArray addObject:betStarModel];
         [self.primaryBetRankingView updateBottomViewWithInfo:self.betStarArray];
     } else if ([socketCmmid isEqualToString:@"310001"]) {
-        
+        WYGiftModel *model = [[WYGiftModel alloc] init];
     } else if ([socketCmmid isEqualToString:@"310003"]) {
         NSString *content = notiDict[@"data"][@"content"];
         NSString *extraString = notiDict[@"data"][@"extInfo"][@"nickname"];
@@ -660,6 +688,7 @@ YTPrimaryBetRankingViewDelegate
         model.num = notiDict[@"data"][@"giftInfo"][@"gift_number"];
         model.sender = notiDict[@"data"][@"extInfo"][@"nickname"];
         [self.roomView.chatroomControl sendMessageWithGift:model];
+        [self anchorGiftRealtimeRank];
     } else if ([socketCmmid isEqualToString:@"310006"]) {
         NSString *content = notiDict[@"data"][@"content"];
         NSString *extraString = @"系统消息";

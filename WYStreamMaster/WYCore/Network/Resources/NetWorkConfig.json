@@ -180,4 +180,9 @@
         "control" : "api",
         "action"  : "blog_delete.do"
     },
+    "anchor_realtime_rank": {
+        "protocol": "http",
+        "version" : "rank",
+        "action"  : "anchor_gift_realtime_rank.do"
+    },
 }

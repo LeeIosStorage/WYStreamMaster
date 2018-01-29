@@ -20,7 +20,9 @@
              @"icon":@"ext_info.head_icon",
              @"chatRoomId":@"anchor.neteaseChatRoomId",
              @"audit_statu":@"anchor.audit_statu",
-             @"zone_img":@"anchor.zone_img"
+             @"zone_img":@"anchor.zone_img",
+             @"flv_stream":@"anchor.flv_stream",
+             @"stream_id":@"anchor.stream_id"
              };
 }
 

@@ -211,10 +211,10 @@
             
         }else{
             [MBProgressHUD showError:message toView:weakSelf.view];
-            WYLiveViewController1 *liveVc = [[WYLiveViewController1 alloc] init];
-            //            liveVc.isShowFaceUnity = YES;
-            liveVc.streamURL = [WYLoginUserManager anchorPushUrl];
-            [self.navigationController pushViewController:liveVc animated:YES];
+//            WYLiveViewController1 *liveVc = [[WYLiveViewController1 alloc] init];
+//            //            liveVc.isShowFaceUnity = YES;
+//            liveVc.streamURL = [WYLoginUserManager anchorPushUrl];
+//            [self.navigationController pushViewController:liveVc animated:YES];
         }
     } failure:^(id responseObject, NSError *error) {
         [MBProgressHUD hideHUD];

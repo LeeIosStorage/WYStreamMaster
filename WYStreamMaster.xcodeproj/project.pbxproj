@@ -69,9 +69,6 @@
 		442563D01F385DD70075467A /* ZegoImageFilter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442563C51F385DD70075467A /* ZegoImageFilter.framework */; };
 		442563D11F385DD70075467A /* ZegoImageFilter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442563C81F385DD70075467A /* ZegoImageFilter.framework */; };
 		442563D21F385DD70075467A /* ZegoImageFilter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442563CA1F385DD70075467A /* ZegoImageFilter.framework */; };
-		442563D31F385DD70075467A /* ZegoLiveRoom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442563CB1F385DD70075467A /* ZegoLiveRoom.framework */; };
-		442563D41F385F330075467A /* ZegoLiveRoom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442563CB1F385DD70075467A /* ZegoLiveRoom.framework */; };
-		442563D51F385F330075467A /* ZegoLiveRoom.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 442563CB1F385DD70075467A /* ZegoLiveRoom.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		442563D61F3860760075467A /* ZegoImageFilter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442563C51F385DD70075467A /* ZegoImageFilter.framework */; };
 		442563D71F3860760075467A /* ZegoImageFilter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 442563C51F385DD70075467A /* ZegoImageFilter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		442563DD1F39993C0075467A /* ZegoAVManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 442563DC1F39993C0075467A /* ZegoAVManager.m */; };
@@ -214,6 +211,7 @@
 		78BB09EF1FC80649001837FD /* YTInteractMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BB09ED1FC80649001837FD /* YTInteractMessageTableViewCell.m */; };
 		78BB09F01FC80649001837FD /* YTInteractMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78BB09EE1FC80649001837FD /* YTInteractMessageTableViewCell.xib */; };
 		78BB09F31FC808E8001837FD /* WYSpaceDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BB09F21FC808E8001837FD /* WYSpaceDetailModel.m */; };
+		78BECF8F201B285900E0B3BF /* ZegoLiveRoom.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 782119001F5805F00073CBC2 /* ZegoLiveRoom.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		78D1D3021F7A5087007261E4 /* WYHelpCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D1D3001F7A5087007261E4 /* WYHelpCell.m */; };
 		78D1D3031F7A5087007261E4 /* WYHelpCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78D1D3011F7A5087007261E4 /* WYHelpCell.xib */; };
 		78D1D30B1F7A7A12007261E4 /* WYMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D1D3091F7A7A12007261E4 /* WYMessageViewController.m */; };
@@ -261,8 +259,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				78BECF8F201B285900E0B3BF /* ZegoLiveRoom.framework in Embed Frameworks */,
 				789DAA361F568FB80012075C /* FUAPIDemoBar.framework in Embed Frameworks */,
-				442563D51F385F330075467A /* ZegoLiveRoom.framework in Embed Frameworks */,
 				442563D71F3860760075467A /* ZegoImageFilter.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -385,7 +383,6 @@
 		442563C51F385DD70075467A /* ZegoImageFilter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoImageFilter.framework; sourceTree = "<group>"; };
 		442563C81F385DD70075467A /* ZegoImageFilter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoImageFilter.framework; sourceTree = "<group>"; };
 		442563CA1F385DD70075467A /* ZegoImageFilter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoImageFilter.framework; sourceTree = "<group>"; };
-		442563CB1F385DD70075467A /* ZegoLiveRoom.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoLiveRoom.framework; sourceTree = "<group>"; };
 		442563DB1F39993C0075467A /* ZegoAVManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZegoAVManager.h; sourceTree = "<group>"; };
 		442563DC1F39993C0075467A /* ZegoAVManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZegoAVManager.m; sourceTree = "<group>"; };
 		442563DE1F3AE6240075467A /* video_capture_external_demo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = video_capture_external_demo.h; sourceTree = "<group>"; };
@@ -708,9 +705,7 @@
 				442563D21F385DD70075467A /* ZegoImageFilter.framework in Frameworks */,
 				4408525B1ED927A200F92C7A /* Accelerate.framework in Frameworks */,
 				442563D11F385DD70075467A /* ZegoImageFilter.framework in Frameworks */,
-				442563D31F385DD70075467A /* ZegoLiveRoom.framework in Frameworks */,
 				C69795F58C80289B30CE5F15 /* libPods-WYStreamMaster.a in Frameworks */,
-				442563D41F385F330075467A /* ZegoLiveRoom.framework in Frameworks */,
 				789DAA2A1F5688200012075C /* libnama.a in Frameworks */,
 				782119031F5805F00073CBC2 /* ZegoLiveRoom.framework in Frameworks */,
 				782119041F5805F00073CBC2 /* ZegoLiveRoom.framework in Frameworks */,
@@ -1138,7 +1133,6 @@
 				789DAA181F5688200012075C /* Faceunity */,
 				442563BF1F385DD70075467A /* zegoliveroom.version.txt */,
 				442563C01F385DD70075467A /* libsZegoImageFilter */,
-				442563CB1F385DD70075467A /* ZegoLiveRoom.framework */,
 			);
 			path = ZegoLibs;
 			sourceTree = "<group>";

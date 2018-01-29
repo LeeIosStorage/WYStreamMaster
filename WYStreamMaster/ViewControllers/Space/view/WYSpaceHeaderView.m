@@ -34,7 +34,6 @@
 //    self.backgroundImageView.layer.cornerRadius = (400 + kScreenWidth) / 2.0;
 //    self.backgroundImageView.hidden = YES;
     
-    
     CGRect rect = CGRectMake(0, 0, 400 + kScreenWidth, 400 + kScreenWidth);
     UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:rect byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake((400 + kScreenWidth) / 2.0, (400 + kScreenWidth) / 2.0)];
     CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];

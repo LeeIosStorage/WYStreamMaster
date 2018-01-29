@@ -363,7 +363,7 @@ static NSString *const kIsFirstEnterApplication = @"kIsFirstEnterApplication";
     [WYLoginUserManager setChatRoomId:loginModel.chatRoomId];
     
     
-    [WYLoginUserManager setAnchorPushUrl:loginModel.anchorPushUrl];
+    [WYLoginUserManager setAnchorPushUrl:loginModel.stream_id];
     [WYLoginUserManager setRoomNameTitle:loginModel.anchorTitle];
     [WYLoginUserManager setRoomNoticeTitle:loginModel.anchorDescription];
 }

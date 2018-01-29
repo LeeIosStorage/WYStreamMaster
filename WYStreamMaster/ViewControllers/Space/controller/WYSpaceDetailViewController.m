@@ -244,7 +244,7 @@ static NSString *const kInteractMessageTableViewCell = @"YTInteractMessageTableV
 
 - (void)publishComment:(NSString *)parent_id{
     NSString *auditStatu = [NSString stringWithFormat:@"%@", [WYLoginManager sharedManager].loginModel.audit_statu];
-
+    
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"publish_comment"];
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
     [paramsDic setObject:self.spaceModel.identity forKey:@"blog_id"];

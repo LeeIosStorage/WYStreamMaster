@@ -74,37 +74,32 @@
             WYBetStarModel *model = infoArray[i];
             switch (i) {
                 case 0:
-                    self.betRankingFirstLabel.text = [NSString stringWithFormat:@"%@ %@", model.currency, model.profit];
+                    self.betRankingFirstLabel.text = [NSString stringWithFormat:@"%@", model.nickname];
                     break;
                 case 1:
-                    self.betRankingSecondLabel.text = [NSString stringWithFormat:@"%@ %@", model.currency, model.profit];
+                    self.betRankingSecondLabel.text = [NSString stringWithFormat:@"%@", model.nickname];
                     break;
                 case 2:
-                    self.betRankingThirdLabel.text = [NSString stringWithFormat:@"%@ %@", model.currency, model.profit];
-
+                    self.betRankingThirdLabel.text = [NSString stringWithFormat:@"%@", model.nickname];
                     break;
                 case 3:
-                    self.betRankingFourthLabel.text = [NSString stringWithFormat:@"%@ %@", model.currency, model.profit];
+                    self.betRankingFourthLabel.text = [NSString stringWithFormat:@"%@", model.nickname];
                     break;
                 case 4:
-                    self.betRankingFifthLabel.text = [NSString stringWithFormat:@"%@ %@", model.currency, model.profit];
+                    self.betRankingFifthLabel.text = [NSString stringWithFormat:@"%@", model.nickname];
                     break;
                 case 5:
-                    self.betRankingSixthLabel.text = [NSString stringWithFormat:@"%@ %@", model.currency, model.profit];
-
+                    self.betRankingSixthLabel.text = [NSString stringWithFormat:@"%@", model.nickname];
                     break;
                 case 6:
-                    self.betRankingSeventhLabel.text = [NSString stringWithFormat:@"%@ %@", model.currency, model.profit];
-
+                    self.betRankingSeventhLabel.text = [NSString stringWithFormat:@"%@", model.nickname];
                     break;
                 case 7:
-                    self.betRankingEighthLabel.text = [NSString stringWithFormat:@"%@ %@", model.currency, model.profit];
-
+                    self.betRankingEighthLabel.text = [NSString stringWithFormat:@"%@", model.nickname];
                     break;
                 case 8:
-                    self.betRankingNinthLabel.text = [NSString stringWithFormat:@"%@ %@", model.currency, model.profit];
+                    self.betRankingNinthLabel.text = [NSString stringWithFormat:@"%@", model.nickname];
                     break;
-                    
                 default:
                     break;
             }

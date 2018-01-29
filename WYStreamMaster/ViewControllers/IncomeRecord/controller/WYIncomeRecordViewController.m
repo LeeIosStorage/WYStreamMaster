@@ -583,7 +583,7 @@ static NSString *const kIncomeRecordTableViewCell = @"WYIncomeRecordTableViewCel
 
 - (void)updateHeaderView:(WYTodayProfitModel *)todayProfitModel
 {
-    NSString *anchorValue = todayProfitModel.gift_number_value[@"anchor_get_value"];
+    NSString *anchorValue = [NSString stringWithFormat:@"%@", todayProfitModel.gift_number_value[@"anchor_get_value"]];
     if ([anchorValue length] == 0) {
          anchorValue = @"0";
     }

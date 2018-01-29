@@ -104,7 +104,7 @@
     [paramsDic setObject:passwordText forKey:@"password"];
     [paramsDic setObject:re_passwordText forKey:@"re_password"];
     [paramsDic setObject:emailText forKey:@"email"];
-
+    
 //    [paramsDic setObject:_avatarUrlStr forKey:@"head_icon"];
 //    [paramsDic setObject:_sugaoUrlStr forKey:@"low_pic"];
 //    [paramsDic setObject:_makeupUrlStr forKey:@"mid_pic"];

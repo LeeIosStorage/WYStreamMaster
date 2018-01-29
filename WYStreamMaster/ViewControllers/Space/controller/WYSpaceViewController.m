@@ -217,7 +217,7 @@ static NSString *const kSpaceHeaderView = @"WYSpaceHeaderView";
     [MBProgressHUD showMessage:@"正在上传..."];
     //    NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"upload_image"];
     
-    NSString *requestUrl = @"http://172.16.2.180:8090/event-platform-admin/file/ios_image?";
+    NSString *requestUrl = @"http://69.172.89.208/event-platform-admin/file/ios_image?";
     
     //        NSString *requestUrl = @"http://www.legend8888.com/files/api/uploadfile.do?";
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];

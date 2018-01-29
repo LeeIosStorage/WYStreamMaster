@@ -21,6 +21,11 @@
 @property (strong, nonatomic) NSString *anchorDescription;
 // 主播空间封面
 @property (strong, nonatomic) NSString *zone_img;
+// 主播直播地址
+@property (strong, nonatomic) NSString *flv_stream;
+// 主播直播id
+@property (strong, nonatomic) NSString *stream_id;
+
 // 主播信息
 @property (strong, nonatomic) NSDictionary *anchor;
 
