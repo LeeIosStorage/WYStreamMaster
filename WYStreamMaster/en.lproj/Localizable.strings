@@ -1,0 +1,68 @@
+/* 
+  Localizable.strings
+  WYStreamMaster
+
+  Created by Leejun on 2017/5/3.
+  Copyright © 2017年 Leejun. All rights reserved.
+*/
+
+/* 登录 注册*/
+"wy_login" = "Log In";
+"wy_login_account_placeholder" = "account";
+"wy_register_account_placeholder" = "Nick name (4-10 characters, letters, or numbers)";
+"wy_login_password_placeholder" = "Enter the password";
+"wy_register_agent_placeholder" = "Please select your area";
+"wy_log_in" = "Log in...";
+"wy_register" = "Sign Up";
+"wy_register_email_placeholder" = "Please enter your E-mail account";
+"wy_register_upload_avatar_tip" = "Upload avatar";
+"wy_register_upload_sugaor_tip" = "Without-makeup";
+"wy_register_upload_makeup_tip" = "Makeup";
+"wy_register_upload_arts_tip" = "Art photo";
+"wy_register_upload_images_tip" = "Please upload three photos as required";
+"wy_register_remind_tip" = "*Nicknames can not be changed after registration";
+"wy_info_submit_ing" = "Information submission...";
+"wy_validate_email_tip" = "Please enter a valid email";
+"wy_register_result_succeed_tip" = "Submission succeed\nPay attention to the mailbox information";
+"wy_register_result_failure_tip" = "Submission failed, please try again";
+"wy_cancel" = "Cancel";
+"wy_affirm" = "Ok";
+"wy_take_photos" = "Camera";
+"wy_photo_library" = "Choose from the phone album";
+"wy_photo_upload_errer_tip" = "Picture upload failed, please upload again";
+"wy_server_request_errer_tip" = "Request failed, please check your network settings and try again";
+
+/* 主页 */
+"房间名称" = "Room name";
+"公告" = "Notice";
+"选择直播的游戏" = "Choose game";
+"普通房间" = "Common Room";
+"开始直播" = "Start live";
+"当天" = "Today";
+"本周" = "Week";
+"本月" = "Month";
+"种类" = "Type";
+"数量" = "Number";
+"价格" = "Price";
+"总计" = "Total";
+"给自己取一个闪亮的房间名字吧！" = "Give yourself a shiny room name!";
+"在此输入房间公告(不必填)" = "Write the room notice here(Not required)";
+"wy_live_prepare_ing" = "Live preparation...";
+
+/* 直播 */
+"押注排名" = "Bet ranking";
+"礼物历史" = "Gift history";
+"房管列表" = "Administrators list";
+"等待玩家下注" = "Wait for betting";
+"正在发牌 等待游戏结果" = "Dealing and waiting for the result";
+"欢迎" = "Welcome";
+"进入房间" = "enter the room";
+"房间公告" = "Room notice";
+"确定要停止直播吗？" = "Are you sure you want to stop live?";
+"再想想" = "Think again";
+"wy_live_succeed_tip" = "Live success";
+"wy_banned_live_tip" = "You have been banned from contact with the legendary entertainment";
+"wy_closed_live_tip" = "The room was closed";
+"wy_contribution_weekly" = "Weekly";
+"wy_contribution_monthly" = "Monthly";
+"wy_contribution_total" = "Total";

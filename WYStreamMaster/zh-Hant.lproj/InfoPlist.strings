@@ -1,0 +1,12 @@
+/* 
+  InfoPlist.strings
+  WYStreamMaster
+
+  Created by Leejun on 2017/5/3.
+  Copyright © 2017年 Leejun. All rights reserved.
+*/
+
+CFBundleDisplayName = "傳奇娛樂";
+NSCameraUsageDescription = "我們將訪問相機進行直播";
+NSMicrophoneUsageDescription = "我們將訪問麥克風權限以保證您在直播中聲音正常";
+NSPhotoLibraryUsageDescription = "訪問相冊";

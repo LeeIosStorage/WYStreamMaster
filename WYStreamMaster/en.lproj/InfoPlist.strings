@@ -1,0 +1,12 @@
+/* 
+  InfoPlist.strings
+  WYStreamMaster
+
+  Created by Leejun on 2017/5/3.
+  Copyright © 2017年 Leejun. All rights reserved.
+*/
+
+CFBundleDisplayName = "Legend";
+NSCameraUsageDescription = "We will visit the camera to broadcast live";
+NSMicrophoneUsageDescription = "We will access rights to the microphone in order to make sure you sound in the live normally";
+NSPhotoLibraryUsageDescription = "visit photo gallery";
