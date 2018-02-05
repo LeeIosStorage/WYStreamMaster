@@ -42,6 +42,8 @@
 @property (strong, nonatomic) IBOutlet UIButton *mySpaceButton;
 
 @property (strong, nonatomic) IBOutlet UILabel *remarksLabel;
+
+@property (nonatomic, assign) BOOL isStartLive;
 @end
 
 @implementation WYHomePageViewController
@@ -69,6 +71,7 @@
     if (![WYCommonUtils userCaptureIsAuthorization]) {
         [WYCommonUtils requsetCameraMediaPermission];
     }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startLiveNotification) name:WYNotificationAgainStartLive object:nil];
 
     // Do any additional setup after loading the view from its nib.
 }
@@ -116,6 +119,12 @@
     self.mySpaceButton.imageEdgeInsets = UIEdgeInsetsMake(0, 60, 0, 0);
 }
 #pragma mark - event
+- (void)startLiveNotification
+{
+    self.isStartLive = YES;
+    [self startLive];
+}
+
 - (IBAction)clickMessageButton:(UIButton *)sender {
     WYMessageViewController *messageVC = [[WYMessageViewController alloc] init];
     [self.navigationController pushViewController:messageVC animated:YES];
@@ -124,6 +133,7 @@
 - (IBAction)clickStartLiveButton:(UIButton *)sender {
     NSString *auditStatu = [WYLoginManager sharedManager].loginModel.audit_statu;
     if ([auditStatu isEqualToString:@"2"]) {
+        self.isStartLive = NO;
         [self toCreateLiveRoom];
         
     } else if ([auditStatu isEqualToString:@"0"]) {
@@ -170,7 +180,9 @@
 }
 #pragma mark - network
 - (void)anchorOnLineRequest{
-    [MBProgressHUD showMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_live_prepare_ing"]];
+    if (!self.isStartLive) {
+        [MBProgressHUD showMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_live_prepare_ing"]];
+    }
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"anchor_on_off"];
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionary];
     [paramsDic setObject:[WYLoginUserManager userID] forKey:@"anchor_user_code"];
@@ -203,12 +215,12 @@
                 gameType = [[dataObject objectForKey:@"game_type"] integerValue];
             }
             [WYLoginUserManager setLiveGameType:gameType];
-            
             WYLiveViewController1 *liveVc = [[WYLiveViewController1 alloc] init];
-//            liveVc.isShowFaceUnity = YES;
+            //            liveVc.isShowFaceUnity = YES;
             liveVc.streamURL = [WYLoginUserManager anchorPushUrl];
-            [self.navigationController pushViewController:liveVc animated:YES];
-            
+            if (!weakSelf.isStartLive) {
+                [self.navigationController pushViewController:liveVc animated:YES];
+            }
         }else{
             [MBProgressHUD showError:message toView:weakSelf.view];
 //            WYLiveViewController1 *liveVc = [[WYLiveViewController1 alloc] init];

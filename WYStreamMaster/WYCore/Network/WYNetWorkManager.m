@@ -292,34 +292,35 @@ responseClass:(Class)classType
         NSString *message = nil;
         NSError *parserError = nil;
         NSInteger status = WYRequestTypeFailed;
-        NSDictionary *jsonValue = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&parserError];
-        id responseDataObject = nil;
-        if (jsonValue) {
-            message = [jsonValue objectForKey:@"msg"];
-            NSNumber* statusCode = [jsonValue objectForKey:@"code"];
-            if (statusCode) {
-                status = statusCode.integerValue;
-            }
-            responseDataObject = jsonValue[@"data"];
-            //此处有两种情况发生，正常的是json，非正常是一个常规string
-        }
-        
-        if (success) {
-            if ([WYNetWorkExceptionHandling judgeReuqestStatus:status] && classType && responseDataObject) {
-                if ([responseDataObject isKindOfClass:[NSArray class]]) {
-                    
-                    NSArray *array = [NSArray modelArrayWithClass:classType json:responseDataObject];
-                    
-                    
-                    success(status,message,array);
-                } else {
-                    NSDictionary *dic = [NSDictionary modelDictionaryWithClass:classType json:responseObject];
-                    
-                    id model = dic[@"data"];
-                    
-                    
-                    success(status,message,model);
+        if (responseObject) {
+            NSDictionary *jsonValue = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&parserError];
+            id responseDataObject = nil;
+            if (jsonValue) {
+                message = [jsonValue objectForKey:@"msg"];
+                NSNumber* statusCode = [jsonValue objectForKey:@"code"];
+                if (statusCode) {
+                    status = statusCode.integerValue;
                 }
+                responseDataObject = jsonValue[@"data"];
+                //此处有两种情况发生，正常的是json，非正常是一个常规string
+            }
+            if (success) {
+                if ([WYNetWorkExceptionHandling judgeReuqestStatus:status] && classType && responseDataObject) {
+                    if ([responseDataObject isKindOfClass:[NSArray class]]) {
+                        
+                        NSArray *array = [NSArray modelArrayWithClass:classType json:responseDataObject];
+                        
+                        
+                        success(status,message,array);
+                    } else {
+                        NSDictionary *dic = [NSDictionary modelDictionaryWithClass:classType json:responseObject];
+                        
+                        id model = dic[@"data"];
+                        
+                        
+                        success(status,message,model);
+                    }
+        }
             } else {
                 
                 success(status,message,responseDataObject);

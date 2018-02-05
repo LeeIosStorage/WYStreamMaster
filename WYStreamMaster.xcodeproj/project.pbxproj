@@ -139,9 +139,6 @@
 		7826BD2A1FB0406200EACB75 /* WYMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7826BD291FB0406200EACB75 /* WYMessageModel.m */; };
 		7826BD331FB057F100EACB75 /* WYAnchorApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7826BD311FB057F100EACB75 /* WYAnchorApplyViewController.m */; };
 		7826BD341FB057F100EACB75 /* WYAnchorApplyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7826BD321FB057F100EACB75 /* WYAnchorApplyViewController.xib */; };
-		78461DE320203ECA006FFCEB /* ZegoLiveRoom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78461DE020203EC9006FFCEB /* ZegoLiveRoom.framework */; };
-		78461DE420203ECA006FFCEB /* ZegoLiveRoom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78461DE220203EC9006FFCEB /* ZegoLiveRoom.framework */; };
-		78461DE520203EDF006FFCEB /* ZegoLiveRoom.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 78461DE020203EC9006FFCEB /* ZegoLiveRoom.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		784A19F41FCBF66800CCC529 /* WYSpaceDetailBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 784A19F31FCBF66800CCC529 /* WYSpaceDetailBottomView.m */; };
 		784A19FA1FCBF73F00CCC529 /* WYSpaceDetailBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 784A19F91FCBF73F00CCC529 /* WYSpaceDetailBottomView.xib */; };
 		784A19FF1FCD3FFD00CCC529 /* WYIssueTalkAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 784A19FC1FCD3FFC00CCC529 /* WYIssueTalkAboutViewController.m */; };
@@ -165,6 +162,9 @@
 		7854DA26200309A6002D552C /* WYLiveViewController2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7854DA24200309A6002D552C /* WYLiveViewController2.xib */; };
 		7854DA292003653F002D552C /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7854DA272003653F002D552C /* YTPlayerView.m */; };
 		7856162A1FF4BF2A00E3AE8E /* WYSocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 785616281FF4BF2A00E3AE8E /* WYSocketManager.m */; };
+		785DA9732021627E0004A376 /* ZegoLiveRoom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785DA9702021627E0004A376 /* ZegoLiveRoom.framework */; };
+		785DA9742021627E0004A376 /* ZegoLiveRoom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785DA9722021627E0004A376 /* ZegoLiveRoom.framework */; };
+		785DA975202162990004A376 /* ZegoLiveRoom.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 785DA9702021627E0004A376 /* ZegoLiveRoom.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		785EEF2E2016DE0100AF01B3 /* YTRoomView1.m in Sources */ = {isa = PBXBuildFile; fileRef = 785EEF2B2016DE0000AF01B3 /* YTRoomView1.m */; };
 		785EEF2F2016DE0100AF01B3 /* YTChatRoomControl1.m in Sources */ = {isa = PBXBuildFile; fileRef = 785EEF2C2016DE0000AF01B3 /* YTChatRoomControl1.m */; };
 		785EEF32201732B000AF01B3 /* WYBetStarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 785EEF31201732B000AF01B3 /* WYBetStarModel.m */; };
@@ -259,7 +259,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				78461DE520203EDF006FFCEB /* ZegoLiveRoom.framework in Embed Frameworks */,
+				785DA975202162990004A376 /* ZegoLiveRoom.framework in Embed Frameworks */,
 				789DAA361F568FB80012075C /* FUAPIDemoBar.framework in Embed Frameworks */,
 				442563D71F3860760075467A /* ZegoImageFilter.framework in Embed Frameworks */,
 			);
@@ -539,8 +539,6 @@
 		7826BD301FB057F100EACB75 /* WYAnchorApplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYAnchorApplyViewController.h; sourceTree = "<group>"; };
 		7826BD311FB057F100EACB75 /* WYAnchorApplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYAnchorApplyViewController.m; sourceTree = "<group>"; };
 		7826BD321FB057F100EACB75 /* WYAnchorApplyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYAnchorApplyViewController.xib; sourceTree = "<group>"; };
-		78461DE020203EC9006FFCEB /* ZegoLiveRoom.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoLiveRoom.framework; sourceTree = "<group>"; };
-		78461DE220203EC9006FFCEB /* ZegoLiveRoom.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoLiveRoom.framework; sourceTree = "<group>"; };
 		784A19F21FCBF66800CCC529 /* WYSpaceDetailBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WYSpaceDetailBottomView.h; sourceTree = "<group>"; };
 		784A19F31FCBF66800CCC529 /* WYSpaceDetailBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WYSpaceDetailBottomView.m; sourceTree = "<group>"; };
 		784A19F91FCBF73F00CCC529 /* WYSpaceDetailBottomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYSpaceDetailBottomView.xib; sourceTree = "<group>"; };
@@ -578,6 +576,8 @@
 		7854DA282003653F002D552C /* YTPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTPlayerView.h; sourceTree = "<group>"; };
 		785616281FF4BF2A00E3AE8E /* WYSocketManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYSocketManager.m; sourceTree = "<group>"; };
 		785616291FF4BF2A00E3AE8E /* WYSocketManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYSocketManager.h; sourceTree = "<group>"; };
+		785DA9702021627E0004A376 /* ZegoLiveRoom.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoLiveRoom.framework; sourceTree = "<group>"; };
+		785DA9722021627E0004A376 /* ZegoLiveRoom.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoLiveRoom.framework; sourceTree = "<group>"; };
 		785EEF2A2016DDFF00AF01B3 /* YTRoomView1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTRoomView1.h; sourceTree = "<group>"; };
 		785EEF2B2016DE0000AF01B3 /* YTRoomView1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTRoomView1.m; sourceTree = "<group>"; };
 		785EEF2C2016DE0000AF01B3 /* YTChatRoomControl1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTChatRoomControl1.m; sourceTree = "<group>"; };
@@ -707,9 +707,9 @@
 				442563D11F385DD70075467A /* ZegoImageFilter.framework in Frameworks */,
 				C69795F58C80289B30CE5F15 /* libPods-WYStreamMaster.a in Frameworks */,
 				789DAA2A1F5688200012075C /* libnama.a in Frameworks */,
-				78461DE320203ECA006FFCEB /* ZegoLiveRoom.framework in Frameworks */,
+				785DA9732021627E0004A376 /* ZegoLiveRoom.framework in Frameworks */,
 				442563D01F385DD70075467A /* ZegoImageFilter.framework in Frameworks */,
-				78461DE420203ECA006FFCEB /* ZegoLiveRoom.framework in Frameworks */,
+				785DA9742021627E0004A376 /* ZegoLiveRoom.framework in Frameworks */,
 				442563CF1F385DD70075467A /* ZegoImageFilter.framework in Frameworks */,
 				442563D61F3860760075467A /* ZegoImageFilter.framework in Frameworks */,
 			);
@@ -1129,7 +1129,7 @@
 		442563A21F3849370075467A /* ZegoLibs */ = {
 			isa = PBXGroup;
 			children = (
-				78461DDE20203EC9006FFCEB /* ZegoLiveRoom-all */,
+				785DA96E2021627E0004A376 /* release */,
 				789DAA341F568C060012075C /* FUAPIDemoBar.framework */,
 				789DAA181F5688200012075C /* Faceunity */,
 				442563BF1F385DD70075467A /* zegoliveroom.version.txt */,
@@ -1345,31 +1345,6 @@
 			path = Animation;
 			sourceTree = "<group>";
 		};
-		78461DDE20203EC9006FFCEB /* ZegoLiveRoom-all */ = {
-			isa = PBXGroup;
-			children = (
-				78461DDF20203EC9006FFCEB /* iphoneos */,
-				78461DE120203EC9006FFCEB /* iphoneos_simulator */,
-			);
-			path = "ZegoLiveRoom-all";
-			sourceTree = "<group>";
-		};
-		78461DDF20203EC9006FFCEB /* iphoneos */ = {
-			isa = PBXGroup;
-			children = (
-				78461DE020203EC9006FFCEB /* ZegoLiveRoom.framework */,
-			);
-			path = iphoneos;
-			sourceTree = "<group>";
-		};
-		78461DE120203EC9006FFCEB /* iphoneos_simulator */ = {
-			isa = PBXGroup;
-			children = (
-				78461DE220203EC9006FFCEB /* ZegoLiveRoom.framework */,
-			);
-			path = iphoneos_simulator;
-			sourceTree = "<group>";
-		};
 		785616211FF4BE5C00E3AE8E /* Socket */ = {
 			isa = PBXGroup;
 			children = (
@@ -1378,6 +1353,31 @@
 			);
 			name = Socket;
 			path = ../../../../../../Socket;
+			sourceTree = "<group>";
+		};
+		785DA96E2021627E0004A376 /* release */ = {
+			isa = PBXGroup;
+			children = (
+				785DA96F2021627E0004A376 /* iphoneos */,
+				785DA9712021627E0004A376 /* iphoneos_simulator */,
+			);
+			path = release;
+			sourceTree = "<group>";
+		};
+		785DA96F2021627E0004A376 /* iphoneos */ = {
+			isa = PBXGroup;
+			children = (
+				785DA9702021627E0004A376 /* ZegoLiveRoom.framework */,
+			);
+			path = iphoneos;
+			sourceTree = "<group>";
+		};
+		785DA9712021627E0004A376 /* iphoneos_simulator */ = {
+			isa = PBXGroup;
+			children = (
+				785DA9722021627E0004A376 /* ZegoLiveRoom.framework */,
+			);
+			path = iphoneos_simulator;
 			sourceTree = "<group>";
 		};
 		789DAA111F56871F0012075C /* Face */ = {

@@ -83,7 +83,7 @@ YTPrimaryBetRankingViewDelegate
 @property (nonatomic, strong) FUAPIDemoBar *demoBar ;
 @property (nonatomic, assign) NSInteger qualityNoGood;
 
-@property (nonatomic, strong) NSTimer *pauseTimers;
+//@property (nonatomic, strong) NSTimer *pauseTimers;
 
 @property (nonatomic, assign) NSInteger startLiveTime;
 @property (nonatomic, assign) NSInteger liveDurationTime;
@@ -145,7 +145,7 @@ YTPrimaryBetRankingViewDelegate
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(serverNoticeCustomAttachment:) name:WYServerNoticeAttachment_Notification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ReachabilityDidChangeNotification:) name:AFNetworkingReachabilityDidChangeNotification object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(serverNoticeFinishStream) name:WYNotificationWSConnect object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(serverNoticeStream) name:WYNotificationWSConnect object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(socketReConnectFailed) name:WYNotificationReConnectFailed object:nil];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationWSDisConnect) name:WYNotificationWSDisConnect object:nil];
@@ -251,7 +251,7 @@ YTPrimaryBetRankingViewDelegate
 }
 
 - (void)closeLive{
-    [self stopTimer];
+//    [self stopTimer];
     // 关闭长连接
     [[WYSocketManager sharedInstance] SRWebSocketClose];
     NSString *requestUrl = [[WYAPIGenerate sharedInstance] API:@"anchor_on_off"];
@@ -349,7 +349,6 @@ YTPrimaryBetRankingViewDelegate
 }
 
 - (void)setupSubView{
-    
     self.betTopTipLabel.text = [WYCommonUtils acquireCurrentLocalizedText:@"押注排名"];
     self.giftHistoryTipLabel.text = [WYCommonUtils acquireCurrentLocalizedText:@"礼物历史"];
     
@@ -630,6 +629,16 @@ YTPrimaryBetRankingViewDelegate
     [self.navigationController pushViewController:liveEndVC animated:YES];
 }
 
+- (void)serverNoticeStream{
+    [self stopPublishing];
+    [self.streamingSessionManager destroyStream];
+    [self.roomView.chatroomControl exitRoom];
+    //通知服务器停止直播了
+    [self closeLive];
+    [self.navigationController popViewControllerAnimated:YES];
+
+}
+
 - (void)stopPublishing
 {
     [[ZegoHelper api] stopPreview];
@@ -707,7 +716,7 @@ YTPrimaryBetRankingViewDelegate
 
 - (void)socketReConnectFailed
 {
-    [self serverNoticeFinishStream];
+//    [self serverNoticeFinishStream];
     [[NSNotificationCenter defaultCenter] postNotificationName:WYNotificationAgainStartLive object:nil];
     [self uploadFileSaveLog:@"socketConnectFailed"];
 }
@@ -1102,7 +1111,7 @@ static bool frontCamera = YES;
     WYLog(@"%s, stream: %@, state: %d", __func__, streamID, stateCode);
     if (stateCode == 0)
     {
-        [self.pauseTimers setFireDate:[NSDate date]];
+//        [self.pauseTimers setFireDate:[NSDate date]];
         [MBProgressHUD showAlertMessage:[WYCommonUtils acquireCurrentLocalizedText:@"wy_live_succeed_tip"] toView:nil];
         NSLog(@"infoinfoinfo%@", info);
         self.flvStr = info[@"flvList"][0];
@@ -1145,20 +1154,20 @@ static bool frontCamera = YES;
 //    [self.pauseTimers setFireDate:[NSDate date]];
 }
 
-- (NSTimer *)pauseTimers{
-    if (!_pauseTimers) {
-        _pauseTimers =  [NSTimer scheduledTimerWithTimeInterval:300.0 target:self selector:@selector(anchorDetail) userInfo:nil repeats:YES];
-        [[NSRunLoop currentRunLoop] addTimer:_pauseTimers forMode:NSRunLoopCommonModes];
-    }
-    return _pauseTimers;
-}
-
-- (void)stopTimer{
-    if (_pauseTimers) {
-        [_pauseTimers invalidate];
-        _pauseTimers = nil;
-    }
-}
+//- (NSTimer *)pauseTimers{
+//    if (!_pauseTimers) {
+//        _pauseTimers =  [NSTimer scheduledTimerWithTimeInterval:300.0 target:self selector:@selector(anchorDetail) userInfo:nil repeats:YES];
+//        [[NSRunLoop currentRunLoop] addTimer:_pauseTimers forMode:NSRunLoopCommonModes];
+//    }
+//    return _pauseTimers;
+//}
+//
+//- (void)stopTimer{
+//    if (_pauseTimers) {
+//        [_pauseTimers invalidate];
+//        _pauseTimers = nil;
+//    }
+//}
 
 - (void)liveTimerRunning{
 //    NSInteger status = [AFNetworkReachabilityManager sharedManager].networkReachabilityStatus;
