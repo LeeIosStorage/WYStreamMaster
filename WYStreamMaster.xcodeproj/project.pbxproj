@@ -134,7 +134,6 @@
 		44F8D9841E9E30D2002EC952 /* WYDataMemoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F8D9831E9E30D2002EC952 /* WYDataMemoryManager.m */; };
 		780965681FD93ACD004F438B /* WYLiveEndViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 780965661FD93ACD004F438B /* WYLiveEndViewController.m */; };
 		780965691FD93ACD004F438B /* WYLiveEndViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 780965671FD93ACD004F438B /* WYLiveEndViewController.xib */; };
-		780D510B200CD84A00538334 /* WYLiveViewController3.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D510A200CD84A00538334 /* WYLiveViewController3.m */; };
 		780D510F200DED4C00538334 /* HHCountdowLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D510E200DED4B00538334 /* HHCountdowLabel.m */; };
 		7826BD2A1FB0406200EACB75 /* WYMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7826BD291FB0406200EACB75 /* WYMessageModel.m */; };
 		7826BD331FB057F100EACB75 /* WYAnchorApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7826BD311FB057F100EACB75 /* WYAnchorApplyViewController.m */; };
@@ -529,9 +528,6 @@
 		780965651FD93ACD004F438B /* WYLiveEndViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WYLiveEndViewController.h; sourceTree = "<group>"; };
 		780965661FD93ACD004F438B /* WYLiveEndViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WYLiveEndViewController.m; sourceTree = "<group>"; };
 		780965671FD93ACD004F438B /* WYLiveEndViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WYLiveEndViewController.xib; sourceTree = "<group>"; };
-		780D5108200CD84900538334 /* WYLiveViewController3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WYLiveViewController3.h; sourceTree = "<group>"; };
-		780D5109200CD84900538334 /* WYLiveViewController3.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WYLiveViewController3.xib; sourceTree = "<group>"; };
-		780D510A200CD84A00538334 /* WYLiveViewController3.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WYLiveViewController3.m; sourceTree = "<group>"; };
 		780D510D200DED4300538334 /* HHCountdowLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HHCountdowLabel.h; sourceTree = "<group>"; };
 		780D510E200DED4B00538334 /* HHCountdowLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHCountdowLabel.m; sourceTree = "<group>"; };
 		7826BD281FB0406200EACB75 /* WYMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYMessageModel.h; sourceTree = "<group>"; };
@@ -1060,9 +1056,6 @@
 				7854DA22200309A5002D552C /* WYLiveViewController2.h */,
 				7854DA23200309A5002D552C /* WYLiveViewController2.m */,
 				7854DA24200309A6002D552C /* WYLiveViewController2.xib */,
-				780D5108200CD84900538334 /* WYLiveViewController3.h */,
-				780D510A200CD84A00538334 /* WYLiveViewController3.m */,
-				780D5109200CD84900538334 /* WYLiveViewController3.xib */,
 			);
 			path = Stream;
 			sourceTree = "<group>";
@@ -2106,7 +2099,6 @@
 				78B82A3B1F7914C700279366 /* YTQuickLoginViewController.m in Sources */,
 				7826BD2A1FB0406200EACB75 /* WYMessageModel.m in Sources */,
 				784A19F41FCBF66800CCC529 /* WYSpaceDetailBottomView.m in Sources */,
-				780D510B200CD84A00538334 /* WYLiveViewController3.m in Sources */,
 				442563DD1F39993C0075467A /* ZegoAVManager.m in Sources */,
 				7852D5221FD915C000CB3249 /* WYLiveViewController1.m in Sources */,
 				44203DB11E715A9100D59B5E /* WYNetWorkExceptionHandling.m in Sources */,
